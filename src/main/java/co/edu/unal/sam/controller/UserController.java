@@ -39,7 +39,7 @@ public class UserController {
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
     public ResponseEntity<?> getUser(@PathVariable Long userId) {
-        verifyUser(userId);
+        this.verifyUser(userId);
         User p = this.userRepository.findOne(userId);
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
@@ -52,14 +52,14 @@ public class UserController {
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateUser(@RequestBody User user, @PathVariable Long userId) {
-        verifyUser(userId);
+        this.verifyUser(userId);
         this.userRepository.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        verifyUser(userId);
+        this.verifyUser(userId);
         this.userRepository.delete(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
