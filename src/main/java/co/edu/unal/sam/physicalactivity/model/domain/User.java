@@ -1,4 +1,4 @@
-package co.edu.unal.sam.domain;
+package co.edu.unal.sam.physicalactivity.model.domain;
 
 import java.util.Date;
 

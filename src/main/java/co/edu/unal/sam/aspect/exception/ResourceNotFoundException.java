@@ -1,4 +1,4 @@
-package co.edu.unal.sam.exception;
+package co.edu.unal.sam.aspect.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

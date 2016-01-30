@@ -1,4 +1,4 @@
-package co.edu.unal.sam.dto.error;
+package co.edu.unal.sam.physicalactivity.model.dto.error;
 
 public class ValidationError {
 
