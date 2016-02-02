@@ -1,8 +1,11 @@
 package co.edu.unal.sam.physicalactivity.model.domain;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -52,15 +55,15 @@ public class User extends Entity {
 	@Null
 	private Boolean history;
 
-    @Column(name = "type_user_id", nullable = false)
-    @NotNull
-    @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
-    private StateEnum typeuser;
-    
+	@Column(name = "type_user_id", nullable = false)
+	@NotNull
+	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
+	private StateEnum typeuser;
+
 	@Column(name = "use_condition", nullable = false)
 	@NotNull
 	private Boolean useCondition;
-	
+
 	@Column(name = "user_name", nullable = false, unique = true, length = 300)
 	@NotNull
 	private String userName;
@@ -68,6 +71,9 @@ public class User extends Entity {
 	@Column(name = "weight", nullable = false)
 	@NotNull
 	private Integer weight;
+
+	@OneToMany(mappedBy = "user")
+	private Set<SubGoal> subGoals = new HashSet<>(0);
 
 	/**
 	 * @return the bmi
@@ -77,7 +83,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param bmi the bmi to set
+	 * @param bmi
+	 *            the bmi to set
 	 */
 	public void setBmi(Integer bmi) {
 		this.bmi = bmi;
@@ -91,7 +98,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param dateBirth the dateBirth to set
+	 * @param dateBirth
+	 *            the dateBirth to set
 	 */
 	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;
@@ -105,7 +113,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param dateIngress the dateIngress to set
+	 * @param dateIngress
+	 *            the dateIngress to set
 	 */
 	public void setDateIngress(Date dateIngress) {
 		this.dateIngress = dateIngress;
@@ -119,7 +128,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param dateInteraction the dateInteraction to set
+	 * @param dateInteraction
+	 *            the dateInteraction to set
 	 */
 	public void setDateInteraction(Date dateInteraction) {
 		this.dateInteraction = dateInteraction;
@@ -133,7 +143,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param descriptionHistory the descriptionHistory to set
+	 * @param descriptionHistory
+	 *            the descriptionHistory to set
 	 */
 	public void setDescriptionHistory(String descriptionHistory) {
 		this.descriptionHistory = descriptionHistory;
@@ -147,7 +158,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param email the email to set
+	 * @param email
+	 *            the email to set
 	 */
 	public void setEmail(String email) {
 		this.email = email;
@@ -161,7 +173,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param height the height to set
+	 * @param height
+	 *            the height to set
 	 */
 	public void setHeight(Integer height) {
 		this.height = height;
@@ -175,7 +188,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param history the history to set
+	 * @param history
+	 *            the history to set
 	 */
 	public void setHistory(Boolean history) {
 		this.history = history;
@@ -189,7 +203,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param typeuser the typeuser to set
+	 * @param typeuser
+	 *            the typeuser to set
 	 */
 	public void setTypeuser(StateEnum typeuser) {
 		this.typeuser = typeuser;
@@ -203,7 +218,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param useCondition the useCondition to set
+	 * @param useCondition
+	 *            the useCondition to set
 	 */
 	public void setUseCondition(Boolean useCondition) {
 		this.useCondition = useCondition;
@@ -217,7 +233,8 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param userName the userName to set
+	 * @param userName
+	 *            the userName to set
 	 */
 	public void setUserName(String userName) {
 		this.userName = userName;
@@ -231,11 +248,26 @@ public class User extends Entity {
 	}
 
 	/**
-	 * @param weight the weight to set
+	 * @param weight
+	 *            the weight to set
 	 */
 	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 
-	
+	/**
+	 * @return the subgoals
+	 */
+	public Set<SubGoal> getSubGoals() {
+		return subGoals;
+	}
+
+	/**
+	 * @param subgoals
+	 *            the subgoals to set
+	 */
+	public void setSubgoals(Set<SubGoal> subGoals) {
+		this.subGoals = subGoals;
+	}
+
 }
