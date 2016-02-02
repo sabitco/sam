@@ -1,4 +1,4 @@
-package co.edu.unal.sam.physicalactivity.model.dto.error;
+package co.edu.unal.sam.aspect.model.dto.error;
 
 import java.util.HashMap;
 import java.util.List;

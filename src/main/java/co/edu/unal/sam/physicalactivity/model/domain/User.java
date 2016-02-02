@@ -14,7 +14,7 @@ import javax.validation.constraints.Null;
 import org.hibernate.annotations.Type;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
-import co.edu.unal.sam.physicalactivity.model.enumerator.StateEnum;
+import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")

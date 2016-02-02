@@ -2,14 +2,14 @@ package co.edu.unal.sam.aspect.model.enumerator;
 
 import co.edu.unal.sam.aspect.model.enumerator.PersistentEnum;
 
-public enum TypeUserEnum implements PersistentEnum {
+public enum TypeQuestionEnum implements PersistentEnum {
 
-	ADMINISTRATOR((byte) 1, "Administrator"), PLAYER((byte) 2, "Player");
+	CLOSE((byte) 2, "Close"), OPEN((byte) 1, "Open");
 
 	private final Byte id;
 	private final String name;
 
-	private TypeUserEnum(Byte id, String name) {
+	private TypeQuestionEnum(Byte id, String name) {
 		this.id = id;
 		this.name = name;
 	}
@@ -22,4 +22,5 @@ public enum TypeUserEnum implements PersistentEnum {
 	public String getName() {
 		return this.name;
 	}
+
 }

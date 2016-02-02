@@ -2,14 +2,14 @@ package co.edu.unal.sam.aspect.model.enumerator;
 
 import co.edu.unal.sam.aspect.model.enumerator.PersistentEnum;
 
-public enum TypeUserEnum implements PersistentEnum {
+public enum TypeProductEnum implements PersistentEnum {
 
-	ADMINISTRATOR((byte) 1, "Administrator"), PLAYER((byte) 2, "Player");
+	TIP((byte) 1, "Tip"), NEW((byte) 2, "New");
 
 	private final Byte id;
 	private final String name;
 
-	private TypeUserEnum(Byte id, String name) {
+	private TypeProductEnum(Byte id, String name) {
 		this.id = id;
 		this.name = name;
 	}

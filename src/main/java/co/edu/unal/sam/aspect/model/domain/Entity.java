@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
-import co.edu.unal.sam.physicalactivity.model.enumerator.StateEnum;
+import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 
 @MappedSuperclass
 public class Entity {
@@ -34,7 +34,7 @@ public class Entity {
 
 	@Column(name = "state_id", nullable = false)
 	@NotNull
-	@Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.StateUserType")
+	@Type(type = "co.edu.unal.sam.aspect.model.usertype.StateUserType")
 	private StateEnum state;
 
 	public Entity() {

@@ -10,7 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 
-import co.edu.unal.sam.aspect.model.domain.PersistentEnum;
+import co.edu.unal.sam.aspect.model.enumerator.PersistentEnum;
 
 /**
  * 

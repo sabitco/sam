@@ -1,6 +1,6 @@
-package co.edu.unal.sam.physicalactivity.model.enumerator;
+package co.edu.unal.sam.aspect.model.enumerator;
 
-import co.edu.unal.sam.aspect.model.domain.PersistentEnum;
+import co.edu.unal.sam.aspect.model.enumerator.PersistentEnum;
 
 public enum StateEnum implements PersistentEnum {
     

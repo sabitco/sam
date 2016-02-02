@@ -1,4 +1,4 @@
-package co.edu.unal.sam.aspect.model.domain;
+package co.edu.unal.sam.aspect.model.enumerator;
 
 public interface PersistentEnum {
     

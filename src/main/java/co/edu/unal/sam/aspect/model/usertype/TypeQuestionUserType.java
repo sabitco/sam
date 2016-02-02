@@ -1,7 +1,7 @@
-package co.edu.unal.sam.physicalactivity.model.usertype;
+package co.edu.unal.sam.aspect.model.usertype;
 
 import co.edu.unal.sam.aspect.model.usertype.PersistentEnumUserType;
-import co.edu.unal.sam.physicalactivity.model.enumerator.TypeQuestionEnum;
+import co.edu.unal.sam.aspect.model.enumerator.TypeQuestionEnum;
 
 public class TypeQuestionUserType extends PersistentEnumUserType<TypeQuestionEnum> {
 

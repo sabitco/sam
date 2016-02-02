@@ -20,8 +20,8 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
-import co.edu.unal.sam.physicalactivity.model.dto.error.ErrorDetail;
-import co.edu.unal.sam.physicalactivity.model.dto.error.ValidationError;
+import co.edu.unal.sam.aspect.model.dto.error.ErrorDetail;
+import co.edu.unal.sam.aspect.model.dto.error.ValidationError;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
