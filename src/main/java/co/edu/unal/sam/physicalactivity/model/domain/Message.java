@@ -30,4 +30,36 @@ public class Message extends Entity {
 	@ManyToMany(mappedBy = "messages")
 	private Set<RiskPlan> riskPlans = new HashSet<>(0);
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public Set<RiskPlan> getRiskPlans() {
+        return riskPlans;
+    }
+
+    public void setRiskPlans(Set<RiskPlan> riskPlans) {
+        this.riskPlans = riskPlans;
+    }
+	
 }
