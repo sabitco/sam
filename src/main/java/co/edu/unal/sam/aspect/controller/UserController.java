@@ -1,4 +1,4 @@
-package co.edu.unal.sam.physicalactivity.controller;
+package co.edu.unal.sam.aspect.controller;
 
 import java.net.URI;
 
@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import co.edu.unal.sam.physicalactivity.model.domain.User;
+import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
-import co.edu.unal.sam.physicalactivity.model.repository.UserRepository;
+import co.edu.unal.sam.aspect.model.repository.UserRepository;
 
 @RestController
 public class UserController {

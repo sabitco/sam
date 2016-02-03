@@ -9,28 +9,42 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Table(name = "plan")
 public class Plan extends Entity {
 
-    @Column(name = "minute", nullable = false)
-    @NotNull
-    private Integer minute;
+	@Column(name = "minute", nullable = false)
+	@NotNull
+	private Integer minute;
 
-    @Column(name = "obese", nullable = false)
-    @NotNull
-    private Boolean obese;
+	@Column(name = "obese", nullable = false)
+	@NotNull
+	private Boolean obese;
 
-    public Integer getMinute() {
-        return minute;
-    }
+	/**
+	 * @return the minute
+	 */
+	public Integer getMinute() {
+		return minute;
+	}
 
-    public void setMinute(Integer minute) {
-        this.minute = minute;
-    }
+	/**
+	 * @param minute
+	 *            the minute to set
+	 */
+	public void setMinute(Integer minute) {
+		this.minute = minute;
+	}
 
-    public Boolean getObese() {
-        return obese;
-    }
+	/**
+	 * @return the obese
+	 */
+	public Boolean getObese() {
+		return obese;
+	}
 
-    public void setObese(Boolean obese) {
-        this.obese = obese;
-    }
+	/**
+	 * @param obese
+	 *            the obese to set
+	 */
+	public void setObese(Boolean obese) {
+		this.obese = obese;
+	}
 
 }

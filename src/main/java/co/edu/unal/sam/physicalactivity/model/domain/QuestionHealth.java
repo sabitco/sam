@@ -13,30 +13,43 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Table(name = "question_health")
 public class QuestionHealth extends Entity {
 
-    @Column(name = "description", columnDefinition = "TEXT", nullable = true)
-    @Null
-    private String description;
+	@Column(name = "description", columnDefinition = "TEXT", nullable = true)
+	@Null
+	private String description;
 
-    @ManyToOne()
-    @JoinColumn(name = "risk_plan_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_question_health_risk_plan") )
-    @NotNull
-    private RiskPlan riskPlan;
+	@ManyToOne()
+	@JoinColumn(name = "risk_plan_id", nullable = false, foreignKey = @ForeignKey(name = "fk_question_health_risk_plan"))
+	@NotNull
+	private RiskPlan riskPlan;
 
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public RiskPlan getRiskPlan() {
-        return riskPlan;
-    }
+	/**
+	 * @return the riskPlan
+	 */
+	public RiskPlan getRiskPlan() {
+		return riskPlan;
+	}
 
-    public void setRiskPlan(RiskPlan riskPlan) {
-        this.riskPlan = riskPlan;
-    }
+	/**
+	 * @param riskPlan
+	 *            the riskPlan to set
+	 */
+	public void setRiskPlan(RiskPlan riskPlan) {
+		this.riskPlan = riskPlan;
+	}
 
 }

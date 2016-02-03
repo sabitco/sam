@@ -13,66 +13,100 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Table(name = "tip")
 public class Tip extends Entity {
 
-    @Column(name = "body", columnDefinition = "TEXT", nullable = false)
-    @NotNull
-    private String body;
+	@Column(name = "body", columnDefinition = "TEXT", nullable = false)
+	@NotNull
+	private String body;
 
-    @Column(name = "description", columnDefinition = "TEXT", nullable = true)
-    @Null
-    private String description;
+	@Column(name = "description", columnDefinition = "TEXT", nullable = true)
+	@Null
+	private String description;
 
-    @Column(name = "message_alert", nullable = false, length = 300)
-    @NotNull
-    private String messageAlert;
+	@ManyToOne()
+	@JoinColumn(name = "question_health_id", nullable = false, foreignKey = @ForeignKey(name = "fk_tip_question_health"))
+	@NotNull
+	private QuestionHealth questionHealth;
 
-    @Column(name = "tag", nullable = false, length = 300)
-    @NotNull
-    private String tag;
+	@Column(name = "message_alert", nullable = false, length = 300)
+	@NotNull
+	private String messageAlert;
 
-    @ManyToOne()
-    @JoinColumn(name = "question_health_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_tip_question_health") )
-    @NotNull
-    private QuestionHealth questionHealth;
+	@Column(name = "tag", nullable = false, length = 300)
+	@NotNull
+	private String tag;
 
-    public String getBody() {
-        return body;
-    }
+	/**
+	 * @return the body
+	 */
+	public String getBody() {
+		return body;
+	}
 
-    public void setBody(String body) {
-        this.body = body;
-    }
+	/**
+	 * @param body
+	 *            the body to set
+	 */
+	public void setBody(String body) {
+		this.body = body;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getMessageAlert() {
-        return messageAlert;
-    }
+	/**
+	 * @return the questionHealth
+	 */
+	public QuestionHealth getQuestionHealth() {
+		return questionHealth;
+	}
 
-    public void setMessageAlert(String messageAlert) {
-        this.messageAlert = messageAlert;
-    }
+	/**
+	 * @param questionHealth
+	 *            the questionHealth to set
+	 */
+	public void setQuestionHealth(QuestionHealth questionHealth) {
+		this.questionHealth = questionHealth;
+	}
 
-    public String getTag() {
-        return tag;
-    }
+	/**
+	 * @return the messageAlert
+	 */
+	public String getMessageAlert() {
+		return messageAlert;
+	}
 
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
+	/**
+	 * @param messageAlert
+	 *            the messageAlert to set
+	 */
+	public void setMessageAlert(String messageAlert) {
+		this.messageAlert = messageAlert;
+	}
 
-    public QuestionHealth getQuestionHealth() {
-        return questionHealth;
-    }
+	/**
+	 * @return the tag
+	 */
+	public String getTag() {
+		return tag;
+	}
 
-    public void setQuestionHealth(QuestionHealth questionHealth) {
-        this.questionHealth = questionHealth;
-    }
+	/**
+	 * @param tag
+	 *            the tag to set
+	 */
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
 
 }

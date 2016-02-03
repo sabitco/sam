@@ -17,57 +17,81 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Table(name = "risk_plan")
 public class RiskPlan extends Entity {
 
-    @Column(name = "description")
-    private String description;
+	@Column(name = "description")
+	private String description;
 
-    @ManyToOne()
-    @JoinColumn(name = "risk_id", nullable = false)
-    @NotNull
-    private Risk risk;
+	@ManyToMany()
+	@JoinTable(name = "message_risk_plan", joinColumns = { @JoinColumn(name = "risk_plan_id", nullable = false, foreignKey = @ForeignKey(name = "fk_message_risk_plan_risk_plan")) }, inverseJoinColumns = { @JoinColumn(name = "message_id", nullable = false, foreignKey = @ForeignKey(name = "fk_message_risk_plan_message")) })
+	private Set<Message> messages = new HashSet<>(0);
 
-    @ManyToOne()
-    @JoinColumn(name = "plan_id", nullable = false)
-    @NotNull
-    private Plan plan;
+	@ManyToOne()
+	@JoinColumn(name = "plan_id", nullable = false)
+	@NotNull
+	private Plan plan;
 
-    @ManyToMany()
-    @JoinTable(name = "message_risk_plan",
-            joinColumns = {@JoinColumn(name = "risk_plan_id", nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_message_risk_plan_risk_plan") )},
-            inverseJoinColumns = {@JoinColumn(name = "message_id", nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_message_risk_plan_message") )})
-    private Set<Message> messages = new HashSet<>(0);
+	@ManyToOne()
+	@JoinColumn(name = "risk_id", nullable = false)
+	@NotNull
+	private Risk risk;
 
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public Risk getRisk() {
-        return risk;
-    }
+	/**
+	 * @return the messages
+	 */
+	public Set<Message> getMessages() {
+		return messages;
+	}
 
-    public void setRisk(Risk risk) {
-        this.risk = risk;
-    }
+	/**
+	 * @param messages
+	 *            the messages to set
+	 */
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
 
-    public Plan getPlan() {
-        return plan;
-    }
+	/**
+	 * @return the plan
+	 */
+	public Plan getPlan() {
+		return plan;
+	}
 
-    public void setPlan(Plan plan) {
-        this.plan = plan;
-    }
+	/**
+	 * @param plan
+	 *            the plan to set
+	 */
+	public void setPlan(Plan plan) {
+		this.plan = plan;
+	}
 
-    public Set<Message> getMessages() {
-        return messages;
-    }
+	/**
+	 * @return the risk
+	 */
+	public Risk getRisk() {
+		return risk;
+	}
 
-    public void setMessages(Set<Message> messages) {
-        this.messages = messages;
-    }
+	/**
+	 * @param risk
+	 *            the risk to set
+	 */
+	public void setRisk(Risk risk) {
+		this.risk = risk;
+	}
 
 }

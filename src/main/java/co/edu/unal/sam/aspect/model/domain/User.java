@@ -1,10 +1,13 @@
-package co.edu.unal.sam.physicalactivity.model.domain;
+package co.edu.unal.sam.aspect.model.domain;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,8 +16,9 @@ import javax.validation.constraints.Null;
 
 import org.hibernate.annotations.Type;
 
-import co.edu.unal.sam.aspect.model.domain.Entity;
-import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
+import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
+import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
+import co.edu.unal.sam.aspect.model.domain.Role;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
@@ -51,14 +55,22 @@ public class User extends Entity {
 	@NotNull
 	private Integer height;
 
-	@Column(name = "history", nullable = true)
-	@Null
+	@Column(name = "history", nullable = false)
+	@NotNull
 	private Boolean history;
+
+	@ManyToOne()
+	@JoinColumn(name = "role_id", nullable = false, foreignKey = @ForeignKey(name = "fk_role_user"))
+	@NotNull
+	private Role role;
 
 	@Column(name = "type_user_id", nullable = false)
 	@NotNull
 	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
-	private StateEnum typeuser;
+	private TypeUserEnum typeuser;
+
+	@OneToMany(mappedBy = "user")
+	private Set<SubGoal> subGoals = new HashSet<>(0);
 
 	@Column(name = "use_condition", nullable = false)
 	@NotNull
@@ -71,9 +83,6 @@ public class User extends Entity {
 	@Column(name = "weight", nullable = false)
 	@NotNull
 	private Integer weight;
-
-	@OneToMany(mappedBy = "user")
-	private Set<SubGoal> subGoals = new HashSet<>(0);
 
 	/**
 	 * @return the bmi
@@ -196,9 +205,24 @@ public class User extends Entity {
 	}
 
 	/**
+	 * @return the role
+	 */
+	public Role getRole() {
+		return role;
+	}
+
+	/**
+	 * @param role
+	 *            the role to set
+	 */
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	/**
 	 * @return the typeuser
 	 */
-	public StateEnum getTypeuser() {
+	public TypeUserEnum getTypeuser() {
 		return typeuser;
 	}
 
@@ -206,8 +230,23 @@ public class User extends Entity {
 	 * @param typeuser
 	 *            the typeuser to set
 	 */
-	public void setTypeuser(StateEnum typeuser) {
+	public void setTypeuser(TypeUserEnum typeuser) {
 		this.typeuser = typeuser;
+	}
+
+	/**
+	 * @return the subGoals
+	 */
+	public Set<SubGoal> getSubGoals() {
+		return subGoals;
+	}
+
+	/**
+	 * @param subGoals
+	 *            the subGoals to set
+	 */
+	public void setSubGoals(Set<SubGoal> subGoals) {
+		this.subGoals = subGoals;
 	}
 
 	/**
@@ -253,21 +292,6 @@ public class User extends Entity {
 	 */
 	public void setWeight(Integer weight) {
 		this.weight = weight;
-	}
-
-	/**
-	 * @return the subgoals
-	 */
-	public Set<SubGoal> getSubGoals() {
-		return subGoals;
-	}
-
-	/**
-	 * @param subgoals
-	 *            the subgoals to set
-	 */
-	public void setSubgoals(Set<SubGoal> subGoals) {
-		this.subGoals = subGoals;
 	}
 
 }

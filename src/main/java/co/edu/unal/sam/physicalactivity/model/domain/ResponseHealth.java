@@ -7,48 +7,69 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
+import co.edu.unal.sam.aspect.model.domain.User;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "response_health")
 public class ResponseHealth extends Entity {
 
-    @Column(name = "position", nullable = false)
-    @NotNull
-    private Boolean position;
+	@Column(name = "position", nullable = false)
+	@NotNull
+	private Boolean position;
 
-    @ManyToOne()
-    @JoinColumn(name = "user_id", nullable = false)
-    @NotNull
-    private User user;
+	@ManyToOne()
+	@JoinColumn(name = "question_Health_id", nullable = false, foreignKey = @ForeignKey(name = "fk_response_health_question_health"))
+	@NotNull
+	private QuestionHealth questionHealth;
 
-    @ManyToOne()
-    @JoinColumn(name = "question_Health_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_response_health_question_health") )
-    @NotNull
-    private QuestionHealth questionHealth;
+	@ManyToOne()
+	@JoinColumn(name = "user_id", nullable = false)
+	@NotNull
+	private User user;
 
-    public Boolean getPosition() {
-        return position;
-    }
+	/**
+	 * @return the position
+	 */
+	public Boolean getPosition() {
+		return position;
+	}
 
-    public void setPosition(Boolean position) {
-        this.position = position;
-    }
+	/**
+	 * @param position
+	 *            the position to set
+	 */
+	public void setPosition(Boolean position) {
+		this.position = position;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	/**
+	 * @return the questionHealth
+	 */
+	public QuestionHealth getQuestionHealth() {
+		return questionHealth;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	/**
+	 * @param questionHealth
+	 *            the questionHealth to set
+	 */
+	public void setQuestionHealth(QuestionHealth questionHealth) {
+		this.questionHealth = questionHealth;
+	}
 
-    public QuestionHealth getQuestionHealth() {
-        return questionHealth;
-    }
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
 
-    public void setQuestionHealth(QuestionHealth questionHealth) {
-        this.questionHealth = questionHealth;
-    }
+	/**
+	 * @param user
+	 *            the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 }

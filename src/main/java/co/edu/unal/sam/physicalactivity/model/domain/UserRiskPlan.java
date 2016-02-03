@@ -11,75 +11,109 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
+import co.edu.unal.sam.aspect.model.domain.User;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user_risk_plan")
 public class UserRiskPlan extends Entity {
 
-    @Column(name = "date_start_risk", nullable = false)
-    @Temporal(TemporalType.DATE)
-    @NotNull
-    private Date dateStartRisk;
+	@Column(name = "date_start_risk", nullable = false)
+	@Temporal(TemporalType.DATE)
+	@NotNull
+	private Date dateStartRisk;
 
-    @Column(name = "weight", nullable = false)
-    @NotNull
-    private Integer weight;
+	@ManyToOne()
+	@JoinColumn(name = "preselection_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_risk_plan_preselection"))
+	@NotNull
+	private Preselection preselection;
 
-    @ManyToOne()
-    @JoinColumn(name = "risk_plan_id", nullable = false)
-    @NotNull
-    private RiskPlan riskPlan;
+	@ManyToOne()
+	@JoinColumn(name = "risk_plan_id", nullable = false)
+	@NotNull
+	private RiskPlan riskPlan;
 
-    @ManyToOne()
-    @JoinColumn(name = "preselection_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_user_risk_plan_preselection") )
-    @NotNull
-    private Preselection preselection;
+	@ManyToOne()
+	@JoinColumn(name = "user_id", nullable = false, foreignKey = @ForeignKey(name = "fk_user_risk_plan_user"))
+	@NotNull
+	private User user;
 
-    @ManyToOne()
-    @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_user_risk_plan_user") )
-    @NotNull
-    private User user;
+	@Column(name = "weight", nullable = false)
+	@NotNull
+	private Integer weight;
 
-    public Date getDateStartRisk() {
-        return dateStartRisk;
-    }
+	/**
+	 * @return the dateStartRisk
+	 */
+	public Date getDateStartRisk() {
+		return dateStartRisk;
+	}
 
-    public void setDateStartRisk(Date dateStartRisk) {
-        this.dateStartRisk = dateStartRisk;
-    }
+	/**
+	 * @param dateStartRisk
+	 *            the dateStartRisk to set
+	 */
+	public void setDateStartRisk(Date dateStartRisk) {
+		this.dateStartRisk = dateStartRisk;
+	}
 
-    public Integer getWeight() {
-        return weight;
-    }
+	/**
+	 * @return the preselection
+	 */
+	public Preselection getPreselection() {
+		return preselection;
+	}
 
-    public void setWeight(Integer weight) {
-        this.weight = weight;
-    }
+	/**
+	 * @param preselection
+	 *            the preselection to set
+	 */
+	public void setPreselection(Preselection preselection) {
+		this.preselection = preselection;
+	}
 
-    public RiskPlan getRiskPlan() {
-        return riskPlan;
-    }
+	/**
+	 * @return the riskPlan
+	 */
+	public RiskPlan getRiskPlan() {
+		return riskPlan;
+	}
 
-    public void setRiskPlan(RiskPlan riskPlan) {
-        this.riskPlan = riskPlan;
-    }
+	/**
+	 * @param riskPlan
+	 *            the riskPlan to set
+	 */
+	public void setRiskPlan(RiskPlan riskPlan) {
+		this.riskPlan = riskPlan;
+	}
 
-    public Preselection getPreselection() {
-        return preselection;
-    }
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
 
-    public void setPreselection(Preselection preselection) {
-        this.preselection = preselection;
-    }
+	/**
+	 * @param user
+	 *            the user to set
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	/**
+	 * @return the weight
+	 */
+	public Integer getWeight() {
+		return weight;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	/**
+	 * @param weight
+	 *            the weight to set
+	 */
+	public void setWeight(Integer weight) {
+		this.weight = weight;
+	}
 
 }

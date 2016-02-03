@@ -43,4 +43,95 @@ public class New extends Entity {
 	@NotNull
 	@Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TypeNewType")
 	private StateEnum typeuser;
+
+	/**
+	 * @return the body
+	 */
+	public String getBody() {
+		return body;
+	}
+
+	/**
+	 * @param body
+	 *            the body to set
+	 */
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	/**
+	 * @return the dateStart
+	 */
+	public Date getDateStart() {
+		return dateStart;
+	}
+
+	/**
+	 * @param dateStart
+	 *            the dateStart to set
+	 */
+	public void setDateStart(Date dateStart) {
+		this.dateStart = dateStart;
+	}
+
+	/**
+	 * @return the dateEnd
+	 */
+	public Date getDateEnd() {
+		return dateEnd;
+	}
+
+	/**
+	 * @param dateEnd
+	 *            the dateEnd to set
+	 */
+	public void setDateEnd(Date dateEnd) {
+		this.dateEnd = dateEnd;
+	}
+
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * @return the tag
+	 */
+	public String getTag() {
+		return tag;
+	}
+
+	/**
+	 * @param tag
+	 *            the tag to set
+	 */
+	public void setTag(String tag) {
+		this.tag = tag;
+	}
+
+	/**
+	 * @return the typeuser
+	 */
+	public StateEnum getTypeuser() {
+		return typeuser;
+	}
+
+	/**
+	 * @param typeuser
+	 *            the typeuser to set
+	 */
+	public void setTypeuser(StateEnum typeuser) {
+		this.typeuser = typeuser;
+	}
+
 }

@@ -11,27 +11,27 @@ import co.edu.unal.sam.aspect.model.enumerator.TypeQuestionEnum;
 @javax.persistence.Table(name = "question_preselection")
 public class QuestionPreselection extends Entity {
 
-    @Column(name = "description" )
-    private String description;
+	@Column(name = "description")
+	private String description;
 
-    @Column(name = "type_question_id")
-    @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeQuestionUserType")
-    private TypeQuestionEnum typeQuestion;
+	@Column(name = "type_question_id")
+	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeQuestionUserType")
+	private TypeQuestionEnum typeQuestion;
 
-    public String getDescription() {
-        return description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public TypeQuestionEnum getTypeQuestion() {
-        return typeQuestion;
-    }
+	public TypeQuestionEnum getTypeQuestion() {
+		return typeQuestion;
+	}
 
-    public void setTypeQuestion(TypeQuestionEnum typeQuestion) {
-        this.typeQuestion = typeQuestion;
-    }
+	public void setTypeQuestion(TypeQuestionEnum typeQuestion) {
+		this.typeQuestion = typeQuestion;
+	}
 
 }

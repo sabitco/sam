@@ -16,66 +16,101 @@ import co.edu.unal.sam.aspect.model.enumerator.TypeQuestionEnum;
 @javax.persistence.Table(name = "response_preselection")
 public class ResponsePreselection extends Entity {
 
-    @Column(name = "description", columnDefinition = "TEXT", nullable = true)
-    @Null
-    private String description;
+	@Column(name = "description", columnDefinition = "TEXT", nullable = true)
+	@Null
+	private String description;
 
-    @Column(name = "position", nullable = true)
-    @Null
-    private Boolean position;
+	@Column(name = "position", nullable = true)
+	@Null
+	private Boolean position;
 
-    @Column(name = "score", nullable = false)
-    @NotNull
-    private Integer score;
+	@ManyToOne()
+	@JoinColumn(name = "question_preselection_id", nullable = false, foreignKey = @ForeignKey(name = "fk_response_preselection_question_preselection"))
+	@NotNull
+	private QuestionPreselection questionPreselection;
 
-    @Column(name = "type_question_id")
-    @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeQuestionUserType")
-    private TypeQuestionEnum typeQuestion;
+	@Column(name = "score", nullable = false)
+	@NotNull
+	private Integer score;
 
-    @ManyToOne()
-    @JoinColumn(name = "question_preselection_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_response_preselection_question_preselection") )
-    @NotNull
-    private QuestionPreselection questionPreselection;
+	@Column(name = "type_question_id")
+	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeQuestionUserType")
+	private TypeQuestionEnum typeQuestion;
 
-    public String getDescription() {
-        return description;
-    }
+	/**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	/**
+	 * @param description
+	 *            the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public Boolean getPosition() {
-        return position;
-    }
+	/**
+	 * @return the position
+	 */
+	public Boolean getPosition() {
+		return position;
+	}
 
-    public void setPosition(Boolean position) {
-        this.position = position;
-    }
+	/**
+	 * @param position
+	 *            the position to set
+	 */
+	public void setPosition(Boolean position) {
+		this.position = position;
+	}
 
-    public Integer getScore() {
-        return score;
-    }
+	/**
+	 * @return the questionPreselection
+	 */
+	public QuestionPreselection getQuestionPreselection() {
+		return questionPreselection;
+	}
 
-    public void setScore(Integer score) {
-        this.score = score;
-    }
+	/**
+	 * @param questionPreselection
+	 *            the questionPreselection to set
+	 */
+	public void setQuestionPreselection(
+			QuestionPreselection questionPreselection) {
+		this.questionPreselection = questionPreselection;
+	}
 
-    public TypeQuestionEnum getTypeQuestion() {
-        return typeQuestion;
-    }
+	/**
+	 * @return the score
+	 */
+	public Integer getScore() {
+		return score;
+	}
 
-    public void setTypeQuestion(TypeQuestionEnum typeQuestion) {
-        this.typeQuestion = typeQuestion;
-    }
+	/**
+	 * @param score
+	 *            the score to set
+	 */
+	public void setScore(Integer score) {
+		this.score = score;
+	}
 
-    public QuestionPreselection getQuestionPreselection() {
-        return questionPreselection;
-    }
+	/**
+	 * @return the typeQuestion
+	 */
+	public TypeQuestionEnum getTypeQuestion() {
+		return typeQuestion;
+	}
 
-    public void setQuestionPreselection(QuestionPreselection questionPreselection) {
-        this.questionPreselection = questionPreselection;
-    }
+	/**
+	 * @param typeQuestion
+	 *            the typeQuestion to set
+	 */
+	public void setTypeQuestion(TypeQuestionEnum typeQuestion) {
+		this.typeQuestion = typeQuestion;
+	}
 
 }
