@@ -14,8 +14,8 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 
 @javax.persistence.Entity
-@javax.persistence.Table(name = "new")
-public class New extends Entity {
+@javax.persistence.Table(name = "new_report")
+public class NewReport extends Entity {
 
 	@Column(name = "body", columnDefinition = "TEXT", nullable = false)
 	@NotNull

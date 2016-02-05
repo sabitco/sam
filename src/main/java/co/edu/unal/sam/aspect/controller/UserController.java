@@ -25,7 +25,7 @@ public class UserController {
     @Inject
     private UserRepository userRepository;
 
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
     public ResponseEntity<Void> createUser(@Valid @RequestBody User user) {
         user = this.userRepository.save(user);
         // Set the location header for the newly created resource
@@ -37,27 +37,27 @@ public class UserController {
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.GET)
     public ResponseEntity<?> getUser(@PathVariable Long userId) {
         this.verifyUser(userId);
         User p = this.userRepository.findOne(userId);
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public ResponseEntity<Iterable<User>> getAllusers() {
         Iterable<User> allusers = this.userRepository.findAll();
         return new ResponseEntity<>(allusers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateUser(@RequestBody User user, @PathVariable Long userId) {
         this.verifyUser(userId);
         this.userRepository.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/{userId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         this.verifyUser(userId);
         this.userRepository.delete(userId);

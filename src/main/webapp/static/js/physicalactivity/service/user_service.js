@@ -3,7 +3,7 @@
 App.factory('UserService', ['$http', '$q', function($http, $q) {
   return {
     fetchAllUsers: function() {
-      return $http.get('http://localhost:8080/users/').then(
+      return $http.get('http://localhost:8080/admin/users/').then(
           function(response){
             return response.data;
           },
@@ -13,7 +13,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q) {
       );
     },
     createUser: function(user) {
-      return $http.post('http://localhost:8080/users/', user).then(
+      return $http.post('http://localhost:8080/admin/users/', user).then(
           function(response){
             return response.data;
           },
@@ -23,7 +23,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q) {
       );
     },
     updateUser: function(user, id){
-      return $http.put('http://localhost:8080/users/'+id, user).then(
+      return $http.put('http://localhost:8080/admin/users/'+id, user).then(
           function(response){
             return response.data;
           },
@@ -33,7 +33,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q) {
       );
     },
     deleteUser: function(id) {
-      return $http.delete('http://localhost:8080/users/'+id).then(
+      return $http.delete('http://localhost:8080/admin/users/'+id).then(
           function(response) {
             return response.data;
           },

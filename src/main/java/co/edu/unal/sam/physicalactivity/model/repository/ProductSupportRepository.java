@@ -4,7 +4,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import co.edu.unal.sam.physicalactivity.model.domain.ProductSupport;
 
-public interface ProductSopportRepository extends
+public interface ProductSupportRepository extends
 		CrudRepository<ProductSupport, Long> {
 
 }

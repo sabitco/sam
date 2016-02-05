@@ -1,5 +1,9 @@
 package co.edu.unal.sam.physicalactivity.model.repository;
 
-public class SubGoalRepository {
+import org.springframework.data.repository.CrudRepository;
+
+import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
+
+public interface SubGoalRepository extends CrudRepository<SubGoal, Long> {
 
 }
