@@ -19,7 +19,6 @@ public class Entity {
 
 	@Id
 	@GeneratedValue
-	@NotNull
 	@Column(name = "id", nullable = false)
 	private Long id;
 

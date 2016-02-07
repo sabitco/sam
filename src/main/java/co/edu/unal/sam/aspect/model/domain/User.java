@@ -12,20 +12,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
 
 import org.hibernate.annotations.Type;
 
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
-import co.edu.unal.sam.aspect.model.domain.Role;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
 public class User extends Entity {
 
-	@Column(name = "bmi", nullable = false)
-	@NotNull
+	@Column(name = "bmi")
 	private Integer bmi;
 
 	@Column(name = "date_birth", nullable = false)
@@ -43,45 +40,38 @@ public class User extends Entity {
 	@NotNull
 	private Date dateInteraction;
 
-	@Column(name = "description_history", columnDefinition = "TEXT", nullable = true)
-	@Null
+	@Column(name = "description_history", columnDefinition = "TEXT")
 	private String descriptionHistory;
 
 	@Column(name = "email", nullable = false, length = 300)
 	@NotNull
 	private String email;
 
-	@Column(name = "height", nullable = false)
-	@NotNull
+	@Column(name = "height")
 	private Integer height;
 
-	@Column(name = "history", nullable = false)
-	@NotNull
+	@Column(name = "history")
 	private Boolean history;
 
 	@ManyToOne()
-	@JoinColumn(name = "role_id", nullable = false, foreignKey = @ForeignKey(name = "fk_role_user"))
-	@NotNull
+	@JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_user"))
 	private Role role;
-
-	@Column(name = "type_user_id", nullable = false)
-	@NotNull
-	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
-	private TypeUserEnum typeuser;
 
 	@OneToMany(mappedBy = "user")
 	private Set<SubGoal> subGoals = new HashSet<>(0);
+	
+	@Column(name = "type_user_id", nullable = false)
+    @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
+    private TypeUserEnum typeuser;
 
-	@Column(name = "use_condition", nullable = false)
-	@NotNull
+	@Column(name = "use_condition")
 	private Boolean useCondition;
 
-	@Column(name = "user_name", nullable = false, unique = true, length = 300)
+	@Column(name = "user_name", unique = true, length = 300, nullable = false)
 	@NotNull
-	private String userName;
+	private String username;
 
-	@Column(name = "weight", nullable = false)
-	@NotNull
+	@Column(name = "weight")
 	private Integer weight;
 
 	/**
@@ -267,16 +257,16 @@ public class User extends Entity {
 	/**
 	 * @return the userName
 	 */
-	public String getUserName() {
-		return userName;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
 	 * @param userName
 	 *            the userName to set
 	 */
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**

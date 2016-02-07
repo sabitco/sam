@@ -6,9 +6,12 @@ App.controller('UserController', ['$scope',
       var self = this;
       self.user = {
         id : null,
-        birthdate : '',
+        birthdate : new Date(),
         name : '',
-        username : ''
+        username : '',
+        dateIngress : new Date(),
+        dateInteraction : new Date,
+        typeuser: "PLAYER"
       };
       self.users = [];
 
@@ -39,6 +42,27 @@ App.controller('UserController', ['$scope',
             function(errResponse) {
               console.error('Error while deleting User.');
             });
+      };
+      
+      self.editUser = function(user) {
+        self.user.id = user.id;
+        self.user.dateRegister = user.dateRegister;
+        self.user.name = user.name;
+        self.user.state = user.state;
+        self.user.bmi = user.bmi;
+        self.user.dateBirth = new Date(user.dateBirth);
+        self.user.dateIngress = user.dateIngress;
+        self.user.dateInteraction = user.dateInteraction;
+        self.user.descriptionHistory = user.descriptionHistory;
+        self.user.email = user.email;
+        self.user.height = user.height;
+        self.user.history = user.history;
+        self.user.role = user.role;
+        self.user.subGoals = user.subGoals;
+        self.user.typeuser = user.typeuser;
+        self.user.useCondition = user.useCondition;
+        self.user.username = user.username;
+        self.user.weight = user.weight;
       };
 
       self.fetchAllUsers();
@@ -75,7 +99,7 @@ App.controller('UserController', ['$scope',
           address : '',
           email : ''
         };
-        $scope.myForm.$setPristine(); 
+        $scope.userForm.$setPristine(); 
       };
 
     } ]);
