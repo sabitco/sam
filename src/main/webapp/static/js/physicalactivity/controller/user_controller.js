@@ -1,8 +1,9 @@
 'use strict';
 
-App.controller('UserController', ['$scope',
-    'UserService',
-    function($scope, UserService) {
+App.constant('baseUrl', 'http://localhost:8080/admin/users/');
+
+App.controller('UserController', ['$scope', 'UserService', 'baseUrl', function($scope, UserService, baseUrl) {
+  UserService.setBaseUrl(baseUrl);
       var self = this;
       self.user = {
         id : null,
