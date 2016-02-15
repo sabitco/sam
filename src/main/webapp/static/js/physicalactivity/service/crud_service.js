@@ -1,22 +1,13 @@
-'use strict';
- 
-App.factory('UserService', ['$http', '$q', function($http, $q) {
-  var baseUrl;
+function CrudService($http, baseUrl) {
   return {
-    setBaseUrl: function(url) {
-      baseUrl=url;
+    fetchAll : function() {
+      return $http.get(baseUrl).then(function(response) {
+        return response.data;
+      }, function(errResponse) {
+        return $q.reject(errResponse);
+      });
     },
-    fetchAllUsers: function() {
-      return $http.get(baseUrl).then(
-          function(response){
-            return response.data;
-          },
-          function(errResponse){
-            return $q.reject(errResponse);
-          }
-      );
-    },
-    createUser: function(user) {
+    create: function(user) {
       return $http.post(baseUrl, user).then(
           function(response){
             return response.data;
@@ -26,7 +17,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q) {
           }
       );
     },
-    updateUser: function(user, id){
+    update: function(user, id){
       return $http.put(baseUrl+id, user).then(
           function(response){
             return response.data;
@@ -36,7 +27,7 @@ App.factory('UserService', ['$http', '$q', function($http, $q) {
           }
       );
     },
-    deleteUser: function(id) {
+    delete: function(id) {
       return $http.delete(baseUrl+id).then(
           function(response) {
             return response.data;
@@ -46,7 +37,5 @@ App.factory('UserService', ['$http', '$q', function($http, $q) {
           }
       );
     }
-         
-  };
- 
-}]);
+  }
+}

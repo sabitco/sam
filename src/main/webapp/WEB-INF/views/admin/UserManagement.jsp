@@ -66,7 +66,7 @@
 				</tbody>
 			</table>
       	</div>
-      	<script src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
+      	<script src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
  		<script src="<c:url value='/static/js/physicalactivity/controller/user_controller.js' />"></script>
     </jsp:body>
 </t:template>

@@ -1,9 +1,11 @@
 'use strict';
+App.constant("baseUrl", "http://localhost:8080/admin/users/");
 
-App.constant('baseUrl', 'http://localhost:8080/admin/users/');
-
-App.controller('UserController', ['$scope', 'UserService', 'baseUrl', function($scope, UserService, baseUrl) {
-  UserService.setBaseUrl(baseUrl);
+App.controller('UserController', [
+    '$scope',
+    'crudService',
+    'baseUrl',
+    function($scope, crudService, baseUrl) {
       var self = this;
       self.user = {
         id : null,
@@ -12,12 +14,12 @@ App.controller('UserController', ['$scope', 'UserService', 'baseUrl', function($
         username : '',
         dateIngress : new Date(),
         dateInteraction : new Date,
-        typeuser: "PLAYER"
+        typeuser : "PLAYER"
       };
       self.users = [];
 
       self.fetchAllUsers = function() {
-        UserService.fetchAllUsers().then(function(d) {
+        crudService.fetchAll().then(function(d) {
           self.users = d;
         }, function(errResponse) {
           console.error('Error while fetching Currencies');
@@ -25,26 +27,26 @@ App.controller('UserController', ['$scope', 'UserService', 'baseUrl', function($
       };
 
       self.createUser = function(user) {
-        UserService.createUser(user).then(self.fetchAllUsers,
+        crudService.create(user).then(self.fetchAllUsers,
             function(errResponse) {
               console.error('Error while creating User.');
             });
       };
 
       self.updateUser = function(user, id) {
-        UserService.updateUser(user, id).then(self.fetchAllUsers,
+        crudService.update(user, id).then(self.fetchAllUsers,
             function(errResponse) {
               console.error('Error while updating User.');
             });
       };
 
       self.deleteUser = function(id) {
-        UserService.deleteUser(id).then(self.fetchAllUsers,
+        crudService.delete(id).then(self.fetchAllUsers,
             function(errResponse) {
               console.error('Error while deleting User.');
             });
       };
-      
+
       self.editUser = function(user) {
         self.user.id = user.id;
         self.user.dateRegister = user.dateRegister;
@@ -100,7 +102,7 @@ App.controller('UserController', ['$scope', 'UserService', 'baseUrl', function($
           address : '',
           email : ''
         };
-        $scope.userForm.$setPristine(); 
+        $scope.userForm.$setPristine();
       };
 
     } ]);
