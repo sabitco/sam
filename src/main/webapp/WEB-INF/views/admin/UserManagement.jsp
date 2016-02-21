@@ -1,8 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="co.edu.unal.sam.aspect.properties.ReadFromPropertiesFile" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<c:set var="title" scope="session" value="${ReadFromPropertiesFile.getProperties('admin.title.user')}"/>
+
 <t:template>
-	<jsp:attribute name="title">Admin de Usuarios</jsp:attribute>
+	<jsp:attribute name="title">${title}</jsp:attribute>
 	<jsp:body>
 		<div ng-controller="UserController as ctrl">
 			<form ng-submit="ctrl.submit()" name="userForm">
