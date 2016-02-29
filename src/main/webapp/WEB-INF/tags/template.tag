@@ -13,6 +13,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
   <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
   <script src="<c:url value='/static/js/physicalactivity/app.js' />"></script>
+  <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
   <script>
     $(function(){           
       if (!Modernizr.inputtypes.date) {
