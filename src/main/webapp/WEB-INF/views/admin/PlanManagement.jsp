@@ -9,7 +9,7 @@
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="url" value="${req.requestURL}" />
 <c:set var="uri" value="${req.requestURI}" />
-  
+
 <c:set var="titleAdministrado" scope="session" 
      value="${ReadFromPropertiesFile.getProperties('param.administrador.title.name')}" />
        
@@ -32,10 +32,10 @@
      value="${ReadFromPropertiesFile.getProperties('param.administrador.footer.description')}" />   
 
 <c:set var="titlepage" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.title')}" />
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.title')}" />
                
 <c:set var="descriptionpage" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.description.page')}" />
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.description.page')}" />
 
 <t:admintemplate>
      <jsp:attribute name="title">${titlepage}</jsp:attribute>
@@ -275,11 +275,11 @@
     </footer>
      <!--footer end-->
 
-	<!-- Angular Touch Core JavaScript -->
-	<script src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
- 	
- 	<!-- Angular Touch Core JavaScript -->
- 	<script src="<c:url value='/static/js/physicalactivity/controller/user_controller.js' />"></script>
+     <!-- Angular Touch Core JavaScript -->
+     <script src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
+     
+     <!-- Angular Touch Core JavaScript -->
+     <script src="<c:url value='/static/js/physicalactivity/controller/user_controller.js' />"></script>
      
     </jsp:body>
 </t:admintemplate>

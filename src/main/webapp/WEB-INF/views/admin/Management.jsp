@@ -10,25 +10,55 @@
 <c:set var="url" value="${req.requestURL}" />
 <c:set var="uri" value="${req.requestURI}" />
 
+<c:set var="req" value="${pageContext.request}" />
+<c:set var="url" value="${req.requestURL}" />
+<c:set var="uri" value="${req.requestURI}" />
+  
+<c:set var="titleAdministrado" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.title.name')}" />
+       
 <c:set var="logout" scope="session" 
      value="${ReadFromPropertiesFile.getProperties('param.administrador.option.logout')}" />
 
 <c:set var="userLogger" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.userlogger.name')}" />    
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.userlogger.name')}" />  
      
 <c:set var="descritionoptionone" scope="session" 
      value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.description')}" />   
 
 <c:set var="iconoptionone" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.icon')}" />   
-          
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.icon')}" />
      
-<c:set var="userbase" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.base')}" />
+<c:set var="linkoptionone" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.link')}" /> 
      
+<c:set var="footer" scope="session"
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.footer.description')}" />   
+
+<c:set var="titlepage" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.title')}" />
+               
+<c:set var="descriptionpage" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.cc.description.page')}" />
+
 <c:set var="usericon" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.icon')}" />
-          
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.icon')}" />     
+ 
+<c:set var="userbase" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.base')}" />   
+
+<c:set var="usertitle" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.name')}" />  
+     
+<c:set var="planicon" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.icon')}" />     
+ 
+<c:set var="planbase" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.base')}" />   
+
+<c:set var="plantitle" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.name')}" />     
+ 
 <t:admintemplate>
      <jsp:attribute name="title">${title}</jsp:attribute>
      <jsp:body>
@@ -46,7 +76,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand"> Administrador de SAM </span>
+                <span class="navbar-brand"> ${ titleAdministrado } </span>
             </div>
             <!-- /.navbar-header -->
 
@@ -77,7 +107,7 @@
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li>
-                            <a href="index.html"><i class="fa  ${iconoptionone} fa-fw"></i> ${descritionoptionone} </a>
+                            <a href="${linkoptionone}"><i class="fa  ${iconoptionone} fa-fw"></i> ${descritionoptionone} </a>
                         </li>
                     </ul>
                 </div>
@@ -113,33 +143,36 @@
                         
                         <a href='${userbase}'>
                             <div class="panel-footer">
-                                <span class="pull-left">Gestion de Usuario</span>
+                                <span class="pull-left">${usertitle}</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
+
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
+                                    <i class="fa ${planicon} fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        
+                        <a href='${planbase}'>
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">${plantitle}</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
+                
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -159,7 +192,10 @@
                             </div>
                         </a>
                     </div>
-                </div>                
+                </div> 
+                
+
+                               
                 <div class="col-lg-3 col-md-6">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
@@ -433,7 +469,7 @@
      <!--footer start-->
      <footer class="site-footer">
           <div class="alert alert-danger">
-               2016 - SABIT.CO
+               ${footer}
                <a href="index.html#" class="go-top">
                     <i class="fa fa-angle-up"></i>
                </a>

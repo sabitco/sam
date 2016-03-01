@@ -13,8 +13,13 @@ public class IndexController {
 		return "admin/Management";
 	}
 
+	@RequestMapping(value = "/administrator/plans", method = RequestMethod.GET)
+	public String getIndexPagePlan() {
+		return "admin/PlanManagement";
+	}
+
 	@RequestMapping(value = "/administrator/users", method = RequestMethod.GET)
-	public String getIndexPageUSer() {
+	public String getIndexPageUser() {
 		return "admin/UserManagement";
 	}
 }
