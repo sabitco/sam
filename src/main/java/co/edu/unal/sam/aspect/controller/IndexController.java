@@ -22,4 +22,10 @@ public class IndexController {
 	public String getIndexPageUser() {
 		return "admin/UserManagement";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String getLoginPage() {
+        return "login";
+    }
+	
 }
