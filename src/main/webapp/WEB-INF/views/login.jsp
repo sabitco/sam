@@ -1,8 +1,11 @@
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	  xmlns:spring="http://www.springframework.org" xmlns:sec="http://www.springframework.org/tags">
     <head>
-        <title>Lo lograste ;)</title>
+    	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title><spring:message code="page.login.title"/></title>
     </head>
     <body>
         <div th:if="${param.error}">
