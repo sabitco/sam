@@ -14,6 +14,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
@@ -52,6 +55,11 @@ public class User extends Entity {
 
 	@Column(name = "history")
 	private Boolean history;
+	
+	@Column(name="PASSWORD")
+    @NotEmpty
+    @JsonIgnore
+    private String password;
 
 	@ManyToOne()
 	@JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_user"))
@@ -194,7 +202,15 @@ public class User extends Entity {
 		this.history = history;
 	}
 
-	/**
+	public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
 	 * @return the role
 	 */
 	public Role getRole() {
