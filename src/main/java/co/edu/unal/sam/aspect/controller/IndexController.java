@@ -13,6 +13,11 @@ public class IndexController {
 		return "admin/Management";
 	}
 
+	@RequestMapping(value = "/administrator/pages", method = RequestMethod.GET)
+	public String getIndexPagePage() {
+		return "admin/PageManagement";
+	}
+
 	@RequestMapping(value = "/administrator/plans", method = RequestMethod.GET)
 	public String getIndexPagePlan() {
 		return "admin/PlanManagement";
@@ -22,10 +27,10 @@ public class IndexController {
 	public String getIndexPageUser() {
 		return "admin/UserManagement";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String getLoginPage() {
-        return "login";
-    }
-	
+	public String getLoginPage() {
+		return "login";
+	}
+
 }

@@ -1,5 +1,5 @@
 'use strict';
-App.constant("baseUrl", "http://localhost:8080/admin/users/");
+App.constant("baseUrl", "http://localhost:8080/admin/pages/");
 
 App.controller('PlanController', [
     '$scope',

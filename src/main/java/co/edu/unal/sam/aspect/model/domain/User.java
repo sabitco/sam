@@ -16,10 +16,10 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
@@ -55,11 +55,11 @@ public class User extends Entity {
 
 	@Column(name = "history")
 	private Boolean history;
-	
-	@Column(name="PASSWORD")
-    @NotEmpty
-    @JsonIgnore
-    private String password;
+
+	@Column(name = "PASSWORD")
+	@NotEmpty
+	@JsonIgnore
+	private String password;
 
 	@ManyToOne()
 	@JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_user"))
@@ -67,10 +67,10 @@ public class User extends Entity {
 
 	@OneToMany(mappedBy = "user")
 	private Set<SubGoal> subGoals = new HashSet<>(0);
-	
-	@Column(name = "type_user_id", nullable = false)
-    @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
-    private TypeUserEnum typeuser;
+
+	@Column(name = "type_user_id", nullable = true)
+	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
+	private TypeUserEnum typeuser;
 
 	@Column(name = "use_condition")
 	private Boolean useCondition;
@@ -86,217 +86,217 @@ public class User extends Entity {
 	 * @return the bmi
 	 */
 	public Integer getBmi() {
-		return bmi;
-	}
-
-	/**
-	 * @param bmi
-	 *            the bmi to set
-	 */
-	public void setBmi(Integer bmi) {
-		this.bmi = bmi;
+		return this.bmi;
 	}
 
 	/**
 	 * @return the dateBirth
 	 */
 	public Date getDateBirth() {
-		return dateBirth;
-	}
-
-	/**
-	 * @param dateBirth
-	 *            the dateBirth to set
-	 */
-	public void setDateBirth(Date dateBirth) {
-		this.dateBirth = dateBirth;
+		return this.dateBirth;
 	}
 
 	/**
 	 * @return the dateIngress
 	 */
 	public Date getDateIngress() {
-		return dateIngress;
-	}
-
-	/**
-	 * @param dateIngress
-	 *            the dateIngress to set
-	 */
-	public void setDateIngress(Date dateIngress) {
-		this.dateIngress = dateIngress;
+		return this.dateIngress;
 	}
 
 	/**
 	 * @return the dateInteraction
 	 */
 	public Date getDateInteraction() {
-		return dateInteraction;
-	}
-
-	/**
-	 * @param dateInteraction
-	 *            the dateInteraction to set
-	 */
-	public void setDateInteraction(Date dateInteraction) {
-		this.dateInteraction = dateInteraction;
+		return this.dateInteraction;
 	}
 
 	/**
 	 * @return the descriptionHistory
 	 */
 	public String getDescriptionHistory() {
-		return descriptionHistory;
-	}
-
-	/**
-	 * @param descriptionHistory
-	 *            the descriptionHistory to set
-	 */
-	public void setDescriptionHistory(String descriptionHistory) {
-		this.descriptionHistory = descriptionHistory;
+		return this.descriptionHistory;
 	}
 
 	/**
 	 * @return the email
 	 */
 	public String getEmail() {
-		return email;
-	}
-
-	/**
-	 * @param email
-	 *            the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
+		return this.email;
 	}
 
 	/**
 	 * @return the height
 	 */
 	public Integer getHeight() {
-		return height;
-	}
-
-	/**
-	 * @param height
-	 *            the height to set
-	 */
-	public void setHeight(Integer height) {
-		this.height = height;
+		return this.height;
 	}
 
 	/**
 	 * @return the history
 	 */
 	public Boolean getHistory() {
-		return history;
-	}
-
-	/**
-	 * @param history
-	 *            the history to set
-	 */
-	public void setHistory(Boolean history) {
-		this.history = history;
+		return this.history;
 	}
 
 	public String getPassword() {
-        return password;
-    }
+		return this.password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    /**
+	/**
 	 * @return the role
 	 */
 	public Role getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role
-	 *            the role to set
-	 */
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	/**
-	 * @return the typeuser
-	 */
-	public TypeUserEnum getTypeuser() {
-		return typeuser;
-	}
-
-	/**
-	 * @param typeuser
-	 *            the typeuser to set
-	 */
-	public void setTypeuser(TypeUserEnum typeuser) {
-		this.typeuser = typeuser;
+		return this.role;
 	}
 
 	/**
 	 * @return the subGoals
 	 */
 	public Set<SubGoal> getSubGoals() {
-		return subGoals;
+		return this.subGoals;
 	}
 
 	/**
-	 * @param subGoals
-	 *            the subGoals to set
+	 * @return the typeuser
 	 */
-	public void setSubGoals(Set<SubGoal> subGoals) {
-		this.subGoals = subGoals;
+	public TypeUserEnum getTypeuser() {
+		return this.typeuser;
 	}
 
 	/**
 	 * @return the useCondition
 	 */
 	public Boolean getUseCondition() {
-		return useCondition;
-	}
-
-	/**
-	 * @param useCondition
-	 *            the useCondition to set
-	 */
-	public void setUseCondition(Boolean useCondition) {
-		this.useCondition = useCondition;
+		return this.useCondition;
 	}
 
 	/**
 	 * @return the userName
 	 */
 	public String getUsername() {
-		return username;
-	}
-
-	/**
-	 * @param userName
-	 *            the userName to set
-	 */
-	public void setUsername(String username) {
-		this.username = username;
+		return this.username;
 	}
 
 	/**
 	 * @return the weight
 	 */
 	public Integer getWeight() {
-		return weight;
+		return this.weight;
+	}
+
+	/**
+	 * @param bmi
+	 *            the bmi to set
+	 */
+	public void setBmi(final Integer bmi) {
+		this.bmi = bmi;
+	}
+
+	/**
+	 * @param dateBirth
+	 *            the dateBirth to set
+	 */
+	public void setDateBirth(final Date dateBirth) {
+		this.dateBirth = dateBirth;
+	}
+
+	/**
+	 * @param dateIngress
+	 *            the dateIngress to set
+	 */
+	public void setDateIngress(final Date dateIngress) {
+		this.dateIngress = dateIngress;
+	}
+
+	/**
+	 * @param dateInteraction
+	 *            the dateInteraction to set
+	 */
+	public void setDateInteraction(final Date dateInteraction) {
+		this.dateInteraction = dateInteraction;
+	}
+
+	/**
+	 * @param descriptionHistory
+	 *            the descriptionHistory to set
+	 */
+	public void setDescriptionHistory(final String descriptionHistory) {
+		this.descriptionHistory = descriptionHistory;
+	}
+
+	/**
+	 * @param email
+	 *            the email to set
+	 */
+	public void setEmail(final String email) {
+		this.email = email;
+	}
+
+	/**
+	 * @param height
+	 *            the height to set
+	 */
+	public void setHeight(final Integer height) {
+		this.height = height;
+	}
+
+	/**
+	 * @param history
+	 *            the history to set
+	 */
+	public void setHistory(final Boolean history) {
+		this.history = history;
+	}
+
+	public void setPassword(final String password) {
+		this.password = password;
+	}
+
+	/**
+	 * @param role
+	 *            the role to set
+	 */
+	public void setRole(final Role role) {
+		this.role = role;
+	}
+
+	/**
+	 * @param subGoals
+	 *            the subGoals to set
+	 */
+	public void setSubGoals(final Set<SubGoal> subGoals) {
+		this.subGoals = subGoals;
+	}
+
+	/**
+	 * @param typeuser
+	 *            the typeuser to set
+	 */
+	public void setTypeuser(final TypeUserEnum typeuser) {
+		this.typeuser = typeuser;
+	}
+
+	/**
+	 * @param useCondition
+	 *            the useCondition to set
+	 */
+	public void setUseCondition(final Boolean useCondition) {
+		this.useCondition = useCondition;
+	}
+
+	/**
+	 * @param userName
+	 *            the userName to set
+	 */
+	public void setUsername(final String username) {
+		this.username = username;
 	}
 
 	/**
 	 * @param weight
 	 *            the weight to set
 	 */
-	public void setWeight(Integer weight) {
+	public void setWeight(final Integer weight) {
 		this.weight = weight;
 	}
 

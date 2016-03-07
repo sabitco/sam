@@ -35,12 +35,14 @@
 <c:set var="footer" scope="session"
      value="${ReadFromPropertiesFile.getProperties('param.administrador.footer.description')}" />   
 
-<c:set var="titlepage" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.title')}" />
+
                
 <c:set var="descriptionpage" scope="session" 
      value="${ReadFromPropertiesFile.getProperties('param.administrador.cc.description.page')}" />
 
+<c:set var="titlepage" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.title')}" />
+     
 <c:set var="usericon" scope="session" 
      value="${ReadFromPropertiesFile.getProperties('param.administrador.user.icon')}" />     
  

@@ -131,6 +131,27 @@
                                    </div>
                               </div>
                          </div>
+                         
+                         <div class="row">
+                              <div class="form-group col-md-12">
+                                   <label class="col-md-2 control-lable" for="name">Name</label>
+                                   <div class="col-md-7">
+                                        <input type="text" ng-model="ctrl.user.name" id="name"
+                                                                 class="name form-control input-sm"
+                                                                 placeholder="Enter your name"
+                                                                 required ng-minlength="4" />
+                                        <div class="has-error" ng-show="userForm.name.$dirty">
+                                             <span ng-show="userForm.name.$error.required">This is a
+                                                  required field</span> <span
+                                                                      ng-show="userForm.name.$error.minlength">Minimum
+                                                  length required is 4</span> <span
+                                                                      ng-show="userForm.name.$invalid">This
+                                                  field is invalid </span>
+
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
 
                          <div class="row">
                               <div class="form-group col-md-12">

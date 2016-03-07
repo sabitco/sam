@@ -6,66 +6,185 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ManyToMany;
 
-import javax.validation.constraints.Null;
+import org.hibernate.annotations.Type;
+
+import co.edu.unal.sam.aspect.model.enumerator.TypePageEnum;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "page")
 public class Page extends Entity {
 
-	@Column(name = "licence", nullable = true, length = 300)
-	@Null
-	private String licence;
+	@Column(name = "base", nullable = true, length = 300)
+	private String base;
 
-	@Column(name = "url", nullable = true, length = 300)
-	@Null
-	private String url;
+	@Column(name = "description_list", nullable = true, length = 300)
+	private String descriptionList;
+
+	@Column(name = "description_page", nullable = true, length = 300)
+	private String descriptionPage;
+
+	@Column(name = "icone", nullable = true, length = 300)
+	private String icone;
+
+	@Column(name = "name_page", nullable = true, length = 300)
+	private String namePage;
+
+	@Column(name = "order_page", nullable = true)
+	private Integer orderPage;
 
 	@ManyToMany(mappedBy = "pages")
-	private Set<Role> roles = new HashSet<>(0);
+	private final Set<Role> roles = new HashSet<>(0);
+
+	@Column(name = "title", nullable = true, length = 300)
+	private String title;
+
+	@Column(name = "type_page_id", nullable = false)
+	@Type(type = "co.edu.unal.sam.aspect.model.usertype.TypePageType")
+	private TypePageEnum typePage;
+
+	@Column(name = "url", nullable = true, length = 300)
+	private String url;
 
 	/**
-	 * @return the licence
+	 * @return the base
 	 */
-	public String getLicence() {
-		return licence;
+	public String getBase() {
+		return this.base;
 	}
 
 	/**
-	 * @param licence
-	 *            the licence to set
+	 * @return the descriptionList
 	 */
-	public void setLicence(String licence) {
-		this.licence = licence;
+	public String getDescriptionList() {
+		return this.descriptionList;
 	}
 
 	/**
-	 * @return the url
+	 * @return the descriptionPage
 	 */
-	public String getUrl() {
-		return url;
+	public String getDescriptionPage() {
+		return this.descriptionPage;
 	}
 
 	/**
-	 * @param url
-	 *            the url to set
+	 * @return the icone
 	 */
-	public void setUrl(String url) {
-		this.url = url;
+	public String getIcone() {
+		return this.icone;
+	}
+
+	/**
+	 * @return the namePage
+	 */
+	public String getNamePage() {
+		return this.namePage;
+	}
+
+	/**
+	 * @return the orderPage
+	 */
+	public Integer getOrderPage() {
+		return this.orderPage;
 	}
 
 	/**
 	 * @return the roles
 	 */
 	public Set<Role> getRoles() {
-		return roles;
+		return this.roles;
 	}
 
 	/**
-	 * @param roles
-	 *            the roles to set
+	 * @return the title
 	 */
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public String getTitle() {
+		return this.title;
+	}
+
+	/**
+	 * @return the typePage
+	 */
+	public TypePageEnum getTypePage() {
+		return this.typePage;
+	}
+
+	/**
+	 * @return the url
+	 */
+	public String getUrl() {
+		return this.url;
+	}
+
+	/**
+	 * @param base
+	 *            the base to set
+	 */
+	public void setBase(final String base) {
+		this.base = base;
+	}
+
+	/**
+	 * @param descriptionList
+	 *            the descriptionList to set
+	 */
+	public void setDescriptionList(final String descriptionList) {
+		this.descriptionList = descriptionList;
+	}
+
+	/**
+	 * @param descriptionPage
+	 *            the descriptionPage to set
+	 */
+	public void setDescriptionPage(final String descriptionPage) {
+		this.descriptionPage = descriptionPage;
+	}
+
+	/**
+	 * @param icone
+	 *            the icone to set
+	 */
+	public void setIcone(final String icone) {
+		this.icone = icone;
+	}
+
+	/**
+	 * @param namePage
+	 *            the namePage to set
+	 */
+	public void setNamePage(final String namePage) {
+		this.namePage = namePage;
+	}
+
+	/**
+	 * @param orderPage
+	 *            the orderPage to set
+	 */
+	public void setOrderPage(final Integer orderPage) {
+		this.orderPage = orderPage;
+	}
+
+	/**
+	 * @param title
+	 *            the title to set
+	 */
+	public void setTitle(final String title) {
+		this.title = title;
+	}
+
+	/**
+	 * @param typePage
+	 *            the typePage to set
+	 */
+	public void setTypePage(final TypePageEnum typePage) {
+		this.typePage = typePage;
+	}
+
+	/**
+	 * @param url
+	 *            the url to set
+	 */
+	public void setUrl(final String url) {
+		this.url = url;
 	}
 
 }

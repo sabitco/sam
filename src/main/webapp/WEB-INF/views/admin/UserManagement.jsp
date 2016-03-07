@@ -37,6 +37,8 @@
 <c:set var="descriptionpage" scope="session" 
      value="${ReadFromPropertiesFile.getProperties('param.administrador.user.description.page')}" />
 
+<c:set var="descriptionpage" scope="session" 
+     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.description.list')}" />
 <t:admintemplate>
      <jsp:attribute name="title">${titlepage}</jsp:attribute>
      <jsp:body>
