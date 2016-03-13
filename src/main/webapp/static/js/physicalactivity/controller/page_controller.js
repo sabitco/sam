@@ -1,11 +1,14 @@
 'use strict';
 App.constant("baseUrl", "http://localhost:8080/admin/pages/");
+App.constant("baseUrlEnumState", "http://localhost:8080/enum/states");
 
 App.controller('PageController', [
     '$scope',
     'crudService',
     'baseUrl',
-    function($scope, crudService, baseUrl) {
+    'enumService',
+    'baseUrlEnumState',
+    function($scope, crudService, baseUrl, enumService, baseUrlEnumState) {
       var self = this;
       self.page = {
         id : null,
@@ -21,17 +24,18 @@ App.controller('PageController', [
         icone : '',
         namePage : '',
         title : ''
-      };
+      };     
+   
       self.pages = [];
-
+      
       self.fetchAllPages = function() {
-        crudService.fetchAll().then(function(d) {
-          self.pages = d;
-          console.log(self.pages);
-        }, function(errResponse) {
-          console.error('Error while fetching Currencies');
-        });
-      };
+          crudService.fetchAll().then(function(d) {
+            self.pages = d;
+            console.log(self.pages);
+          }, function(errResponse) {
+            console.error('Error while fetching Currencies');
+          });
+        };
 
       self.createPage = function(page) {
         crudService.create(page).then(self.fetchAllPages,
@@ -115,5 +119,18 @@ App.controller('PageController', [
         };
         $scope.pageForm.$setPristine();
       };
+      
+      self.enumStates = [];
+      
+      self.fetchAllEnumStates = function() {
+    	  enumService.fetchAll().then(function(d) {
+          self.enumStates = d;
+          console.log(self.enumStates);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
+      };
+      
+      self.fetchAllEnumStates();
 
     } ]);

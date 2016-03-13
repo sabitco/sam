@@ -19,6 +19,23 @@ App.config([ 'baseUrl', 'crudServiceProvider',
 			crudServiceProvider.setBaseUrl(baseUrl);
 		} ]);
 
+function EnumServiceProvider() {
+	var _baseUrl;
+	this.setBaseUrl = function(baseUrlEnumState) {
+		_baseUrl = baseUrlEnumState;
+	}
+	this.$get = [ '$http', function($http) {
+		return new EnumService($http, _baseUrl);
+	} ];
+}
+
+App.provider("enumService", EnumServiceProvider);
+
+App.config([ 'baseUrlEnumState', 'enumServiceProvider',
+		function(baseUrlEnumState, enumServiceProvider) {
+			enumServiceProvider.setBaseUrl(baseUrlEnumState);
+		} ]);
+
 App.controller('CollapseDemoCtrl', function($scope) {
 	$scope.isCollapsed = false;
 });

@@ -1,26 +1,64 @@
-package co.edu.unal.sam.aspect.model.enumerator;
+package co.edu.unal.sam.aspect.model.enumerator ;
 
-import co.edu.unal.sam.aspect.model.enumerator.PersistentEnum;
-
+/**
+ * The Enum StateEnum.
+ */
 public enum StateEnum implements PersistentEnum {
-    
-    ACTIVE((byte) 1, "Active"), 
-    INACTIVE((byte) 2, "Inactive");
-    
-    private final Byte id;
-    private final String name;
-
-    private StateEnum(Byte id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-    
-    @Override
-    public Byte getId() {
-        return this.id;
-    }
-    
-    public String getName() {
-        return this.name;
-    }
+  
+  /** The active. */
+  ACTIVE((byte) 1, "Active", true),
+  
+  /** The inactive. */
+  INACTIVE((byte) 2, "Inactive", true) ;
+  
+  /** The available. */
+  private final boolean available ;
+  
+  /** The id. */
+  private final Byte    id ;
+  
+  /** The name. */
+  private final String  name ;
+  
+  /**
+   * Instantiates a new state enum.
+   *
+   * @param id the id
+   * @param name the name
+   * @param available the available
+   */
+  private StateEnum(final Byte id, final String name, final boolean available) {
+	this.id = id ;
+	this.name = name ;
+	this.available = available ;
+  }
+  
+  /**
+   * Gets the available.
+   *
+   * @return the available
+   */
+  public boolean getAvailable() {
+	return this.available ;
+  }
+  
+  /**
+   * Gets the id.
+   *
+   * @return the id
+   */
+  @Override
+  public Byte getId() {
+	return this.id ;
+  }
+  
+  /**
+   * Gets the name.
+   *
+   * @return the name
+   */
+  public String getName() {
+	return this.name ;
+  }
+  
 }
