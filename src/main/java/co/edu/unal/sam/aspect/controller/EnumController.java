@@ -1,5 +1,8 @@
 package co.edu.unal.sam.aspect.controller ;
 
+import java.util.ArrayList ;
+import java.util.List ;
+
 import org.springframework.http.HttpStatus ;
 import org.springframework.http.ResponseEntity ;
 import org.springframework.web.bind.annotation.RequestMapping ;
@@ -20,8 +23,13 @@ public class EnumController {
    * @return the all states enum by available
    */
   @RequestMapping(value = "/enum/states", method = RequestMethod.GET)
-  public ResponseEntity<StateEnum []> getAllStatesEnumByAvailable() {
-	final StateEnum [] allstates = StateEnum.values() ;
+  public ResponseEntity<List<StateEnum>> getAllStatesEnumByAvailable() {
+	final List<StateEnum> allstates = new ArrayList<StateEnum>() ;
+	for (final StateEnum state : StateEnum.values()) {
+	  if (Boolean.TRUE.equals(state.getAvailable())) {
+		allstates.add(state) ;
+	  }
+	}
 	return new ResponseEntity<>(allstates, HttpStatus.OK) ;
   }
 }

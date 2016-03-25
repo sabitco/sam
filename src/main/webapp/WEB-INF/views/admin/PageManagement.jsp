@@ -1,8 +1,8 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page
-	import="co.edu.unal.sam.aspect.properties.ReadFromPropertiesFile"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="co.edu.unal.sam.aspect.properties.ReadFromPropertiesFile"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <c:set var="title" scope="session"
 	value="${ReadFromPropertiesFile.getProperties('param.administrador.title')}" />
@@ -387,7 +387,9 @@
 							<div class="row">
 	                              <div class="form-group col-md-12">
 	                                   <label class="col-md-2 control-lable"
-													for="state">${tituloPageCustomForm}</label>
+													for="state">
+													<spring:message code="parameter.from.custom.state" />
+									</label>
 	                                   <div class="col-md-7">
 					   						<select 
 					   							ng-init="ctrl.page.state = ctrl.page.state || items[0]" 
@@ -407,6 +409,10 @@
 	                                   </div>
 	                              </div>
 	                         </div>
+	                         
+	                        	
+	                        	
+	                      
                        	
 
                        	

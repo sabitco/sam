@@ -12,7 +12,7 @@ public enum StateEnum implements PersistentEnum {
   INACTIVE((byte) 2, "Inactive", true) ;
   
   /** The available. */
-  private final boolean available ;
+  private final Boolean available ;
   
   /** The id. */
   private final Byte    id ;
@@ -27,7 +27,7 @@ public enum StateEnum implements PersistentEnum {
    * @param name the name
    * @param available the available
    */
-  private StateEnum(final Byte id, final String name, final boolean available) {
+  private StateEnum(final Byte id, final String name, final Boolean available) {
 	this.id = id ;
 	this.name = name ;
 	this.available = available ;
@@ -38,7 +38,7 @@ public enum StateEnum implements PersistentEnum {
    *
    * @return the available
    */
-  public boolean getAvailable() {
+  public Boolean getAvailable() {
 	return this.available ;
   }
   
