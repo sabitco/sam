@@ -133,4 +133,11 @@ App.controller('PageController', [
       
       self.fetchAllEnumStates();
 
+
+	  $scope.oneAtATime = true;
+	  
+	  $scope.status = {
+			    isFirstOpen: true
+			  };
+
     } ]);

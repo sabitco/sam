@@ -17,10 +17,43 @@ body {
      background-color: #fff;
 }
 
+.navbar-brand {
+    float: left;
+    height: 60px;
+    padding: 15px 30%;
+    font-size: 20px;
+    line-height: 35px;
+}
+
+body {
+  position: relative;
+}
+
+.alignCenter {
+    text-align : center;
+}
+  
+.letterSmall {
+ font-size: 9px;
+ padding: 1px 15px;
+}
+
+.titlelist {
+ margin-top: 0px;
+}
+
+.page-header-titlelist {
+     color: #555;
+     text-decoration: none;
+     font-weight: 400;
+     margin-top: 0px;
+}
+
 @media ( min-width :768px) {
      #page-wrapper {
           position: inherit;
-          margin: 0 0 0 250px;
+/*           margin: 0 0 0 250px; */
+          margin: 0 0 0 0px;
           padding: 0 30px;
           border-left: 1px solid #e7e7e7;
      }
