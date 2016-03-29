@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
+import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 
 @RestController
@@ -45,8 +46,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<User>> getAllusers() {
-        Iterable<User> allusers = this.userRepository.findAll();
+    public ResponseEntity<Iterable<User>> getAllusers(Pageable pageable) {
+        Iterable<User> allusers = this.userRepository.findAll(pageable);
         return new ResponseEntity<>(allusers, HttpStatus.OK);
     }
 
