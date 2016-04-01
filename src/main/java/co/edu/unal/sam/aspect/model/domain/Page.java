@@ -19,6 +19,9 @@ public class Page extends Entity {
 
 	@Column(name = "description_list", nullable = true, length = 300)
 	private String descriptionList;
+	
+	@Column(name = "description_list_recent", nullable = true, length = 300)
+	private String descriptionListRecent;
 
 	@Column(name = "description_page", nullable = true, length = 300)
 	private String descriptionPage;
@@ -29,6 +32,9 @@ public class Page extends Entity {
 	@Column(name = "name_page", nullable = true, length = 300)
 	private String namePage;
 
+	@Column(name = "name_page_all", nullable = true, length = 300)
+	private String namePageAll;
+	
 	@Column(name = "order_page", nullable = true)
 	private Integer orderPage;
 
@@ -58,7 +64,14 @@ public class Page extends Entity {
 	public String getDescriptionList() {
 		return this.descriptionList;
 	}
-
+	
+	/**
+	 * @return the descriptionList
+	 */
+	public String getDescriptionListRecent() {
+		return this.descriptionListRecent;
+	}
+	
 	/**
 	 * @return the descriptionPage
 	 */
@@ -78,6 +91,13 @@ public class Page extends Entity {
 	 */
 	public String getNamePage() {
 		return this.namePage;
+	}
+
+	/**
+	 * @return the namePage
+	 */
+	public String getNamePageAll() {
+		return this.namePageAll;
 	}
 
 	/**
@@ -130,6 +150,14 @@ public class Page extends Entity {
 	public void setDescriptionList(final String descriptionList) {
 		this.descriptionList = descriptionList;
 	}
+	
+	/**
+	 * @param descriptionList
+	 *            the descriptionList to set
+	 */
+	public void setDescriptionListRecent(final String descriptionListRecent) {
+		this.descriptionListRecent = descriptionListRecent;
+	}
 
 	/**
 	 * @param descriptionPage
@@ -153,6 +181,14 @@ public class Page extends Entity {
 	 */
 	public void setNamePage(final String namePage) {
 		this.namePage = namePage;
+	}
+
+	/**
+	 * @param namePageAll
+	 *            the namePageAll to set
+	 */
+	public void setNamePageAll(final String namePageAll) {
+		this.namePageAll = namePageAll;
 	}
 
 	/**
