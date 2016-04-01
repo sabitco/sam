@@ -13,8 +13,9 @@
 
 <!-- consulta personalizada por Pagina -->
 <c:set var="titlePageAdministrator" scope="session" value="titlePageAdministrator" />
+<c:set var="naPageAdministrator" scope="session" value="Page" />
 <c:set var="namePageAdministrator" scope="session" value="Home de Paginas" />
-<c:set var="classPageAdministrator" scope="session" value="fa-sitemap" />
+<c:set var="iconPageAdministrator" scope="session" value="fa-sitemap" />
 <c:set var="nameAllPageAdministrator" scope="session" value="All Psges" />
 
 <!-- End consulta personalizada-->
@@ -42,7 +43,7 @@
             	<!-- Div .col-lg-12 -->
                 <div class="col-xs-12 col-sm-9 panel">
                     <h1 class="row">
-						<i class="btn-info btn-circle fa ${classPageAdministrator} fa-fw"></i>
+						<i class="btn-info btn-circle fa ${iconPageAdministrator} fa-fw"></i>
 						${namePageAdministrator}
                     </h1>
                 
@@ -81,7 +82,7 @@
 					</uib-accordion> 
 					<div class="pull-right" uib-collapse="!status.isFirstOpen">
 							<a href="" ng-click="status.isFirstOpen = !status.isFirstOpen"  class=" next ng-binding">
-								All Pages 
+${nameAllPageAdministrator}
 							</a>
 					</div>
 	            </div>
@@ -90,7 +91,7 @@
 	            <div class="col-xs-6 col-sm-3 panel">
 					<em>
 						<h4 class="row">
-								Pages
+<spring:message code="param.component.list.recent"/> ${naPageAdministrator}
                                 <span class="pull-right">
 										<i class="pull-right glyphicon" 
 					        			ng-class="{'glyphicon-remove btn btn-danger btn-circle': 
