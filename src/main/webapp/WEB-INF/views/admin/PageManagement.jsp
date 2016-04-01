@@ -20,7 +20,24 @@
 
 <!-- End consulta personalizada-->
 
-
+<!-- param custom field-->
+<c:set var="idCustomForm"><spring:message code="param.form.custom.page.id"/></c:set>
+<c:set var="nameCustomForm"><spring:message code="param.form.custom.page.name"/></c:set>
+<c:set var="registerDateCustomForm"><spring:message code="param.form.custom.page.register.date"/></c:set>
+<c:set var="updateDateCustomForm"><spring:message code="param.form.custom.page.update.date"/></c:set>
+<c:set var="stateCustomForm"><spring:message code="param.form.custom.page.state"/></c:set>
+<c:set var="baseCustomForm"><spring:message code="param.form.custom.page.base"/></c:set>
+<c:set var="descriptionListCustomForm"><spring:message code="param.form.custom.page.description.list"/></c:set>
+<c:set var="descriptionListRecentCustomForm"><spring:message code="param.form.custom.page.description.list.recent="/></c:set>
+<c:set var="descriptionPageCustomForm"><spring:message code="param.form.custom.page.description.page"/></c:set>
+<c:set var="iconeCustomForm"><spring:message code="param.form.custom.page.icone"/></c:set>
+<c:set var="namePageCustomForm"><spring:message code="param.form.custom.page.name.page"/></c:set>
+<c:set var="allPageCustomForm"><spring:message code="param.form.custom.page.name.all.page"/></c:set>
+<c:set var="orderPageCustomForm"><spring:message code="param.form.custom.page.order_page"/></c:set>
+<c:set var="titleCustomForm"><spring:message code="param.form.custom.page.title"/></c:set>
+<c:set var="typePageCustomForm"><spring:message code="param.form.custom.page.type_page_id"/></c:set>
+<c:set var="urlCustomForm"><spring:message code="param.form.custom.page.url"/></c:set>
+<!-- End  param custom field-->
 
 <t:admintemplate>	
 	<jsp:attribute name="title">
