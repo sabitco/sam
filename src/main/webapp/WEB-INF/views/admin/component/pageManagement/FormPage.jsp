@@ -3,6 +3,18 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+
+<!-- Var of Error validation -->
+<c:set var="messageErrorFormRequiredField""><spring:message code="message.error.form.required.field"/></c:set>
+<c:set var="messageErrorFormMinimumLengthRequired""><spring:message code="message.error.form.minimum.length.required.four"/></c:set>
+<c:set var="messageErrorFormFieldInvalid"><spring:message code="message.error.form.field.invalid"/></c:set>
+
+
+
+
+
+<!-- End Var of Error Validation -->
+
             	<!-- Div .panel-green -->
 				<div class="">  
 
@@ -27,16 +39,22 @@
 	                                        <input type="text"
 														ng-model="ctrl.page.name" id="name"
 														class="name form-control input-sm"
-														placeholder="Enter your name of" required ng-minlength="4" />
+														placeholder="Enter your ${nameCustomForm}" required ng-minlength="4" />
 	                                        <div class="has-error"
 														ng-show="pageForm.name.$dirty">
 	                                             <span
-															ng-show="pageForm.name.$error.required">This is a
-	                                                  required field</span> <span
-															ng-show="pageForm.name.$error.minlength">Minimum
-	                                                  length required is 4</span> <span
-															ng-show="pageForm.name.$invalid">This
-	                                                  field is invalid </span>
+															ng-show="pageForm.name.$error.required">
+																${messageErrorFormRequiredField}
+															</span> 
+							<span
+															ng-show="pageForm.name.$error.minlength"
+															
+															</span>
+																${messageErrorFormMinimumLengthRequired}	
+							<span
+															ng-show="pageForm.name.$invalid">
+																${messageErrorFormFieldInvalid}
+															</span>
 	
 	                                        </div>
 	                                   </div>
@@ -56,8 +74,7 @@
 	                                        <div class="has-error"
 														ng-show="pageForm.orderPage.$dirty">
 	                                             <span
-															ng-show="pageForm.orderPage.$error.required">This is a
-	                                                  required field</span> <span
+															ng-show="pageForm.orderPage.$error.required">${messageErrorFormRequiredField}</span> <span
 															ng-show="pageForm.orderPage.$error.minlength">Minimum
 	                                                  length required is 4</span> <span
 															ng-show="pageForm.orderPage.$invalid">This
@@ -80,12 +97,17 @@
 	                                        <div class="has-error"
 														ng-show="pageForm.url.$dirty">
 	                                             <span
-															ng-show="pageForm.url.$error.required">This is a
-	                                                  required field</span> <span
-															ng-show="pageForm.url.$error.minlength">Minimum
-	                                                  length required is 4</span> <span
-															ng-show="pageForm.url.$invalid">This
-	                                                  field is invalid </span>
+															ng-show="pageForm.url.$error.required">
+															${messageErrorFormRequiredField}
+															</span> 
+							<span
+															ng-show="pageForm.url.$error.minlength">
+															<spring:message code="message.error.form.minimum.length.required.four"/>
+															</span> 
+							<span
+															ng-show="pageForm.url.$invalid">
+															<spring:message code="message.error.form.field.invalid"/>
+															</span>
 	
 	                                        </div>
 	                                   </div>
@@ -273,7 +295,8 @@
 	
 	                                   <button type="button"
 													ng-click="ctrl.reset()" class="btn btn-warning btn-sm"
-													ng-disabled="pageForm.$pristine">Reset
+													ng-disabled="pageForm.$pristine">
+													<spring:message code="param.botton.form.recent"/>
 	                                        Form</button>
 	                              </div>
 	                         
