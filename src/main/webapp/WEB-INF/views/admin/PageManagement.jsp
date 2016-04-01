@@ -15,6 +15,7 @@
 <c:set var="titlePageAdministrator" scope="session" value="titlePageAdministrator" />
 <c:set var="namePageAdministrator" scope="session" value="Home de Paginas" />
 <c:set var="classPageAdministrator" scope="session" value="fa-sitemap" />
+<c:set var="nameAllPageAdministrator" scope="session" value="All Psges" />
 
 <!-- End consulta personalizada-->
 
@@ -59,7 +60,7 @@
 					        						status.isFirstOpen}"
 								>
 					                <div>
-Formulario de Pages
+<spring:message code="param.component.form"/>
 										<i class="pull-right glyphicon" 
 					        			ng-class="{'glyphicon-chevron-down': 
 					        						!status.isFirstOpen, 
@@ -109,7 +110,7 @@ Formulario de Pages
 					</div>
 					<div class="pull-right" uib-collapse="!status.isFirstOpen">
 							<a href="" ng-click="status.isFirstOpen = !status.isFirstOpen"  class=" next ng-binding">
-								All Pages 
+${nameAllPageAdministrator}
 							</a>
 					</div>
 	            </div>
