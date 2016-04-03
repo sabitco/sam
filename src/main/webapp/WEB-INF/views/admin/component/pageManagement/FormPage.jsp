@@ -5,8 +5,8 @@
 
 
 <!-- Var of Error validation -->
-<c:set var="messageErrorFormRequiredField""><spring:message code="message.error.form.required.field"/></c:set>
-<c:set var="messageErrorFormMinimumLengthRequired""><spring:message code="message.error.form.minimum.length.required.four"/></c:set>
+<c:set var="messageErrorFormRequiredField"><spring:message code="message.error.form.required.field"/></c:set>
+<c:set var="messageErrorFormMinimumLengthRequired"><spring:message code="message.error.form.minimum.length.required.four"/></c:set>
 <c:set var="messageErrorFormFieldInvalid"><spring:message code="message.error.form.field.invalid"/></c:set>
 
 

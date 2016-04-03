@@ -28,7 +28,7 @@
 <c:set var="stateCustomForm"><spring:message code="param.form.custom.page.state"/></c:set>
 <c:set var="baseCustomForm"><spring:message code="param.form.custom.page.base"/></c:set>
 <c:set var="descriptionListCustomForm"><spring:message code="param.form.custom.page.description.list"/></c:set>
-<c:set var="descriptionListRecentCustomForm"><spring:message code="param.form.custom.page.description.list.recent="/></c:set>
+
 <c:set var="descriptionPageCustomForm"><spring:message code="param.form.custom.page.description.page"/></c:set>
 <c:set var="iconeCustomForm"><spring:message code="param.form.custom.page.icone"/></c:set>
 <c:set var="namePageCustomForm"><spring:message code="param.form.custom.page.name.page"/></c:set>
