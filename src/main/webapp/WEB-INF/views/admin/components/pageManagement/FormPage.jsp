@@ -4,6 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+
 <!-- Var of Error validation -->
 <c:set var="messageErrorFormRequiredField">
 	<spring:message code="param.message.error.form.required.field" />
@@ -19,69 +20,6 @@
 <!-- End Var of Error Validation -->
 
 
-<!-- param custom field-->
-<c:set var="nameCustomForm">
-	<spring:message code="param.form.custom.page.name" />
-</c:set>
-<c:set var="nameRequiredCustomForm">
-	<spring:message code="param.form.required.custom.page.name" />
-</c:set>
-<c:set var="orderPageCustomForm">
-	<spring:message code="param.form.custom.page.order.page" />
-</c:set>
-<c:set var="orderRequieredCustomForm">
-	<spring:message code="param.form.required.custom.page.order.page" />
-</c:set>
-
-<c:set var="idCustomForm">
-	<spring:message code="param.form.custom.page.id" />
-</c:set>
-
-
-<c:set var="registerDateCustomForm">
-	<spring:message code="param.form.custom.page.register.date" />
-</c:set>
-<c:set var="updateDateCustomForm">
-	<spring:message code="param.form.custom.page.update.date" />
-</c:set>
-<c:set var="stateCustomForm">
-	<spring:message code="param.form.custom.page.state" />
-</c:set>
-<c:set var="baseCustomForm">
-	<spring:message code="param.form.custom.page.base" />
-</c:set>
-<c:set var="descriptionListCustomForm">
-	<spring:message code="param.form.custom.page.description.list" />
-</c:set>
-
-<c:set var="descriptionPageCustomForm">
-	<spring:message code="param.form.custom.page.description.page" />
-</c:set>
-<c:set var="iconeCustomForm">
-	<spring:message code="param.form.custom.page.icone" />
-</c:set>
-<c:set var="namePageCustomForm">
-	<spring:message code="param.form.custom.page.name.page" />
-</c:set>
-<c:set var="allPageCustomForm">
-	<spring:message code="param.form.custom.page.name.all.page" />
-</c:set>
-<c:set var="titleCustomForm">
-	<spring:message code="param.form.custom.page.title" />
-</c:set>
-<c:set var="typePageCustomForm">
-	<spring:message code="param.form.custom.page.type_page_id" />
-</c:set>
-<c:set var="urlCustomForm">
-	<spring:message code="param.form.custom.page.url" />
-</c:set>
-<c:set var="placeholderCustomForm">
-	<spring:message code="param.form.custom.placeholder" />
-</c:set>
-<c:set var="minLength">
-	<spring:message code="param.form.custom.page.minLength" />
-</c:set>
-<!-- End  param custom field-->
 
 <div class="panel-body formcontainer" uib-collapse="!status.isFirstOpen">
 
@@ -104,7 +42,8 @@
 		<div class="row">
 			<div class="form-group col-md-12">
 				<label class="col-md-2 control-lable" for="name">
-					${nameCustomForm} </label>
+					<spring:message
+						code="param.form.custom.page.name" /> </label>
 				<div class="col-md-7">
 					<input type="text" ng-model="ctrl.page.name" id="name"
 						class="name form-control input-sm"
@@ -122,7 +61,8 @@
 		<div class="row">
 			<div class="form-group col-md-12">
 				<label class="col-md-2 control-lable" for="order">
-					${orderPageCustomForm} </label>
+					<spring:message
+						code="param.form.custom.page.order.page" /> </label>
 				<div class="col-md-7">
 					<input type="number" ng-model="ctrl.page.order" id="order"
 						class="order form-control input-sm"

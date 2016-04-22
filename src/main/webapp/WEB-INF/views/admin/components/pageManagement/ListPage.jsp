@@ -21,10 +21,10 @@
 		<table class="table table-hover table-striped">
 			<thead>
 				<tr>
-					<th>name</th>
-					<th>${registerDateCustomForm}</th>
-					<th>${nameCustomForm}</th>
-					<th>${stateCustomForm}</th>
+					<th><spring:message code="param.form.custom.page.id" /></th>
+					<th><spring:message code="param.form.custom.page.register.date" /></th>
+					<th><spring:message code="param.form.custom.page.name" /></th>
+					<th><spring:message code="param.form.custom.page.state" /></th>
 					<th>${orderCustomForm}</th>
 					<th>${typePageCustomForm}</th>
 					<th>${urlCustomForm}</th>

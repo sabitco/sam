@@ -31,6 +31,9 @@
 <!-- End consulta personalizada-->
 
 
+
+
+
 <t:admintemplate>
 	<jsp:attribute name="title">
 		${titlePageAdministrator}
