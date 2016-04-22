@@ -1,16 +1,12 @@
-<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="co.edu.unal.sam.aspect.properties.ReadFromPropertiesFile"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
      
 <c:set var="title" scope="session"
      value="${ReadFromPropertiesFile.getProperties('param.administrador.title')}" />
      
-<c:set var="req" value="${pageContext.request}" />
-<c:set var="url" value="${req.requestURL}" />
-<c:set var="uri" value="${req.requestURI}" />
-
 <c:set var="req" value="${pageContext.request}" />
 <c:set var="url" value="${req.requestURL}" />
 <c:set var="uri" value="${req.requestURI}" />
