@@ -228,7 +228,7 @@
                     <span class="lead">List of Users </span>
                </div>
                <div class="tablecontainer">
-                    <table ng-show="ctrl.users.length > 0">
+                    <table>
                          <thead>
                               <tr>
                                    <th>Id</th>

@@ -1,5 +1,6 @@
 'use strict';
 App.constant("baseUrl", "http://localhost:8080/admin/users/");
+App.constant("baseUrlEnumState", "http://localhost:8080/enum/states");
 
 App.controller('UserController', [
     '$scope',
