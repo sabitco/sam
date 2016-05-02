@@ -4,9 +4,27 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<style>
+.input-validate.ng-valid {
+ background-color: lightgreen;
+}
+
+.input-validate.ng-dirty.ng-invalid-required {
+ background-color: red;
+}
+
+.input-validate.ng-dirty.ng-invalid-minlength {
+ background-color: yellow;
+}
+
+.input-validate.ng-dirty.ng-invalid {
+ background-color: red;
+}
+</style>
+
 <!-- consulta personalizada por Pagina -->
 <c:set var="titlePageAdministrator" scope="session"
-	value="titlePageAdministrator6" />
+	value="descriptionPage" />
 <c:set var="naPageAdministrator" scope="session"
 	value="Paginas recientes" />
 
@@ -71,16 +89,29 @@
 		<!--End Div Wrapper-->
 	
 		<!-- Statement JScript-->
+		
 			<!-- Angular Touch Core JavaScript -->
 			<script
 			src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
 			<!-- Angular Touch Core JavaScript -->
 			<script
-			src="<c:url value='/static/js/physicalactivity/service/enum_service.js' />"></script>
+			src="<c:url value='/static/js/physicalactivity/service/type_page_service_enum.js' />"></script>
+			
+			<!-- Angular Touch Core JavaScript -->
+			<script
+			src="<c:url value='/static/js/physicalactivity/service/state_service_enum.js' />"></script>
+			
+			<!-- Angular Touch Core JavaScript -->
+			<script
+			src="<c:url value='/static/js/physicalactivity/service/search_page_service.js' />"></script>
+			
+			<!-- Angular Touch Core JavaScript -->
+			<script
+			src="<c:url value='/static/js/physicalactivity/controller/page_controller.js' />"></script>
+			
 			<!-- Angular Touch Core JavaScript -->
 			<script
 			src="<c:url value='/static/js/physicalactivity/controller/page_controller.js' />"></script>
 		<!-- End Statement JScript-->
-
     </jsp:body>
 </t:admintemplate>

@@ -1,4 +1,4 @@
-function EnumService($http, baseUrl) {
+function StateServiceEnum($http, baseUrl) {
 	return {
 		fetchAll : function() {
 			return $http.get(baseUrl).then(function(response) {

@@ -1,5 +1,3 @@
-'use strict';
-
 var App = angular.module('physicalactivity', [ 'ngAnimate', 'ui.bootstrap' ]);
 
 function CrudServiceProvider() {
@@ -19,23 +17,57 @@ App.config([ 'baseUrl', 'crudServiceProvider',
 			crudServiceProvider.setBaseUrl(baseUrl);
 		} ]);
 
-function EnumServiceProvider() {
+function StateEnumServiceProvider() {
 	var _baseUrl;
-	this.setBaseUrl = function(baseUrlEnumState) {
-		_baseUrl = baseUrlEnumState;
+	this.setBaseUrl = function(baseUrlStateEnum) {
+		_baseUrl = baseUrlStateEnum;
 	}
 	this.$get = [ '$http', function($http) {
-		return new EnumService($http, _baseUrl);
+		return new StateServiceEnum($http, _baseUrl);
 	} ];
 }
 
-App.provider("enumService", EnumServiceProvider);
+App.provider("stateEnumService", StateEnumServiceProvider);
 
-App.config([ 'baseUrlEnumState', 'enumServiceProvider',
-		function(baseUrlEnumState, enumServiceProvider) {
-			enumServiceProvider.setBaseUrl(baseUrlEnumState);
+App.config([ 'baseUrlStateEnum', 'stateEnumServiceProvider',
+		function(baseUrlStateEnum, stateEnumServiceProvider) {
+			stateEnumServiceProvider.setBaseUrl(baseUrlStateEnum);
 		} ]);
 
-App.controller('CollapseDemoCtrl', function($scope) {
-	$scope.isCollapsed = false;
-});
+function TypePageEnumServiceProvider() {
+	var _baseUrl;
+	this.setBaseUrl = function(baseUrlTypePageEnum) {
+		_baseUrl = baseUrlTypePageEnum;
+	}
+	this.$get = [ '$http', function($http) {
+		return new TypePageServiceEnum($http, _baseUrl);
+	} ];
+}
+
+App.provider("typePageEnumService", TypePageEnumServiceProvider);
+
+App.config([ 'baseUrlTypePageEnum', 'typePageEnumServiceProvider',
+		function(baseUrlTypePageEnum, typePageEnumServiceProvider) {
+			typePageEnumServiceProvider.setBaseUrl(baseUrlTypePageEnum);
+		} ]);
+
+function SearchPageServiceProvider() {
+	var _baseUrl;
+	this.setBaseUrl = function(baseUrlPages) {
+		_baseUrl = baseUrlPages;
+	}
+	this.$get = [ '$http', function($http) {
+		return new SearchPageService($http, _baseUrl);
+	} ];
+}
+
+App.provider("searchPageService", SearchPageServiceProvider);
+
+App.config([ 'baseUrlPages', 'searchPageServiceProvider',
+		function(baseUrlPages, searchPageServiceProvider) {
+			searchPageServiceProvider.setBaseUrl(baseUrlPages);
+		} ]);
+
+// p.controller('CollapseDemoCtrl', function($scope) {
+// $scope.isCollapsed = false;
+// });

@@ -1,0 +1,56 @@
+
+
+
+
+id						param.form.custom.page.id 						(1)
+
+name					param.form.custom.page.name						(Page)
+						param.form.required.custom.page.name
+							
+title 					param.form.custom.page.title 					(Administracion de Paginas)
+						param.form.required.page.title
+							
+description_page		param.form.custom.page.description.page			(Gestión de paginas)
+						param.form.required.page.description.page
+						
+base					param.form.custom.page.base						(page)
+						param.form.required.page.base
+
+url						param.form.custom.page.url						(/administrator/pages)
+						param.form.required.page.url
+
+icone 					param.form.custom.page.icone					(fa-sitemap)
+						param.form.required.page.icone
+
+name_page 				param.form.custom.page.name.page				(Administración de Paginas)
+						param.form.required.page.name.page
+		
+name_page_all 			param.form.custom.page.name.all.page			(Todas las paginas)
+						param.form.required.page.name.all.page
+
+description_list_recent	param.form.custom.page.description.list.recent	(Paginas Recientes)
+						param.form.required.page.description.list.recent
+
+description_list		param.form.custom.page.description.list			(Listado de Pages)
+						param.form.required.page.description.list
+
+type_page_id			param.form.custom.page.type_page_id				(Administrador)
+						param.form.required.page.type_page_id
+
+state_id				param.form.custom.page.state					(Activo)
+						param.form.required.page.state
+
+order_page				param.form.custom.page.order.page				(10)
+						param.form.custom.page.order.page
+
+date_update				param.form.custom.page.register.date					(now)
+
+date_register			param.form.custom.page.update.date					(now)
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    

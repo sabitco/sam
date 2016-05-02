@@ -21,24 +21,39 @@
 		<table class="table table-hover table-striped">
 			<thead>
 				<tr>
+					<th width="20%"></th>
 					<th><spring:message code="param.form.custom.page.id" /></th>
-					<th><spring:message code="param.form.custom.page.register.date" /></th>
 					<th><spring:message code="param.form.custom.page.name" /></th>
+					<th><spring:message code="param.form.custom.page.title" /></th>
+					<th><spring:message
+							code="param.form.custom.page.description.page" /></th>
+					<th><spring:message code="param.form.custom.page.base" /></th>
+					<th><spring:message code="param.form.custom.page.url" /></th>
+					<th><spring:message code="param.form.custom.page.icone" /></th>
+					<th><spring:message code="param.form.custom.page.name.page" /></th>
+					<th><spring:message
+							code="param.form.custom.page.name.all.page" /></th>
+					<th><spring:message
+							code="param.form.custom.page.description.list.recent" /></th>
+					<th><spring:message
+							code="param.form.custom.page.description.list" /></th>
+					<th><spring:message code="param.form.custom.page.type_page_id" /></th>
 					<th><spring:message code="param.form.custom.page.state" /></th>
-					<th>${orderCustomForm}</th>
-					<th>${typePageCustomForm}</th>
-					<th>${urlCustomForm}</th>
-					<th>${basePageCustomForm}</th>
-					<th>${listPageCustomForm}</th>
-					<th>${descriptionPageCustomForm}</th>
-					<th>${IconePageCustomForm}</th>
-					<th>${namePageCustomForm}</th>
-					<th>${tituloPageCustomForm}</th>
+					<th><spring:message code="param.form.custom.page.order.page" /></th>
+					<th><spring:message
+							code="param.form.custom.page.register.date" /></th>
+					<th><spring:message code="param.form.custom.page.update.date" /></th>
 					<th width="20%"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="page in ctrl.pages">
+					<td>
+						<button type="button" ng-click="ctrl.editPage(page)"
+							class="btn btn-success btn-circle">
+							<i class="fa fa-edit" ng-click="status.isFirstOpen = !status.isFirstOpen"></i>
+						</button>
+					</td>
 					<td>{{page.id}}</span></td>
 					<td>{{page.dateRegister}}</td>
 					<td>{{page.name}}</span></td>
@@ -52,12 +67,14 @@
 					<td>{{page.icone}}</span></td>
 					<td>{{page.namePage}}</span></td>
 					<td>{{page.title}}</span></td>
+					<td>{{page.title}}</span></td>
+					<td>{{page.title}}</span></td>
+					<td>{{page.title}}</span></td>
 					<td>
 						<button type="button" ng-click="ctrl.editPage(page)"
-							class="btn btn-success custom-width">Edit</button>
-
-						<button type="button" ng-click="ctrl.deletePage(page.id)"
-							class="btn btn-danger custom-width">Remove</button>
+							class="btn btn-success btn-circle">
+							<i class="fa fa-edit" ng-click="status.isFirstOpen = !status.isFirstOpen"></i>
+						</button>
 					</td>
 				</tr>
 			</tbody>

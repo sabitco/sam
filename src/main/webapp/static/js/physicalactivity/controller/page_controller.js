@@ -1,29 +1,38 @@
 'use strict';
 App.constant("baseUrl", "http://localhost:8080/admin/pages/");
-App.constant("baseUrlEnumState", "http://localhost:8080/enum/states");
+App.constant("baseUrlPages", "http://localhost:8080/admin/pages/");
+App.constant("baseUrlStateEnum", "http://localhost:8080/enum/states");
+App.constant("baseUrlTypePageEnum", "http://localhost:8080/enum/typepage");
 
 App.controller('PageController', [
     '$scope',
     'crudService',
     'baseUrl',
-    'enumService',
-    'baseUrlEnumState',
-    function($scope, crudService, baseUrl, enumService, baseUrlEnumState) {
+    'stateEnumService',
+    'baseUrlStateEnum',
+    'typePageEnumService',
+    'baseUrlTypePageEnum',
+    'searchPageService',
+    'baseUrlPages',
+    function($scope, crudService, baseUrl, stateEnumService, baseUrlStateEnum, typePageEnumService, baseUrlTypePageEnum, searchPageService, baseUrlPages) {
       var self = this;
       self.page = {
-        id : null,
-        dateRegister : new Date(),
-        name : '',
-        state : "ACTIVE",
-        orderPage : 1,
-        typePage : "ADMINISTRATOR",
-        url : '',
-        base : '',
-        descriptionList : '',
-        descriptionPage : '',
-        icone : '',
-        namePage : '',
-        title : ''
+      		id:null,
+    		name:"",
+    		title:"",
+    		descriptionPage:"",
+    		base:"",
+    		url:"",
+            icone:"",
+            namePage:"",
+            namePageAll:"",
+            descriptionListRecent:"",
+            descriptionList:"",
+            typePage : "ADMINISTRATOR",
+            state : "ACTIVE",
+            orderPage : 10,
+            dateUpdate : new Date(),
+            dateRegister : new Date() 
       };     
    
       self.pages = [];
@@ -60,18 +69,21 @@ App.controller('PageController', [
     	  
       self.editPage = function(page) {
         self.page.id = page.id;
-        self.page.dateRegister = new Date(page.dateRegister);
         self.page.name = page.name;
-        self.page.state = page.state;
-        self.page.orderPage = page.orderPage;
-        self.page.typePage = page.typePage;
-        self.page.url = page.url;
-        self.page.base = page.base;
-        self.page.descriptionList = page.descriptionList;
+        self.page.title = page.title;
         self.page.descriptionPage = page.descriptionPage;
+        self.page.base = page.base;
+        self.page.url = page.url;
         self.page.icone = page.icone;
         self.page.namePage = page.namePage;
-        self.page.title = page.title;
+        self.page.namePageAll = page.namePageAll;
+        self.page.descriptionListRecent = page.descriptionListRecent;
+        self.page.descriptionList = page.descriptionList;
+        self.page.typePage = page.typePage;
+        self.page.state = page.state;
+        self.page.orderPage = page.orderPage;
+        self.page.dateUpdate = new Date(),
+        self.page.dateRegister = new Date(page.dateRegister);
       };
 
       self.fetchAllPages();
@@ -103,19 +115,22 @@ App.controller('PageController', [
 
       self.reset = function() {
         self.page = {
-                id : null,
-                dateRegister : new Date(),
-                name : '',
-                state : "ACTIVE",
-                orderPage : 1,
+        		id:null,
+        		name:"",
+        		title:"",
+        		descriptionPage:"",
+        		base:"",
+        		url:"",
+                icone:"",
+                namePage:"",
+                namePageAll:"",
+                descriptionListRecent:"",
+                descriptionList:"",
                 typePage : "ADMINISTRATOR",
-                url : '',
-                base : '',
-                descriptionList : '',
-                descriptioPage : '',
-                icone : '',
-                namePage : '',
-                title : ''
+                state : "ACTIVE",
+                orderPage : 10,
+                dateUpdate : new Date(),
+                dateRegister : new Date() 
         };
         $scope.pageForm.$setPristine();
       };
@@ -123,7 +138,7 @@ App.controller('PageController', [
       self.enumStates = [];
       
       self.fetchAllEnumStates = function() {
-    	  enumService.fetchAll().then(function(d) {
+    	  stateEnumService.fetchAll().then(function(d) {
           self.enumStates = d;
           console.log(self.enumStates);
         }, function(errResponse) {
@@ -132,8 +147,34 @@ App.controller('PageController', [
       };
       
       self.fetchAllEnumStates();
-
-
+      
+      self.enumTypePages = [];
+      
+      self.fetchAllEnumTypePages = function() {
+    	  typePageEnumService.fetchAll().then(function(d) {
+          self.enumTypePages = d;
+          console.log(self.enumTypePages);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
+      };
+      
+      self.fetchAllEnumTypePages();
+      
+      self.descriptionPage = null;
+      
+      self.searchPageById = function(id) {
+    	  searchPageService.searchById(id).then(function(d) {
+    		  self.descriptionPage = d;
+    		  console.log(self.descriptionPage);
+    	  }, function(errResponse) {
+    		  console.error('Error while description PAGE.');
+    	  });
+      };
+ 
+      self.searchPageById(1);
+      
+      
 	  $scope.oneAtATime = true;
 	  
 	  $scope.status = {

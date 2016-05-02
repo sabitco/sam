@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod ;
 import org.springframework.web.bind.annotation.RestController ;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum ;
+import co.edu.unal.sam.aspect.model.enumerator.TypePageEnum ;
 
 /**
  * The Class EnumController.
@@ -31,5 +32,21 @@ public class EnumController {
 	  }
 	}
 	return new ResponseEntity<>(allstates, HttpStatus.OK) ;
+  }
+
+  /**
+   * Gets the all type page by available.
+   *
+   * @return the all type page by available
+   */
+  @RequestMapping(value = "/enum/typepage", method = RequestMethod.GET)
+  public ResponseEntity<List<TypePageEnum>> getAllTypePageByAvailable() {
+	final List<TypePageEnum> alltypePages = new ArrayList<TypePageEnum>() ;
+	for (final TypePageEnum typePage : TypePageEnum.values()) {
+	  if (Boolean.TRUE.equals(typePage.getAvailable())) {
+		alltypePages.add(typePage) ;
+	  }
+	}
+	return new ResponseEntity<>(alltypePages, HttpStatus.OK) ;
   }
 }
