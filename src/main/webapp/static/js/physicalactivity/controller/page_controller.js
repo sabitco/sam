@@ -161,18 +161,20 @@ App.controller('PageController', [
       
       self.fetchAllEnumTypePages();
       
-      self.descriptionPage = null;
       
+      self.descriptionPage = null;
+
       self.searchPageById = function(id) {
     	  searchPageService.searchById(id).then(function(d) {
     		  self.descriptionPage = d;
-    		  console.log(self.descriptionPage);
-    	  }, function(errResponse) {
-    		  console.error('Error while description PAGE.');
-    	  });
-      };
- 
-      self.searchPageById(1);
+    		  	console.log(self.descriptionPage);
+			}, function(errResponse) {
+				console.error('Error while description PAGE.');
+			});
+		};
+	
+		self.searchPageById(1);
+      
       
       
 	  $scope.oneAtATime = true;
@@ -180,5 +182,7 @@ App.controller('PageController', [
 	  $scope.status = {
 			    isFirstOpen: true
 			  };
-
+	  
+	 
+		
     } ]);

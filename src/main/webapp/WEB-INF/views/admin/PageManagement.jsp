@@ -22,96 +22,100 @@
 }
 </style>
 
-<!-- consulta personalizada por Pagina -->
-<c:set var="titlePageAdministrator" scope="session"
-	value="descriptionPage" />
-<c:set var="naPageAdministrator" scope="session"
-	value="Paginas recientes" />
-
-<c:set var="namePageAdministrator" scope="session"
-	value="Home de Paginas1" />
-
-<c:set var="iconPageAdministrator" scope="session" value="fa-sitemap" />
-
-<c:set var="nameAllPageAdministrator" scope="session" value="All Pages2" />
-
-<c:set var="nameListRecentPage" scope="session"
-	value="Paginas Recientes3" />
-
-<c:set var="usernameLogger" scope="session"
-	value="Fredy Gonzalo Captuayo Novoa4" />
-
-<c:set var="userLogger" scope="session" value="FCAPTUAYO5" />
-
-<c:set var="titleTable" scope="session" value="Listado de Pages7" />
-
-<c:set var="name" scope="session" value="Pages9" />
-<!-- End consulta personalizada-->
 
 
+<div ng-controller="PageController as ctrl">
+	<!-- consulta personalizada por Pagina -->
+	<c:set var="titlePageAdministrator" scope="session"
+		value="{{ctrl.descriptionPage.title}}" />
+
+
+	<c:set var="namePageAdministrator" scope="session"
+		value="{{ctrl.descriptionPage.namePage}}" />
+
+	<c:set var="iconPageAdministrator" scope="session"
+		value="{{ctrl.descriptionPage.icone}}" />
+
+	<c:set var="nameAllPageAdministrator" scope="session"
+		value="{{ctrl.descriptionPage.namePageAll}}" />
+
+	<c:set var="nameListRecentPage" scope="session"
+		value="{{ctrl.descriptionPage.descriptionListRecent}}" />
+
+	<c:set var="titleTable" scope="session"
+		value="{{ctrl.descriptionPage.descriptionList}}" />
+
+	<c:set var="name" scope="session" value="{{ctrl.descriptionPage.name}}" />
+	<!-- End consulta personalizada-->
+
+	<c:set var="usernameLogger" scope="session"
+		value="Fredy Gonzalo Captuayo Novoa4" />
+
+	<c:set var="userLogger" scope="session" value="FCAPTUAYO5" />
 
 
 
-<t:admintemplate>
-	<jsp:attribute name="title">
-		${titlePageAdministrator}
-	</jsp:attribute>
-	<jsp:body>	
+
+<t:admintemplate>	
+		<jsp:attribute name="title">
+			${titlePageAdministrator}
+		</jsp:attribute>
+		<jsp:body>	
 		<!--Div Wrapper-->
-    	<div id="wrapper" style="min-height: 278px;"
-			ng-controller="PageController as ctrl">
+    		<div id="wrapper" style="min-height: 278px;">
+				<jsp:include page="components/Navbar.jsp" /> 
 			
-			<jsp:include page="components/Navbar.jsp" /> 
-			
-			<!--Div Page Wrapper-->
-        	<div id="page-wrapper" class="row">
-            	<!-- Div .col-lg-12 -->
-                <div class="col-xs-12 col-sm-9 ">
-                	<jsp:include page="components/includes/Title.jsp" />
-					<jsp:include page="components/pageManagement/FormPage.jsp" />					
-	            </div>
-	            <div class="col-xs-6 col-sm-3 panel">
+				<!--Div Page Wrapper-->
+        		<div id="page-wrapper" class="row">
+            		<!-- Div .col-lg-12 -->
+                	<div class="col-xs-12 col-sm-9 ">
+	                	<jsp:include page="components/includes/Title.jsp" />
+						<jsp:include page="components/pageManagement/FormPage.jsp" />					
+		            </div>
+	           		<div class="col-xs-6 col-sm-3 panel">
 						<jsp:include page="components/pageManagement/ListRecentPage.jsp" /> 
-	            </div>
-	            <div class="col-lg-12">
+	            	</div>
+	            	<div class="col-lg-12">
 						<jsp:include page="components/pageManagement/ListPage.jsp" /> 
-				</div>
-			 	<!-- End Div .col-lg-12 -->
-     		</div>       
-          	<!--End Div Page Wrapper-->  
+					</div>
+			 		<!-- End Div .col-lg-12 -->
+     			</div>       
+          		<!--End Div Page Wrapper-->  
           	                 
-			<!--Statement Footer-->
-			<div class="col-lg-12 ">
-				<jsp:include page="components/Footer.jsp" /> 	
+				<!--Statement Footer-->
+				<div class="col-lg-12 ">
+					<jsp:include page="components/Footer.jsp" /> 	
+				</div>
+				<!--End Statement Footer-->
 			</div>
-			<!--End Statement Footer-->
-		</div>
-		<!--End Div Wrapper-->
+			<!--End Div Wrapper-->
 	
-		<!-- Statement JScript-->
-		
-			<!-- Angular Touch Core JavaScript -->
-			<script
-			src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
-			<!-- Angular Touch Core JavaScript -->
-			<script
-			src="<c:url value='/static/js/physicalactivity/service/type_page_service_enum.js' />"></script>
+			<!-- Statement JScript-->
 			
-			<!-- Angular Touch Core JavaScript -->
-			<script
-			src="<c:url value='/static/js/physicalactivity/service/state_service_enum.js' />"></script>
-			
-			<!-- Angular Touch Core JavaScript -->
-			<script
-			src="<c:url value='/static/js/physicalactivity/service/search_page_service.js' />"></script>
-			
-			<!-- Angular Touch Core JavaScript -->
-			<script
-			src="<c:url value='/static/js/physicalactivity/controller/page_controller.js' />"></script>
-			
-			<!-- Angular Touch Core JavaScript -->
-			<script
-			src="<c:url value='/static/js/physicalactivity/controller/page_controller.js' />"></script>
-		<!-- End Statement JScript-->
-    </jsp:body>
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/physicalactivity/service/type_page_service_enum.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/physicalactivity/service/state_service_enum.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/physicalactivity/service/search_page_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/physicalactivity/controller/page_controller.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/physicalactivity/controller/description_page_controller.js' />"></script>
+			<!-- End Statement JScript-->
+		</jsp:body>
+	
 </t:admintemplate>
+</div>
