@@ -13,8 +13,9 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.unal.sam.aspect.model.domain.Role;
 import co.edu.unal.sam.aspect.model.domain.User;
+import co.edu.unal.sam.physicalactivity.model.domain.Campus;
+import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 
 @Transactional
 public class UserControllerTest extends ControllerTest {
@@ -23,6 +24,7 @@ public class UserControllerTest extends ControllerTest {
     @Inject
     private UserController controller;
 
+    @Override
     @Before
     public void setUp() {
         super.setUp();
@@ -31,28 +33,24 @@ public class UserControllerTest extends ControllerTest {
     @Test
     public void testCreateUser() throws Exception {
         String uri = "/admin/users";
+
         User user = new User();
-        user.setBmi(24);
+        user.setName("Sabit");
+        user.setSurname("Inc");
+        user.setIdentityDocument("123456789");
+        user.setFaculty(this.getFaculty());
         user.setDateBirth(new Date());
-        user.setDateIngress(new Date());
-        user.setDateInteraction(new Date());
-        user.setDateRegister(new Date());
-        user.setDateUpdate(new Date());
-        user.setEmail("j4m0@outlook.com");
-        user.setHeight(170);
-        user.setHistory(true);
-        user.setName("j4m0");
+        user.setUsername("sabit");
+        user.setEmail("contact@sabit.co");
         user.setPassword("******");
-        user.setUsername("username");
-        user.setRole(new Role());
-        user.getRole().setId(1L);
-        user.setDescriptionHistory("history");
+
         String inputJson = super.mapToJson(user);
         MvcResult result = super.mvc
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON).content(inputJson))
                 .andReturn();
         MockHttpServletResponse response = result.getResponse();
+        super.logger.info("test create user result: " + response.getContentAsString());
         Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
     }
 
@@ -93,6 +91,25 @@ public class UserControllerTest extends ControllerTest {
         MockHttpServletResponse response = result.getResponse();
         super.logger.info(response.getContentAsString());
         Assert.assertEquals("Failure - Expected HTTP status 404", 404, response.getStatus());
+    }
+
+    /**
+     * @return
+     */
+    private Faculty getFaculty() {
+        Faculty faculty = new Faculty();
+        faculty.setCampus(this.getCampus());
+        faculty.setId(1L);
+        return faculty;
+    }
+
+    /**
+     * @return
+     */
+    private Campus getCampus() {
+        Campus campus = new Campus();
+        campus.setId(1L);
+        return campus;
     }
 
 }

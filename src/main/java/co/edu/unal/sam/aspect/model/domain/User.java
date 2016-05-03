@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
+import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
 
 @javax.persistence.Entity
@@ -50,15 +51,25 @@ public class User extends Entity {
     @NotNull
     private String email;
 
+    @ManyToOne()
+    @JoinColumn(name = "faculty_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_user_faculty") )
+    @NotNull
+    private Faculty faculty;
+
     @Column(name = "height")
     private Integer height;
 
     @Column(name = "history")
     private Boolean history;
 
-    @Column(name = "PASSWORD")
+    @Column(name = "identity_document", nullable = false, unique = true)
+    @NotNull
+    private String identityDocument;
+
+    @Column(name = "password")
     @NotEmpty
-    @JsonIgnoreProperties(allowSetters=true)
+    @JsonIgnoreProperties(allowSetters = true)
     private String password;
 
     @ManyToOne()
@@ -67,6 +78,10 @@ public class User extends Entity {
 
     @OneToMany(mappedBy = "user")
     private Set<SubGoal> subGoals = new HashSet<>(0);
+
+    @Column(name = "surname", nullable = false)
+    @NotNull
+    private String surname;
 
     @Column(name = "type_user_id", nullable = true)
     @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
@@ -81,9 +96,11 @@ public class User extends Entity {
 
     @Column(name = "weight")
     private Integer weight;
-    
+
     public User() {
         super();
+        this.dateIngress = new Date();
+        this.dateInteraction = new Date();
     }
 
     /**
@@ -129,6 +146,13 @@ public class User extends Entity {
     }
 
     /**
+     * @return the faculty
+     */
+    public final Faculty getFaculty() {
+        return this.faculty;
+    }
+
+    /**
      * @return the height
      */
     public Integer getHeight() {
@@ -142,7 +166,17 @@ public class User extends Entity {
         return this.history;
     }
 
-    public String getPassword() {
+    /**
+     * @return the identityDocument
+     */
+    public final String getIdentityDocument() {
+        return this.identityDocument;
+    }
+
+    /**
+     * @return the password
+     */
+    public final String getPassword() {
         return this.password;
     }
 
@@ -158,6 +192,10 @@ public class User extends Entity {
      */
     public Set<SubGoal> getSubGoals() {
         return this.subGoals;
+    }
+
+    public String getSurname() {
+        return this.surname;
     }
 
     /**
@@ -231,6 +269,13 @@ public class User extends Entity {
     }
 
     /**
+     * @param faculty the faculty to set
+     */
+    public final void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    /**
      * @param height the height to set
      */
     public void setHeight(final Integer height) {
@@ -244,7 +289,17 @@ public class User extends Entity {
         this.history = history;
     }
 
-    public void setPassword(final String password) {
+    /**
+     * @param identityDocument the identityDocument to set
+     */
+    public final void setIdentityDocument(String identityDocument) {
+        this.identityDocument = identityDocument;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public final void setPassword(String password) {
         this.password = password;
     }
 
@@ -260,6 +315,13 @@ public class User extends Entity {
      */
     public void setSubGoals(final Set<SubGoal> subGoals) {
         this.subGoals = subGoals;
+    }
+
+    /**
+     * @param surname the surname to set
+     */
+    public final void setSurname(String surname) {
+        this.surname = surname;
     }
 
     /**
