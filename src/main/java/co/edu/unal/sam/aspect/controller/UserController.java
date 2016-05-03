@@ -19,54 +19,58 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
+import co.edu.unal.sam.physicalactivity.model.service.UserService;
 
 @RestController
 public class UserController {
 
     @Inject
-    private UserRepository userRepository;
+    private UserRepository repository;
+
+    @Inject
+    private UserService service;
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
-    public ResponseEntity<Void> createUser(@Valid @RequestBody User user) {
-        user = this.userRepository.save(user);
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        user = this.service.createUser(user);
         // Set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.getId()).toUri();
         responseHeaders.setLocation(newUserUri);
 
-        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(user, responseHeaders, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.GET)
     public ResponseEntity<?> getUser(@PathVariable Long userId) {
         this.verifyUser(userId);
-        User p = this.userRepository.findOne(userId);
-        return new ResponseEntity<>(p, HttpStatus.OK);
+        User user = this.repository.findOne(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
     public ResponseEntity<Iterable<User>> getAllusers(Pageable pageable) {
-        Iterable<User> allusers = this.userRepository.findAll(pageable);
+        Iterable<User> allusers = this.repository.findAll(pageable);
         return new ResponseEntity<>(allusers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateUser(@RequestBody User user, @PathVariable Long userId) {
         this.verifyUser(userId);
-        this.userRepository.save(user);
+        this.repository.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         this.verifyUser(userId);
-        this.userRepository.delete(userId);
+        this.repository.delete(userId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     protected void verifyUser(Long userId) throws ResourceNotFoundException {
-        User user = this.userRepository.findOne(userId);
+        User user = this.repository.findOne(userId);
         if (user == null) {
             throw new ResourceNotFoundException("User with id " + userId + " not found");
         }
