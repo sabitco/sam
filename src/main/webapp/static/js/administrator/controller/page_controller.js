@@ -173,7 +173,7 @@ App.controller('PageController', [
 			});
 		};
 	
-		self.searchPageById(1);
+	self.searchPageById(1);
       
       
       

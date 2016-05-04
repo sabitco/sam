@@ -52,7 +52,7 @@
 <script src="/static/bower_components/ui-bootstrap-tpls-1.1.2/js/ui-bootstrap-tpls-1.2.1.js"></script>
 
 <!-- Js Home -->
-<script src="<c:url value='/static/js/physicalactivity/app.js' />" ng-module="physicalactivity"></script>
+<script src="<c:url value='/static/js/administrator/app.js' />" ng-module="administrator"></script>
 
 <!--   <script src="http://cdn.jsdelivr.net/webshim/1.12.4/extras/modernizr-custom.js"></script>
   

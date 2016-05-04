@@ -94,26 +94,26 @@
 			
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
+					src="<c:url value='/static/js/administrator/service/crud_service.js' />"></script>
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/type_page_service_enum.js' />"></script>
+					src="<c:url value='/static/js/administrator/service/type_page_service_enum.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/state_service_enum.js' />"></script>
+					src="<c:url value='/static/js/administrator/service/state_service_enum.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/search_page_service.js' />"></script>
+					src="<c:url value='/static/js/administrator/service/search_page_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/controller/page_controller.js' />"></script>
+					src="<c:url value='/static/js/administrator/controller/page_controller.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/controller/description_page_controller.js' />"></script>
+					src="<c:url value='/static/js/administrator/controller/description_page_controller.js' />"></script>
 			<!-- End Statement JScript-->
 		</jsp:body>
 	
