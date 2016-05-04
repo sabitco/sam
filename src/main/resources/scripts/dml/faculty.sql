@@ -46,3 +46,6 @@ INSERT INTO faculty (name, date_register, date_update, state_id, campus_id) VALU
 INSERT INTO faculty (name, date_register, date_update, state_id, campus_id) VALUES 
 ('Ciencias Agropecuarias', NOW(), NOW(), 1, (SELECT id FROM campus WHERE name ='Palmira')),
 ('Ingeniería y Administración ', NOW(), NOW(), 1, (SELECT id FROM campus WHERE name ='Palmira'));
+
+INSERT INTO faculty (name, date_register, date_update, state_id, campus_id) VALUES 
+('Otras', NOW(), NOW(), 2, (SELECT id FROM campus WHERE name ='Otros'));
