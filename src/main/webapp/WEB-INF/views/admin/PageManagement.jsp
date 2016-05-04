@@ -110,10 +110,7 @@
 				<!-- Angular Touch Core JavaScript -->
 				<script
 					src="<c:url value='/static/js/administrator/controller/page_controller.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-					src="<c:url value='/static/js/administrator/controller/description_page_controller.js' />"></script>
+			
 			<!-- End Statement JScript-->
 		</jsp:body>
 	
