@@ -32,7 +32,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in ctrl.users">
+				<tr ng-repeat="user in ctrl.users.content">
 					<td>
 						<button type="button" ng-click="ctrl.editPage(user)"
 							class="btn btn-success btn-circle">
