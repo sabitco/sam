@@ -52,9 +52,7 @@ public class User extends Entity {
     private String email;
 
     @ManyToOne()
-    @JoinColumn(name = "faculty_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_user_faculty") )
-    @NotNull
+    @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "fk_user_faculty") )
     private Faculty faculty;
 
     @Column(name = "height")
@@ -85,6 +83,7 @@ public class User extends Entity {
 
     @Column(name = "type_user_id", nullable = true)
     @Type(type = "co.edu.unal.sam.aspect.model.usertype.TypeUserType")
+    @NotNull
     private TypeUserEnum typeuser;
 
     @Column(name = "use_condition")

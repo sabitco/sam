@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import co.edu.unal.sam.aspect.exception.BusinessException;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.dto.error.ErrorDetail;
 import co.edu.unal.sam.aspect.model.dto.error.ValidationError;
@@ -29,6 +30,20 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Inject
     private MessageSource messageSource;
 
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<?> handleBusinessException(BusinessException be,
+            HttpServletRequest request) {
+
+        ErrorDetail errorDetail = new ErrorDetail();
+        errorDetail.setTimeStamp(new Date().getTime());
+        errorDetail.setStatus(HttpStatus.BAD_REQUEST.value());
+        errorDetail.setTitle(HttpStatus.BAD_REQUEST.getReasonPhrase());
+        errorDetail.setDetail(this.messageSource.getMessage(be.getMessage(), null, null));
+        errorDetail.setDeveloperMessage(be.getClass().getName());
+
+        return new ResponseEntity<>(errorDetail, null, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException rnfe,
             HttpServletRequest request) {
@@ -36,7 +51,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDetail errorDetail = new ErrorDetail();
         errorDetail.setTimeStamp(new Date().getTime());
         errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
-        errorDetail.setTitle("Resource Not Found");
+        errorDetail.setTitle(HttpStatus.NOT_FOUND.getReasonPhrase());
         errorDetail.setDetail(rnfe.getMessage());
         errorDetail.setDeveloperMessage(rnfe.getClass().getName());
 

@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.unal.sam.aspect.model.domain.User;
+import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Campus;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 
@@ -31,26 +32,39 @@ public class UserControllerTest extends ControllerTest {
     }
 
     @Test
-    public void testCreateUser() throws Exception {
-        String uri = "/admin/users";
+    public void testCreateUserAdministrator() throws Exception {
+        final String uri = "/admin/users";
 
-        User user = new User();
-        user.setName("Sabit");
-        user.setSurname("Inc");
-        user.setIdentityDocument("123456789");
-        user.setFaculty(this.getFaculty());
-        user.setDateBirth(new Date());
-        user.setUsername("sabit");
-        user.setEmail("contact@sabit.co");
-        user.setPassword("******");
+        final User user = this.getUser();
+        user.setTypeuser(TypeUserEnum.ADMINISTRATOR);
 
-        String inputJson = super.mapToJson(user);
-        MvcResult result = super.mvc
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
                 .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON).content(inputJson))
                 .andReturn();
-        MockHttpServletResponse response = result.getResponse();
-        super.logger.info("test create user result: " + response.getContentAsString());
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        super.logger.info("result test create user administrator: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
+    }
+
+    @Test
+    public void testCreateUserPlayer() throws Exception {
+        final String uri = "/admin/users";
+
+        final User user = this.getUser();
+        user.setTypeuser(TypeUserEnum.PLAYER);
+        user.setFaculty(this.getFaculty());
+
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
+                .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                .andReturn();
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        super.logger.info("result test create user player: " + content);
         Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
     }
 
@@ -61,7 +75,8 @@ public class UserControllerTest extends ControllerTest {
                 .perform(MockMvcRequestBuilders.get(uri).accept(MediaType.APPLICATION_JSON))
                 .andReturn();
         MockHttpServletResponse response = result.getResponse();
-        super.logger.info(response.getContentAsString());
+        final String content = response.getContentAsString();
+        super.logger.info("result test get users: " + content);
         Assert.assertEquals("Failure - Expected HTTP status 200", 200, response.getStatus());
         Assert.assertTrue("Failure - Expected HTTP response body to have a value",
                 response.getContentAsString().length() > 0);
@@ -96,6 +111,15 @@ public class UserControllerTest extends ControllerTest {
     /**
      * @return
      */
+    private Campus getCampus() {
+        Campus campus = new Campus();
+        campus.setId(1L);
+        return campus;
+    }
+
+    /**
+     * @return
+     */
     private Faculty getFaculty() {
         Faculty faculty = new Faculty();
         faculty.setCampus(this.getCampus());
@@ -106,10 +130,15 @@ public class UserControllerTest extends ControllerTest {
     /**
      * @return
      */
-    private Campus getCampus() {
-        Campus campus = new Campus();
-        campus.setId(1L);
-        return campus;
+    private User getUser() {
+        User user = new User();
+        user.setName("Sabit");
+        user.setSurname("Inc");
+        user.setIdentityDocument("123456789");
+        user.setDateBirth(new Date());
+        user.setUsername("sabit");
+        user.setEmail("contact@sabit.co");
+        user.setPassword("******");
+        return user;
     }
-
 }

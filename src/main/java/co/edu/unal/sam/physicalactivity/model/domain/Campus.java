@@ -5,6 +5,8 @@ import java.util.Set;
 
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import co.edu.unal.sam.aspect.model.domain.Entity;
 
 @javax.persistence.Entity
@@ -12,6 +14,7 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 public class Campus extends Entity {
 
     @OneToMany(mappedBy = "campus")
+    @JsonIgnore
     private Set<Faculty> faculties;
 
     public Campus() {
