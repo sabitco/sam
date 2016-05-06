@@ -4,9 +4,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<h1 class="row">
-	<p class="text-warning">
-		<i class="btn-info btn-circle fa ${iconPage} fa-fw"></i>
-		${namePage}
-	</p>
-</h1>
+<!--Statement Footer-->
+<footer class="site-footer">
+	<div class="alert">
+		<a href="#" class=""> <spring:message
+				code="param.physicalactivity.footer.name" />
+		</a>
+	</div>
+</footer>
+<!--End Statement Footer-->
