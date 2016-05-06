@@ -55,7 +55,7 @@
 
 
 
-<t:admintemplate>	
+<t:template>	
 		<jsp:attribute name="title">
 			${titlePage}
 		</jsp:attribute>
@@ -113,5 +113,5 @@
 			<!-- End Statement JScript-->
 		</jsp:body>
 	
-</t:admintemplate>
+</t:template>
 </div>

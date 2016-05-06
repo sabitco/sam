@@ -24,10 +24,10 @@
      rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="/static//dist/css/timeline.css" />" rel="stylesheet">
+<link href="<c:url value="/static//dist/administrator/css/timeline.css" />" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="/static//dist/css/sb-admin-2.css"/>" rel="stylesheet">
+<link href="<c:url value="/static//dist/administrator/css/sb-admin-2.css"/>" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="<c:url value="/static//bower_components/font-awesome/css/font-awesome.min.css"/>"

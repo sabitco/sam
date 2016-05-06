@@ -24,10 +24,10 @@
      rel="stylesheet">
 
 <!-- Timeline CSS -->
-<link href="<c:url value="/static//dist/css/timeline.css" />" rel="stylesheet">
+<link href="<c:url value="/static//dist/physicalactivity/css/timeline.css" />" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="<c:url value="/static//dist/css/sb-admin-2.css"/>" rel="stylesheet">
+<link href="<c:url value="/static//dist/physicalactivity/css/sb-admin-2.css"/>" rel="stylesheet">
 
 <!-- Custom Fonts -->
 <link href="<c:url value="/static//bower_components/font-awesome/css/font-awesome.min.css"/>"
@@ -52,10 +52,10 @@
 <script src="/static/bower_components/ui-bootstrap-tpls-1.1.2/js/ui-bootstrap-tpls-1.2.1.js"></script>
 
 <!-- Js Home -->
-<script src="<c:url value='/static/js/physicalactivity/app.js' />" ng-module="physicalactivityplayer"></script>
+<script src="<c:url value='/static/js/physicalactivity/app.js' />" ng-module="physicalactivity"></script>
  
 </head>
-<body ng-app="physicalactivityplayer">
+<body ng-app="physicalactivity">
      <jsp:doBody />
 </body>
 </html>
