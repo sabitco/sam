@@ -24,17 +24,17 @@
 					<th width="20%"></th>
 					<th><spring:message code="param.form.custom.user.id" /></th>
 					<th><spring:message code="param.form.custom.user.name" /></th>
-					<th><spring:message code="param.form.custom.page.state" /></th>
+					<th><spring:message code="param.form.custom.user.state" /></th>
 					<th><spring:message
-							code="param.form.custom.page.register.date" /></th>
-					<th><spring:message code="param.form.custom.page.update.date" /></th>
+							code="param.form.custom.user.register.date" /></th>
+					<th><spring:message code="param.form.custom.user.update.date" /></th>
 					<th width="20%"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr ng-repeat="user in ctrl.users.content">
 					<td>
-						<button type="button" ng-click="ctrl.editPage(user)"
+						<button type="button" ng-click="ctrl.editUser(user)"
 							class="btn btn-success btn-circle">
 							<i class="fa fa-edit" ng-click="status.isFirstOpen = !status.isFirstOpen"></i>
 						</button>

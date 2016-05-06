@@ -47,7 +47,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="page in ctrl.pages">
+				<tr ng-repeat="page in ctrl.pages.content">
 					<td>
 						<button type="button" ng-click="ctrl.editPage(page)"
 							class="btn btn-success btn-circle">
@@ -55,21 +55,21 @@
 						</button>
 					</td>
 					<td>{{page.id}}</span></td>
-					<td>{{page.dateRegister}}</td>
-					<td>{{page.name}}</span></td>
-					<td>{{page.state}}</span></td>
-					<td>{{page.orderPage}}</span></td>
-					<td>{{page.typePage}}</span></td>
-					<td>{{page.url}}</span></td>
-					<td>{{page.base}}</span></td>
-					<td>{{page.descriptionList}}</span></td>
+					<td>{{page.name}}</td>
+					<td>{{page.title}}</span></td>
 					<td>{{page.descriptionPage}}</span></td>
+					<td>{{page.base}}</span></td>
+					<td>{{page.url}}</span></td>
 					<td>{{page.icone}}</span></td>
 					<td>{{page.namePage}}</span></td>
-					<td>{{page.title}}</span></td>
-					<td>{{page.title}}</span></td>
-					<td>{{page.title}}</span></td>
-					<td>{{page.title}}</span></td>
+					<td>{{page.namePageAll}}</span></td>
+					<td>{{page.descriptionListRecent}}</span></td>
+					<td>{{page.descriptionList}}</span></td>
+					<td>{{page.typePage}}</span></td>
+					<td>{{page.state}}</span></td>
+					<td>{{page.orderPage}}</span></td>
+					<td>{{page.dateRegister | date:'dd/MM/yyyy'}}</span></td>
+					<td>{{page.dateUpdate | date:'dd/MM/yyyy'}}</span></td>
 					<td>
 						<button type="button" ng-click="ctrl.editPage(page)"
 							class="btn btn-success btn-circle">

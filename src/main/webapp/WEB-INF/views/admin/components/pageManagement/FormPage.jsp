@@ -362,7 +362,7 @@
 						code="param.form.custom.page.register.date" />
 				</label>
 				<div class="col-md-7">
-					<input type="text" ng-model="ctrl.page.id" id="registerdate"
+					<input type="datetime-local" ng-model="ctrl.page.dateRegister" id="registerdate"
 						class="name form-control input-sm" ng-disabled="true" />
 				</div>
 			</div>
@@ -374,7 +374,7 @@
 						code="param.form.custom.page.update.date" />
 				</label>
 				<div class="col-md-7">
-					<input type="text" ng-model="ctrl.page.id" id="updatedate"
+					<input type="datetime-local" ng-model="ctrl.page.dateUpdate" id="updatedate"
 						class="name form-control input-sm" ng-disabled="true" />
 				</div>
 			</div>

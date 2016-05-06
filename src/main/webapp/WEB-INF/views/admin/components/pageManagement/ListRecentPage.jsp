@@ -32,7 +32,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="page in ctrl.pages">
+				<tr ng-repeat="page in ctrl.pages.content">
 					<td>{{page.name}}</span></td>
 					<td>
 						<button type="button" ng-click="ctrl.editPage(page)"

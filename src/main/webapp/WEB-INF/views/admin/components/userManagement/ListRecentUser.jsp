@@ -32,8 +32,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="user in ctrl.users">
-					<td>{{page.name}}</span></td>
+				<tr ng-repeat="user in ctrl.users.content">
+					<td>{{user.name}}</span></td>
 					<td>
 						<button type="button" ng-click="ctrl.editUser(user)"
 							class="btn btn-info btn-circle">

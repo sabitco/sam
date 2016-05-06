@@ -127,7 +127,7 @@ App.controller('UserAdministratorController', [
 				});
 			};
 
-			self.searchPageById(1);
+			self.searchPageById(2);
 
 			$scope.oneAtATime = true;
 

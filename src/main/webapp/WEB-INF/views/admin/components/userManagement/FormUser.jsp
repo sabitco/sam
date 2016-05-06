@@ -98,24 +98,23 @@
 						code="param.form.custom.user.register.date" />
 				</label>
 				<div class="col-md-7">
-					<input type="text" ng-model="ctrl.user.id" id="registerdate"
+					<input type="datetime-local" ng-model="ctrl.user.dateRegister" id="registerdate"
 						class="name form-control input-sm" ng-disabled="true" />
 				</div>
 			</div>
 		</div>
-
+			
 		<div class="row">
 			<div class="form-group col-md-12">
 				<label class="col-md-2 control-lable" for="updatedate"> <spring:message
 						code="param.form.custom.user.update.date" />
 				</label>
 				<div class="col-md-7">
-					<input type="text" ng-model="ctrl.user.id" id="updatedate"
+					<input type="datetime-local" ng-model="ctrl.user.dateUpdate" id="updatedate"
 						class="name form-control input-sm" ng-disabled="true" />
 				</div>
 			</div>
 		</div>
-
 
 		<div class="pull-right  form-actions floatRight">
 			<input type="submit" value="{{!ctrl.user.id ? 'Add' : 'Update'}}"
@@ -127,6 +126,8 @@
 				Form
 			</button>
 		</div>
+		
+
 	</form>
 </div>
 <!-- End Div Panel Custom Field -->
