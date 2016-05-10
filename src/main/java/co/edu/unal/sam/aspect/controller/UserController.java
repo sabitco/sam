@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import co.edu.unal.sam.aspect.exception.BusinessException;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
@@ -36,7 +37,7 @@ public class UserController {
         this.service.classifyUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
-    
+
     @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         user = this.service.createUser(user);
@@ -77,9 +78,13 @@ public class UserController {
     }
 
     protected void verifyUser(Long userId) throws ResourceNotFoundException {
-        User user = this.repository.findOne(userId);
-        if (user == null) {
-            throw new ResourceNotFoundException("User with id " + userId + " not found");
+        if (userId != null) {
+            User user = this.repository.findOne(userId);
+            if (user == null) {
+                throw new ResourceNotFoundException("User with id " + userId + " not found");
+            }
+        } else {
+            throw new BusinessException("NotNull.user.id");
         }
     }
 

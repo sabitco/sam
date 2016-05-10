@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MvcResult;
@@ -29,6 +30,84 @@ public class UserControllerTest extends ControllerTest {
     @Before
     public void setUp() {
         super.setUp();
+    }
+
+    @Test
+    public void testClassifyUser() throws Exception {
+        final String uri = "/users/bmi";
+        User user = this.getUser();
+        user.setId(1L);
+        user.setWeight(69);
+        user.setHeight(1.60F);
+
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
+                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                .andReturn();
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        user = super.mapFromJson(content, User.class);
+        super.logger.info("result test classify user: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 200", HttpStatus.OK.value(),
+                response.getStatus());
+    }
+
+    @Test
+    public void testClassifyUserWithoutId() throws Exception {
+        final String uri = "/users/bmi";
+        User user = this.getUser();
+        user.setWeight(60);
+        user.setHeight(1.70F);
+
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
+                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                .andReturn();
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        super.logger.info("result test classify user without height: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 400", HttpStatus.BAD_REQUEST.value(),
+                response.getStatus());
+    }
+
+    @Test
+    public void testClassifyUserWithoutHeight() throws Exception {
+        final String uri = "/users/bmi";
+        User user = this.getUser();
+        user.setId(1L);
+        user.setWeight(60);
+
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
+                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                .andReturn();
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        super.logger.info("result test classify user without height: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 400", HttpStatus.BAD_REQUEST.value(),
+                response.getStatus());
+    }
+
+    @Test
+    public void testClassifyUserWithoutWeight() throws Exception {
+        final String uri = "/users/bmi";
+        User user = this.getUser();
+        user.setId(1L);
+        user.setHeight(1.70F);
+
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
+                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                .andReturn();
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        super.logger.info("result test classify user without height: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 400", HttpStatus.BAD_REQUEST.value(),
+                response.getStatus());
     }
 
     @Test
@@ -67,27 +146,6 @@ public class UserControllerTest extends ControllerTest {
         super.logger.info("result test create user player: " + content);
         Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
     }
-    
-    @Test
-    public void testClassifyUser() throws Exception {
-        final String uri = "/users/bmi";
-        User user = this.getUser();
-        user.setTypeuser(TypeUserEnum.PLAYER);
-        user.setFaculty(this.getFaculty());
-        user.setWeight(60);
-        user.setHeight(1.70F);
-
-        final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
-        final MockHttpServletResponse response = result.getResponse();
-        final String content = response.getContentAsString();
-        user = super.mapFromJson(content, User.class);
-        super.logger.info("result test classify user: " + content);
-        Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
-    }
 
     @Test
     public void testGetUsers() throws Exception {
@@ -98,7 +156,8 @@ public class UserControllerTest extends ControllerTest {
         MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test get users: " + content);
-        Assert.assertEquals("Failure - Expected HTTP status 200", 200, response.getStatus());
+        Assert.assertEquals("Failure - Expected HTTP status 200", HttpStatus.OK.value(),
+                response.getStatus());
         Assert.assertTrue("Failure - Expected HTTP response body to have a value",
                 response.getContentAsString().length() > 0);
     }
@@ -112,7 +171,8 @@ public class UserControllerTest extends ControllerTest {
                 .andReturn();
         MockHttpServletResponse response = result.getResponse();
         super.logger.info(response.getContentAsString());
-        Assert.assertEquals("Failure - Expected HTTP status 200", 200, response.getStatus());
+        Assert.assertEquals("Failure - Expected HTTP status 200", HttpStatus.OK.value(),
+                response.getStatus());
         Assert.assertTrue("Failure - Expected HTTP response body to have a value",
                 response.getContentAsString().length() > 0);
     }

@@ -30,7 +30,7 @@ public class UserService {
      * @return
      */
     public void classifyUser(final User user) {
-        final Double bmi = this.classifyUser(user.getWeight(), user.getHeight());
+        final Double bmi = this.calculateBmi(user.getWeight(), user.getHeight());
         user.setBmi(bmi);
         this.userRepository.setBmiInfoById(user.getWeight(), user.getHeight(), user.getBmi(),
                 user.getId());
@@ -51,11 +51,11 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    private Double classifyUser(Integer weight, Float height) {
+    private Double calculateBmi(Integer weight, Float height) {
         if (weight == null && height == null) {
             throw new BusinessException("NotNull.user.height_weight");
         } else if (height == null || Float.valueOf(0).equals(height)) {
-            throw new BusinessException("NotNull.user.weight");
+            throw new BusinessException("NotNull.user.height");
         } else if (weight == null) {
             throw new BusinessException("NotNull.user.weight");
         }
