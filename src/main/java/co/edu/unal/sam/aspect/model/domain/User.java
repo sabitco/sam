@@ -27,7 +27,7 @@ import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
 public class User extends Entity {
 
     @Column(name = "bmi")
-    private Integer bmi;
+    private Double bmi;
 
     @Column(name = "date_birth", nullable = false)
     @Temporal(TemporalType.DATE)
@@ -56,7 +56,7 @@ public class User extends Entity {
     private Faculty faculty;
 
     @Column(name = "height")
-    private Integer height;
+    private Float height;
 
     @Column(name = "history")
     private Boolean history;
@@ -105,7 +105,7 @@ public class User extends Entity {
     /**
      * @return the bmi
      */
-    public Integer getBmi() {
+    public Double getBmi() {
         return this.bmi;
     }
 
@@ -154,7 +154,7 @@ public class User extends Entity {
     /**
      * @return the height
      */
-    public Integer getHeight() {
+    public Float getHeight() {
         return this.height;
     }
 
@@ -228,7 +228,7 @@ public class User extends Entity {
     /**
      * @param bmi the bmi to set
      */
-    public void setBmi(final Integer bmi) {
+    public void setBmi(final Double bmi) {
         this.bmi = bmi;
     }
 
@@ -277,7 +277,7 @@ public class User extends Entity {
     /**
      * @param height the height to set
      */
-    public void setHeight(final Integer height) {
+    public void setHeight(final Float height) {
         this.height = height;
     }
 

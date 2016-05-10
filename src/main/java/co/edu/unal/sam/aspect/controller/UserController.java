@@ -30,6 +30,13 @@ public class UserController {
     @Inject
     private UserService service;
 
+    @RequestMapping(value = "/users/bmi", method = RequestMethod.PUT)
+    public ResponseEntity<User> classifyUser(@RequestBody User user) {
+        this.verifyUser(user.getId());
+        this.service.classifyUser(user);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+    
     @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         user = this.service.createUser(user);

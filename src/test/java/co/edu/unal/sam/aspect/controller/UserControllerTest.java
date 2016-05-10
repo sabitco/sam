@@ -67,6 +67,27 @@ public class UserControllerTest extends ControllerTest {
         super.logger.info("result test create user player: " + content);
         Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
     }
+    
+    @Test
+    public void testClassifyUser() throws Exception {
+        final String uri = "/users/bmi";
+        User user = this.getUser();
+        user.setTypeuser(TypeUserEnum.PLAYER);
+        user.setFaculty(this.getFaculty());
+        user.setWeight(60);
+        user.setHeight(1.70F);
+
+        final String inputJson = super.mapToJson(user);
+        final MvcResult result = super.mvc
+                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
+                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                .andReturn();
+        final MockHttpServletResponse response = result.getResponse();
+        final String content = response.getContentAsString();
+        user = super.mapFromJson(content, User.class);
+        super.logger.info("result test classify user: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 201", 201, response.getStatus());
+    }
 
     @Test
     public void testGetUsers() throws Exception {
