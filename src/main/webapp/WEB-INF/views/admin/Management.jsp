@@ -1,486 +1,113 @@
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="co.edu.unal.sam.aspect.properties.ReadFromPropertiesFile"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-     
-<c:set var="title" scope="session"
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.title')}" />
-     
-<c:set var="req" value="${pageContext.request}" />
-<c:set var="url" value="${req.requestURL}" />
-<c:set var="uri" value="${req.requestURI}" />
-  
-<c:set var="titleAdministrado" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.title.name')}" />
-       
-<c:set var="logout" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.option.logout')}" />
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<c:set var="userLogger" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.userlogger.name')}" />  
-     
-<c:set var="descritionoptionone" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.description')}" />   
+<style>
+.input-validate.ng-valid {
+ background-color: lightgreen;
+}
 
-<c:set var="iconoptionone" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.icon')}" />
-     
-<c:set var="linkoptionone" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.menu.option.one.link')}" /> 
-     
-<c:set var="footer" scope="session"
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.footer.description')}" />   
+.input-validate.ng-dirty.ng-invalid-required {
+ background-color: red;
+}
+
+.input-validate.ng-dirty.ng-invalid-minlength {
+ background-color: yellow;
+}
+
+.input-validate.ng-dirty.ng-invalid {
+ background-color: red;
+}
+</style>
 
 
-               
-<c:set var="descriptionpage" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.cc.description.page')}" />
 
-<c:set var="titlepage" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.title')}" />
-     
-<c:set var="usericon" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.icon')}" />     
- 
-<c:set var="userbase" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.base')}" />   
+<div ng-controller="PageController as ctrl">
+	<!-- consulta personalizada por Pagina -->
+	<c:set var="titlePageAdministrator" scope="session"
+		value="HomeAdministrador" />
 
-<c:set var="usertitle" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.user.name')}" />  
-     
-<c:set var="planicon" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.icon')}" />     
- 
-<c:set var="planbase" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.base')}" />   
 
-<c:set var="plantitle" scope="session" 
-     value="${ReadFromPropertiesFile.getProperties('param.administrador.plan.name')}" />     
- 
-<t:admintemplate>
-     <jsp:attribute name="title">${title}</jsp:attribute>
-     <jsp:body>
- 
-    <div id="wrapper">
+	<c:set var="namePageAdministrator" scope="session"
+		value="Dashboard" />
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation"
-                    style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse"
-                              data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <span class="navbar-brand"> ${ titleAdministrado } </span>
-            </div>
-            <!-- /.navbar-header -->
+	<c:set var="iconPageAdministrator" scope="session"
+		value="fa-th" />
 
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    
-                </li>
+	<c:set var="nameAllPageAdministrator" scope="session"
+		value="Todas" />
 
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="btn-danger btn-circle fa fa-user fa-fw"></i> ${userLogger} </a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> ${logout} </a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
+	<c:set var="nameListRecentPage" scope="session"
+		value="Todas" />
 
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
+	<c:set var="titleTable" scope="session"
+		value="Todas" />
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li>
-                            <a href="${linkoptionone}"><i class="fa  ${iconoptionone} fa-fw"></i> ${descritionoptionone} </a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+	<c:set var="name" scope="session" value="Home" />
+	<!-- End consulta personalizada-->
 
-        <div id="page-wrapper">
-            <!-- /.row -->
-                <div class="alert alert-info">
-                    <h1 class=" timeline-title">
-                        ${descriptionpage}
-                    </h1>
-                </div>
-                
+	<c:set var="usernameLogger" scope="session"
+		value="Fredy Gonzalo Captuayo Novoa4" />
 
-            <div class=" row page-header">    
+	<c:set var="userLogger" scope="session" value="FCAPTUAYO5" />
 
-                        
-                    <!-- /.col-lg-12 -->
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa ${usericon} fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <a href='${userbase}'>
-                            <div class="panel-footer">
-                                <span class="pull-left">${usertitle}</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa ${planicon} fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <a href='${planbase}'>
-                            <div class="panel-footer">
-                                <span class="pull-left">${plantitle}</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Gestion de Usuario</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div> 
-                
 
-                               
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>                
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <!--  segundo paquete-->                                                                                       
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Gestion de Usuario</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">Gestion de Usuario</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>                
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>                
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
 
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-     <!--footer start-->
-     <footer class="site-footer">
-          <div class="alert alert-danger">
-               ${footer}
-               <a href="index.html#" class="go-top">
-                    <i class="fa fa-angle-up"></i>
-               </a>
-          </div>
-    </footer>
-     <!--footer end-->
-
-	<!-- Angular Touch Core JavaScript -->
-	<script src="<c:url value='/static/js/physicalactivity/service/crud_service.js' />"></script>
- 	
- 	<!-- Angular Touch Core JavaScript -->
- 	<script src="<c:url value='/static/js/physicalactivity/controller/user_controller.js' />"></script>
-     
-    </jsp:body>
+<t:admintemplate>	
+		<jsp:attribute name="title">
+			${titlePageAdministrator}
+		</jsp:attribute>
+		<jsp:body>	
+		<!--Div Wrapper-->
+    		<div id="wrapper" style="min-height: 278px;">
+				<jsp:include page="components/Navbar.jsp" /> 
+			
+				<!--Div Page Wrapper-->
+        		<div id="page-wrapper" class="row">
+            		<!-- Div .col-lg-12 -->
+                	<div class="col-xs-12 col-sm-12 ">
+	                	<jsp:include page="components/includes/Title.jsp" />
+						<jsp:include page="components/management/Home.jsp" />					
+		            </div>
+	           		
+			 		<!-- End Div .col-lg-12 -->
+     			</div>       
+          		<!--End Div Page Wrapper-->  
+          	                 
+				<!--Statement Footer-->
+				<div class="col-lg-12 ">
+					<jsp:include page="components/Footer.jsp" /> 	
+				</div>
+				<!--End Statement Footer-->
+			</div>
+			<!--End Div Wrapper-->
+	
+			<!-- Statement JScript-->
+			
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/administrator/service/crud_service.js' />"></script>
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/administrator/service/type_page_service_enum.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/administrator/service/state_service_enum.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/administrator/service/search_page_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+					src="<c:url value='/static/js/administrator/controller/page_controller.js' />"></script>
+			
+			<!-- End Statement JScript-->
+		</jsp:body>
+	
 </t:admintemplate>
+</div>
