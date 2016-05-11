@@ -13,7 +13,7 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
     @Modifying
     @Query("update User u set u.weight = :weight, height = :height, bmi = :bmi where u.id = :id")
-    int setBmiInfoById(@Param("weight") Integer weight, @Param("height") Float height,
-            @Param("bmi") Double bmi, @Param("id") Long id);
+    int setBmiInfoById(@Param("weight") Float weight, @Param("height") Float height,
+            @Param("bmi") Float bmi, @Param("id") Long id);
 
 }

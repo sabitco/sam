@@ -37,7 +37,7 @@ public class UserControllerTest extends ControllerTest {
         final String uri = "/users/bmi";
         User user = this.getUser();
         user.setId(1L);
-        user.setWeight(69);
+        user.setWeight(69F);
         user.setHeight(1.60F);
 
         final String inputJson = super.mapToJson(user);
@@ -57,7 +57,7 @@ public class UserControllerTest extends ControllerTest {
     public void testClassifyUserWithoutId() throws Exception {
         final String uri = "/users/bmi";
         User user = this.getUser();
-        user.setWeight(60);
+        user.setWeight(60F);
         user.setHeight(1.70F);
 
         final String inputJson = super.mapToJson(user);
@@ -77,7 +77,7 @@ public class UserControllerTest extends ControllerTest {
         final String uri = "/users/bmi";
         User user = this.getUser();
         user.setId(1L);
-        user.setWeight(60);
+        user.setWeight(60F);
 
         final String inputJson = super.mapToJson(user);
         final MvcResult result = super.mvc

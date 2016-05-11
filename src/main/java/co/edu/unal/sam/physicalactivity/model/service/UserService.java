@@ -26,11 +26,10 @@ public class UserService {
     /**
      * Classify an User
      * 
-     * @param user
-     * @return
+     * @param user to classify
      */
     public void classifyUser(final User user) {
-        final Double bmi = this.calculateBmi(user.getWeight(), user.getHeight());
+        final Float bmi = this.calculateBmi(user.getWeight(), user.getHeight());
         user.setBmi(bmi);
         this.userRepository.setBmiInfoById(user.getWeight(), user.getHeight(), user.getBmi(),
                 user.getId());
@@ -51,7 +50,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    private Double calculateBmi(Integer weight, Float height) {
+    private Float calculateBmi(final Float weight, final Float height) {
         if (weight == null && height == null) {
             throw new BusinessException("NotNull.user.height_weight");
         } else if (height == null || Float.valueOf(0).equals(height)) {
@@ -60,7 +59,7 @@ public class UserService {
             throw new BusinessException("NotNull.user.weight");
         }
 
-        return (weight / Math.pow(height, 2D));
+        return new Float((weight / Math.pow(height, 2D)));
     }
 
 }
