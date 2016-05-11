@@ -24,27 +24,27 @@
 
 
 
-<div ng-controller="PageController as ctrl">
+<div ng-controller="SignonController as ctrl">
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session"
-		value="{{ctrl.descriptionPage.title}}" />
+		value="formulario de registr01" />
 
 	<c:set var="namePage" scope="session"
-		value="{{ctrl.descriptionPage.namePage}}" />
+		value="formulario de registro 2" />
 
 	<c:set var="iconPage" scope="session"
-		value="{{ctrl.descriptionPage.icone}}" />
+		value="user" />
 
 	<c:set var="nameAllPage" scope="session"
-		value="{{ctrl.descriptionPage.namePageAll}}" />
+		value="" />
 
 	<c:set var="nameListRecentPage" scope="session"
-		value="{{ctrl.descriptionPage.descriptionListRecent}}" />
+		value="" />
 
 	<c:set var="titleTable" scope="session"
-		value="{{ctrl.descriptionPage.descriptionList}}" />
+		value="" />
 
-	<c:set var="name" scope="session" value="{{ctrl.descriptionPage.name}}" />
+	<c:set var="name" scope="session" value="formulario de registro" />
 	<!-- End consulta personalizada-->
 
 	<c:set var="usernameLogger" scope="session"
@@ -67,16 +67,16 @@
 				<!--Div Page Wrapper-->
         		<div id="page-wrapper" class="row">
             		<!-- Div .col-lg-12 -->
+            		
+            		<div class="col-xs-6 col-sm-3 panel">
+						
+	            	</div>
+	            	
                 	<div class="col-xs-12 col-sm-9 ">
 	                	<jsp:include page="components/includes/Title.jsp" />
-						<jsp:include page="components/registrationFromPlay/Form.jsp" />					
+						<jsp:include page="components/signon/Form.jsp" />					
 		            </div>
-	           		<div class="col-xs-6 col-sm-3 panel">
-						<jsp:include page="components/registrationFromPlay/PanelDerecho.jsp" /> 
-	            	</div>
-	            	<div class="col-lg-12">
-						<jsp:include page="components/registrationFromPlay/SegundoFromulario.jsp" /> 
-					</div>
+	           		
 			 		<!-- End Div .col-lg-12 -->
      			</div>       
           		<!--End Div Page Wrapper-->  
@@ -93,22 +93,11 @@
 			
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/administrator/service/crud_service.js' />"></script>
+					src="<c:url value='/static/js/physicalactivity/service/view_service.js' />"></script>
+
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/administrator/service/type_page_service_enum.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-					src="<c:url value='/static/js/administrator/service/state_service_enum.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-					src="<c:url value='/static/js/administrator/service/search_page_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-					src="<c:url value='/static/js/administrator/controller/page_controller.js' />"></script>
+					src="<c:url value='/static/js/physicalactivity/controller/signon_controller.js' />"></script>
 			
 			<!-- End Statement JScript-->
 		</jsp:body>

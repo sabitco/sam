@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMethod ;
 @RequestMapping("/")
 public class IndexController {
 
-  @RequestMapping(value = "/physicalactivity/fromplayers", method = RequestMethod.GET)
+  @RequestMapping(value = "/physicalactivity/signon", method = RequestMethod.GET)
   public String getIndexFromPlayer() {
-	return "physicalactivity/RegistrationFormPlay" ;
+	return "physicalactivity/Signon" ;
   }
 
   @RequestMapping(value = "/administrator", method = RequestMethod.GET)
