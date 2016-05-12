@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import co.edu.unal.sam.aspect.controller.ControllerTest;
 
 public class CampusControllerTest extends ControllerTest {
-    
+
     @Inject
     @SuppressWarnings("unused")
     private CampusController controller;
@@ -24,7 +24,7 @@ public class CampusControllerTest extends ControllerTest {
     public void setUp() {
         super.setUp();
     }
-    
+
     @Test
     public void testGetCampus() throws Exception {
         String uri = "/campus";
@@ -34,6 +34,21 @@ public class CampusControllerTest extends ControllerTest {
         MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test get campus: " + content);
+        Assert.assertEquals("Failure - Expected HTTP status 200", HttpStatus.OK.value(),
+                response.getStatus());
+        Assert.assertTrue("Failure - Expected HTTP response body to have a value",
+                response.getContentAsString().length() > 0);
+    }
+
+    @Test
+    public void testGetFaculties() throws Exception {
+        String uri = "/campus/{campusId}/faculties";
+        Long campusId = 2L;
+        MvcResult result = super.mvc.perform(
+                MockMvcRequestBuilders.get(uri, campusId).accept(MediaType.APPLICATION_JSON))
+                .andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        super.logger.info("result test get faculties: " + response.getContentAsString());
         Assert.assertEquals("Failure - Expected HTTP status 200", HttpStatus.OK.value(),
                 response.getStatus());
         Assert.assertTrue("Failure - Expected HTTP response body to have a value",
