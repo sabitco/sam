@@ -7,6 +7,21 @@ App.controller('SignonController', [ '$scope', 'viewService', 'baseUrlView',
 		function($scope, viewService, baseUrlView) {
 			var self = this;
 
+			self.signonBasic = {
+				id : null,
+				name : "",
+				dateRegister : new Date()
+			};
+
+			self.resetBasic = function() {
+				self.signonBasic = {
+					id : null,
+					name : "",
+					dateRegister : new Date()
+				};
+				$scope.signonFormBasic.$setPristine();
+			};
+
 			self.detailView = [];
 
 			self.loadViewByID = function(id) {
