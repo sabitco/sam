@@ -29,6 +29,8 @@
 	<c:set var="titlePage" scope="session"
 		value="formulario de registr01" />
 
+	<c:set var="name" scope="session" value="formulario de registro03" />
+	
 	<c:set var="namePage" scope="session"
 		value="formulario de registro 2" />
 
@@ -44,7 +46,7 @@
 	<c:set var="titleTable" scope="session"
 		value="" />
 
-	<c:set var="name" scope="session" value="formulario de registro" />
+	
 	<!-- End consulta personalizada-->
 
 	<c:set var="usernameLogger" scope="session"
