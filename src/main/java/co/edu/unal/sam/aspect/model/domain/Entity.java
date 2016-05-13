@@ -12,41 +12,45 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 
 @MappedSuperclass
+@JsonInclude(Include.NON_NULL)
 public class Entity {
 
     @Column(name = "date_register", nullable = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateRegister;
+    protected Date dateRegister;
 
     @Column(name = "date_update", nullable = false)
     @NotNull
     @Temporal(TemporalType.TIMESTAMP)
-    private Date dateUpdate;
+    protected Date dateUpdate;
 
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
-    private Long id;
+    protected Long id;
 
     @Column(name = "name", nullable = false, length = 300)
     @NotNull
-    private String name;
+    protected String name;
 
     @Column(name = "state_id", nullable = false)
     @NotNull
     @Type(type = "co.edu.unal.sam.aspect.model.usertype.StateUserType")
-    private StateEnum state;
+    protected StateEnum state;
 
     public Entity() {
         this.dateRegister = new Date();
         this.dateUpdate = new Date();
         this.state = StateEnum.ACTIVE;
     }
-    
+
     public Date getDateRegister() {
         return dateRegister;
     }
