@@ -75,7 +75,7 @@
 	            	</div>
 	            	
                 	<div class="col-xs-12 col-sm-9 ">
-	                	<jsp:include page="components/includes/Title.jsp" />
+<%-- 	                	<jsp:include page="components/includes/Title.jsp" /> --%>
 						<jsp:include page="components/signon/Form.jsp" />					
 		            </div>
 	           		
