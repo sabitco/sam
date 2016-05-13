@@ -25,10 +25,11 @@ public class Faculty extends Entity {
     private Campus campus;
 
     public Faculty() {
-
+        super();
     }
 
     public Faculty(final Long id, final String name) {
+        this();
         this.id = id;
         this.name = name;
     }
