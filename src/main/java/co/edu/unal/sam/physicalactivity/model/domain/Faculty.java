@@ -11,8 +11,11 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "faculty")
-@NamedQueries({@NamedQuery(name = "Faculty.findByCampus",
-        query = "select new co.edu.unal.sam.physicalactivity.model.domain.Faculty(f.id, f.name) from Faculty f where f.campus = :campus order by f.name"),})
+@NamedQueries({
+        @NamedQuery(name = "Faculty.findByCampus",
+                query = "select new Faculty(f.id, f.name) from Faculty f where f.campus = :campus order by f.name"),
+        @NamedQuery(name = "Faculty.findByCampusAndState",
+                query = "select new Faculty(f.id, f.name) from Faculty f where f.campus = :campus and f.state = :state  order by f.name"),})
 public class Faculty extends Entity {
 
     @ManyToOne()
@@ -22,10 +25,11 @@ public class Faculty extends Entity {
     private Campus campus;
 
     public Faculty() {
-
+        super();
     }
 
     public Faculty(final Long id, final String name) {
+        this();
         this.id = id;
         this.name = name;
     }

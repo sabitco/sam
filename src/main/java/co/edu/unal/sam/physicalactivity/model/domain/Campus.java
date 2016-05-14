@@ -14,16 +14,24 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Entity
 @javax.persistence.Table(name = "campus")
 @NamedQueries({
-        @NamedQuery(name = "Campus.findAll", query = "select c from Campus c order by c.name"),})
+        @NamedQuery(name = "Campus.findAll", query = "select c from Campus c order by c.name"),
+        @NamedQuery(name = "Campus.findByState",
+                query = "select new Campus(c.id, c.name) from Campus c where c.state = :state order by c.name"),})
 public class Campus extends Entity {
 
-    @OneToMany(mappedBy = "campus")
     @JsonIgnore
+    @OneToMany(mappedBy = "campus")
     private Set<Faculty> faculties;
 
     public Campus() {
         super();
         this.faculties = new HashSet<>(0);
+    }
+
+    public Campus(final Long id, final String name) {
+        this();
+        this.id = id;
+        this.name = name;
     }
 
     /**
