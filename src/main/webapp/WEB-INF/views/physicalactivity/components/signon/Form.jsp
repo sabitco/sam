@@ -147,7 +147,7 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="height"> <spring:message
@@ -164,14 +164,15 @@
 							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.height" />
 						" />
 								<div class="has-error" ng-show="signonFormBasic.height.$dirty">
-									<span ng-show="signonFormBasic.height.$error.minlength"> <spring:message
+									<span ng-show="signonFormBasic.height.$error.minlength">
+										<spring:message
 											code="param.physicalactivity.signon.from.basic.minlength.height" />
 									</span>
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="weight"> <spring:message
@@ -188,8 +189,32 @@
 							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.weight" />
 						" />
 								<div class="has-error" ng-show="signonFormBasic.weight.$dirty">
-									<span ng-show="signonFormBasic.weight.$error.minlength"> <spring:message
+									<span ng-show="signonFormBasic.weight.$error.minlength">
+										<spring:message
 											code="param.physicalactivity.signon.from.basic.minlength.weight" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="universitysede">
+								<spring:message
+									code="param.physicalactivity.signon.from.basic.universitysede" />
+							</label>
+							<div class="col-md-7">
+								<select id="universitysede" name="universitysede"
+									class="input-validate form-control"
+									ng-init="ctrl.signonBasic.universitysede = ctrl.signonBasic.universitysede || items[0]"
+									ng-options="universitySede.id as universitySede.name for universitySede in ctrl.listCampus"
+									ng-model="ctrl.signonBasic.universitysede" ng-change="show()"
+									required>
+								</select>
+								<div class="has-error" ng-show="pageForm.state.$dirty">
+									<span ng-show="pageForm.state.$error.required"> <spring:message
+											code="param.physicalactivity.signon.from.basic.required.universitysede" />
 									</span>
 								</div>
 							</div>

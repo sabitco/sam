@@ -99,6 +99,9 @@
 
 				<!-- Angular Touch Core JavaScript -->
 				<script
+					src="<c:url value='/static/js/physicalactivity/service/campus_service.js' />"></script>
+				<!-- Angular Touch Core JavaScript -->
+				<script
 					src="<c:url value='/static/js/physicalactivity/controller/signon_controller.js' />"></script>
 			
 			<!-- End Statement JScript-->

@@ -77,8 +77,8 @@ App.controller('PageController', [
 				self.page.typePage = page.typePage;
 				self.page.state = page.state;
 				self.page.orderPage = page.orderPage;
-				self.page.dateUpdate = new Date(),
-						self.page.dateRegister = new Date(page.dateRegister);
+				self.page.dateUpdate = new Date();
+				self.page.dateRegister = new Date(page.dateRegister);
 			};
 
 			self.fetchAllPages();
