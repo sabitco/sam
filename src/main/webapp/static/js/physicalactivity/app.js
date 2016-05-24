@@ -33,3 +33,20 @@ App.config([ 'baseUrlCampus', 'campusServiceProvider',
 		function(baseUrlCampus, campusServiceProvider) {
 			campusServiceProvider.setBaseUrl(baseUrlCampus);
 		} ]);
+
+function FacultiesServiceProvider() {
+	var _baseUrlFaculties;
+	this.setBaseUrl = function(baseUrlFaculties) {
+		_baseUrlFaculties = baseUrlFaculties;
+	}
+	this.$get = [ '$http', function($http) {
+		return new FacultiesService($http, _baseUrlFaculties);
+	} ];
+}
+
+App.provider("facultiesService", FacultiesServiceProvider);
+
+App.config([ 'baseUrlFaculties', 'facultiesServiceProvider',
+		function(baseUrlFaculties, facultiesServiceProvider) {
+			facultiesServiceProvider.setBaseUrl(baseUrlFaculties);
+		} ]);

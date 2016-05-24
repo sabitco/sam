@@ -209,8 +209,8 @@
 									class="input-validate form-control"
 									ng-init="ctrl.signonBasic.universitysede = ctrl.signonBasic.universitysede || items[0]"
 									ng-options="universitySede.id as universitySede.name for universitySede in ctrl.listCampus"
-									ng-model="ctrl.signonBasic.universitysede" ng-change="show()"
-									required>
+									ng-model="ctrl.signonBasic.universitysede"
+									ng-change="loadFacultiesListByCampus()" required>
 								</select>
 								<div class="has-error" ng-show="pageForm.state.$dirty">
 									<span ng-show="pageForm.state.$error.required"> <spring:message
@@ -221,7 +221,8 @@
 						</div>
 					</div>
 
-
+					<tt>counter = {{counter}}</tt>
+					<br />
 
 					<div class="pull-right  form-actions floatRight">
 						<input type="submit"
