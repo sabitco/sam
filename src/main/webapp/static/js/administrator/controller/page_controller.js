@@ -17,7 +17,9 @@ App.controller('PageController', [
 		function($scope, crudService, baseUrl, stateEnumService,
 				baseUrlStateEnum, typePageEnumService, baseUrlTypePageEnum,
 				searchPageService, baseUrlPages) {
+
 			var self = this;
+
 			self.page = {
 				id : null,
 				name : "",

@@ -17,25 +17,87 @@ App.controller('SignonController', [
 		'baseUrlFaculties',
 		function($scope, viewService, baseUrlView, campusService,
 				baseUrlCampus, facultiesService, baseUrlFaculties) {
-			var self = this;
 
+			/*
+			 * Public Function
+			 */
+
+			/** init self * */
+			var self = this;
 			self.signonBasic = {
 				id : null,
+				username : "",
 				name : "",
-				dateRegister : new Date()
+				lastname : "",
+				password : "",
+				confirmpassword : "",
+				document : "",
+				email : "",
+				age : "",
+				height : "",
+				weight : "",
+				universitysede : "",
+				faculty : "",
+				dateUpdate : new Date(),
+				dateRegister : new Date(),
+				dateExpireClasification : new Date()
 			};
 
+			/** init detail View * */
+			self.detailView = [];
+
+			/** init list campus * */
+			self.listCampus = [];
+
+			/** init list faculties * */
+			self.listFaculties = [];
+
+			/*
+			 * Function Submit
+			 */
+			self.submit = function() {
+				self.createSignon(self.signon);
+				self.reset();
+			};
+
+			/*
+			 * Private Function
+			 */
+
+			/** funtion for Create(save) from Signon * */
+			self.createSignon = function(signon) {
+				crudService.create(signon).then(
+				// self.fetchAllPages,
+				// Crear session y redirect y enviar la contraseña al correo
+				function(errResponse) {
+					console.error('Error while creating Signon.');
+				});
+			};
+
+			/** funtion for reset from Signon * */
 			self.resetBasic = function() {
 				self.signonBasic = {
 					id : null,
+					username : "",
 					name : "",
-					dateRegister : new Date()
+					lastname : "",
+					password : "",
+					confirmpassword : "",
+					document : "",
+					email : "",
+					age : "",
+					height : "",
+					weight : "",
+					universitysede : "",
+					faculty : "",
+					dateUpdate : new Date(),
+					dateRegister : new Date(),
+					dateExpireClasification : new Date()
 				};
 				$scope.signonFormBasic.$setPristine();
 			};
 
-			self.detailView = [];
-
+			/** funtion for load detail View by ID * */
 			self.loadViewByID = function(id) {
 				viewService.loadViewByID(id).then(function(d) {
 					self.detailView = d;
@@ -44,10 +106,8 @@ App.controller('SignonController', [
 					console.error('Error while fetching Currencies');
 				});
 			};
-			// self.loadViewByID(2);
 
-			self.listCampus = [];
-
+			/** function for load list campus * */
 			self.loadCampusList = function() {
 				campusService.loadCampusList().then(function(d) {
 					self.listCampus = d;
@@ -57,8 +117,7 @@ App.controller('SignonController', [
 				});
 			};
 
-			self.loadCampusList();
-
+			/** function for load list faculties By ID * */
 			self.loadFacultiesListByCampus = function() {
 				facultiesService.loadFacultiesListByCampus(
 						$scope.ctrl.signonBasic.universitysede).then(
@@ -70,8 +129,18 @@ App.controller('SignonController', [
 						});
 			};
 
-			$scope.counter = 0;
+			/*
+			 * Init constructor function
+			 */
 
+			/** self.loadViewByID(2); * */
+			self.loadCampusList();
+
+			/*
+			 * Public Function
+			 */
+
+			/** Public function for load Faculties * */
 			$scope.loadFacultiesListByCampus = function() {
 				self.loadFacultiesListByCampus();
 			};

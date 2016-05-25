@@ -25,6 +25,32 @@
 
 				<form ng-submit="ctrl.submit()" name="signonFormBasic"
 					class="form-horizontal">
+
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="username"> <spring:message
+									code="param.physicalactivity.signon.from.basic.username" />
+							</label>
+							<div class="col-md-7">
+								<input type="text" ng-model="ctrl.signonBasic.username"
+									id="username" name="username"
+									class="input-validate form-control input-sm"
+									placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.username" />"
+									required
+									ng-minlength="
+							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.username" />
+						" />
+								<div class="has-error" ng-show="signonFormBasic.username.$dirty">
+									<span ng-show="signonFormBasic.username.$error.minlength">
+										<spring:message
+											code="param.physicalactivity.signon.from.basic.minlength.username" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<div class="row">
 						<div class="form-group col-md-12">
 							<label class="col-md-2 control-lable" for="name"> <spring:message
@@ -73,7 +99,60 @@
 						</div>
 					</div>
 
-
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="password"> <spring:message
+									code="param.physicalactivity.signon.from.basic.password" />
+							</label>
+							<div class="col-md-7">
+								<input type="password" ng-model="ctrl.signonBasic.password"
+									id="password" name="password"
+									class="input-validate form-control input-sm"
+									placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.password" />"
+									required
+									ng-minlength="
+							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.password" />
+						" />
+								<div class="has-error" ng-show="signonFormBasic.password.$dirty">
+									<span ng-show="signonFormBasic.password.$error.minlength">
+										<spring:message
+											code="param.physicalactivity.signon.from.basic.minlength.password" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="password"> <spring:message
+									code="param.physicalactivity.signon.from.basic.confirmpassword" />
+							</label>
+							<div class="col-md-7">
+								<input type="password" ng-model="ctrl.signonBasic.confirmpassword"
+									id="confirmpassword" name="confirmpassword"
+									class="input-validate form-control input-sm"
+									placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.confirmpassword" />"
+									required
+									pw-check="confirmpassword"
+									ng-minlength="
+							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.confirmpassword" />
+						" />
+								<div class="has-error" ng-show="signonFormBasic.password.$dirty">
+									<span ng-show="signonFormBasic.password.$error.minlength">
+										<spring:message
+											code="param.physicalactivity.signon.from.basic.invalid.confirmpassword" />
+									</span>
+									<span ng-show="signonFormBasic.password.$error.pwmatch">
+										<spring:message
+											code="param.physicalactivity.signon.from.basic.invalid.confirmpassword.compare" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
 
 					<div class="row">
 						<div class="form-group col-md-12">
@@ -118,6 +197,8 @@
 									<span ng-show="signonFormBasic.email.$error.minlength">
 										<spring:message
 											code="param.physicalactivity.signon.from.basic.minlength.email" />
+									</span> <span ng-show="signonFormBasic.email.$error.email"> <spring:message
+											code="param.physicalactivity.signon.from.basic.invalid.email" />
 									</span>
 								</div>
 							</div>
@@ -212,8 +293,10 @@
 									ng-model="ctrl.signonBasic.universitysede"
 									ng-change="loadFacultiesListByCampus()" required>
 								</select>
-								<div class="has-error" ng-show="signonFormBasic.state.$dirty">
-									<span ng-show="signonFormBasic.state.$error.required"> <spring:message
+								<div class="has-error"
+									ng-show="signonFormBasic.universitysede.$dirty">
+									<span ng-show="signonFormBasic.universitysede.$error.required">
+										<spring:message
 											code="param.physicalactivity.signon.from.basic.required.universitysede" />
 									</span>
 								</div>
@@ -234,7 +317,8 @@
 									ng-model="ctrl.signonBasic.faculty" required>
 								</select>
 								<div class="has-error" ng-show="signonFormBasic.faculty.$dirty">
-									<span ng-show="signonFormBasic.faculty.$error.required"> <spring:message
+									<span ng-show="signonFormBasic.faculty.$error.required">
+										<spring:message
 											code="param.physicalactivity.signon.from.basic.required.faculty" />
 									</span>
 								</div>
@@ -246,15 +330,15 @@
 
 					<div class="pull-right  form-actions floatRight">
 						<input type="submit"
-							value="{{!ctrl.signonBasic.id ? 'Add' : 'Update'}}"
+							value="{{!ctrl.signonBasic.id ? '<spring:message code="param.physicalactivity.signon.botton.next" />' : '<spring:message code="param.physicalactivity.signon.botton.update" />'}}"
 							class="btn btn-success btn-sm"
 							ng-disabled="signonFormBasic.$invalid">
 
 						<button type="button" ng-click="ctrl.resetBasic()"
 							class="btn btn-warning btn-sm"
 							ng-disabled="signonFormBasic.$pristine">
-							<spring:message code="param.botton.form.recent" />
-							Form
+							<spring:message code="param.physicalactivity.signon.botton.reset" />
+
 						</button>
 					</div>
 
