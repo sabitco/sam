@@ -212,8 +212,8 @@
 									ng-model="ctrl.signonBasic.universitysede"
 									ng-change="loadFacultiesListByCampus()" required>
 								</select>
-								<div class="has-error" ng-show="pageForm.state.$dirty">
-									<span ng-show="pageForm.state.$error.required"> <spring:message
+								<div class="has-error" ng-show="signonFormBasic.state.$dirty">
+									<span ng-show="signonFormBasic.state.$error.required"> <spring:message
 											code="param.physicalactivity.signon.from.basic.required.universitysede" />
 									</span>
 								</div>
@@ -221,7 +221,27 @@
 						</div>
 					</div>
 
-					<tt>counter = {{counter}}</tt>
+					<div class="row">
+						<div class="form-group col-md-12">
+							<label class="col-md-2 control-lable" for="faculty"> <spring:message
+									code="param.physicalactivity.signon.from.basic.faculty" />
+							</label>
+							<div class="col-md-7">
+								<select id="faculty" name="faculty"
+									class="input-validate form-control"
+									ng-init="ctrl.signonBasic.faculty = ctrl.signonBasic.faculty || items[0]"
+									ng-options="faculty.id as faculty.name for faculty in ctrl.listFaculties"
+									ng-model="ctrl.signonBasic.faculty" required>
+								</select>
+								<div class="has-error" ng-show="signonFormBasic.faculty.$dirty">
+									<span ng-show="signonFormBasic.faculty.$error.required"> <spring:message
+											code="param.physicalactivity.signon.from.basic.required.faculty" />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<br />
 
 					<div class="pull-right  form-actions floatRight">

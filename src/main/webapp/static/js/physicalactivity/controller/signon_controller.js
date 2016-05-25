@@ -61,7 +61,7 @@ App.controller('SignonController', [
 
 			self.loadFacultiesListByCampus = function() {
 				facultiesService.loadFacultiesListByCampus(
-						$scope.signonFormBasic.universitysede).then(
+						$scope.ctrl.signonBasic.universitysede).then(
 						function(d) {
 							self.listFaculties = d;
 							console.log(self.listFaculties);
@@ -74,8 +74,6 @@ App.controller('SignonController', [
 
 			$scope.loadFacultiesListByCampus = function() {
 				self.loadFacultiesListByCampus();
-				$scope.counter++;
-				console.log("FREDY");
 			};
 
 		} ]);
