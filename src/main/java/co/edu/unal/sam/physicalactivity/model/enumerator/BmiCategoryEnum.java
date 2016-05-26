@@ -1,4 +1,4 @@
-package co.edu.unal.sam.aspect.model.enumerator;
+package co.edu.unal.sam.physicalactivity.model.enumerator;
 
 /**
  * Body Mass Index Categories
@@ -56,10 +56,10 @@ public enum BmiCategoryEnum {
         this.to = to;
     }
 
-    public static BmiCategoryEnum getCategory(Double bmi) {
+    public static BmiCategoryEnum getCategory(Float bmi) {
         BmiCategoryEnum category = null;
         // Truncate a double to only two decimal places
-        bmi = Math.floor(bmi * 100) / 100;
+        bmi = (float) (Math.floor(bmi * 100) / 100);
         for (BmiCategoryEnum c : BmiCategoryEnum.values()) {
             if (bmi >= c.from && bmi <= c.to) {
                 category = c;
