@@ -21,6 +21,10 @@ import co.edu.unal.sam.physicalactivity.model.domain.Faculty ;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal ;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties ;
+import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
+import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
+import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
@@ -73,6 +77,9 @@ public class User extends Entity {
   @JsonIgnoreProperties(allowSetters = true)
   private String       password ;
   
+    @OneToMany(mappedBy = "user")
+    private Set<PhysicalActivity> physicalActivities;
+
   @ManyToOne()
   @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_user"))
   private Role         role ;
@@ -106,6 +113,7 @@ public class User extends Entity {
 	super() ;
 	this.dateIngress = new Date() ;
 	this.dateInteraction = new Date() ;
+        this.physicalActivities = new HashSet<>(0);
   }
   
   /**
@@ -160,7 +168,7 @@ public class User extends Entity {
   /**
    * @return the faculty
    */
-  public final Faculty getFaculty() {
+    public Faculty getFaculty() {
 	return this.faculty ;
   }
   
@@ -181,18 +189,25 @@ public class User extends Entity {
   /**
    * @return the identityDocument
    */
-  public final String getIdentityDocument() {
+    public String getIdentityDocument() {
 	return this.identityDocument ;
   }
   
   /**
    * @return the password
    */
-  public final String getPassword() {
+    public String getPassword() {
 	return this.password ;
   }
   
   /**
+     * @return the physicalActivities
+     */
+    public Set<PhysicalActivity> getPhysicalActivities() {
+        return this.physicalActivities;
+    }
+
+    /**
    * @return the role
    */
   public Role getRole() {
@@ -323,6 +338,13 @@ public class User extends Entity {
   }
   
   /**
+     * @param physicalActivities the physicalActivities to set
+     */
+    public void setPhysicalActivities(Set<PhysicalActivity> physicalActivities) {
+        this.physicalActivities = physicalActivities;
+    }
+
+    /**
    * @param role the role to set
    */
   public void setRole(final Role role) {
