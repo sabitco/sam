@@ -50,9 +50,9 @@
                       name="password" type="password" value="">
                     </div>
                     <div>
-                      <button
+    <button onclick="location.href='/physicalactivity/signon';" 
                       class="btn btn-warning btn-sm pull-left custom-width">Crear Cuenta</button>
-                      <button
+                     <button
                       class="btn btn-warning btn-sm pull-right custom-width"
                       type="submit">Ingresar</button>
                     </div>

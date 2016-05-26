@@ -76,12 +76,12 @@
 
 					<div class="row">
 						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="lastname"> <spring:message
+							<label class="col-md-2 control-lable" for="surname"> <spring:message
 									code="param.physicalactivity.signon.from.basic.lastname" />
 							</label>
 							<div class="col-md-7">
-								<input type="text" ng-model="ctrl.signonBasic.lastname"
-									id="lastname" name="lastname"
+								<input type="text" ng-model="ctrl.signonBasic.surname"
+									id="surname" name="surname"
 									class="input-validate form-control input-sm"
 									placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.lastname" />"
@@ -89,8 +89,8 @@
 									ng-minlength="
 							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.lastname" />
 						" />
-								<div class="has-error" ng-show="signonFormBasic.lastname.$dirty">
-									<span ng-show="signonFormBasic.lastname.$error.minlength">
+								<div class="has-error" ng-show="signonFormBasic.surname.$dirty">
+									<span ng-show="signonFormBasic.surname.$error.minlength">
 										<spring:message
 											code="param.physicalactivity.signon.from.basic.minlength.lastname" />
 									</span>
@@ -156,12 +156,12 @@
 
 					<div class="row">
 						<div class="form-group col-md-12">
-							<label class="col-md-2 control-lable" for="document"> <spring:message
+							<label class="col-md-2 control-lable" for="identityDocument"> <spring:message
 									code="param.physicalactivity.signon.from.basic.document" />
 							</label>
 							<div class="col-md-7">
-								<input type="number" ng-model="ctrl.signonBasic.document"
-									id="document" name="document"
+								<input type="number" ng-model="ctrl.signonBasic.identityDocument"
+									id="identityDocument" name="identityDocument"
 									class="input-validate form-control input-sm"
 									placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.document" />"
@@ -169,8 +169,8 @@
 									ng-minlength="
 							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.document" />
 						" />
-								<div class="has-error" ng-show="signonFormBasic.document.$dirty">
-									<span ng-show="signonFormBasic.document.$error.minlength">
+								<div class="has-error" ng-show="signonFormBasic.identityDocument.$dirty">
+									<span ng-show="signonFormBasic.identityDocument.$error.minlength">
 										<spring:message
 											code="param.physicalactivity.signon.from.basic.minlength.document" />
 									</span>

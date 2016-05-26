@@ -65,3 +65,20 @@ App.config([ 'baseUrlFaculties', 'facultiesServiceProvider',
 		function(baseUrlFaculties, facultiesServiceProvider) {
 			facultiesServiceProvider.setBaseUrl(baseUrlFaculties);
 		} ]);
+
+function UserServiceProvider() {
+	var _baseUrlUser;
+	this.setBaseUrl = function(baseUrlUser) {
+		_baseUrlUser = baseUrlUser;
+	}
+	this.$get = [ '$http', function($http) {
+		return new UserService($http, _baseUrlUser);
+	} ];
+}
+
+App.provider("userService", UserServiceProvider);
+
+App.config([ 'baseUrlUsers', 'userServiceProvider',
+		function(baseUrlUser, userServiceProvider) {
+			userServiceProvider.setBaseUrl(baseUrlUser);
+		} ]);

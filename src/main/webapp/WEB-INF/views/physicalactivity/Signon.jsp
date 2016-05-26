@@ -107,6 +107,10 @@
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
+					src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
 					src="<c:url value='/static/js/physicalactivity/controller/signon_controller.js' />"></script>
 				
 				
