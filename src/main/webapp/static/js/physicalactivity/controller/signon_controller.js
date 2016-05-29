@@ -86,6 +86,11 @@ App.controller('SignonController', [
 			/** funtion for Create(save) from Signon * */
 			self.createSignon = function(signonBasic) {
 				if (signonBasic.confirmpassword === signonBasic.password) {
+					delete self.signonBasic.id
+					delete self.signonBasic.confirmpassword
+					delete self.signonBasic.universitysede
+					delete self.signonBasic.role
+
 					userService.create(signonBasic).then(
 					// $window.location.href = landingUrl,
 					self.fetchAllPages, function(errResponse) {
