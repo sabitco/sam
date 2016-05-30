@@ -4,119 +4,80 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<style>
-.input-validate.ng-valid {
- background-color: lightgreen;
-}
 
-.input-validate.ng-dirty.ng-invalid-required {
- background-color: red;
-}
-
-.input-validate.ng-dirty.ng-invalid-minlength {
- background-color: yellow;
-}
-
-.input-validate.ng-dirty.ng-invalid {
- background-color: red;
-}
-</style>
 
 
 
 <div ng-controller="SignonController as ctrl">
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session"
-		value="formulario de registr01" />
+	<c:set var="titlePage" scope="session" value="formulario de registr01" />
 
-	<c:set var="name" scope="session" value="formulario de registro03" />
-	
-	<c:set var="namePage" scope="session"
-		value="formulario de registro 2" />
+	<c:set var="name" scope="session" value="Unete y Motivate!" />
 
-	<c:set var="iconPage" scope="session"
-		value="user" />
+	<c:set var="namePage" scope="session" value="formulario de registro 2" />
 
-	<c:set var="nameAllPage" scope="session"
-		value="" />
+	<c:set var="iconPage" scope="session" value="user" />
 
-	<c:set var="nameListRecentPage" scope="session"
-		value="" />
+	<c:set var="nameAllPage" scope="session" value="" />
 
-	<c:set var="titleTable" scope="session"
-		value="" />
+	<c:set var="nameListRecentPage" scope="session" value="" />
 
-	
-	<!-- End consulta personalizada-->
-
-	<c:set var="usernameLogger" scope="session"
-		value="Fredy Gonzalo Captuayo Novoa4" />
-
-	<c:set var="userLogger" scope="session" value="FCAPTUAYO5" />
-
-
-
-
-<t:template>	
+	<c:set var="titleTable" scope="session" value="" />
+	<t:signon>
 		<jsp:attribute name="title">
 			${titlePage}
 		</jsp:attribute>
-		<jsp:body>	
+		<jsp:body>		
 		<!--Div Wrapper-->
-    		<div id="wrapper" style="min-height: 278px;">
-				<jsp:include page="components/Navbar.jsp" /> 
-			
-				<!--Div Page Wrapper-->
-        		<div id="page-wrapper" class="row">
-            		<!-- Div .col-lg-12 -->
-            		
-            		<div class="col-xs-6 col-sm-3 panel">
-						
-	            	</div>
-	            	
-                	<div class="col-xs-12 col-sm-9 ">
-<%-- 	                	<jsp:include page="components/includes/Title.jsp" /> --%>
-						<jsp:include page="components/signon/Form.jsp" />					
-		            </div>
-	           		
-			 		<!-- End Div .col-lg-12 -->
-     			</div>       
-          		<!--End Div Page Wrapper-->  
-          	                 
-				<!--Statement Footer-->
-				<div class="col-lg-12 ">
-					<jsp:include page="components/Footer.jsp" /> 	
-				</div>
-				<!--End Statement Footer-->
-			</div>
-			<!--End Div Wrapper-->
-	
+			<div id="wrapper" class="row page-wrapper">      		
+				<!-- From signon -->
+	            <div class="col-md-4 col-md-offset-4">
+	                <div class="login-panel">
+		                <h1 class="text-white text-center">
+							 ${name}
+						</h1>
+		                <div class="panel panel-body">
+		                    <div class="panel-orange text-muted">
+								<spring:message code="param.physicalactivity.signon.from.basic" />
+							</div>
+							<div class="row text-center logo-sam">
+                            	<img
+									src="/static//dist/physicalactivity/images/logo1.png"
+									alt="logo">    
+                            </div>
+							
+	                       <jsp:include page="components/signon/Form.jsp" />
+	                  
+						</div>
+	                </div>
+	            </div>
+	   		</div> 
 			<!-- Statement JScript-->
 			
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/view_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/view_service.js' />"></script>
 
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/campus_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/campus_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/faculties_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/faculties_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-					src="<c:url value='/static/js/physicalactivity/controller/signon_controller.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/controller/signon_controller.js' />"></script>
 				
 				
 			
 			<!-- End Statement JScript-->
 		</jsp:body>
-	
-</t:template>
+
+	</t:signon>
 </div>
