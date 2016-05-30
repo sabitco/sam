@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import co.edu.unal.sam.aspect.exception.BusinessException;
-import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.service.UserService;
@@ -31,9 +29,9 @@ public class UserController {
     @Inject
     private UserService service;
 
-    @RequestMapping(value = "/users/bmi", method = RequestMethod.PUT)
+    @RequestMapping(value = "/users/classify", method = RequestMethod.PUT)
     public ResponseEntity<User> classifyUser(@RequestBody User user) {
-        this.verifyUser(user.getId());
+        this.service.verify(user.getId());
         this.service.classifyUser(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
@@ -46,15 +44,14 @@ public class UserController {
         URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.getId()).toUri();
         responseHeaders.setLocation(newUserUri);
-
         return new ResponseEntity<>(user, responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<?> getUser(@PathVariable Long userId) {
-        this.verifyUser(userId);
-        User user = this.repository.findOne(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+        this.service.verify(userId);
+        this.repository.delete(userId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
@@ -63,29 +60,18 @@ public class UserController {
         return new ResponseEntity<>(allusers, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUser(@PathVariable Long userId) {
+        this.service.verify(userId);
+        User user = this.repository.findOne(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.PUT)
     public ResponseEntity<Void> updateUser(@RequestBody User user, @PathVariable Long userId) {
-        this.verifyUser(userId);
+        this.service.verify(userId);
         this.repository.save(user);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)
-    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
-        this.verifyUser(userId);
-        this.repository.delete(userId);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    protected void verifyUser(Long userId) throws ResourceNotFoundException {
-        if (userId != null) {
-            User user = this.repository.findOne(userId);
-            if (user == null) {
-                throw new ResourceNotFoundException("User with id " + userId + " not found");
-            }
-        } else {
-            throw new BusinessException("NotNull.user.id");
-        }
     }
 
 }

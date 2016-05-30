@@ -18,6 +18,7 @@ import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Campus;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
+import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 
 @Transactional
 public class UserControllerTest extends ControllerTest {
@@ -34,11 +35,12 @@ public class UserControllerTest extends ControllerTest {
 
     @Test
     public void testClassifyUser() throws Exception {
-        final String uri = "/users/bmi";
+        final String uri = "/users/classify";
         User user = this.getUser();
         user.setId(1L);
         user.setWeight(69F);
         user.setHeight(1.60F);
+        user.getPhysicalActivities().add(new PhysicalActivity());
 
         final String inputJson = super.mapToJson(user);
         final MvcResult result = super.mvc
@@ -55,7 +57,7 @@ public class UserControllerTest extends ControllerTest {
 
     @Test
     public void testClassifyUserWithoutId() throws Exception {
-        final String uri = "/users/bmi";
+        final String uri = "/users/classify";
         User user = this.getUser();
         user.setWeight(60F);
         user.setHeight(1.70F);
@@ -74,7 +76,7 @@ public class UserControllerTest extends ControllerTest {
 
     @Test
     public void testClassifyUserWithoutHeight() throws Exception {
-        final String uri = "/users/bmi";
+        final String uri = "/users/classify";
         User user = this.getUser();
         user.setId(1L);
         user.setWeight(60F);
@@ -93,7 +95,7 @@ public class UserControllerTest extends ControllerTest {
 
     @Test
     public void testClassifyUserWithoutWeight() throws Exception {
-        final String uri = "/users/bmi";
+        final String uri = "/users/classify";
         User user = this.getUser();
         user.setId(1L);
         user.setHeight(1.70F);

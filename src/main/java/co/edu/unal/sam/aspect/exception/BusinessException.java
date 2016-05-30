@@ -1,21 +1,33 @@
 package co.edu.unal.sam.aspect.exception;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.BAD_REQUEST)
 public class BusinessException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    public BusinessException() {}
+    private final HttpStatus httpStatus;
 
-    public BusinessException(String message) {
-        super(message);
+    public BusinessException(HttpStatus httpStatus) {
+        super();
+        this.httpStatus = httpStatus;
     }
 
-    public BusinessException(String message, Throwable cause) {
+    public BusinessException(String message, HttpStatus httpStatus) {
+        super(message);
+        this.httpStatus = httpStatus;
+    }
+
+    public BusinessException(String message, Throwable cause, HttpStatus httpStatus) {
         super(message, cause);
+        this.httpStatus = httpStatus;
+    }
+
+    /**
+     * @return the httpStatus
+     */
+    public HttpStatus getHttpStatus() {
+        return this.httpStatus;
     }
 
 }

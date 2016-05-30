@@ -7,10 +7,12 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import co.edu.unal.sam.aspect.exception.BusinessException;
+import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
@@ -27,7 +29,7 @@ import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 public class UserService {
 
     @Inject
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     /**
      * Classify an User
@@ -39,7 +41,7 @@ public class UserService {
         final BmiCategoryEnum bmiCategory = BmiCategoryEnum.getCategory(bmi);
         this.calculateRisk(user.getPhysicalActivities(), bmiCategory);
         user.setBmi(bmi);
-        this.userRepository.setBmiInfoById(user.getWeight(), user.getHeight(), user.getBmi(),
+        this.repository.setBmiInfoById(user.getWeight(), user.getHeight(), user.getBmi(),
                 user.getId());
     }
 
@@ -50,21 +52,35 @@ public class UserService {
      * @return user created
      */
     public User createUser(final User user) {
+        if (TypeUserEnum.PLAYER.equals(user.getTypeuser()) && Objects.isNull(user.getFaculty())) {
+            throw new BusinessException("NotNull.user.faculty", HttpStatus.BAD_REQUEST);
+        }
+        if (this.repository.findByIdentityDocument(user.getIdentityDocument()) != null) {
+            throw new BusinessException("NotNull.user.faculty", HttpStatus.CONFLICT);
+        }
         String cryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(cryptedPassword);
-        if (TypeUserEnum.PLAYER.equals(user.getTypeuser()) && Objects.isNull(user.getFaculty())) {
-            throw new BusinessException("NotNull.user.faculty");
+        return this.repository.save(user);
+    }
+
+    public void verify(Long userId) throws ResourceNotFoundException {
+        if (userId != null) {
+            User user = this.repository.findOne(userId);
+            if (user == null) {
+                throw new ResourceNotFoundException("User with id " + userId + " not found");
+            }
+        } else {
+            throw new BusinessException("NotNull.user.id", HttpStatus.BAD_REQUEST);
         }
-        return this.userRepository.save(user);
     }
 
     private Float calculateBmi(final Float weight, final Float height) {
         if (weight == null && height == null) {
-            throw new BusinessException("NotNull.user.height_weight");
+            throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
         } else if (height == null || Float.valueOf(0).equals(height)) {
-            throw new BusinessException("NotNull.user.height");
+            throw new BusinessException("NotNull.user.height", HttpStatus.BAD_REQUEST);
         } else if (weight == null) {
-            throw new BusinessException("NotNull.user.weight");
+            throw new BusinessException("NotNull.user.weight", HttpStatus.BAD_REQUEST);
         }
 
         return new Float((weight / Math.pow(height, 2D)));
@@ -75,7 +91,7 @@ public class UserService {
         // TODO: determinar riesgo segun variables
         TypeRiskEnum risk = null;
         if (physicalActivities.isEmpty()) {
-            throw new BusinessException("NotEmpty.user.physicalActivities");
+            throw new BusinessException("NotEmpty.user.physicalActivities", HttpStatus.BAD_REQUEST);
         }
         PhysicalActivity activity = Collections.max(physicalActivities,
                 Comparator.comparing(pa -> pa.getDateRegister()));

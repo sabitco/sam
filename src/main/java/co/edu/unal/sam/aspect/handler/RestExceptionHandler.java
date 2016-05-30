@@ -36,12 +36,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
         ErrorDetail errorDetail = new ErrorDetail();
         errorDetail.setTimeStamp(new Date().getTime());
-        errorDetail.setStatus(HttpStatus.BAD_REQUEST.value());
-        errorDetail.setTitle(HttpStatus.BAD_REQUEST.getReasonPhrase());
+        errorDetail.setStatus(be.getHttpStatus().value());
+        errorDetail.setTitle(be.getHttpStatus().getReasonPhrase());
         errorDetail.setDetail(this.messageSource.getMessage(be.getMessage(), null, null));
         errorDetail.setDeveloperMessage(be.getClass().getName());
 
-        return new ResponseEntity<>(errorDetail, null, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetail, null, be.getHttpStatus());
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
