@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -22,12 +24,10 @@ import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 public class Entity {
 
     @Column(name = "date_register", nullable = false)
-    @NotNull
     @Temporal(TemporalType.TIMESTAMP)
     protected Date dateRegister;
 
-    @Column(name = "date_update", nullable = false)
-    @NotNull
+    @Column(name = "date_update")
     @Temporal(TemporalType.TIMESTAMP)
     protected Date dateUpdate;
 
@@ -36,59 +36,17 @@ public class Entity {
     @Column(name = "id", nullable = false)
     protected Long id;
 
-    @Column(name = "name", nullable = false, length = 300)
     @NotNull
+    @Column(name = "name", nullable = false, length = 300)
     protected String name;
 
-    @Column(name = "state_id", nullable = false)
     @NotNull
+    @Column(name = "state_id", nullable = false)
     @Type(type = "co.edu.unal.sam.aspect.model.usertype.StateUserType")
     protected StateEnum state;
 
     public Entity() {
-        this.dateRegister = new Date();
-        this.dateUpdate = new Date();
         this.state = StateEnum.ACTIVE;
-    }
-
-    public Date getDateRegister() {
-        return dateRegister;
-    }
-
-    public void setDateRegister(Date dateRegister) {
-        this.dateRegister = dateRegister;
-    }
-
-    public Date getDateUpdate() {
-        return dateUpdate;
-    }
-
-    public void setDateUpdate(Date dateUpdate) {
-        this.dateUpdate = dateUpdate;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public StateEnum getState() {
-        return state;
-    }
-
-    public void setState(StateEnum state) {
-        this.state = state;
     }
 
     @Override
@@ -119,6 +77,56 @@ public class Entity {
         int result = 1;
         result = (prime * result) + ((this.id == null) ? 0 : this.id.hashCode());
         return result;
+    }
+
+    public Date getDateRegister() {
+        return dateRegister;
+    }
+
+    public Date getDateUpdate() {
+        return dateUpdate;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public StateEnum getState() {
+        return state;
+    }
+
+    public void setDateRegister(Date dateRegister) {
+        this.dateRegister = dateRegister;
+    }
+
+    public void setDateUpdate(Date dateUpdate) {
+        this.dateUpdate = dateUpdate;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setState(StateEnum state) {
+        this.state = state;
+    }
+
+    @PrePersist
+    protected void onPrePersist() {
+        this.dateRegister = new Date();
+    }
+
+    @PreUpdate
+    protected void onPreUpdate() {
+        this.dateUpdate = new Date();
     }
 
 }

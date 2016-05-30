@@ -39,7 +39,7 @@ public class UserService {
     public void classifyUser(final User user) {
         final Float bmi = this.calculateBmi(user.getWeight(), user.getHeight());
         final BmiCategoryEnum bmiCategory = BmiCategoryEnum.getCategory(bmi);
-        this.calculateRisk(user.getPhysicalActivities(), bmiCategory);
+        this.calculateRisk(user, bmiCategory);
         user.setBmi(bmi);
         this.repository.setBmiInfoById(user.getWeight(), user.getHeight(), user.getBmi(),
                 user.getId());
@@ -56,7 +56,7 @@ public class UserService {
             throw new BusinessException("NotNull.user.faculty", HttpStatus.BAD_REQUEST);
         }
         if (this.repository.findByIdentityDocument(user.getIdentityDocument()) != null) {
-            throw new BusinessException("NotNull.user.faculty", HttpStatus.CONFLICT);
+            throw new BusinessException("Existent.user.identityDocument", HttpStatus.BAD_REQUEST);
         }
         String cryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(cryptedPassword);
@@ -86,17 +86,20 @@ public class UserService {
         return new Float((weight / Math.pow(height, 2D)));
     }
 
-    private TypeRiskEnum calculateRisk(Set<PhysicalActivity> physicalActivities,
-            BmiCategoryEnum bmi) {
+    private TypeRiskEnum calculateRisk(User user, BmiCategoryEnum bmi) {
         // TODO: determinar riesgo segun variables
         TypeRiskEnum risk = null;
-        if (physicalActivities.isEmpty()) {
-            throw new BusinessException("NotEmpty.user.physicalActivities", HttpStatus.BAD_REQUEST);
-        }
-        PhysicalActivity activity = Collections.max(physicalActivities,
-                Comparator.comparing(pa -> pa.getDateRegister()));
-        if (this.isObese(bmi) || Integer.valueOf("1").equals(activity.getNumberDays())) {
+        Set<PhysicalActivity> activities = user.getPhysicalActivities();
+        if (!user.getDiseases().isEmpty()) {
+            risk = TypeRiskEnum.INDETERMINATE;
+        } else if (activities.isEmpty()) {
             risk = TypeRiskEnum.HIGH;
+        } else {
+            PhysicalActivity activity =
+                    Collections.max(activities, Comparator.comparing(pa -> pa.getDateRegister()));
+            if (this.isObese(bmi) || Integer.valueOf("1").equals(activity.getNumberDays())) {
+                risk = TypeRiskEnum.HIGH;
+            }
         }
         return risk;
     }

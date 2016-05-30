@@ -152,7 +152,7 @@
 				</label>
 			</div>
 			<div class="col-lg-8">
-				<input type="number" ng-model="ctrl.signonBasic.identityDocument"
+				<input type="text" ng-model="ctrl.signonBasic.identityDocument"
 					id="identityDocument" name="identityDocument"
 					class="input-validate form-control input-sm"
 					placeholder="<spring:message
@@ -208,7 +208,7 @@
 			</div>
 			<div class="col-lg-8">
 				<input type="number" ng-model="ctrl.signonBasic.height" id="height"
-					name="height" class="input-validate form-control input-sm"
+					name="height" class="input-validate form-control input-sm" step="any"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.height" />"
 					required min="1" max="2.5"
@@ -233,7 +233,7 @@
 			</div>
 			<div class="col-lg-8">
 				<input type="number" ng-model="ctrl.signonBasic.weight" id="weight"
-					name="weight" class="input-validate form-control input-sm"
+					name="weight" class="input-validate form-control input-sm" step="any"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.weight" />"
 					required min="10" max="400"
@@ -262,7 +262,7 @@
 					<p class="input-group">
 						<input type="text" class="form-control" uib-datepicker-popup
 							ng-model="dt" is-open="popup2.opened"
-							datepicker-options="dateOptions" ng-required="true"
+							datepicker-options="dateOptions" 
 							close-text="Close" /> <span class="input-group-btn">
 							<button type="button" class="btn btn-default" ng-click="open2()">
 								<i class="glyphicon glyphicon-calendar"></i>

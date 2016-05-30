@@ -22,6 +22,7 @@ import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
+import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
@@ -54,6 +55,9 @@ public class User extends Entity {
 
     @Column(name = "description_history", columnDefinition = "TEXT")
     private String descriptionHistory;
+
+    @OneToMany(mappedBy = "user")
+    private Set<UserDisease> diseases;
 
     @Column(name = "email", nullable = false, length = 300)
     @NotNull
@@ -164,6 +168,13 @@ public class User extends Entity {
      */
     public String getDescriptionHistory() {
         return this.descriptionHistory;
+    }
+
+    /**
+     * @return the diseases
+     */
+    public Set<UserDisease> getDiseases() {
+        return this.diseases;
     }
 
     /**
@@ -308,6 +319,13 @@ public class User extends Entity {
      */
     public void setDescriptionHistory(final String descriptionHistory) {
         this.descriptionHistory = descriptionHistory;
+    }
+
+    /**
+     * @param diseases the diseases to set
+     */
+    public void setDiseases(Set<UserDisease> diseases) {
+        this.diseases = diseases;
     }
 
     /**
