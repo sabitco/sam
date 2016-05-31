@@ -87,8 +87,7 @@ public class UserService {
     }
 
     private TypeRiskEnum calculateRisk(User user, BmiCategoryEnum bmi) {
-        // TODO: determinar riesgo segun variables
-        TypeRiskEnum risk = null;
+        TypeRiskEnum risk;
         Set<PhysicalActivity> activities = user.getPhysicalActivities();
         if (!user.getDiseases().isEmpty()) {
             risk = TypeRiskEnum.INDETERMINATE;
@@ -97,7 +96,22 @@ public class UserService {
         } else {
             PhysicalActivity activity =
                     Collections.max(activities, Comparator.comparing(pa -> pa.getDateRegister()));
+            int minutes = activity.getNumberHours() * activity.getNumberHours();
             if (this.isObese(bmi) || Integer.valueOf("1").equals(activity.getNumberDays())) {
+                risk = TypeRiskEnum.HIGH;
+            } else if (minutes >= 150) {
+                if (BmiCategoryEnum.OVERWEIGHT.equals(bmi)) {
+                    risk = TypeRiskEnum.MEDIUM;
+                } else {
+                    risk = TypeRiskEnum.LOW;
+                }
+            } else if (minutes >= 100) {
+                if (BmiCategoryEnum.OVERWEIGHT.equals(bmi)) {
+                    risk = TypeRiskEnum.HIGH;
+                } else {
+                    risk = TypeRiskEnum.MEDIUM;
+                }
+            } else {
                 risk = TypeRiskEnum.HIGH;
             }
         }
