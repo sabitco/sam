@@ -39,7 +39,7 @@
                 <h3 class="panel-title">Please Sign In</h3>
             </div>
               <div class="panel-body">
-                <form th:action="@{/login}" method="post" role="form">
+                <form action="login" method="post" role="form">
                   <fieldset>
                     <div class="form-group">
                       <input class="form-control" placeholder="Username"
