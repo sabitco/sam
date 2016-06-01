@@ -90,7 +90,7 @@ App
 										email : self.signonBasic.email,
 										height : self.signonBasic.height,
 										weight : self.signonBasic.weight,
-										faculty : self.signonBasic.faculty,
+										faculty : JSON.parse(self.signonBasic.faculty),
 										state : "ACTIVE",
 										typeuser : "PLAYER",
 										dateExpireClasification : new Date(),
