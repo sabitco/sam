@@ -197,7 +197,31 @@
 			</div>
 		</div>
 
-
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="dateBirth"> <spring:message
+						code="param.physicalactivity.signon.from.basic.dateBirth" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<div class="col-lg-10">
+					<input type="text" class="form-control" uib-datepicker-popup
+						ng-model="dateBirth" is-open="popup2.opened"
+						datepicker-options="dateOptions" ng-required="true"
+						close-text="Close" />
+				</div>
+				<div class="col-lg-2">
+					<span class="">
+						<button type="button" class="btn btn-default" ng-click="open2()">
+							<i class="glyphicon glyphicon-calendar"></i>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="has-error text-danger text-muted col-lg-10 text-center"
+				ng-show="signonFormBasic.dateBirth.$dirty">
+			</div>
+		</div>
 
 
 		<div class="row">
@@ -249,37 +273,6 @@
 				</span>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class=" text-muted col-lg-4">
-				<label class=" control-lable" for="weight"> <spring:message
-						code="param.physicalactivity.signon.from.basic.weight" />
-				</label>
-			</div>
-			<div class="col-lg-8">
-
-				<div class="col-md-6">
-					<p class="input-group">
-						<input type="text" class="form-control" uib-datepicker-popup
-							ng-model="dt" is-open="popup2.opened"
-							datepicker-options="dateOptions" 
-							close-text="Close" /> <span class="input-group-btn">
-							<button type="button" class="btn btn-default" ng-click="open2()">
-								<i class="glyphicon glyphicon-calendar"></i>
-							</button>
-						</span>
-					</p>
-				</div>
-			</div>
-			<div class="has-error text-danger text-muted col-lg-10 text-center"
-				ng-show="signonFormBasic.weight.$dirty">
-				<span ng-show="signonFormBasic.weight.$error.minlength"> <spring:message
-						code="param.physicalactivity.signon.from.basic.minlength.weight" />
-				</span>
-			</div>
-		</div>
-
-
 
 		<div class="row">
 			<div class=" text-muted col-lg-4">
