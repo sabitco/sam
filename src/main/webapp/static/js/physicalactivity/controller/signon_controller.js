@@ -82,19 +82,17 @@ App
 							self.createSignon = function(signonBasic) {
 								if (signonBasic.confirmpassword === signonBasic.password) {
 									self.signon = {
-										username : self.signonBasic.id,
-										name : self.signonBasic.id,
-										surname : self.signonBasic.id,
-										password : self.signonBasic.id,
-										identityDocument : self.signonBasic.id,
-										email : self.signonBasic.id,
-										height : self.signonBasic.id,
-										weight : self.signonBasic.id,
-										faculty : self.signonBasic.id,
+										username : self.signonBasic.username,
+										name : self.signonBasic.name,
+										surname : self.signonBasic.surname,
+										password : self.signonBasic.password,
+										identityDocument : self.signonBasic.identityDocument,
+										email : self.signonBasic.email,
+										height : self.signonBasic.height,
+										weight : self.signonBasic.weight,
+										faculty : self.signonBasic.faculty,
 										state : "ACTIVE",
 										typeuser : "PLAYER",
-										dateUpdate : new Date(),
-										dateRegister : new Date(),
 										dateExpireClasification : new Date(),
 										dateBirth : self.signonBasic.dateBirth,
 										dateIngress : new Date(),
@@ -108,7 +106,7 @@ App
 									delete self.signon.role
 
 									userService
-											.create(signon)
+											.create(self.signon)
 											.then(
 													function(d) {
 														console.log(self.d.id);

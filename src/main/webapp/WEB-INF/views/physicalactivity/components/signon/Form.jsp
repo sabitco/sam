@@ -310,7 +310,7 @@
 					class="input-validate form-control"
 					ng-model="ctrl.signonBasic.faculty" required>
 					<option ng-repeat="faculty in ctrl.listFaculties"
-						value="{{faculty.id}}">{{faculty.name}}</option>
+						value="{{faculty}}">{{faculty.name}}</option>
 				</select>
 			</div>
 			<div class="has-error text-danger text-muted col-lg-10 text-center"
