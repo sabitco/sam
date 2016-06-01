@@ -5,6 +5,7 @@ import java.net.URI;
 import javax.inject.Inject;
 import javax.validation.Valid;
 
+import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -17,11 +18,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import co.edu.unal.sam.aspect.model.domain.User;
+import co.edu.unal.sam.aspect.model.dto.response.Successful;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.service.UserService;
 
 @RestController
 public class UserController {
+
+    @Inject
+    private MessageSource messageSource;
 
     @Inject
     private UserRepository repository;
@@ -37,14 +42,17 @@ public class UserController {
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<Successful> createUser(@Valid @RequestBody User user) {
         user = this.service.createUser(user);
         // Set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(user.getId()).toUri();
         responseHeaders.setLocation(newUserUri);
-        return new ResponseEntity<>(user, responseHeaders, HttpStatus.CREATED);
+        Successful success = new Successful();
+        success.setMessage(this.messageSource.getMessage("user.created.successfully", null, null));
+        success.setStatus(HttpStatus.CREATED.value());
+        return new ResponseEntity<>(success, responseHeaders, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)

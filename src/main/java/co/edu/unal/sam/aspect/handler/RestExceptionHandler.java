@@ -21,8 +21,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import co.edu.unal.sam.aspect.exception.BusinessException;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
-import co.edu.unal.sam.aspect.model.dto.error.ErrorDetail;
 import co.edu.unal.sam.aspect.model.dto.error.ValidationError;
+import co.edu.unal.sam.aspect.model.dto.response.ErrorDetail;
 
 @ControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {

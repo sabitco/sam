@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 
 @MappedSuperclass
-@JsonInclude(Include.NON_NULL)
+@JsonInclude(Include.NON_EMPTY)
 public class Entity {
 
     @Column(name = "date_register", nullable = false)
