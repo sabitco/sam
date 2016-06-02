@@ -4,7 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+
+import org.hibernate.annotations.Type;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
@@ -17,7 +18,8 @@ public class Bmi extends Entity {
     @Column(name = "bmi")
     private Float bmi;
 
-    @Transient
+    @Column(name = "category_id", nullable = true)
+    @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.BmiCategoryType")
     private BmiCategoryEnum category;
 
     @Column(name = "height")
