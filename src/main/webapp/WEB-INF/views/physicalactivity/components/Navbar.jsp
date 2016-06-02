@@ -10,30 +10,19 @@
 	style="margin-bottom: 0">
 
 	<!-- .navbar-header-->
-	<div class="navbar-header">
-		<span class="navbar-brand"> <spring:message
-				code="param.physicalactivity.title.name" />
-		</span>
+	<div class=" ">
+		<div class="navbar-header logo-sam">
+			<img src="/static//dist/physicalactivity/images/logo2.png" alt="logo">
+		</div>
+
 	</div>
+
 	<!-- End .navbar-header -->
 
 	<!-- ul .navbar top links--->
-	<ul class="nav navbar-top-links navbar-right">
+	<ul class="nav navbar-top-links navbar-right text-white">
 		<!-- li .dropdown-option -->
-		<li class="dropdown"><a
-			href="
-							<spring:message code="param.physicalactivity.menu.option.home.link"/>
-						">
-				<strong>
-					<div>
-						<i
-							class="<spring:message code="param.physicalactivity.menu.option.home.class"/>"></i>
-						<em> <spring:message
-								code="param.physicalactivity.menu.option.home.description" />
-						</em>
-					</div>
-			</strong>
-		</a></li>
+		${emailLogger}
 		<!-- End li .dropdown-option -->
 
 		<!-- li .dropdown-user -->

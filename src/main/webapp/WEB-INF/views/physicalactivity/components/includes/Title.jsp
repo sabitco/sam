@@ -6,7 +6,6 @@
 
 <h1 class="row">
 	<p class="text-warning">
-		<i class="btn-info btn-circle fa ${iconPage} fa-fw"></i>
 		${namePage}
 	</p>
 </h1>

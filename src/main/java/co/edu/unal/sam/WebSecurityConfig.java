@@ -24,15 +24,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsService)
-                .passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(this.userDetailsService).passwordEncoder(
+                new BCryptPasswordEncoder());
     }
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/enum/ **")
-                .authenticated().antMatchers("/administrator/ **").authenticated().and().formLogin()
+                .authenticated().antMatchers("/administrator/ **").authenticated()
+        .antMatchers("/physicalactivity/classification").authenticated().and().formLogin()
                 .loginPage("/login").permitAll().and().logout().permitAll().and().csrf().disable();
-        http.formLogin().successHandler(authenticationHandler);
+        http.formLogin().successHandler(this.authenticationHandler);
     }
 }
