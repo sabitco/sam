@@ -52,6 +52,16 @@
 	                </div>
 	            </div>
 	   		</div> 
+	   		
+	   		<script type="text/ng-template" id="modalContent.html">
+				<jsp:include page="components/signon/alertSuccess.jsp" />
+			</script>
+			
+			<script type="text/ng-template" id="modalContentError.html">
+				<jsp:include page="components/signon/alertError.jsp" />
+			</script>
+			
+			
 			<!-- Statement JScript-->
 			
 				<!-- Angular Touch Core JavaScript -->

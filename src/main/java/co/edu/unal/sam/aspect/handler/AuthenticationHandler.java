@@ -23,15 +23,16 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
     private UserRepository userRepository;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-            Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(final HttpServletRequest request,
+            final HttpServletResponse response, final Authentication authentication)
+                    throws IOException, ServletException {
         String redirect = "/administrator";
         final User user = this.userRepository.findByUsername(authentication.getName());
         if (TypeUserEnum.PLAYER.equals(user.getTypeuser())) {
             if (new Date().after(user.getDateExpireClasification())) {
-                redirect = "/classiy";
+                redirect = "physicalactivity/classification";
             } else {
-                redirect = "/home";
+                redirect = "physicalactivity/home";
             }
         }
         response.sendRedirect(redirect);
