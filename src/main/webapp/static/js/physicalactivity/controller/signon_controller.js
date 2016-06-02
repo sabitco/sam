@@ -101,14 +101,21 @@ App.controller('SignonController', [
 
           delete self.signon.role;
 
-          userService.create(self.signon).then(function(d) {
-            console.log(d);
-            self.open('lg', d.message, 'SUCCESS');
+          userService.create(self.signon).then(function(successResponse) {
+            console.log(successResponse);
+            if (successResponse.status === 201) {
+              self.open('lg', successResponse.message, 'SUCCESS');
+
+            } else {
+              self.open('lg', successResponse.detail, 'ERROR');
+              console.error('Error En Datos');
+            }
           }, function(errResponse) {
-            self.open('lg', d.detail, 'ERROR');
+            self.open('lg', errResponse, 'ERROR');
             console.error('Error while creating user');
           });
         } else {
+          self.open('lg', 'Error en la validacion de los password', 'ERROR');
           console.error('Error en la validacion de los password');
         }
 
@@ -319,7 +326,12 @@ App.controller('SignonController', [
 
 App.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, msn) {
   $scope.message = msn;
-  $scope.ok = function() {
-    console.log('se cerro fredy');
+  $scope.validar = function() {
+    $uibModalInstance.close();
+    console.log('se cierra el poput');
+  };
+
+  $scope.continuar = function() {
+    console.log('Se debe loguiar');
   };
 });
