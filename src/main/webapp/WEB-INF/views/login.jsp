@@ -1,67 +1,69 @@
 <%@page language="java" contentType="text/html; charset=UTF-8"
-  pageEncoding="UTF-8"%>
-<%@page
-  import="co.edu.unal.sam.aspect.properties.ReadFromPropertiesFile"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<style>
-.input-validate.ng-valid {
-	background-color: lightgreen;
-}
 
-.input-validate.ng-dirty.ng-invalid-required {
-	background-color: red;
-}
 
-.input-validate.ng-dirty.ng-invalid-minlength {
-	background-color: yellow;
-}
 
-.input-validate.ng-dirty.ng-invalid {
-	background-color: red;
-}
 
-.custom-width {
-	width: 100px !important;
-}
-</style>
-<t:loguintemplate>
-  <jsp:attribute name="title">
-    <spring:message code="page.login.title" />
-	</jsp:attribute>
-  <jsp:body>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-md-offset-4">
-	      <div class="login-panel panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Please Sign In</h3>
-            </div>
-              <div class="panel-body">
-                <form action="login" method="post" role="form">
-                  <fieldset>
-                    <div class="form-group">
-                      <input class="form-control" placeholder="Username"
-                      name="username" autofocus>
-                    </div>
-                    <div class="form-group">
-                      <input class="form-control" placeholder="Password"
-                      name="password" type="password" value="">
-                    </div>
-                    <div>
-    <button onclick="location.href='/physicalactivity/signon';" 
-                      class="btn btn-warning btn-sm pull-left custom-width">Crear Cuenta</button>
-                     <button
-                      class="btn btn-warning btn-sm pull-right custom-width"
-                      type="submit">Ingresar</button>
-                    </div>
-                  </fieldset>
-                </form>
-              </div>
-            </div>
-          </div>
-	   </div>
-     </div>
-  </jsp:body>
-</t:loguintemplate>
+
+<div ng-controller="SignonController as ctrl">
+	<!-- consulta personalizada por Pagina -->
+	<c:set var="titlePage" scope="session" value="Loguin Sam" />
+	<c:set var="name" scope="session" value="" />
+	<t:signon>
+		<jsp:attribute name="title">
+			${titlePage}
+		</jsp:attribute>
+		<jsp:body>		
+		<!--Div Wrapper-->
+			<div id="wrapper" class="row page-wrapper">      		
+				<!-- From signon -->
+	            <div class="col-md-4 col-md-offset-4">
+	                <div class="login-panel">
+		                <h1 class="text-white text-center">
+							 ${name}
+						</h1>
+		                <div class="panel panel-body">
+		                    <div class="panel-orange text-muted">
+								<spring:message code="param.physicalactivity.login.from.basic" />
+							</div>
+							<div class="row text-center logo-sam">
+                            	<img
+									src="/static//dist/physicalactivity/images/logo1.png"
+									alt="logo">    
+                            </div>
+							<form action="login" method="post" role="form">
+				                  <fieldset>
+				                    <div class="form-group">
+				                      <input class="form-control"
+											placeholder="Username" name="username" autofocus>
+				                    </div>
+				                    <div class="form-group">
+				                      <input class="form-control"
+											placeholder="Password" name="password" type="password"
+											value="">
+				                    </div>
+				                    <div>
+				                    <a href="/physicalactivity/signon" class="btn btn-warning btn-sm pull-left custom-width"><spring:message
+												code="param.physicalactivity.login.from.button.register" /></a>
+				    
+				                     <button
+											class="btn btn-warning btn-sm pull-right custom-width"
+											type="submit">
+											<spring:message
+												code="param.physicalactivity.login.from.button.login" />
+										</button>
+				                    </div>
+				                  </fieldset>
+                			</form>
+						</div>
+	                </div>
+	            </div>
+	   		</div> 
+		</jsp:body>
+
+	</t:signon>
+</div>
+

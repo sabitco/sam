@@ -10,19 +10,8 @@
 
 <div ng-controller="SignonController as ctrl">
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session" value="formulario de registr01" />
-
+	<c:set var="titlePage" scope="session" value="Signon" />
 	<c:set var="name" scope="session" value="Unete y Motivate!" />
-
-	<c:set var="namePage" scope="session" value="formulario de registro 2" />
-
-	<c:set var="iconPage" scope="session" value="user" />
-
-	<c:set var="nameAllPage" scope="session" value="" />
-
-	<c:set var="nameListRecentPage" scope="session" value="" />
-
-	<c:set var="titleTable" scope="session" value="" />
 	<t:signon>
 		<jsp:attribute name="title">
 			${titlePage}
