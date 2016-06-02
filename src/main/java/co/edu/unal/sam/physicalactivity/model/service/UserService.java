@@ -16,6 +16,7 @@ import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
+import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
@@ -37,12 +38,9 @@ public class UserService {
      * @param user to classify
      */
     public void classifyUser(final User user) {
-        final Float bmi = this.calculateBmi(user.getWeight(), user.getHeight());
-        final BmiCategoryEnum bmiCategory = BmiCategoryEnum.getCategory(bmi);
-        this.calculateRisk(user, bmiCategory);
-        user.setBmi(bmi);
-        this.repository.setBmiInfoById(user.getWeight(), user.getHeight(), user.getBmi(),
-                user.getId());
+        final Bmi bmi = this.calculateBmi(user);
+        this.calculateRisk(user, bmi.getCategory());
+        // TODO realizar logica de guardado del bmi
     }
 
     /**
@@ -74,16 +72,25 @@ public class UserService {
         }
     }
 
-    private Float calculateBmi(final Float weight, final Float height) {
-        if (weight == null && height == null) {
-            throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
-        } else if (height == null || Float.valueOf(0).equals(height)) {
-            throw new BusinessException("NotNull.user.height", HttpStatus.BAD_REQUEST);
-        } else if (weight == null) {
-            throw new BusinessException("NotNull.user.weight", HttpStatus.BAD_REQUEST);
+    private Bmi calculateBmi(final User user) {
+        Set<Bmi> bmis = user.getBmis();
+        if (!bmis.isEmpty()) {
+            Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
+            final Float height = bmi.getHeight();
+            final Float weight = bmi.getWeight();
+            if (weight == null && height == null) {
+                throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
+            } else if (height == null || Float.valueOf(0).equals(height)) {
+                throw new BusinessException("NotNull.user.height", HttpStatus.BAD_REQUEST);
+            } else if (weight == null) {
+                throw new BusinessException("NotNull.user.weight", HttpStatus.BAD_REQUEST);
+            }
+            Float value = new Float((weight / Math.pow(height, 2D)));
+            bmi.setBmi(value);
+            bmi.setCategory(BmiCategoryEnum.getCategory(value));
+            return bmi;
         }
-
-        return new Float((weight / Math.pow(height, 2D)));
+        throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
     }
 
     private TypeRiskEnum calculateRisk(User user, BmiCategoryEnum bmi) {

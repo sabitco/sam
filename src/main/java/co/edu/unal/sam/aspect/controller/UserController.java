@@ -20,10 +20,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.dto.response.Successful;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
+import co.edu.unal.sam.physicalactivity.model.converter.UserConverter;
+import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 import co.edu.unal.sam.physicalactivity.model.service.UserService;
 
 @RestController
 public class UserController {
+
+    @Inject
+    private UserConverter converter;
 
     @Inject
     private MessageSource messageSource;
@@ -35,15 +40,15 @@ public class UserController {
     private UserService service;
 
     @RequestMapping(value = "/users/classify", method = RequestMethod.PUT)
-    public ResponseEntity<User> classifyUser(@RequestBody User user) {
+    public ResponseEntity<Void> classifyUser(@RequestBody UserDto user) {
         this.service.verify(user.getId());
-        this.service.classifyUser(user);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        this.service.classifyUser(this.converter.convert(user));
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
-    public ResponseEntity<Successful> createUser(@Valid @RequestBody User user) {
-        user = this.service.createUser(user);
+    public ResponseEntity<Successful> createUser(@Valid @RequestBody UserDto dto) {
+        User user = this.service.createUser(this.converter.convert(dto));
         // Set the location header for the newly created resource
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserUri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")

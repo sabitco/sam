@@ -19,6 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
+import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
@@ -28,29 +29,26 @@ import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 @javax.persistence.Table(name = "user")
 public class User extends Entity {
 
-    @Column(name = "age")
-    private Float age;
+    @OneToMany(mappedBy = "user")
+    private Set<Bmi> bmis;
 
-    @Column(name = "bmi")
-    private Float bmi;
-
+    @NotNull
     @Column(name = "date_birth", nullable = false)
     @Temporal(TemporalType.DATE)
-    @NotNull
     private Date dateBirth;
 
     @Column(name = "date_expire_clasification")
     @Temporal(TemporalType.DATE)
     private Date dateExpireClasification;
 
+    @NotNull
     @Column(name = "date_ingress")
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     private Date dateIngress;
 
+    @NotNull
     @Column(name = "date_interaction", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     private Date dateInteraction;
 
     @Column(name = "description_history", columnDefinition = "TEXT")
@@ -59,22 +57,19 @@ public class User extends Entity {
     @OneToMany(mappedBy = "user")
     private Set<UserDisease> diseases;
 
-    @Column(name = "email", nullable = false, length = 300)
     @NotNull
+    @Column(name = "email", nullable = false, length = 300)
     private String email;
 
     @ManyToOne()
     @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "fk_user_faculty") )
     private Faculty faculty;
 
-    @Column(name = "height")
-    private Float height;
-
     @Column(name = "history")
     private Boolean history;
 
-    @Column(name = "identity_document", nullable = false, unique = true)
     @NotNull
+    @Column(name = "identity_document", nullable = false, unique = true)
     private String identityDocument;
 
     @Column(name = "password")
@@ -86,7 +81,7 @@ public class User extends Entity {
     private Set<PhysicalActivity> physicalActivities;
 
     @ManyToOne()
-    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_role_user") )
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_role") )
     private Role role;
 
     /**
@@ -111,28 +106,19 @@ public class User extends Entity {
     @NotNull
     private String username;
 
-    @Column(name = "weight")
-    private Float weight;
-
     public User() {
         super();
+        this.bmis = new HashSet<>(0);
         this.dateIngress = new Date();
         this.dateInteraction = new Date();
         this.physicalActivities = new HashSet<>(0);
     }
 
     /**
-     * @return the age
+     * @return the bmis
      */
-    public Float getAge() {
-        return this.age;
-    }
-
-    /**
-     * @return the bmi
-     */
-    public Float getBmi() {
-        return this.bmi;
+    public Set<Bmi> getBmis() {
+        return this.bmis;
     }
 
     /**
@@ -189,13 +175,6 @@ public class User extends Entity {
      */
     public Faculty getFaculty() {
         return this.faculty;
-    }
-
-    /**
-     * @return the height
-     */
-    public Float getHeight() {
-        return this.height;
     }
 
     /**
@@ -266,24 +245,10 @@ public class User extends Entity {
     }
 
     /**
-     * @return the weight
+     * @param bmis the bmis to set
      */
-    public Float getWeight() {
-        return this.weight;
-    }
-
-    /**
-     * @param age the age to set
-     */
-    public void setAge(final Float age) {
-        this.age = age;
-    }
-
-    /**
-     * @param bmi the bmi to set
-     */
-    public void setBmi(final Float bmi) {
-        this.bmi = bmi;
+    public void setBmis(Set<Bmi> bmis) {
+        this.bmis = bmis;
     }
 
     /**
@@ -340,13 +305,6 @@ public class User extends Entity {
      */
     public final void setFaculty(final Faculty faculty) {
         this.faculty = faculty;
-    }
-
-    /**
-     * @param height the height to set
-     */
-    public void setHeight(final Float height) {
-        this.height = height;
     }
 
     /**
@@ -417,13 +375,6 @@ public class User extends Entity {
      */
     public void setUsername(final String username) {
         this.username = username;
-    }
-
-    /**
-     * @param weight w. the weight to set
-     */
-    public void setWeight(final Float weight) {
-        this.weight = weight;
     }
 
 }

@@ -14,11 +14,11 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Campus;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 
 @Transactional
 public class UserControllerTest extends ControllerTest {
@@ -36,7 +36,7 @@ public class UserControllerTest extends ControllerTest {
     @Test
     public void testClassifyUser() throws Exception {
         final String uri = "/users/classify";
-        User user = this.getUser();
+        UserDto user = this.getUser();
         user.setId(1L);
         user.setWeight(69F);
         user.setHeight(1.60F);
@@ -49,7 +49,6 @@ public class UserControllerTest extends ControllerTest {
                 .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
-        user = super.mapFromJson(content, User.class);
         super.logger.info("result test classify user: " + content);
         Assert.assertEquals("Failure - Expected HTTP status 200", HttpStatus.OK.value(),
                 response.getStatus());
@@ -58,7 +57,7 @@ public class UserControllerTest extends ControllerTest {
     @Test
     public void testClassifyUserWithoutId() throws Exception {
         final String uri = "/users/classify";
-        User user = this.getUser();
+        UserDto user = this.getUser();
         user.setWeight(60F);
         user.setHeight(1.70F);
 
@@ -77,7 +76,7 @@ public class UserControllerTest extends ControllerTest {
     @Test
     public void testClassifyUserWithoutHeight() throws Exception {
         final String uri = "/users/classify";
-        User user = this.getUser();
+        UserDto user = this.getUser();
         user.setId(1L);
         user.setWeight(60F);
 
@@ -96,7 +95,7 @@ public class UserControllerTest extends ControllerTest {
     @Test
     public void testClassifyUserWithoutWeight() throws Exception {
         final String uri = "/users/classify";
-        User user = this.getUser();
+        UserDto user = this.getUser();
         user.setId(1L);
         user.setHeight(1.70F);
 
@@ -116,7 +115,7 @@ public class UserControllerTest extends ControllerTest {
     public void testCreateUserAdministrator() throws Exception {
         final String uri = "/admin/users";
 
-        final User user = this.getUser();
+        final UserDto user = this.getUser();
         user.setTypeuser(TypeUserEnum.ADMINISTRATOR);
 
         final String inputJson = super.mapToJson(user);
@@ -134,7 +133,7 @@ public class UserControllerTest extends ControllerTest {
     public void testCreateUserPlayer() throws Exception {
         final String uri = "/admin/users";
 
-        final User user = this.getUser();
+        final UserDto user = this.getUser();
         user.setTypeuser(TypeUserEnum.PLAYER);
         user.setFaculty(this.getFaculty());
 
@@ -213,8 +212,8 @@ public class UserControllerTest extends ControllerTest {
     /**
      * @return
      */
-    private User getUser() {
-        User user = new User();
+    private UserDto getUser() {
+        UserDto user = new UserDto();
         user.setName("Sabit");
         user.setSurname("Inc");
         user.setIdentityDocument("123456789");
