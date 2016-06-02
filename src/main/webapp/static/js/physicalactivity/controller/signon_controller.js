@@ -12,6 +12,7 @@ App.constant("baseUrlUsers", "http://localhost:8080/admin/users/");
 App.controller('SignonController', [
     '$scope',
     '$window',
+    '$http',
     'viewService',
     'baseUrlView',
     'campusService',
@@ -22,7 +23,7 @@ App.controller('SignonController', [
     'baseUrlUsers',
     '$uibModal',
     '$log',
-    function($scope, $window, viewService, baseUrlView, campusService,
+    function($scope, $window, $http, viewService, baseUrlView, campusService,
         baseUrlCampus, facultiesService, baseUrlFaculties, userService,
         baseUrlUsers, $uibModal, $log) {
 
@@ -118,8 +119,15 @@ App.controller('SignonController', [
           self.open('lg', 'Error en la validacion de los password', 'ERROR');
           console.error('Error en la validacion de los password');
         }
-
       };
+
+      self.loguin = function(userLoguinSuccess) {
+        $http.post("/login", userLoguinSuccess).success(function(res) {
+          console.log(res);
+          // por supuesto podrás volcar la respuesta al modelo con algo
+          // como vm.res = res;
+        });
+      }
 
       self.open = function(size, msn, typeMsn) {
         var template = '';
@@ -130,7 +138,7 @@ App.controller('SignonController', [
         }
 
         var modalInstance = $uibModal.open({
-          keyboard : true,
+          keyboard : false,
           animation : true,
           templateUrl : template,
           controller : 'ModalInstanceCtrl',
@@ -324,7 +332,13 @@ App.controller('SignonController', [
 
     } ]);
 
-App.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, msn) {
+App.controller('ModalInstanceCtrl', function($scope, $window, $location,
+    $uibModalInstance, msn) {
+
+  /** Url Success * */
+  var landingUrl = "http://" + $window.location.host
+      + "/physicalactivity/classify";
+
   $scope.message = msn;
   $scope.validar = function() {
     $uibModalInstance.close();
@@ -333,5 +347,6 @@ App.controller('ModalInstanceCtrl', function($scope, $uibModalInstance, msn) {
 
   $scope.continuar = function() {
     console.log('Se debe loguiar');
+    $window.location.href = '/login';
   };
 });
