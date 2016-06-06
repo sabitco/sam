@@ -8,11 +8,11 @@
 
 
 
-<div ng-controller="SignonController as ctrl">
+<div ng-controller="">
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Loguin Sam" />
 	<c:set var="name" scope="session" value="" />
-	<t:signon>
+	<t:loguintemplate>
 		<jsp:attribute name="title">
 			${titlePage}
 		</jsp:attribute>
@@ -64,6 +64,6 @@
 	   		</div> 
 		</jsp:body>
 
-	</t:signon>
+	</t:loguintemplate>
 </div>
 

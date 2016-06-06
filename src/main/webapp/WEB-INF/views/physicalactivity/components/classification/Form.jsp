@@ -5,63 +5,258 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 
-<div class="panel-body formcontainer" uib-collapse="!status.isFirstOpen">
-</div>
-<div class="col-lg-8 panel panel-default"></div>
-<div class="col-lg-4 panel panel-default">
-		
-	<div class="panel-body">
-		<div id="morris-donut-chart">
-			<svg height="352" version="1.1" width="258"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink"
-				style="overflow: hidden; position: relative; left: -0.65625px;">
-				<desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.1.2</desc>
-				<defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs>
-				<path fill="none" stroke="#0b62a4"
-					d="M129,257.8333333333333A79.33333333333333,79.33333333333333,0,0,0,204.09560056464977,204.08180121907662"
-					stroke-width="2" opacity="0"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path>
-				<path fill="#0b62a4" stroke="#ffffff"
-					d="M129,260.8333333333333A82.33333333333333,82.33333333333333,0,0,0,206.935350165834,205.0491802567728L236.91048484500092,215.26040343245464A114,114,0,0,1,129,292.5Z"
-					stroke-width="3"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-				<path fill="none" stroke="#3980b5"
-					d="M204.09560056464977,204.08180121907662A79.33333333333333,79.33333333333333,0,0,0,57.852819481449785,143.40218693367626"
-					stroke-width="2" opacity="1"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path>
-				<path fill="#3980b5" stroke="#ffffff"
-					d="M206.935350165834,205.0491802567728A82.33333333333333,82.33333333333333,0,0,0,55.16237988200882,142.07495870847913L22.279229222174678,125.85328040051438A119,119,0,0,1,241.64340084697466,216.87270182861494Z"
-					stroke-width="3"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-				<path fill="none" stroke="#679dc6"
-					d="M57.852819481449785,143.40218693367626A79.33333333333333,79.33333333333333,0,0,0,128.97507669869142,257.8333294183903"
-					stroke-width="2" opacity="0"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path>
-				<path fill="#679dc6" stroke="#ffffff"
-					d="M55.16237988200882,142.07495870847913A82.33333333333333,82.33333333333333,0,0,0,128.97413422091086,260.8333292703462L128.96418584433812,292.4999943743255A114,114,0,0,1,26.76329522124297,128.06532744250956Z"
-					stroke-width="3"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
-				<text x="129" y="168.5" text-anchor="middle"
-					font-family="&quot;Arial&quot;" font-size="15px" stroke="none"
-					fill="#000000"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 15px; font-weight: 800;"
-					font-weight="800"
-					transform="matrix(1.4276,0,0,1.4276,-55.1478,-75.677)"
-					stroke-width="0.7004989495798319">
-				<tspan dy="5.5"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">In-Store Sales</tspan></text>
-				<text x="129" y="188.5" text-anchor="middle"
-					font-family="&quot;Arial&quot;" font-size="14px" stroke="none"
-					fill="#000000"
-					style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: Arial; font-size: 14px;"
-					transform="matrix(1.6528,0,0,1.6528,-84.1981,-117.8264)"
-					stroke-width="0.6050420168067228">
-				<tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">30</tspan></text></svg>
+
+
+<form role="form" ng-submit="ctrl.submit()" name="signonFormBasic"
+	class="form-horizontal col-md-12 list-group">
+	<fieldset class="col-md-6  text-muted menu-superior pull-right">
+		<div donut-chart="" donut-data="ctrl.chartData"
+			donut-colors="ctrl.chartColors" donut-formatter="ctrl.myFormatter"></div>
+
+		<div class=" text-center text-muted  control-lable ">
+			<spring:message code="param.physicalactivity.classify.morris.title" />
+
+		</div>
+	</fieldset>
+	<fieldset class="col-md-6  text-muted menu-superior">
+		<div class="row ">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="username"> <spring:message
+						code="param.physicalactivity.signon.from.basic.username" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="text" ng-model="ctrl.classify.username" id="username"
+					name="username" class="input-validate form-control input-sm"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.username" />"
+					disabled />
+			</div>
 		</div>
 
-	</div>
-	<!-- /.panel-body -->
-</div>
+
+
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class="control-lable" for="name"> <spring:message
+						code="param.physicalactivity.signon.from.basic.name" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="text" ng-model="ctrl.classify.name" id="name"
+					name="name" class="input-validate form-control input-sm"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.name" />"
+					disabled />
+			</div>
+		</div>
+
+
+		<div class="row ">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="surname"> <spring:message
+						code="param.physicalactivity.signon.from.basic.lastname" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="text" ng-model="ctrl.classify.surname" id="surname"
+					name="surname" class="input-validate form-control input-sm"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.lastname" />"
+					required disabled />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="email"> <spring:message
+						code="param.physicalactivity.signon.from.basic.email" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+
+				<input type="email" ng-model="ctrl.classify	.email" id="email"
+					name="email" class="input-validate form-control input-sm"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.email" />"
+					required disabled />
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class="control-lable" for="identityDocument"> <spring:message
+						code="param.physicalactivity.signon.from.basic.document" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="text" ng-model="ctrl.classify.identityDocument"
+					id="identityDocument" name="identityDocument"
+					class="input-validate form-control input-sm"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.document" />"
+					required disabled />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="age"> <spring:message
+						code="param.physicalactivity.signon.from.basic.age" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="number" ng-model="ctrl.classify.age" id="age"
+					name="age" class="input-validate form-control input-sm" step="any"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.age" />"
+					required disabled />
+			</div>
+		</div>
+
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="height"> <spring:message
+						code="param.physicalactivity.signon.from.basic.height" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="number" ng-model="ctrl.classify.height" id="height"
+					name="height" class="input-validate form-control input-sm"
+					step="any"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.height" />"
+					required disabled />
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="weight"> <spring:message
+						code="param.physicalactivity.signon.from.basic.weight" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<input type="number" ng-model="ctrl.classify.weight" id="weight"
+					name="weight" class="input-validate form-control input-sm"
+					step="any"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.weight" />"
+					required disabled />
+			</div>
+
+		</div>
+
+
+
+		<div class="row ">
+			<div class=" text-muted col-lg-4">
+				<label class=" control-lable" for="descriptionHistory"> <spring:message
+						code="param.physicalactivity.signon.from.basic.descriptionHistory" />
+				</label>
+			</div>
+			<div class="col-lg-8">
+				<textarea ng-model="ctrl.classify.descriptionHistory"
+					id="descriptionHistory" name="descriptionHistory"
+					class="input-validate form-control input-sm"
+					placeholder="<spring:message
+						code="param.physicalactivity.signon.from.basic.required.descriptionHistory" />"
+					disabled></textarea>
+			</div>
+		</div>
+
+
+		<!-- Change this to a button or input when using this as a form -->
+		<!-- 		<a class="btn btn-lg btn-success btn-block" href="index.html">Login</a> -->
+	</fieldset>
+
+	<fieldset class="col-md-12  text-muted menu-superior">
+		<div class="panel panel-orange panel-default-white ">
+
+			<div class="panel-heading">
+				<spring:message
+					code="param.physicalactivity.classify.present.status" />
+			</div>
+
+
+
+			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
+				<div class="panel-orange text-muted">
+					<label><spring:message
+							code="param.physicalactivity.classify.present.diseases" /></label>
+				</div>
+				<div class="checkbox">
+					<label> <input type="checkbox" value="">Checkbox 2
+					</label>
+				</div>
+				<div class="checkbox">
+					<label> <input type="checkbox" value="">Checkbox 2
+					</label>
+				</div>
+				<div class="checkbox">
+					<label> <input type="checkbox" value="">Checkbox 3
+					</label>
+				</div>
+			</div>
+
+			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
+				<div class="panel-orange text-muted">
+					<label><spring:message
+							code="param.physicalactivity.classify.present.sports" /></label>
+				</div>
+				<div class="checkbox">
+					<label> <input type="checkbox" value="">Checkbox 1
+					</label>
+				</div>
+				<div class="checkbox">
+					<label> <input type="checkbox" value="">Checkbox 2
+					</label>
+				</div>
+				<div class="checkbox">
+					<label> <input type="checkbox" value="">Checkbox 3
+					</label>
+				</div>
+			</div>
+
+			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
+				<div class="row ">
+					<div class="panel-orange text-muted">
+						<label><spring:message
+								code="param.physicalactivity.classify.present.practice.days" /></label>
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox" value="">Checkbox 1
+						</label>
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox" value="">Checkbox 2
+						</label>
+					</div>
+					<div class="checkbox">
+						<label> <input type="checkbox" value="">Checkbox 3
+						</label>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</fieldset>
+
+	<fieldset class="col-md-12  text-muted menu-superior">
+		<div class="  form-actions text-center">
+			<input type="submit"
+				value="<spring:message code="param.physicalactivity.classify.botton.next" />"
+				class="btn btn-warning btn-lg btn-block"
+				ng-disabled="classify.$invalid">
+		</div>
+	</fieldset>
+
+
+
+</form>
+
 
 <!-- End Div Panel Custom Field -->

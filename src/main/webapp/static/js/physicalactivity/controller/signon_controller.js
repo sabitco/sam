@@ -155,7 +155,6 @@ App.controller('SignonController', [
       /** funtion for reset from Signon * */
       self.resetBasic = function() {
         self.signonBasic = {
-          id : null,
           username : "",
           name : "",
           surname : "",
@@ -163,23 +162,13 @@ App.controller('SignonController', [
           confirmpassword : "",
           identityDocument : "",
           email : "",
-          age : "",
           height : "",
           weight : "",
+          dateBirth : new Date(),
           universitysede : "",
           faculty : "",
-          state : "ACTIVE",
-          typeuser : "PLAYER",
-          dateUpdate : new Date(),
-          dateRegister : new Date(),
-          dateExpireClasification : new Date(),
-          dateBirth : new Date(),
-          dateIngress : new Date(),
-          dateInteraction : new Date(),
           descriptionHistory : "",
-          history : true,
-          useCondition : true,
-          role : ""
+          useCondition : true
         };
         $scope.signonFormBasic.$setPristine();
       };

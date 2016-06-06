@@ -54,6 +54,21 @@
 <!-- Js Home -->
 <script src="<c:url value='/static/js/physicalactivity/app.js' />" ng-module="physicalactivity"></script>
  
+ <!-- Morris Import -->
+<link data-require="morris.js@~0.5.1" data-semver="0.5.1"
+	rel="stylesheet"
+	href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css" />
+<script data-require="jquery@1.11.3" data-semver="1.11.3"
+	src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script data-require="raphael@2.1.0" data-semver="2.1.0"
+	src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script data-require="morris.js@~0.5.1" data-semver="0.5.1"
+	src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script data-require="angular.js@1.4.1" data-semver="1.4.1"
+	src="//code.angularjs.org/1.4.1/angular.js"></script>
+<!-- Angular Morris Core JavaScript -->
+<script
+	src="/static/bower_components/angular_morris/angular-morris-chart.js"></script>
 </head>
 <body ng-app="physicalactivity" >
      <jsp:doBody />
