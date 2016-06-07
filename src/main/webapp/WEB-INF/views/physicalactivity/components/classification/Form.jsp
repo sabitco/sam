@@ -199,6 +199,13 @@
 					<label> <input type="checkbox" value="">Checkbox 3
 					</label>
 				</div>
+				<div class="checkbox">
+					<input type="text" ng-model="ctrl.classify.otherDisease"
+						id="otherDisease" name="otherDisease"
+						class="input-validate form-control input-sm"
+						placeholder="<spring:message
+							code="param.physicalactivity.classify.from.basic.otherDisease" />" />
+				</div>
 			</div>
 
 			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
