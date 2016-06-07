@@ -71,7 +71,7 @@ public class UserService {
         if (state == null) {
             state = StateEnum.ACTIVE;
         }
-        return this.userDiseaseRepository.findDiseaseDtoByUser(user.getId(), state);
+        return this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
 
     }
 

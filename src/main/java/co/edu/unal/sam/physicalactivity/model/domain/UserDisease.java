@@ -12,10 +12,10 @@ import co.edu.unal.sam.aspect.model.domain.User;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user_disease")
-@NamedQueries({@NamedQuery(name = "User.findDiseaseDtoByUser",
+@NamedQueries({@NamedQuery(name = "UserDisease.findDiseaseDtoByStateOrUser",
         query = "select new co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto(d.id, d.name "
-                // ", case when u.id is not null then true else false end "
-                + ") from UserDisease u left outer join u.disease d where d.state = :state or u.user.id = :userId"),})
+                + ", case when u.id is not null then true else false end) "
+                + "from Disease d left join d.users u where d.state = :state or u.user = :user"),})
 public class UserDisease extends Entity {
 
     @ManyToOne()

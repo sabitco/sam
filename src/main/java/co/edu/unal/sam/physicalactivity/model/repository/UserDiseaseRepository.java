@@ -1,17 +1,18 @@
 package co.edu.unal.sam.physicalactivity.model.repository;
 
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
 
+import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 
-public interface UserDiseaseRepository extends CrudRepository<UserDisease, Long> {
+public interface UserDiseaseRepository extends Repository<UserDisease, Long> {
 
-    @Query(name = "UserDisease.findDiseaseDtoByUser")
-    Iterable<DiseaseDto> findDiseaseDtoByUser(@Param("userId") Long userId,
-            @Param("state") StateEnum state);
+    @Query(name = "UserDisease.findDiseaseDtoByStateOrUser")
+    Iterable<DiseaseDto> findDiseaseDtoByStateOrUser(@Param("state") StateEnum state,
+            @Param("user") User user);
 
 }

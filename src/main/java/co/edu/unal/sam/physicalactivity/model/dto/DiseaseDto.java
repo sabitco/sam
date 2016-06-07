@@ -10,7 +10,7 @@ public class DiseaseDto extends Dto {
 
     public DiseaseDto() {}
 
-    public DiseaseDto(Long id, String name) {
+    public DiseaseDto(Long id, String name, Boolean selected) {
         super(id, name);
         this.selected = selected;
     }
