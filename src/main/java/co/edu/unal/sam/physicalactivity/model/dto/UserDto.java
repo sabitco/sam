@@ -3,6 +3,7 @@ package co.edu.unal.sam.physicalactivity.model.dto;
 import java.util.Date;
 import java.util.Set;
 
+import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
@@ -26,6 +27,17 @@ public class UserDto extends Dto {
     private Boolean useCondition;
     private String username;
     private Float weight;
+
+    public UserDto() {
+        super();
+    }
+
+    public UserDto(Date dateExpireClasification, Date dateRegister, Date dateUpdate, Long id,
+            String name, StateEnum state, TypeUserEnum typeuser) {
+        super(dateRegister, dateUpdate, id, name, state);
+        this.dateExpireClasification = dateExpireClasification;
+        this.typeuser = typeuser;
+    }
 
     /**
      * @return the dateBirth

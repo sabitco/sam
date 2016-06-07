@@ -16,6 +16,16 @@ public class Dto {
     protected String name;
     protected StateEnum state;
 
+    public Dto() {}
+
+    public Dto(Date dateRegister, Date dateUpdate, Long id, String name, StateEnum state) {
+        this.dateRegister = dateRegister;
+        this.dateUpdate = dateUpdate;
+        this.id = id;
+        this.name = name;
+        this.state = state;
+    }
+
     /**
      * @return the dateRegister
      */
