@@ -76,7 +76,7 @@ public class UserController {
         return new ResponseEntity<>(allusers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/users/{userId}/diseases", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/diseases/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Iterable<DiseaseDto>> getDiseases(@PathVariable Long userId,
             @RequestParam(name = "state", required = false) final StateEnum state) {
         User user = this.service.verify(userId);
