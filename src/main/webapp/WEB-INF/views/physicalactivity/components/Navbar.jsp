@@ -14,7 +14,6 @@
 		<div class="navbar-header logo-sam">
 			<img src="/static//dist/physicalactivity/images/logo2.png" alt="logo">
 		</div>
-
 	</div>
 
 	<!-- End .navbar-header -->
@@ -47,7 +46,7 @@
 
 				</a></li>
 				<li class="divider"></li>
-				<li><a href="login.html"> <i class="fa fa-sign-out fa-fw"></i>
+				<li><a href="/logout"> <i class="fa fa-sign-out fa-fw"></i>
 						<strong> <spring:message
 								code="param.physicalactivity.option.logout" />
 					</strong>

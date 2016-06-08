@@ -8,12 +8,12 @@
 	<c:set var="titlePage" scope="session" value="Classification" />
 	<c:set var="namePage" scope="session" value="Queremos Saber De Ti" />
 	<c:set var="usernameLogger" scope="session"
-		value="Fredy Gonzalo Captuayo Novoa4" />
+		value="${sessionScope.user.name}" />
 
-	<c:set var="userLogger" scope="session" value="FCAPTUAYO5" />
+	<c:set var="userLogger" scope="session" value="${sessionScope.user.username}" />
 
 	<c:set var="emailLogger" scope="session"
-		value="Captuayonovoafredy@gmail.com" />
+		value="${sessionScope.user.email}" />
 
 	<t:template>
 		<jsp:attribute name="title">

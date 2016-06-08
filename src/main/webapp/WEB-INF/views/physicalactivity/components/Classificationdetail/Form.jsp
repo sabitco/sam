@@ -4,17 +4,16 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-
-
-
-<form role="form" ng-submit="ctrl.submit()" name="classifyDetailFormBasic"
+<form role="form" ng-submit="ctrl.submit()"
+	name="classifyDetailFormBasic"
 	class="form-horizontal col-md-12 list-group">
 	<fieldset class="col-md-6  text-muted menu-superior pull-right">
 		<div donut-chart="" donut-data="ctrl.chartData"
 			donut-colors="ctrl.chartColors" donut-formatter="ctrl.myFormatter"></div>
 
 		<div class=" text-center text-muted  control-lable ">
-			<spring:message code="param.physicalactivity.classifydetail.morris.title" />
+			<spring:message
+				code="param.physicalactivity.classifydetail.morris.title" />
 
 		</div>
 	</fieldset>
@@ -26,8 +25,9 @@
 				</label>
 			</div>
 			<div class="col-lg-8">
-				<input type="text" ng-model="ctrl.classifydetail.username" id="username"
-					name="username" class="input-validate form-control input-sm"
+				<input type="text" ng-model="ctrl.classifydetail.username"
+					id="username" name="username"
+					class="input-validate form-control input-sm"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.username" />"
 					disabled />
@@ -59,8 +59,9 @@
 				</label>
 			</div>
 			<div class="col-lg-8">
-				<input type="text" ng-model="ctrl.classifydetail.surname" id="surname"
-					name="surname" class="input-validate form-control input-sm"
+				<input type="text" ng-model="ctrl.classifydetail.surname"
+					id="surname" name="surname"
+					class="input-validate form-control input-sm"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.lastname" />"
 					required disabled />
@@ -122,9 +123,9 @@
 				</label>
 			</div>
 			<div class="col-lg-8">
-				<input type="number" ng-model="ctrl.classifydetail.height" id="height"
-					name="height" class="input-validate form-control input-sm"
-					step="any"
+				<input type="number" ng-model="ctrl.classifydetail.height"
+					id="height" name="height"
+					class="input-validate form-control input-sm" step="any"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.height" />"
 					required disabled />
@@ -139,9 +140,9 @@
 				</label>
 			</div>
 			<div class="col-lg-8">
-				<input type="number" ng-model="ctrl.classifydetail.weight" id="weight"
-					name="weight" class="input-validate form-control input-sm"
-					step="any"
+				<input type="number" ng-model="ctrl.classifydetail.weight"
+					id="weight" name="weight"
+					class="input-validate form-control input-sm" step="any"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.weight" />"
 					required disabled />
