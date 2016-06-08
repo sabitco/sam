@@ -67,6 +67,23 @@ App.config([ 'baseUrlFaculties', 'facultiesServiceProvider',
       facultiesServiceProvider.setBaseUrl(baseUrlFaculties);
     } ]);
 
+function DiseasesServiceProvider() {
+  var _baseUrlDiseases;
+  this.setBaseUrl = function(baseUrlDiseases) {
+    _baseUrlDiseases = baseUrlDiseases;
+  }
+  this.$get = [ '$http', function($http) {
+    return new DiseasesService($http, _baseUrlDiseases);
+  } ];
+}
+
+App.provider("diseasesService", DiseasesServiceProvider);
+
+App.config([ 'baseUrlDiseases', 'diseasesServiceProvider',
+    function(baseUrlDiseases, diseasesServiceProvider) {
+      diseasesServiceProvider.setBaseUrl(baseUrlDiseases);
+    } ]);
+
 function UserServiceProvider() {
   var _baseUrlUser;
   this.setBaseUrl = function(baseUrlUser) {

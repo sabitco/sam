@@ -10,7 +10,8 @@
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
-	<c:set var="userLogger" scope="session" value="${sessionScope.user.username}" />
+	<c:set var="userLogger" scope="session"
+		value="${sessionScope.user.username}" />
 
 	<c:set var="emailLogger" scope="session"
 		value="${sessionScope.user.email}" />
@@ -70,8 +71,14 @@
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
+				src="<c:url value='/static/js/physicalactivity/service/diseases_service.js' />"></script>
+				
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
 				src="<c:url value='/static/js/physicalactivity/controller/classify_controller.js' />"></script>
-			
+				
+				
 			<!-- End Statement JScript-->
 		</jsp:body>
 	</t:template>
