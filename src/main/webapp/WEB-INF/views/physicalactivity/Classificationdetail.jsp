@@ -29,7 +29,7 @@
         		<div id="page-wrapper" class="row">
             		<!-- Div .col-lg-12 -->
             		<div class="col-sm-3 panel page-wrapper-sam ">
-						<jsp:include page="components/DescriptionUser.jsp" />
+						<jsp:include page="components/classification/DescriptionUser.jsp" />
 	            	</div>
                 	<div class="col-sm-9 page-wrapper-white">
 	                	<jsp:include page="components/includes/Title.jsp" />
