@@ -8,6 +8,8 @@ import javax.persistence.Column;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +29,8 @@ import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
+@NamedQueries({@NamedQuery(name = "User.findUserDtoByUsername",
+        query = "select new co.edu.unal.sam.physicalactivity.model.dto.UserDto(u.dateExpireClasification, u.dateRegister, u.dateUpdate, u.id, u.name, u.state, u.typeuser) from User u where u.username = :username"),})
 public class User extends Entity {
 
     @OneToMany(mappedBy = "user")

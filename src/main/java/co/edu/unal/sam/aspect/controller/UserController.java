@@ -14,13 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.dto.response.Successful;
+import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.converter.UserConverter;
+import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 import co.edu.unal.sam.physicalactivity.model.service.UserService;
 
@@ -71,6 +74,14 @@ public class UserController {
     public ResponseEntity<Iterable<User>> getAllusers(Pageable pageable) {
         Iterable<User> allusers = this.repository.findAll(pageable);
         return new ResponseEntity<>(allusers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/users/diseases/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<DiseaseDto>> getDiseases(@PathVariable Long userId,
+            @RequestParam(name = "state", required = false) final StateEnum state) {
+        User user = this.service.verify(userId);
+        Iterable<DiseaseDto> diseases = this.service.getDiseases(user, state);
+        return new ResponseEntity<>(diseases, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.GET)

@@ -12,9 +12,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
+import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 
 @Component
 public class AuthenticationHandler implements AuthenticationSuccessHandler {
@@ -27,7 +27,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
             final HttpServletResponse response, final Authentication authentication)
                     throws IOException, ServletException {
         String redirect = "/administrator";
-        final User user = this.userRepository.findByUsername(authentication.getName());
+        final UserDto user = this.userRepository.findUserDtoByUsername(authentication.getName());
         if (TypeUserEnum.PLAYER.equals(user.getTypeuser())) {
             if (new Date().after(user.getDateExpireClasification())) {
                 redirect = "physicalactivity/classification";
@@ -35,6 +35,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
                 redirect = "physicalactivity/home";
             }
         }
+        request.getSession().setAttribute("user", user);
         response.sendRedirect(redirect);
     }
 

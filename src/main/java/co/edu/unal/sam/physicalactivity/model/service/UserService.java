@@ -14,12 +14,15 @@ import org.springframework.stereotype.Component;
 import co.edu.unal.sam.aspect.exception.BusinessException;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
+import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
+import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
 
 /**
  * 
@@ -31,6 +34,9 @@ public class UserService {
 
     @Inject
     private UserRepository repository;
+
+    @Inject
+    private UserDiseaseRepository userDiseaseRepository;
 
     /**
      * Classify an User
@@ -61,15 +67,25 @@ public class UserService {
         return this.repository.save(user);
     }
 
-    public void verify(Long userId) throws ResourceNotFoundException {
+    public Iterable<DiseaseDto> getDiseases(User user, StateEnum state) {
+        if (state == null) {
+            state = StateEnum.ACTIVE;
+        }
+        return this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
+
+    }
+
+    public User verify(Long userId) throws ResourceNotFoundException {
+        User user = null;
         if (userId != null) {
-            User user = this.repository.findOne(userId);
+            user = this.repository.findOne(userId);
             if (user == null) {
                 throw new ResourceNotFoundException("User with id " + userId + " not found");
             }
         } else {
             throw new BusinessException("NotNull.user.id", HttpStatus.BAD_REQUEST);
         }
+        return user;
     }
 
     private Bmi calculateBmi(final User user) {
