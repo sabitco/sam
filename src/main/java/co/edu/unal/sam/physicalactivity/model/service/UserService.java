@@ -19,9 +19,11 @@ import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
+import co.edu.unal.sam.physicalactivity.model.repository.PhysicalActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
 
 /**
@@ -31,6 +33,9 @@ import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
  */
 @Component
 public class UserService {
+
+    @Inject
+    private PhysicalActivityRepository physicalActivityRepository;
 
     @Inject
     private UserRepository repository;
@@ -67,12 +72,18 @@ public class UserService {
         return this.repository.save(user);
     }
 
+    public Iterable<ActivityDto> getActivities(User user, StateEnum state) {
+        if (state == null) {
+            state = StateEnum.ACTIVE;
+        }
+        return this.physicalActivityRepository.findActivityDtoByStateOrUser(state, user);
+    }
+
     public Iterable<DiseaseDto> getDiseases(User user, StateEnum state) {
         if (state == null) {
             state = StateEnum.ACTIVE;
         }
         return this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
-
     }
 
     public User verify(Long userId) throws ResourceNotFoundException {

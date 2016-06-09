@@ -4,17 +4,26 @@ import javax.persistence.Column;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.Type;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
-import co.edu.unal.sam.physicalactivity.model.enumerator.TypeActivityEnum;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "physical_activity")
+@NamedQueries({@NamedQuery(name = "PhysicalActivity.findActivityDtoByStateOrUser",
+        query = "select new co.edu.unal.sam.physicalactivity.model.dto.ActivityDto(a.id, a.name "
+                + ", case when pa.id is not null then true else false end) "
+                + "from Activity a left join a.physicalActivities pa where a.state = :state or pa.user = :user"),})
 public class PhysicalActivity extends Entity {
+
+    @NotNull
+    @ManyToOne()
+    @JoinColumn(name = "activity_id", nullable = false,
+            foreignKey = @ForeignKey(name = "fk_physical_activity_activity"))
+    private Activity activity;
 
     /**
      * Nùmero de dias que practica deporte por semana
@@ -30,13 +39,10 @@ public class PhysicalActivity extends Entity {
     @Column(name = "number_hours", nullable = false)
     private Integer numberHours;
 
-    @Column(name = "type_activity_id", nullable = false)
-    @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TypeActivityType")
-    private TypeActivityEnum typeActivity;
-
+    @NotNull
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_physical_activity_user") )
+            foreignKey = @ForeignKey(name = "fk_physical_activity_user"))
     private User user;
 
     public Integer getNumberDays() {
@@ -45,10 +51,6 @@ public class PhysicalActivity extends Entity {
 
     public Integer getNumberHours() {
         return this.numberHours;
-    }
-
-    public TypeActivityEnum getTypeActivity() {
-        return this.typeActivity;
     }
 
     public User getUser() {
@@ -61,10 +63,6 @@ public class PhysicalActivity extends Entity {
 
     public void setNumberHours(Integer numberHours) {
         this.numberHours = numberHours;
-    }
-
-    public void setTypeActivity(TypeActivityEnum typeActivity) {
-        this.typeActivity = typeActivity;
     }
 
     public void setUser(User user) {
