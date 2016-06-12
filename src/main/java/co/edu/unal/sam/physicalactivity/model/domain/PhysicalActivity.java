@@ -29,15 +29,15 @@ public class PhysicalActivity extends Entity {
      * Nùmero de dias que practica deporte por semana
      */
     @NotNull
-    @Column(name = "number_days", nullable = false)
-    private Integer numberDays;
+    @Column(name = "days", nullable = false)
+    private Integer days;
 
     /**
      * Número de horas que practica por día
      */
     @NotNull
-    @Column(name = "number_hours", nullable = false)
-    private Integer numberHours;
+    @Column(name = "minutes", nullable = false)
+    private Integer minutes;
 
     @NotNull
     @ManyToOne()
@@ -45,26 +45,58 @@ public class PhysicalActivity extends Entity {
             foreignKey = @ForeignKey(name = "fk_physical_activity_user"))
     private User user;
 
-    public Integer getNumberDays() {
-        return this.numberDays;
+    /**
+     * @return the activity
+     */
+    public Activity getActivity() {
+        return this.activity;
     }
 
-    public Integer getNumberHours() {
-        return this.numberHours;
+    /**
+     * @return the days
+     */
+    public Integer getDays() {
+        return this.days;
     }
 
+    /**
+     * @return the minutes
+     */
+    public Integer getMinutes() {
+        return this.minutes;
+    }
+
+    /**
+     * @return the user
+     */
     public User getUser() {
         return this.user;
     }
 
-    public void setNumberDays(Integer numberDays) {
-        this.numberDays = numberDays;
+    /**
+     * @param activity the activity to set
+     */
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
-    public void setNumberHours(Integer numberHours) {
-        this.numberHours = numberHours;
+    /**
+     * @param days the days to set
+     */
+    public void setDays(Integer days) {
+        this.days = days;
     }
 
+    /**
+     * @param minutes the minutes to set
+     */
+    public void setMinutes(Integer minutes) {
+        this.minutes = minutes;
+    }
+
+    /**
+     * @param user the user to set
+     */
     public void setUser(User user) {
         this.user = user;
     }

@@ -26,8 +26,6 @@ public class UserServiceTest extends ApplicationTests {
     @Test(expected = BusinessException.class)
     public void testClassifyUserWithoutPhysicalActivity() {
         User user = this.getUser();
-        user.setWeight(67F);
-        user.setHeight(1.60F);
         this.userService.classifyUser(user);
     }
 
