@@ -35,7 +35,6 @@ public class UserConverter implements Converter<User, UserDto> {
         entity.setIdentityDocument(dto.getIdentityDocument());
         entity.setName(dto.getName());
         entity.setPassword(dto.getPassword());
-        entity.setPhysicalActivities(dto.getPhysicalActivities());
         entity.setState(dto.getState());
         entity.setSurname(dto.getSurname());
         entity.setTypeuser(dto.getTypeuser());

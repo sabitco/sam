@@ -17,7 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Campus;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
-import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
+import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 
 @Transactional
@@ -40,13 +41,19 @@ public class UserControllerTest extends ControllerTest {
         user.setId(1L);
         user.setWeight(69F);
         user.setHeight(1.60F);
-        user.getPhysicalActivities().add(new PhysicalActivity());
+        user.getActivities().add(new ActivityDto(1L, "Caminar", true));
+        user.getActivities().add(new ActivityDto(2L, "Bailar", true));
+        user.getDiseases().add(new DiseaseDto(1L, "Hipertencion", true));
+        user.getDiseases().add(new DiseaseDto(null, "Otra Enfermedad", true));
 
         final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
+        super.logger.info("request test classify user: " + inputJson);
+        final MvcResult result =
+                super.mvc
+                        .perform(MockMvcRequestBuilders.put(uri)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                        .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test classify user: " + content);
@@ -62,10 +69,12 @@ public class UserControllerTest extends ControllerTest {
         user.setHeight(1.70F);
 
         final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
+        final MvcResult result =
+                super.mvc
+                        .perform(MockMvcRequestBuilders.put(uri)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                        .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test classify user without height: " + content);
@@ -81,10 +90,12 @@ public class UserControllerTest extends ControllerTest {
         user.setWeight(60F);
 
         final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
+        final MvcResult result =
+                super.mvc
+                        .perform(MockMvcRequestBuilders.put(uri)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                        .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test classify user without height: " + content);
@@ -100,10 +111,12 @@ public class UserControllerTest extends ControllerTest {
         user.setHeight(1.70F);
 
         final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.put(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
+        final MvcResult result =
+                super.mvc
+                        .perform(MockMvcRequestBuilders.put(uri)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                        .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test classify user without height: " + content);
@@ -119,10 +132,12 @@ public class UserControllerTest extends ControllerTest {
         user.setTypeuser(TypeUserEnum.ADMINISTRATOR);
 
         final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
+        final MvcResult result =
+                super.mvc
+                        .perform(MockMvcRequestBuilders.post(uri)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                        .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test create user administrator: " + content);
@@ -138,10 +153,12 @@ public class UserControllerTest extends ControllerTest {
         user.setFaculty(this.getFaculty());
 
         final String inputJson = super.mapToJson(user);
-        final MvcResult result = super.mvc
-                .perform(MockMvcRequestBuilders.post(uri).contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON).content(inputJson))
-                .andReturn();
+        final MvcResult result =
+                super.mvc
+                        .perform(MockMvcRequestBuilders.post(uri)
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .accept(MediaType.APPLICATION_JSON).content(inputJson))
+                        .andReturn();
         final MockHttpServletResponse response = result.getResponse();
         final String content = response.getContentAsString();
         super.logger.info("result test create user player: " + content);

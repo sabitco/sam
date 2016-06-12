@@ -3,28 +3,29 @@ package co.edu.unal.sam.physicalactivity.model.dto;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
-import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 
 public class UserDto extends Dto {
 
+    private Set<ActivityDto> activities;
     private int age;
     private Date dateBirth;
     private Date dateExpireClasification;
     private Date dateIngress;
     private Date dateInteraction;
     private String descriptionHistory;
+    private Set<DiseaseDto> diseases;
     private String email;
     private Faculty faculty;
     private Float height;
     private Boolean history;
     private String identityDocument;
     private String password;
-    private Set<PhysicalActivity> physicalActivities;
     private String surname;
     private TypeUserEnum typeuser;
     private Boolean useCondition;
@@ -33,6 +34,8 @@ public class UserDto extends Dto {
 
     public UserDto() {
         super();
+        this.activities = new HashSet<>();
+        this.diseases = new HashSet<>();
     }
 
     @SuppressWarnings("deprecation")
@@ -56,129 +59,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the activities
+     */
+    public Set<ActivityDto> getActivities() {
+        return this.activities;
+    }
+
+    /**
+     * @param activities the activities to set
+     */
+    public void setActivities(Set<ActivityDto> activities) {
+        this.activities = activities;
+    }
+
+    /**
      * @return the age
      */
     public int getAge() {
         return this.age;
-    }
-
-    /**
-     * @return the dateBirth
-     */
-    public Date getDateBirth() {
-        return this.dateBirth;
-    }
-
-    /**
-     * @return the dateExpireClasification
-     */
-    public Date getDateExpireClasification() {
-        return this.dateExpireClasification;
-    }
-
-    /**
-     * @return the dateIngress
-     */
-    public Date getDateIngress() {
-        return this.dateIngress;
-    }
-
-    /**
-     * @return the dateInteraction
-     */
-    public Date getDateInteraction() {
-        return this.dateInteraction;
-    }
-
-    /**
-     * @return the descriptionHistory
-     */
-    public String getDescriptionHistory() {
-        return this.descriptionHistory;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return this.email;
-    }
-
-    /**
-     * @return the faculty
-     */
-    public Faculty getFaculty() {
-        return this.faculty;
-    }
-
-    /**
-     * @return the height
-     */
-    public Float getHeight() {
-        return this.height;
-    }
-
-    /**
-     * @return the history
-     */
-    public Boolean getHistory() {
-        return this.history;
-    }
-
-    /**
-     * @return the identityDocument
-     */
-    public String getIdentityDocument() {
-        return this.identityDocument;
-    }
-
-    /**
-     * @return the password
-     */
-    public String getPassword() {
-        return this.password;
-    }
-
-    /**
-     * @return the physicalActivities
-     */
-    public Set<PhysicalActivity> getPhysicalActivities() {
-        return this.physicalActivities;
-    }
-
-    /**
-     * @return the surname
-     */
-    public String getSurname() {
-        return this.surname;
-    }
-
-    /**
-     * @return the typeuser
-     */
-    public TypeUserEnum getTypeuser() {
-        return this.typeuser;
-    }
-
-    /**
-     * @return the useCondition
-     */
-    public Boolean getUseCondition() {
-        return this.useCondition;
-    }
-
-    /**
-     * @return the username
-     */
-    public String getUsername() {
-        return this.username;
-    }
-
-    /**
-     * @return the weight
-     */
-    public Float getWeight() {
-        return this.weight;
     }
 
     /**
@@ -189,10 +87,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the dateBirth
+     */
+    public Date getDateBirth() {
+        return this.dateBirth;
+    }
+
+    /**
      * @param dateBirth the dateBirth to set
      */
     public void setDateBirth(Date dateBirth) {
         this.dateBirth = dateBirth;
+    }
+
+    /**
+     * @return the dateExpireClasification
+     */
+    public Date getDateExpireClasification() {
+        return this.dateExpireClasification;
     }
 
     /**
@@ -203,10 +115,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the dateIngress
+     */
+    public Date getDateIngress() {
+        return this.dateIngress;
+    }
+
+    /**
      * @param dateIngress the dateIngress to set
      */
     public void setDateIngress(Date dateIngress) {
         this.dateIngress = dateIngress;
+    }
+
+    /**
+     * @return the dateInteraction
+     */
+    public Date getDateInteraction() {
+        return this.dateInteraction;
     }
 
     /**
@@ -217,10 +143,38 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the descriptionHistory
+     */
+    public String getDescriptionHistory() {
+        return this.descriptionHistory;
+    }
+
+    /**
      * @param descriptionHistory the descriptionHistory to set
      */
     public void setDescriptionHistory(String descriptionHistory) {
         this.descriptionHistory = descriptionHistory;
+    }
+
+    /**
+     * @return the diseases
+     */
+    public Set<DiseaseDto> getDiseases() {
+        return this.diseases;
+    }
+
+    /**
+     * @param diseases the diseases to set
+     */
+    public void setDiseases(Set<DiseaseDto> diseases) {
+        this.diseases = diseases;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return this.email;
     }
 
     /**
@@ -231,10 +185,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the faculty
+     */
+    public Faculty getFaculty() {
+        return this.faculty;
+    }
+
+    /**
      * @param faculty the faculty to set
      */
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
+    }
+
+    /**
+     * @return the height
+     */
+    public Float getHeight() {
+        return this.height;
     }
 
     /**
@@ -245,10 +213,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the history
+     */
+    public Boolean getHistory() {
+        return this.history;
+    }
+
+    /**
      * @param history the history to set
      */
     public void setHistory(Boolean history) {
         this.history = history;
+    }
+
+    /**
+     * @return the identityDocument
+     */
+    public String getIdentityDocument() {
+        return this.identityDocument;
     }
 
     /**
@@ -259,6 +241,13 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the password
+     */
+    public String getPassword() {
+        return this.password;
+    }
+
+    /**
      * @param password the password to set
      */
     public void setPassword(String password) {
@@ -266,10 +255,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param physicalActivities the physicalActivities to set
+     * @return the surname
      */
-    public void setPhysicalActivities(Set<PhysicalActivity> physicalActivities) {
-        this.physicalActivities = physicalActivities;
+    public String getSurname() {
+        return this.surname;
     }
 
     /**
@@ -280,10 +269,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the typeuser
+     */
+    public TypeUserEnum getTypeuser() {
+        return this.typeuser;
+    }
+
+    /**
      * @param typeuser the typeuser to set
      */
     public void setTypeuser(TypeUserEnum typeuser) {
         this.typeuser = typeuser;
+    }
+
+    /**
+     * @return the useCondition
+     */
+    public Boolean getUseCondition() {
+        return this.useCondition;
     }
 
     /**
@@ -294,10 +297,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the username
+     */
+    public String getUsername() {
+        return this.username;
+    }
+
+    /**
      * @param username the username to set
      */
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    /**
+     * @return the weight
+     */
+    public Float getWeight() {
+        return this.weight;
     }
 
     /**
