@@ -24,6 +24,7 @@ import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.IntensityEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
+import co.edu.unal.sam.physicalactivity.model.repository.BmiRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.PhysicalActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
 
@@ -34,6 +35,9 @@ import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
  */
 @Component
 public class UserService {
+
+    @Inject
+    private BmiRepository bmiRepository;
 
     @Inject
     private PhysicalActivityRepository physicalActivityRepository;
@@ -61,7 +65,7 @@ public class UserService {
      * @param user to create
      * @return user created
      */
-    public User createUser(final User user) {
+    public User createUser(User user) {
         if (TypeUserEnum.PLAYER.equals(user.getTypeuser()) && Objects.isNull(user.getFaculty())) {
             throw new BusinessException("NotNull.user.faculty", HttpStatus.BAD_REQUEST);
         }
@@ -70,7 +74,12 @@ public class UserService {
         }
         String cryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
         user.setPassword(cryptedPassword);
-        return this.repository.save(user);
+        user = this.repository.save(user);
+        if (!user.getBmis().isEmpty()) {
+            this.calculateBmi(user);
+            this.bmiRepository.save(user.getBmis());
+        }
+        return user;
     }
 
     public Iterable<ActivityDto> getActivities(User user, StateEnum state) {
@@ -116,6 +125,7 @@ public class UserService {
             Float value = new Float((weight / Math.pow(height, 2D)));
             bmi.setBmi(value);
             bmi.setCategory(BmiCategoryEnum.getCategory(value));
+            bmi.setName(bmi.getCategory().name());
             return bmi;
         }
         throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
