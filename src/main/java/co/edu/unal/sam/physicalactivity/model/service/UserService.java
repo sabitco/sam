@@ -22,6 +22,7 @@ import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
+import co.edu.unal.sam.physicalactivity.model.enumerator.IntensityEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 import co.edu.unal.sam.physicalactivity.model.repository.PhysicalActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
@@ -128,18 +129,26 @@ public class UserService {
         } else if (activities.isEmpty()) {
             risk = TypeRiskEnum.HIGH;
         } else {
-            PhysicalActivity activity =
-                    Collections.max(activities, Comparator.comparing(pa -> pa.getDateRegister()));
-            int minutes = activity.getNumberHours() * activity.getNumberHours();
-            if (this.isObese(bmi) || Integer.valueOf("1").equals(activity.getNumberDays())) {
+            int days = 0;
+            int minutesModerate = 0;
+            int minutesVigorous = 0;
+            for (PhysicalActivity activity : activities) {
+                days += activity.getDays();
+                if (IntensityEnum.MODERATE.equals(activity.getActivity().getIntensity())) {
+                    minutesModerate = minutesModerate + activity.getDays() * activity.getMinutes();
+                } else {
+                    minutesVigorous = minutesModerate + activity.getDays() * activity.getMinutes();
+                }
+            }
+            if (this.isObese(bmi) || days <= 1) {
                 risk = TypeRiskEnum.HIGH;
-            } else if (minutes >= 150) {
+            } else if (minutesModerate >= 150 || minutesVigorous >= 75) {
                 if (BmiCategoryEnum.OVERWEIGHT.equals(bmi)) {
                     risk = TypeRiskEnum.MEDIUM;
                 } else {
                     risk = TypeRiskEnum.LOW;
                 }
-            } else if (minutes >= 100) {
+            } else if (minutesModerate >= 100 || minutesVigorous >= 50) {
                 if (BmiCategoryEnum.OVERWEIGHT.equals(bmi)) {
                     risk = TypeRiskEnum.HIGH;
                 } else {
