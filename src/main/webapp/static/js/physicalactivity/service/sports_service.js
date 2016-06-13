@@ -1,14 +1,14 @@
-function DiseasesService($http, baseUrlDiseases) {
+function SportsService($http, baseUrlSports) {
   return {
-    loadDiseasesListByUser : function(userID) {
-      return $http.get(baseUrlDiseases + "/" + userID, {
+    loadSportsListByUser : function(userID) {
+      return $http.get(baseUrlSports + "/" + userID, {
         params : {
           'state' : 'ACTIVE'
         }
       }).then(function(response) {
         return response.data;
       }, function(errResponse) {
-        return errResponse.data;
+        return response.data;
       });
     }
   }

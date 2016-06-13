@@ -3,6 +3,31 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+ 
+.input-validate.ng-valid {
+ outline: none;
+ border-color: #5cb85c;
+ box-shadow: 0 0 10px #5cb85c;
+}
+
+.input-validate.ng-dirty.ng-invalid-required {
+ outline: none;
+ border-color: #ff0000;
+ box-shadow: 0 0 10px #ff0000;
+}
+
+.input-validate.ng-dirty.ng-invalid-minlength {
+ outline: none;
+ border-color: #ff0000;
+ box-shadow: 0 0 10px #ff0000;
+}
+
+.input-validate.ng-dirty.ng-invalid {
+ outline: none;
+ border-color: #ff0000;
+ box-shadow: 0 0 10px #ff0000;
+}
+
 .menu-superior {
  padding-top: 2%;
 }

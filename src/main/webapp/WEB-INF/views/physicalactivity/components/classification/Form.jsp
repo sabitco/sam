@@ -9,6 +9,10 @@
 
 <form role="form" ng-submit="ctrl.submit()" name="classifyFormBasic"
 	class="form-horizontal col-md-12 list-group">
+
+	<input type="hidden" name="id" value="ctrl.classify.id"
+		ng-model="ctrl.classify.id" />
+
 	<fieldset class="col-md-6  text-muted menu-superior pull-right">
 		<div donut-chart="" donut-data="ctrl.chartData"
 			donut-colors="ctrl.chartColors" donut-formatter="ctrl.myFormatter"></div>
@@ -28,8 +32,6 @@
 			<div class="col-lg-8">
 				<input type="text" ng-model="ctrl.classify.username" id="username"
 					name="username" class="input-validate form-control input-sm"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.username" />"
 					disabled />
 			</div>
 		</div>
@@ -44,10 +46,7 @@
 			</div>
 			<div class="col-lg-8">
 				<input type="text" ng-model="ctrl.classify.name" id="name"
-					name="name" class="input-validate form-control input-sm"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.name" />"
-					disabled />
+					name="name" class="input-validate form-control input-sm" disabled />
 			</div>
 		</div>
 
@@ -61,9 +60,7 @@
 			<div class="col-lg-8">
 				<input type="text" ng-model="ctrl.classify.surname" id="surname"
 					name="surname" class="input-validate form-control input-sm"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.lastname" />"
-					required disabled />
+					disabled />
 			</div>
 		</div>
 
@@ -75,11 +72,8 @@
 			</div>
 			<div class="col-lg-8">
 
-				<input type="email" ng-model="ctrl.classify	.email" id="email"
-					name="email" class="input-validate form-control input-sm"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.email" />"
-					required disabled />
+				<input type="text" ng-model="ctrl.classify.email" id="email"
+					name="email" class="input-validate form-control input-sm" disabled />
 			</div>
 
 		</div>
@@ -93,10 +87,7 @@
 			<div class="col-lg-8">
 				<input type="text" ng-model="ctrl.classify.identityDocument"
 					id="identityDocument" name="identityDocument"
-					class="input-validate form-control input-sm"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.document" />"
-					required disabled />
+					class="input-validate form-control input-sm" disabled />
 			</div>
 		</div>
 
@@ -107,11 +98,8 @@
 				</label>
 			</div>
 			<div class="col-lg-8">
-				<input type="number" ng-model="ctrl.classify.age" id="age"
-					name="age" class="input-validate form-control input-sm" step="any"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.age" />"
-					required disabled />
+				<input type="text" ng-model="ctrl.classify.age" id="age" name="age"
+					class="input-validate form-control input-sm" disabled />
 			</div>
 		</div>
 
@@ -127,7 +115,16 @@
 					step="any"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.height" />"
-					required disabled />
+					required min="1" max="2.5"
+					ng-minlength="
+							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.height" />
+						" />
+			</div>
+			<div class="has-error text-danger text-muted col-lg-12 text-center"
+				ng-show="classifyFormBasic.height.$dirty">
+				<span ng-show="classifyFormBasic.height.$error.minlength"> <spring:message
+						code="param.physicalactivity.signon.from.basic.minlength.height" />
+				</span>
 			</div>
 		</div>
 
@@ -144,28 +141,35 @@
 					step="any"
 					placeholder="<spring:message
 						code="param.physicalactivity.signon.from.basic.required.weight" />"
-					required disabled />
+					required min="10" max="400"
+					ng-minlength="
+							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.weight" />
+						" />
 			</div>
 
-		</div>
-
-
-
-		<div class="row ">
-			<div class=" text-muted col-lg-4">
-				<label class=" control-lable" for="descriptionHistory"> <spring:message
-						code="param.physicalactivity.signon.from.basic.descriptionHistory" />
-				</label>
-			</div>
-			<div class="col-lg-8">
-				<textarea ng-model="ctrl.classify.descriptionHistory"
-					id="descriptionHistory" name="descriptionHistory"
-					class="input-validate form-control input-sm"
-					placeholder="<spring:message
-						code="param.physicalactivity.signon.from.basic.required.descriptionHistory" />"
-					disabled></textarea>
+			<div class="has-error text-danger text-muted col-lg-12 text-center"
+				ng-show="classifyFormBasic.weight.$dirty">
+				<span ng-show="classifyFormBasic.weight.$error.minlength"> <spring:message
+						code="param.physicalactivity.signon.from.basic.minlength.weight" />
+				</span>
 			</div>
 		</div>
+
+		<!-- 		<div class="row "> -->
+		<!-- 			<div class=" text-muted col-lg-4"> -->
+		<%-- 				<label class=" control-lable" for="descriptionHistory"> <spring:message --%>
+		<%-- 						code="param.physicalactivity.signon.from.basic.descriptionHistory" /> --%>
+		<!-- 				</label> -->
+		<!-- 			</div> -->
+		<!-- 			<div class="col-lg-8"> -->
+		<%-- 				<textarea ng-model="ctrl.classify.descriptionHistory" --%>
+		<%-- 					id="descriptionHistory" name="descriptionHistory" --%>
+		<%-- 					class="input-validate form-control input-sm" --%>
+		<%-- 					placeholder="<spring:message --%>
+		<%-- 						code="param.physicalactivity.signon.from.basic.required.descriptionHistory" />" --%>
+		<%-- 					disabled></textarea> --%>
+		<!-- 			</div> -->
+		<!-- 		</div> -->
 
 
 		<!-- Change this to a button or input when using this as a form -->
@@ -182,72 +186,60 @@
 
 
 
-			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
+			<div class="panel-body col-md-6 text-muted page-wrapper-sam">
 				<div class="panel-orange text-muted">
 					<label><spring:message
 							code="param.physicalactivity.classify.present.diseases" /></label>
 				</div>
-				<div class="checkbox">
-					<label> <input type="checkbox" value="">Checkbox 2
+
+
+
+				<!-- 				<div class="checkbox" ng-repeat="disease in ctrl.listDiseases"> -->
+				<!-- 					<label> <input type="checkbox" -->
+				<!-- 						data-checklist-model="ctrl.classify.diseases" -->
+				<!-- 						data-checklist-value="disease"> {{disease.name}} -->
+				<!-- 					</label>  -->
+
+				<!-- 					<label>Value1: <input type="checkbox" -->
+				<!-- 						ng-model="checkboxModel.value1"> -->
+				<!-- 					</label><br /> -->
+
+				<!-- 				</div> -->
+
+				<div class="checkbox" ng-repeat="disease in ctrl.listDiseases">
+					<label> <input type="checkbox" name="listDiseases"
+						
+						data-checklist-value="disease" ng-checked="disease.selected">
+						{{disease.name}}
 					</label>
 				</div>
+
 				<div class="checkbox">
-					<label> <input type="checkbox" value="">Checkbox 2
-					</label>
-				</div>
-				<div class="checkbox">
-					<label> <input type="checkbox" value="">Checkbox 3
-					</label>
-				</div>
-				<div class="checkbox">
-					<input type="text" ng-model="ctrl.classify.otherDisease"
-						id="otherDisease" name="otherDisease"
+					<input type="text" ng-model="ctrl.classify.otherDiseases"
+						id="otherDiseases" name="otherDiseases"
 						class="input-validate form-control input-sm"
 						placeholder="<spring:message
-							code="param.physicalactivity.classify.from.basic.otherDisease" />" />
+							code="param.physicalactivity.classify.from.basic.otherdisease" />" />
 				</div>
 			</div>
 
-			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
+			<div class="panel-body col-md-6 text-muted page-wrapper-sam">
 				<div class="panel-orange text-muted">
 					<label><spring:message
 							code="param.physicalactivity.classify.present.sports" /></label>
 				</div>
-				<div class="checkbox">
-					<label> <input type="checkbox" value="">Checkbox 1
+				<div class="checkbox" ng-repeat="activity in ctrl.listSports">
+					<label> <input type="checkbox" name="activities"
+						id="activity.id" value="activity" ng-model="activity.selected">{{activity.name}}
 					</label>
 				</div>
 				<div class="checkbox">
-					<label> <input type="checkbox" value="">Checkbox 2
-					</label>
+					<input type="text" ng-model="ctrl.classify.otherActivities"
+						id="otherActivities" name="otherActivities"
+						class="input-validate form-control input-sm"
+						placeholder="<spring:message
+							code="param.physicalactivity.classify.from.basic.othersport" />" />
 				</div>
-				<div class="checkbox">
-					<label> <input type="checkbox" value="">Checkbox 3
-					</label>
-				</div>
-			</div>
-
-			<div class="panel-body col-md-4 text-muted page-wrapper-sam">
-				<div class="row ">
-					<div class="panel-orange text-muted">
-						<label><spring:message
-								code="param.physicalactivity.classify.present.practice.days" /></label>
-					</div>
-					<div class="checkbox">
-						<label> <input type="checkbox" value="">Checkbox 1
-						</label>
-					</div>
-					<div class="checkbox">
-						<label> <input type="checkbox" value="">Checkbox 2
-						</label>
-					</div>
-					<div class="checkbox">
-						<label> <input type="checkbox" value="">Checkbox 3
-						</label>
-					</div>
-
-				</div>
-
 			</div>
 		</div>
 	</fieldset>

@@ -62,6 +62,9 @@
 <!-- Js Home -->
 <script src="<c:url value='/static/js/physicalactivity/app.js' />"
 	ng-module="physicalactivity"></script>
+<script src="<c:url value='/static/js/physicalactivity/base_url.js' />"
+	ng-module="physicalactivity"></script>
+
 
 
 <!-- Morris Import -->

@@ -3,7 +3,30 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div ng-controller="ClassifyController as ctrl">
+<script type="text/javascript">
+  var sessionUserID = "${sessionScope.user.id}";
+  var sessionUserUsername = "${sessionScope.user.username}";
+  var sessionUserName = "${sessionScope.user.name}";
+  var sessionUserSurname = "${sessionScope.user.surname}";
+  var sessionUserEmail = "${sessionScope.user.email}";
+  var sessionUserIdentityDocument = "${sessionScope.user.identityDocument}";
+  var sessionUserAge = "${sessionScope.user.age}";
+  var sessionUserHeight = "${sessionScope.user.height}";
+  var sessionUserWeight = "${sessionScope.user.weight}";
+</script>
+
+<div ng-controller="ClassifyController as ctrl"
+	ng-init="getSession(
+	sessionUserID,
+	sessionUserUsername,
+	sessionUserName,
+	sessionUserSurname,
+	sessionUserEmail,
+	sessionUserIdentityDocument,
+	sessionUserAge,
+	sessionUserHeight,
+	sessionUserWeight)">
+
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Classification" />
 	<c:set var="namePage" scope="session" value="Queremos Saber De Ti" />
@@ -14,7 +37,7 @@
 		value="${sessionScope.user.username}" />
 
 	<c:set var="emailLogger" scope="session"
-		value="${sessionScope.user.email}" />
+		value="${sessionScope.user.age}" />
 
 	<t:template>
 		<jsp:attribute name="title">
@@ -73,6 +96,9 @@
 				<script
 				src="<c:url value='/static/js/physicalactivity/service/diseases_service.js' />"></script>
 				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/sports_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script

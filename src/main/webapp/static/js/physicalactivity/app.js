@@ -84,6 +84,23 @@ App.config([ 'baseUrlDiseases', 'diseasesServiceProvider',
       diseasesServiceProvider.setBaseUrl(baseUrlDiseases);
     } ]);
 
+function SportsServiceProvider() {
+  var _baseUrlSports;
+  this.setBaseUrl = function(baseUrlSports) {
+    _baseUrlSports = baseUrlSports;
+  }
+  this.$get = [ '$http', function($http) {
+    return new SportsService($http, _baseUrlSports);
+  } ];
+}
+
+App.provider("sportsService", SportsServiceProvider);
+
+App.config([ 'baseUrlSports', 'sportsServiceProvider',
+    function(baseUrlSports, diseasesServiceProvider) {
+      diseasesServiceProvider.setBaseUrl(baseUrlSports);
+    } ]);
+
 function UserServiceProvider() {
   var _baseUrlUser;
   this.setBaseUrl = function(baseUrlUser) {
