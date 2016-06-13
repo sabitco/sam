@@ -56,7 +56,7 @@ public class UserService {
     public void classifyUser(final User user) {
         final Bmi bmi = this.calculateBmi(user);
         this.calculateRisk(user, bmi.getCategory());
-        // TODO realizar logica de guardado del bmi
+        // TODO realizar logica de guardado del bmi preClassifyUser
     }
 
     /**
@@ -94,6 +94,10 @@ public class UserService {
             state = StateEnum.ACTIVE;
         }
         return this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
+    }
+
+    public void preClassifyUser(final User user) {
+        // TODO realizar metodo
     }
 
     public User verify(Long userId) throws ResourceNotFoundException {
