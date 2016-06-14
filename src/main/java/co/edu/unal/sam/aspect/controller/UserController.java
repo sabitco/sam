@@ -107,8 +107,8 @@ public class UserController {
         Successful success = new Successful();
         success.setMessage(
                 this.messageSource.getMessage("user.preclassify.successfully", null, null));
-        success.setStatus(HttpStatus.OK.value());
-        return new ResponseEntity<>(success, HttpStatus.OK);
+        success.setStatus(HttpStatus.CREATED.value());
+        return new ResponseEntity<>(success, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.PUT)
