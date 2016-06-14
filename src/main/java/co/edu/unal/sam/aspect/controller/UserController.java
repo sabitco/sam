@@ -73,9 +73,10 @@ public class UserController {
 
     @RequestMapping(value = "/users/activities/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Iterable<ActivityDto>> getActivities(@PathVariable Long userId,
-            @RequestParam(name = "state", required = false) final StateEnum state) {
+            @RequestParam(name = "state", required = false) final StateEnum state,
+            @RequestParam(name = "onlySelected", required = false) final Boolean onlySelected) {
         User user = this.service.verify(userId);
-        Iterable<ActivityDto> activities = this.service.getActivities(user, state);
+        Iterable<ActivityDto> activities = this.service.getActivities(user, state, onlySelected);
         return new ResponseEntity<>(activities, HttpStatus.OK);
     }
 
@@ -87,9 +88,10 @@ public class UserController {
 
     @RequestMapping(value = "/users/diseases/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Iterable<DiseaseDto>> getDiseases(@PathVariable Long userId,
-            @RequestParam(name = "state", required = false) final StateEnum state) {
+            @RequestParam(name = "state", required = false) final StateEnum state,
+            @RequestParam(name = "onlySelected", required = false) final Boolean onlySelected) {
         User user = this.service.verify(userId);
-        Iterable<DiseaseDto> diseases = this.service.getDiseases(user, state);
+        Iterable<DiseaseDto> diseases = this.service.getDiseases(user, state, onlySelected);
         return new ResponseEntity<>(diseases, HttpStatus.OK);
     }
 

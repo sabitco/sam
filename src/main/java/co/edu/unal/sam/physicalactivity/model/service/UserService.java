@@ -82,18 +82,30 @@ public class UserService {
         return user;
     }
 
-    public Iterable<ActivityDto> getActivities(User user, StateEnum state) {
+    public Iterable<ActivityDto> getActivities(User user, StateEnum state, Boolean onlySelected) {
         if (state == null) {
             state = StateEnum.ACTIVE;
         }
-        return this.physicalActivityRepository.findActivityDtoByStateOrUser(state, user);
+        Iterable<ActivityDto> activities = null;
+        if (Boolean.TRUE.equals(onlySelected)) {
+            activities = this.physicalActivityRepository.findActivityDtoByStateAndUser(state, user);
+        } else {
+            activities = this.physicalActivityRepository.findActivityDtoByStateOrUser(state, user);
+        }
+        return activities;
     }
 
-    public Iterable<DiseaseDto> getDiseases(User user, StateEnum state) {
+    public Iterable<DiseaseDto> getDiseases(User user, StateEnum state, Boolean onlySelected) {
         if (state == null) {
             state = StateEnum.ACTIVE;
         }
-        return this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
+        Iterable<DiseaseDto> diseases = null;
+        if (Boolean.TRUE.equals(onlySelected)) {
+            diseases = this.userDiseaseRepository.findDiseaseDtoByStateAndUser(state, user);
+        } else {
+            diseases = this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
+        }
+        return diseases;
     }
 
     public void preClassifyUser(final User user) {

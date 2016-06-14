@@ -18,6 +18,10 @@ public interface UserDiseaseRepository extends CrudRepository<UserDisease, Long>
     @Query(name = "UserDisease.deleteByUser")
     int deleteByUser(@Param("user") User user);
 
+    @Query(name = "UserDisease.findDiseaseDtoByStateAndUser")
+    Iterable<DiseaseDto> findDiseaseDtoByStateAndUser(@Param("state") StateEnum state,
+            @Param("user") User user);
+
     @Query(name = "UserDisease.findDiseaseDtoByStateOrUser")
     Iterable<DiseaseDto> findDiseaseDtoByStateOrUser(@Param("state") StateEnum state,
             @Param("user") User user);

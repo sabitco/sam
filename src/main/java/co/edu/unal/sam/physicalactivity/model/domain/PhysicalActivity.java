@@ -18,6 +18,10 @@ import co.edu.unal.sam.aspect.model.domain.User;
                 query = "select new co.edu.unal.sam.physicalactivity.model.dto.ActivityDto(a.id, a.name "
                         + ", case when pa.id is not null then true else false end) "
                         + "from Activity a left join a.physicalActivities pa where a.state = :state or pa.user = :user"),
+        @NamedQuery(name = "PhysicalActivity.findActivityDtoByStateAndUser",
+                query = "select new co.edu.unal.sam.physicalactivity.model.dto.ActivityDto(a.id, a.name "
+                        + ", case when pa.id is not null then true else false end) "
+                        + "from Activity a left join a.physicalActivities pa where a.state = :state and pa.user = :user"),
         @NamedQuery(name = "PhysicalActivity.deleteByUser",
                 query = "delete PhysicalActivity where user = :user"),})
 public class PhysicalActivity extends Entity {
@@ -25,7 +29,7 @@ public class PhysicalActivity extends Entity {
     @NotNull
     @ManyToOne()
     @JoinColumn(name = "activity_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_physical_activity_activity"))
+            foreignKey = @ForeignKey(name = "fk_physical_activity_activity") )
     private Activity activity;
 
     /**
@@ -43,7 +47,7 @@ public class PhysicalActivity extends Entity {
     @NotNull
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_physical_activity_user"))
+            foreignKey = @ForeignKey(name = "fk_physical_activity_user") )
     private User user;
 
     /**

@@ -18,6 +18,10 @@ public interface PhysicalActivityRepository extends CrudRepository<PhysicalActiv
     @Query(name = "PhysicalActivity.deleteByUser")
     int deleteByUser(@Param("user") User user);
 
+    @Query(name = "PhysicalActivity.findActivityDtoByStateAndUser")
+    Iterable<ActivityDto> findActivityDtoByStateAndUser(@Param("state") StateEnum state,
+            @Param("user") User user);
+
     @Query(name = "PhysicalActivity.findActivityDtoByStateOrUser")
     Iterable<ActivityDto> findActivityDtoByStateOrUser(@Param("state") StateEnum state,
             @Param("user") User user);
