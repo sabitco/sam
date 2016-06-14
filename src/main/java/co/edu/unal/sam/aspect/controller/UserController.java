@@ -1,10 +1,8 @@
 package co.edu.unal.sam.aspect.controller;
 
-import java.io.IOException;
 import java.net.URI;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.context.MessageSource;
@@ -103,11 +101,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/preclassify", method = RequestMethod.PUT)
-    public void preClassifyUser(@RequestBody UserDto user, final HttpServletResponse response)
-            throws IOException {
+    public ResponseEntity<Successful> preClassifyUser(@RequestBody UserDto user) {
         this.service.verify(user.getId());
         this.service.preClassifyUser(this.converter.convert(user));
-        response.sendRedirect("physicalactivity/classificationdetail");
+        Successful success = new Successful();
+        success.setMessage(
+                this.messageSource.getMessage("user.preclassify.successfully", null, null));
+        success.setStatus(HttpStatus.OK.value());
+        return new ResponseEntity<>(success, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.PUT)
