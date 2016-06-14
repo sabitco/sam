@@ -94,7 +94,6 @@ App
               /** funtion for Create(save) from Signon * */
               self.nextClassify = function(classify) {
 
-                console.log(classify);
                 if (null !== classify.otherActivities) {
                   $scope.listSportsSelect.push({
                     "name" : classify.otherActivities,
@@ -120,13 +119,12 @@ App
                 preclassifyService.preclassify(self.classifyOne).then(
                     function(successResponse) {
                       console.log(successResponse);
-                      // if (successResponse.status === 201) {
-                      // self.open('lg', successResponse.message, 'SUCCESS');
-                      //
-                      // } else {
-                      // self.open('lg', successResponse.detail, 'ERROR');
-                      // console.error('Error En Datos');
-                      // }
+                      if (successResponse.status === 201) {
+                        self.open('lg', successResponse.message, 'SUCCESS');
+                      } else {
+                        self.open('lg', successResponse.detail, 'ERROR');
+                        console.error('Error En Datos');
+                      }
                       console.error('guardo');
                     }, function(errResponse) {
                       self.open('lg', errResponse, 'ERROR');
@@ -141,6 +139,31 @@ App
                 self.nextClassify(self.classify);
               };
 
+              /*
+               * Function Model
+               */
+              self.open = function(size, msn, typeMsn) {
+                var template = '';
+                if (typeMsn === 'ERROR') {
+                  template = "modalContentError.html";
+                } else if (typeMsn === 'SUCCESS') {
+                  template = "modalContent.html";
+                }
+
+                var modalInstance = $uibModal.open({
+                  keyboard : false,
+                  animation : true,
+                  templateUrl : template,
+                  controller : 'ModalInstanceCtrl',
+                  backdrop : false,
+                  size : size,
+                  resolve : {
+                    msn : function() {
+                      return msn
+                    }
+                  }
+                });
+              };
               /*
                * Contructor
                */

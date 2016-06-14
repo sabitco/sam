@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/")
 public class IndexController {
 
+    @RequestMapping(value = "/physicalactivity/classificationdetail", method = RequestMethod.GET)
+    public String getIndexFromClasificationDetailPlayer() {
+        return "physicalactivity/Classificationdetail";
+    }
+
     @RequestMapping(value = "/physicalactivity/classification", method = RequestMethod.GET)
     public String getIndexFromClasificationPlayer() {
         return "physicalactivity/Classification";

@@ -74,11 +74,11 @@
 			<!--End Div Wrapper-->
 				
 	   		<script type="text/ng-template" id="modalContent.html">
-				<jsp:include page="components/signon/alertSuccess.jsp" />
+				<jsp:include page="components/includes/alertSuccess.jsp" />
 			</script>
 			
 			<script type="text/ng-template" id="modalContentError.html">
-				<jsp:include page="components/signon/alertError.jsp" />
+				<jsp:include page="components/includes/alertError.jsp" />
 			</script>
 			
 			
@@ -108,6 +108,9 @@
 				<script
 				src="<c:url value='/static/js/physicalactivity/controller/classify_controller.js' />"></script>
 				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/controller/modal_controller.js' />"></script>
 				
 			<!-- End Statement JScript-->
 		</jsp:body>
