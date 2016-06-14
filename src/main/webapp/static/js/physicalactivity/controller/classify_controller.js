@@ -75,7 +75,7 @@ App
                     otherDiseases : "",
                     otherActivities : ""
                   };
-                  console.log(self.classify);
+                  // console.log(self.classify);
                 }
               };
 
@@ -83,35 +83,34 @@ App
               self.loadDiseasesListByUser = function(userID) {
                 diseasesService.loadDiseasesListByUser(userID).then(
                     function(d) {
-                      self.listDiseases = d;
-                      console.log(self.listDiseases);
+                      $scope.listDiseasesselect = d;
+                      // angular.forEach(d, function(value) {
+                      //
+                      // $scope.listDiseasesselect.push({
+                      // key : value.id
+                      // });
+                      // });
+                      console.log($scope.listDiseasesselect);
                     }, function(errResponse) {
                       console.error('Error while fetching Currencies');
                     });
               };
 
-              /** funtion for load detai diseases by userID * */
-              self.loadSportsListByUser = function(userID) {
-                sportsService.loadSportsListByUser(userID).then(function(d) {
-                  self.listSports = d;
-                  console.log(self.listSports);
-                }, function(errResponse) {
-                  console.error('Error while fetching Currencies');
-                });
-              };
+              // /** funtion for load detai diseases by userID * */
+              // self.loadSportsListByUser = function(userID) {
+              // sportsService.loadSportsListByUser(userID).then(function(d) {
+              // self.listSports = d;
+              // console.log(self.listSports);
+              // }, function(errResponse) {
+              // console.error('Error while fetching Currencies');
+              // });
+              // };
 
               /** funtion for Create(save) from Signon * */
               self.nextClassify = function(classify) {
 
-                angular.forEach(self.listDiseases, function(value, index) {
-                  console.log(index); // 0, 1, 2, 3
-                  console.log(value); // A, B, C, D
-                  if (value.selected === true) {
-                    self.listDiseasesCheck.push(value);
-                  }
-                });
-
-                console.log(self.listDiseasesCheck);
+                console.log(classify.disease);
+                console.log(classifyFormBasic.disease);
 
                 self.classifyOne = {
                   id : classify.id,
@@ -129,13 +128,16 @@ App
                * Function Submit
                */
               self.submit = function() {
-                console.log(self.classify);
-                self.nextClassify(self.classify);
+                console.log($scope.listDiseasesselect);
+
+                // self.nextClassify(self.classify);
               };
 
               /*
                * Contructor
                */
+
+              $scope.listDiseasesselect = {};
               $scope.sessionUserID = $window.sessionUserID;
               $scope.sessionUserUsername = $window.sessionUserUsername;
               $scope.sessionUserName = $window.sessionUserName;
@@ -155,7 +157,7 @@ App
                       userSurname, userEmail, userIdentityDocument, userAge,
                       userHeight, userWeight);
                   self.loadDiseasesListByUser(userID);
-                  self.loadSportsListByUser(userID);
+                  // self.loadSportsListByUser(userID);
                 }
               };
 

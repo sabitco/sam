@@ -206,13 +206,24 @@
 
 				<!-- 				</div> -->
 
-				<div class="checkbox" ng-repeat="disease in ctrl.listDiseases">
-					<label> <input type="checkbox" name="listDiseases"
-						
-						data-checklist-value="disease" ng-checked="disease.selected">
-						{{disease.name}}
+
+
+				<!-- 				<div class="checkbox" ng-repeat="disease in ctrl.listDiseasesselect"> -->
+				<!-- 					<label> <input type="checkbox" -->
+				<!-- 						ng-model="listDiseasesselect.[disease]" -->
+				<!-- 						ng-checked="listDiseasesselect.[disease]"> -->
+				<!-- 						{{disease.name}} -->
+				<!-- 					</label> -->
+				<!-- 				</div> -->
+
+				<div class="checkbox"
+					ng-repeat="(valor, value) in listDiseasesselect">
+					<label> <input type="checkbox" ng-model="listDiseasesselect[value]"
+						ng-checked="listDiseasesselect[value]" value="value">
+						{{value}}
 					</label>
 				</div>
+
 
 				<div class="checkbox">
 					<input type="text" ng-model="ctrl.classify.otherDiseases"
