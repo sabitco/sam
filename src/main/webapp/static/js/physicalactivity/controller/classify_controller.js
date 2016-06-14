@@ -30,18 +30,6 @@ App
               /** init classify * */
               self.classify = {};
 
-              /** init detail View * */
-              self.practiceDays = [];
-
-              /** init listDiseases * */
-              self.listDiseases = [];
-
-              /** init listDiseasesCheck * */
-              self.listDiseasesCheck = [];
-
-              /** init listSports * */
-              self.listSports = [];
-
               self.chartData = [ {
                 label : "Tú Avance",
                 value : 35
@@ -83,42 +71,48 @@ App
               self.loadDiseasesListByUser = function(userID) {
                 diseasesService.loadDiseasesListByUser(userID).then(
                     function(d) {
-                      $scope.listDiseasesselect = d;
-                      // angular.forEach(d, function(value) {
-                      //
-                      // $scope.listDiseasesselect.push({
-                      // key : value.id
-                      // });
-                      // });
-                      console.log($scope.listDiseasesselect);
+                      $scope.listDiseasesSelect = d;
+                      console.log($scope.listDiseasesSelect);
                     }, function(errResponse) {
                       console.error('Error while fetching Currencies');
                     });
               };
 
-              // /** funtion for load detai diseases by userID * */
-              // self.loadSportsListByUser = function(userID) {
-              // sportsService.loadSportsListByUser(userID).then(function(d) {
-              // self.listSports = d;
-              // console.log(self.listSports);
-              // }, function(errResponse) {
-              // console.error('Error while fetching Currencies');
-              // });
-              // };
+              /** funtion for load detai diseases by userID * */
+              self.loadSportsListByUser = function(userID) {
+                sportsService.loadSportsListByUser(userID).then(function(d) {
+                  $scope.listSportsSelect = d;
+                  console.log($scope.listSportsSelect);
+                }, function(errResponse) {
+                  console.error('Error while fetching Currencies');
+                });
+              };
 
               /** funtion for Create(save) from Signon * */
               self.nextClassify = function(classify) {
 
-                console.log(classify.disease);
-                console.log(classifyFormBasic.disease);
+                console.log(classify);
+                if (null !== classify.otherActivities) {
+                  $scope.listSportsSelect.push({
+                    "name" : classify.otherActivities,
+                    "selected" : true
+                  })
+                }
+                if (null !== classify.otherDiseases) {
+                  $scope.listDiseasesSelect.push({
+                    "name" : classify.otherDiseases,
+                    "selected" : true
+                  })
+                }
+                console.log($scope.listSportsSelect);
 
                 self.classifyOne = {
                   id : classify.id,
                   name : classify.name,
                   height : classify.height,
                   weight : classify.weight,
-                  activities : classify.activities,
-                  diseases : classify.diseases
+                  activities : $scope.listSportsSelect,
+                  diseases : $scope.listDiseasesSelect
                 };
                 console.log("entro");
                 console.log(self.classifyOne);
@@ -128,16 +122,16 @@ App
                * Function Submit
                */
               self.submit = function() {
-                console.log($scope.listDiseasesselect);
-
-                // self.nextClassify(self.classify);
+                self.nextClassify(self.classify);
               };
 
               /*
                * Contructor
                */
 
-              $scope.listDiseasesselect = {};
+              $scope.listDiseasesSelect = {};
+              $scope.listSportsSelect = {};
+
               $scope.sessionUserID = $window.sessionUserID;
               $scope.sessionUserUsername = $window.sessionUserUsername;
               $scope.sessionUserName = $window.sessionUserName;
@@ -157,7 +151,7 @@ App
                       userSurname, userEmail, userIdentityDocument, userAge,
                       userHeight, userWeight);
                   self.loadDiseasesListByUser(userID);
-                  // self.loadSportsListByUser(userID);
+                  self.loadSportsListByUser(userID);
                 }
               };
 

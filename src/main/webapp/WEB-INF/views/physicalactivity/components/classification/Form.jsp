@@ -192,35 +192,9 @@
 							code="param.physicalactivity.classify.present.diseases" /></label>
 				</div>
 
-
-
-				<!-- 				<div class="checkbox" ng-repeat="disease in ctrl.listDiseases"> -->
-				<!-- 					<label> <input type="checkbox" -->
-				<!-- 						data-checklist-model="ctrl.classify.diseases" -->
-				<!-- 						data-checklist-value="disease"> {{disease.name}} -->
-				<!-- 					</label>  -->
-
-				<!-- 					<label>Value1: <input type="checkbox" -->
-				<!-- 						ng-model="checkboxModel.value1"> -->
-				<!-- 					</label><br /> -->
-
-				<!-- 				</div> -->
-
-
-
-				<!-- 				<div class="checkbox" ng-repeat="disease in ctrl.listDiseasesselect"> -->
-				<!-- 					<label> <input type="checkbox" -->
-				<!-- 						ng-model="listDiseasesselect.[disease]" -->
-				<!-- 						ng-checked="listDiseasesselect.[disease]"> -->
-				<!-- 						{{disease.name}} -->
-				<!-- 					</label> -->
-				<!-- 				</div> -->
-
-				<div class="checkbox"
-					ng-repeat="(valor, value) in listDiseasesselect">
-					<label> <input type="checkbox" ng-model="listDiseasesselect[value]"
-						ng-checked="listDiseasesselect[value]" value="value">
-						{{value}}
+				<div class="checkbox" ng-repeat="disease in listDiseasesSelect">
+					<label> <input type="checkbox" ng-model="disease.selected"
+						value="{{disease.name}}"> {{disease.name}}
 					</label>
 				</div>
 
@@ -239,11 +213,14 @@
 					<label><spring:message
 							code="param.physicalactivity.classify.present.sports" /></label>
 				</div>
-				<div class="checkbox" ng-repeat="activity in ctrl.listSports">
-					<label> <input type="checkbox" name="activities"
-						id="activity.id" value="activity" ng-model="activity.selected">{{activity.name}}
+
+				<div class="checkbox" ng-repeat="activities in listSportsSelect">
+					<label> <input type="checkbox"
+						ng-model="activities.selected" value="{{activities.name}}">
+						{{activities.name}}
 					</label>
 				</div>
+
 				<div class="checkbox">
 					<input type="text" ng-model="ctrl.classify.otherActivities"
 						id="otherActivities" name="otherActivities"
