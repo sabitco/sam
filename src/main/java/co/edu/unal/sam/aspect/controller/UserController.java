@@ -1,8 +1,10 @@
 package co.edu.unal.sam.aspect.controller;
 
+import java.io.IOException;
 import java.net.URI;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.context.MessageSource;
@@ -71,18 +73,18 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<User>> getAllusers(Pageable pageable) {
-        Iterable<User> allusers = this.repository.findAll(pageable);
-        return new ResponseEntity<>(allusers, HttpStatus.OK);
-    }
-
     @RequestMapping(value = "/users/activities/{userId}", method = RequestMethod.GET)
     public ResponseEntity<Iterable<ActivityDto>> getActivities(@PathVariable Long userId,
             @RequestParam(name = "state", required = false) final StateEnum state) {
         User user = this.service.verify(userId);
         Iterable<ActivityDto> activities = this.service.getActivities(user, state);
         return new ResponseEntity<>(activities, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/admin/users", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<User>> getAllusers(Pageable pageable) {
+        Iterable<User> allusers = this.repository.findAll(pageable);
+        return new ResponseEntity<>(allusers, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/users/diseases/{userId}", method = RequestMethod.GET)
@@ -98,6 +100,14 @@ public class UserController {
         this.service.verify(userId);
         User user = this.repository.findOne(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/users/preclassify", method = RequestMethod.PUT)
+    public void preClassifyUser(@RequestBody UserDto user, final HttpServletResponse response)
+            throws IOException {
+        this.service.verify(user.getId());
+        this.service.preClassifyUser(this.converter.convert(user));
+        response.sendRedirect("physicalactivity/classificationdetail");
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.PUT)

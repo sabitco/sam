@@ -45,9 +45,7 @@ public class Entity {
     @Type(type = "co.edu.unal.sam.aspect.model.usertype.StateUserType")
     protected StateEnum state;
 
-    public Entity() {
-        this.state = StateEnum.ACTIVE;
-    }
+    public Entity() {}
 
     @Override
     public boolean equals(final Object obj) {
@@ -122,6 +120,9 @@ public class Entity {
     @PrePersist
     protected void onPrePersist() {
         this.dateRegister = new Date();
+        if (this.state == null) {
+            this.state = StateEnum.ACTIVE;
+        }
     }
 
     @PreUpdate
