@@ -97,7 +97,8 @@ public class UserService {
     }
 
     public void preClassifyUser(final User user) {
-        // TODO realizar metodo
+        this.physicalActivityRepository.save(user.getPhysicalActivities());
+        this.userDiseaseRepository.save(user.getDiseases());
     }
 
     public User verify(Long userId) throws ResourceNotFoundException {

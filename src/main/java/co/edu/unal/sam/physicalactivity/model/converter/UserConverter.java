@@ -3,10 +3,16 @@ package co.edu.unal.sam.physicalactivity.model.converter;
 import java.util.Date;
 import java.util.Objects;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Component;
 
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
+import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
+import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
+import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 
 /**
@@ -16,6 +22,12 @@ import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
  */
 @Component
 public class UserConverter implements Converter<User, UserDto> {
+
+    @Inject
+    private PhysicalActivityConverter physicalActivityConverter;
+
+    @Inject
+    private UserDiseaseConverter userDiseaseConverter;
 
     @Override
     public User convert(UserDto dto) {
@@ -40,6 +52,22 @@ public class UserConverter implements Converter<User, UserDto> {
         entity.setTypeuser(dto.getTypeuser());
         entity.setUseCondition(dto.getUseCondition());
         entity.setUsername(dto.getUsername());
+
+        for (ActivityDto activity : dto.getActivities()) {
+            PhysicalActivity physicalActivity = this.physicalActivityConverter.convert(activity);
+            if (Objects.nonNull(physicalActivity)) {
+                physicalActivity.setUser(entity);
+                entity.getPhysicalActivities().add(physicalActivity);
+            }
+        }
+
+        for (DiseaseDto disease : dto.getDiseases()) {
+            UserDisease userDisease = this.userDiseaseConverter.convert(disease);
+            if (Objects.nonNull(userDisease)) {
+                userDisease.setUser(entity);
+                entity.getDiseases().add(userDisease);
+            }
+        }
 
         if (Objects.nonNull(dto.getHeight()) && Objects.nonNull(dto.getWeight())) {
             Bmi bmi = new Bmi();
