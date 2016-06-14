@@ -97,6 +97,8 @@ public class UserService {
     }
 
     public void preClassifyUser(final User user) {
+        this.physicalActivityRepository.deleteByUser(user);
+        this.userDiseaseRepository.deleteByUser(user);
         this.physicalActivityRepository.save(user.getPhysicalActivities());
         this.userDiseaseRepository.save(user.getDiseases());
     }
