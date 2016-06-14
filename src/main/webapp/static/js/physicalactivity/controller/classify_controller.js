@@ -33,6 +33,9 @@ App
               /** init classify * */
               self.classify = {};
 
+              /** Url Success * */
+              var urlsuccess = "/physicalactivity/Classificationdetail";
+
               self.chartData = [ {
                 label : "Tú Avance",
                 value : 35
@@ -160,6 +163,9 @@ App
                   resolve : {
                     msn : function() {
                       return msn
+                    },
+                    urlsuccess : function() {
+                      return urlsuccess
                     }
                   }
                 });

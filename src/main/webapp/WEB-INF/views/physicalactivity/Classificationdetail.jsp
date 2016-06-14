@@ -3,17 +3,41 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<div ng-controller="ClassifyController as ctrl">
+<script type="text/javascript">
+  var sessionUserID = "${sessionScope.user.id}";
+  var sessionUserUsername = "${sessionScope.user.username}";
+  var sessionUserName = "${sessionScope.user.name}";
+  var sessionUserSurname = "${sessionScope.user.surname}";
+  var sessionUserEmail = "${sessionScope.user.email}";
+  var sessionUserIdentityDocument = "${sessionScope.user.identityDocument}";
+  var sessionUserAge = "${sessionScope.user.age}";
+  var sessionUserHeight = "${sessionScope.user.height}";
+  var sessionUserWeight = "${sessionScope.user.weight}";
+</script>
+
+<div ng-controller="ClassifyController as ctrl"
+	ng-init="getSession(
+	sessionUserID,
+	sessionUserUsername,
+	sessionUserName,
+	sessionUserSurname,
+	sessionUserEmail,
+	sessionUserIdentityDocument,
+	sessionUserAge,
+	sessionUserHeight,
+	sessionUserWeight)">
+
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Classification" />
 	<c:set var="namePage" scope="session" value="Queremos Saber De Ti" />
 	<c:set var="usernameLogger" scope="session"
-		value="Fredy Gonzalo Captuayo Novoa4" />
+		value="${sessionScope.user.name}" />
 
-	<c:set var="userLogger" scope="session" value="FCAPTUAYO5" />
+	<c:set var="userLogger" scope="session"
+		value="${sessionScope.user.username}" />
 
 	<c:set var="emailLogger" scope="session"
-		value="Captuayonovoafredy@gmail.com" />
+		value="${sessionScope.user.age}" />
 
 	<t:template>
 		<jsp:attribute name="title">
@@ -29,7 +53,7 @@
         		<div id="page-wrapper" class="row">
             		<!-- Div .col-lg-12 -->
             		<div class="col-sm-3 panel page-wrapper-sam ">
-						<jsp:include page="components/classification/DescriptionUser.jsp" />
+						<jsp:include page="components/DescriptionUser.jsp" />
 	            	</div>
                 	<div class="col-sm-9 page-wrapper-white">
 	                	<jsp:include page="components/includes/Title.jsp" />
@@ -38,7 +62,7 @@
 								<label><spring:message
 										code="param.physicalactivity.classify" /></label>
 							</div>
-							<jsp:include page="components/classification/Form.jsp" />
+							<jsp:include page="components/classificationdetail/Form.jsp" />
 							
 						</div>
 		            </div>
@@ -50,11 +74,11 @@
 			<!--End Div Wrapper-->
 				
 	   		<script type="text/ng-template" id="modalContent.html">
-				<jsp:include page="components/signon/alertSuccess.jsp" />
+				<jsp:include page="components/includes/alertSuccess.jsp" />
 			</script>
 			
 			<script type="text/ng-template" id="modalContentError.html">
-				<jsp:include page="components/signon/alertError.jsp" />
+				<jsp:include page="components/includes/alertError.jsp" />
 			</script>
 			
 			
@@ -70,8 +94,24 @@
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
+				src="<c:url value='/static/js/physicalactivity/service/diseases_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/sports_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/preclassify_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
 				src="<c:url value='/static/js/physicalactivity/controller/classify_controller.js' />"></script>
-			
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/controller/modal_controller.js' />"></script>
+				
 			<!-- End Statement JScript-->
 		</jsp:body>
 	</t:template>

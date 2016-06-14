@@ -1,9 +1,8 @@
 App.controller('ModalInstanceCtrl', function($scope, $window, $location,
-    $uibModalInstance, msn) {
+    $uibModalInstance, msn, urlsuccess) {
 
   /** Url Success * */
-  var landingUrl = "http://" + $window.location.host
-      + "/physicalactivity/classify";
+  var landingUrl = "http://" + $window.location.host + urlsuccess;
 
   $scope.message = msn;
   $scope.validar = function() {
@@ -13,6 +12,6 @@ App.controller('ModalInstanceCtrl', function($scope, $window, $location,
 
   $scope.continuar = function() {
     console.log('Se debe loguiar');
-    $window.location.href = '/login';
+    $window.location.href = landingUrl;
   };
 });

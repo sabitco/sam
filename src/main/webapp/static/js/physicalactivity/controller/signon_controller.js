@@ -120,9 +120,9 @@ App.controller('SignonController', [
 
       self.open = function(size, msn, typeMsn) {
         var template = '';
-        if (typeMsn === 'ERROR') {
+        if ('ERROR' === typeMsn) {
           template = "modalContentError.html";
-        } else if (typeMsn === 'SUCCESS') {
+        } else if ('SUCCESS' === typeMsn ) {
           template = "modalContent.html";
         }
 
