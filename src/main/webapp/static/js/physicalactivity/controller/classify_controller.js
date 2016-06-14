@@ -15,10 +15,13 @@ App
             'baseUrlDiseases',
             'sportsService',
             'baseUrlSports',
+            'preclassifyService',
+            'baseUrlPreclassifies',
 
             function($scope, $window, $http, $uibModal, $log, viewService,
                 baseUrlView, userService, baseUrlUsers, diseasesService,
-                baseUrlDiseases, sportsService, baseUrlSports) {
+                baseUrlDiseases, sportsService, baseUrlSports,
+                preclassifyService, baseUrlPreclassifies) {
 
               /*
                * Init Var
@@ -104,7 +107,6 @@ App
                     "selected" : true
                   })
                 }
-                console.log($scope.listSportsSelect);
 
                 self.classifyOne = {
                   id : classify.id,
@@ -114,8 +116,22 @@ App
                   activities : $scope.listSportsSelect,
                   diseases : $scope.listDiseasesSelect
                 };
-                console.log("entro");
-                console.log(self.classifyOne);
+
+                preclassifyService.preclassify(self.classifyOne).then(
+                    function(successResponse) {
+                      console.log(successResponse);
+                      // if (successResponse.status === 201) {
+                      // self.open('lg', successResponse.message, 'SUCCESS');
+                      //
+                      // } else {
+                      // self.open('lg', successResponse.detail, 'ERROR');
+                      // console.error('Error En Datos');
+                      // }
+                      console.error('guardo');
+                    }, function(errResponse) {
+                      self.open('lg', errResponse, 'ERROR');
+                      console.error('Error while creating preclassify');
+                    });
               };
 
               /*

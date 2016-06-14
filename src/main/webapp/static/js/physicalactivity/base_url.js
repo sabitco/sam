@@ -12,3 +12,5 @@ App.constant("baseUrlUsers", "http://localhost:8080/admin/users/");
 App.constant("baseUrlDiseases", "http://localhost:8080/users/diseases/");
 
 App.constant("baseUrlSports", "http://localhost:8080/users/activities/");
+
+App.constant("baseUrlPreclassifies", "http://localhost:8080/users/preclassify");

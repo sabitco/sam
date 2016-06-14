@@ -101,6 +101,23 @@ App.config([ 'baseUrlSports', 'sportsServiceProvider',
       diseasesServiceProvider.setBaseUrl(baseUrlSports);
     } ]);
 
+function PreclassifyServiceProvider() {
+  var _baseUrlPreclassifies;
+  this.setBaseUrl = function(baseUrlPreclassifies) {
+    _baseUrlPreclassifies = baseUrlPreclassifies;
+  }
+  this.$get = [ '$http', function($http) {
+    return new PreclassifyService($http, _baseUrlPreclassifies);
+  } ];
+}
+
+App.provider("preclassifyService", PreclassifyServiceProvider);
+
+App.config([ 'baseUrlPreclassifies', 'preclassifyServiceProvider',
+    function(baseUrlPreclassifies, preclassifyServiceProvider) {
+      preclassifyServiceProvider.setBaseUrl(baseUrlPreclassifies);
+    } ]);
+
 function UserServiceProvider() {
   var _baseUrlUser;
   this.setBaseUrl = function(baseUrlUser) {
