@@ -68,7 +68,7 @@ public class User extends Entity {
     private String email;
 
     @ManyToOne()
-    @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "fk_user_faculty") )
+    @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "fk_user_faculty"))
     private Faculty faculty;
 
     @Column(name = "history")
@@ -87,7 +87,7 @@ public class User extends Entity {
     private Set<PhysicalActivity> physicalActivities;
 
     @ManyToOne()
-    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_role") )
+    @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_role"))
     private Role role;
 
     /**
@@ -118,6 +118,7 @@ public class User extends Entity {
         this.dateIngress = new Date();
         this.dateInteraction = new Date();
         this.physicalActivities = new HashSet<>(0);
+        this.diseases = new HashSet<>(0);
     }
 
     /**

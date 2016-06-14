@@ -28,14 +28,12 @@ public class PhysicalActivity extends Entity {
     /**
      * Nùmero de dias que practica deporte por semana
      */
-    @NotNull
     @Column(name = "days")
     private Integer days;
 
     /**
      * Número de horas que practica por día
      */
-    @NotNull
     @Column(name = "minutes")
     private Integer minutes;
 
