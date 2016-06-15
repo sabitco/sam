@@ -26,6 +26,7 @@ public class UserDto extends Dto {
     private Boolean history;
     private String identityDocument;
     private String password;
+    private Integer progress;
     private String surname;
     private TypeUserEnum typeuser;
     private Boolean useCondition;
@@ -51,10 +52,10 @@ public class UserDto extends Dto {
         this.username = username;
         this.dateBirth = dateBirth;
         this.weight = weight;
-
-        LocalDate start = LocalDate.now();
-        LocalDate end = LocalDate.of(dateBirth.getYear() + 1900, dateBirth.getMonth() + 1,
+        this.progress = 1;
+        LocalDate start = LocalDate.of(dateBirth.getYear() + 1900, dateBirth.getMonth() + 1,
                 dateBirth.getDate());
+        LocalDate end = LocalDate.now();
         this.age = (int) ChronoUnit.YEARS.between(start, end);
     }
 
@@ -248,10 +249,24 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the progress
+     */
+    public final int getProgress() {
+        return this.progress;
+    }
+
+    /**
      * @param password the password to set
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    /**
+     * @param progress the progress to set
+     */
+    public final void setProgress(int progress) {
+        this.progress = progress;
     }
 
     /**
