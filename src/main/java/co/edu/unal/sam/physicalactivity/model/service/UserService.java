@@ -54,8 +54,11 @@ public class UserService {
      * @param user to classify
      */
     public void classifyUser(final User user) {
-        final Bmi bmi = this.calculateBmi(user);
-        this.calculateRisk(user, bmi.getCategory());
+        Set<Bmi> bmis = user.getBmis();
+        if (!bmis.isEmpty()) {
+            Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
+            this.calculateRisk(user, bmi.getCategory());
+        }
         // TODO realizar logica de guardado del bmi preClassifyUser
     }
 
