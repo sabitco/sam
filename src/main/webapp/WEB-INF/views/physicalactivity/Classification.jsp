@@ -11,8 +11,9 @@
   var sessionUserEmail = "${sessionScope.user.email}";
   var sessionUserIdentityDocument = "${sessionScope.user.identityDocument}";
   var sessionUserAge = "${sessionScope.user.age}";
-  var sessionUserHeight = "${sessionScope.user.height}";
-  var sessionUserWeight = "${sessionScope.user.weight}";
+  var sessionUserHeight = parseFloat("${sessionScope.user.height}");
+  var sessionUserWeight = parseFloat("${sessionScope.user.weight}");
+  var sessionUserProgress = parseFloat("${sessionScope.user.progress}");
 </script>
 
 <div ng-controller="ClassifyController as ctrl"
@@ -25,7 +26,8 @@
 	sessionUserIdentityDocument,
 	sessionUserAge,
 	sessionUserHeight,
-	sessionUserWeight)">
+	sessionUserWeight,
+	sessionUserProgress)">
 
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Classification" />
@@ -37,8 +39,7 @@
 		value="${sessionScope.user.username}" />
 
 	<c:set var="emailLogger" scope="session"
-		value="${sessionScope.user.age}" />
-
+		value="${sessionScope.user.email}" />
 	<t:template>
 		<jsp:attribute name="title">
 			${titlePage}

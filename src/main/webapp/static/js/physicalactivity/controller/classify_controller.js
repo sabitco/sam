@@ -36,22 +36,27 @@ App
               /** Url Success * */
               var urlsuccess = "/physicalactivity/Classificationdetail";
 
-              self.chartData = [ {
-                label : "Tú Avance",
-                value : 35
-              }, {
-                label : "Te Falta",
-                value : 65
-              } ];
-              self.chartColors = [ "#31C0BE", "#c7254e" ];
-              self.myFormatter = function(input) {
-                return input + '%';
+              /** funtion for load detai diseases by userID * */
+              self.loadMorris = function(userProgress) {
+                if (userProgress !== null) {
+                  self.chartData = [ {
+                    label : "Tú Avance",
+                    value : userProgress
+                  }, {
+                    label : "Te Falta",
+                    value : 100 - userProgress
+                  } ];
+                  self.chartColors = [ "#31C0BE", "#c7254e" ];
+                  self.myFormatter = function(input) {
+                    return input + '%';
+                  };
+                }
               };
 
               /** funtion for load detai diseases by userID * */
               self.loadClassifyByUser = function(userID, userUsername,
                   userName, userSurname, userEmail, userIdentityDocument,
-                  userAge, userHeight, userWeight) {
+                  userAge, userHeight, userWeight, userProgress) {
 
                 if (userID !== null) {
                   self.classify = {
@@ -67,7 +72,8 @@ App
                     diseases : {},
                     activities : {},
                     otherDiseases : "",
-                    otherActivities : ""
+                    otherActivities : "",
+                    progress : userProgress
                   };
                   // console.log(self.classify);
                 }
@@ -186,17 +192,19 @@ App
               $scope.sessionUserAge = $window.sessionUserAge;
               $scope.sessionUserHeight = $window.sessionUserHeight;
               $scope.sessionUserWeight = $window.sessionUserWeight;
+              $scope.sessionUserProgress = $window.sessionUserProgress;
 
               $scope.getSession = function(userID, userUsername, userName,
                   userSurname, userEmail, userIdentityDocument, userAge,
-                  userHeight, userWeight) {
+                  userHeight, userWeight, userProgress) {
 
                 if (userID !== null) {
                   self.loadClassifyByUser(userID, userUsername, userName,
                       userSurname, userEmail, userIdentityDocument, userAge,
-                      userHeight, userWeight);
+                      userHeight, userWeight, userProgress);
                   self.loadDiseasesListByUser(userID);
                   self.loadSportsListByUser(userID);
+                  self.loadMorris(userProgress)
                 }
               };
 

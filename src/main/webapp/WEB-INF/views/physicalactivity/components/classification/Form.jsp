@@ -118,7 +118,8 @@
 					required min="1" max="2.5"
 					ng-minlength="
 							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.height" />
-						" />
+						"
+					string-to-number />
 			</div>
 			<div class="has-error text-danger text-muted col-lg-12 text-center"
 				ng-show="classifyFormBasic.height.$dirty">
@@ -144,7 +145,8 @@
 					required min="10" max="400"
 					ng-minlength="
 							<spring:message code="param.physicalactivity.signon.from.basic.quantity.minlength.weight" />
-						" />
+						"
+					string-to-number />
 			</div>
 
 			<div class="has-error text-danger text-muted col-lg-12 text-center"
@@ -240,9 +242,6 @@
 				ng-disabled="classifyFormBasic.$invalid">
 		</div>
 	</fieldset>
-
-
-
 </form>
 
 
