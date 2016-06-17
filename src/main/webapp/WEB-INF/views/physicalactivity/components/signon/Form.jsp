@@ -205,7 +205,7 @@
 			</div>
 			<div class="col-lg-6">
 					<input type="text" class="form-control" uib-datepicker-popup
-						ng-model="dateBirth" is-open="popup2.opened"
+						ng-model="ctrl.signonBasic.dateBirth" is-open="popup2.opened"
 						datepicker-options="dateOptions" ng-required="true"
 						close-text="Close" />
 			</div>
