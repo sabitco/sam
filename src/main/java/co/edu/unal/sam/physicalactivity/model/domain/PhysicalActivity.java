@@ -19,9 +19,12 @@ import co.edu.unal.sam.aspect.model.domain.User;
                         + ", case when pa.id is not null and pa.user = :user then true else false end) "
                         + "from Activity a left join a.physicalActivities pa where a.state = :state or pa.user = :user"),
         @NamedQuery(name = "PhysicalActivity.findActivityDtoByStateAndUser",
-                query = "select new co.edu.unal.sam.physicalactivity.model.dto.ActivityDto(a.id, a.name, "
-                        + "case when pa.id is not null then true else false end, a.intensity) "
-                        + "from Activity a left join a.physicalActivities pa where a.state = :state and pa.user = :user"),
+                query = "select new co.edu.unal.sam.physicalactivity.model.dto.ActivityDto(a.id, pa.name, "
+                        + "case when pa.id is not null then true else false end, a.intensity,"
+                        + "case when pa.days is null then 0 else pa.days end,"
+                        + "case when pa.minutes is null then 0 else pa.minutes end ) "
+                        + "from Activity a left join a.physicalActivities pa "
+                        + "where a.state = :state and pa.user = :user )"),
         @NamedQuery(name = "PhysicalActivity.deleteByUser",
                 query = "delete PhysicalActivity where user = :user"),})
 public class PhysicalActivity extends Entity {

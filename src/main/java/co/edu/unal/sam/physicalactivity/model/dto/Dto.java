@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 
-@JsonInclude(Include.NON_EMPTY)
+@JsonInclude(Include.NON_NULL)
 public class Dto {
 
     protected Date dateRegister;

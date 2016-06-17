@@ -16,9 +16,12 @@ public class ActivityDto extends Dto {
         this.selected = selected;
     }
 
-    public ActivityDto(Long id, String name, Boolean selected, IntensityEnum intensity) {
+    public ActivityDto(Long id, String name, Boolean selected, IntensityEnum intensity,
+            Integer days, Integer minutes) {
         this(id, name, selected);
         this.intensity = intensity;
+        this.days = days;
+        this.minutes = minutes;
     }
 
     /**

@@ -1,4 +1,5 @@
 INSERT INTO activity (name, date_register, state_id, intensity_id) VALUES 
+('Otros', NOW(), 1, 1),
 ('Caminar', NOW(), 1, 1),
 ('Bailar', NOW(), 1, 1),
 ('Tareas domésticas', NOW(), 1, 1),

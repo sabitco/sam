@@ -55,12 +55,14 @@ public class UserService {
      * @param user to classify
      */
     public void classifyUser(final User user) {
+        // TODO cambiar respuesta del metodo
         Set<Bmi> bmis = this.bmiRepository.findByUser(user);
         Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
         TypeRiskEnum risk = this.calculateRisk(user, bmi.getCategory());
         bmi.setRisk(risk);
         this.bmiRepository.save(bmi);
-        // TODO realizar logica de guardado del bmi preClassifyUser
+        this.physicalActivityRepository.deleteByUser(user);
+        this.physicalActivityRepository.save(user.getPhysicalActivities());
     }
 
     /**

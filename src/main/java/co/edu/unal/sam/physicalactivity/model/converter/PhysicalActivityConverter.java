@@ -24,6 +24,8 @@ public class PhysicalActivityConverter implements Converter<PhysicalActivity, Ac
             }
             entity.setActivity(activity);
             entity.setName(dto.getName());
+            entity.setDays(dto.getDays());
+            entity.setMinutes(dto.getMinutes());
         }
         return entity;
     }
