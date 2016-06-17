@@ -10,6 +10,7 @@ import org.hibernate.annotations.Type;
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
+import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "bmi")
@@ -25,8 +26,12 @@ public class Bmi extends Entity {
     @Column(name = "height")
     private Float height;
 
+    @Column(name = "risk_id")
+    @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TypeRiskType")
+    private TypeRiskEnum risk;
+
     @ManyToOne()
-    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_bmi_user") )
+    @JoinColumn(name = "user_id", foreignKey = @ForeignKey(name = "fk_bmi_user"))
     private User user;
 
     @Column(name = "weight")
@@ -51,6 +56,13 @@ public class Bmi extends Entity {
      */
     public Float getHeight() {
         return this.height;
+    }
+
+    /**
+     * @return the risk
+     */
+    public TypeRiskEnum getRisk() {
+        return this.risk;
     }
 
     /**
@@ -86,6 +98,13 @@ public class Bmi extends Entity {
      */
     public void setHeight(Float height) {
         this.height = height;
+    }
+
+    /**
+     * @param risk the risk to set
+     */
+    public void setRisk(TypeRiskEnum risk) {
+        this.risk = risk;
     }
 
     /**

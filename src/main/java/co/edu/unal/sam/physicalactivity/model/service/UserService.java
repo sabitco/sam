@@ -19,6 +19,7 @@ import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
+import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
@@ -54,11 +55,11 @@ public class UserService {
      * @param user to classify
      */
     public void classifyUser(final User user) {
-        Set<Bmi> bmis = user.getBmis();
-        if (!bmis.isEmpty()) {
-            Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
-            this.calculateRisk(user, bmi.getCategory());
-        }
+        Set<Bmi> bmis = this.bmiRepository.findByUser(user);
+        Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
+        TypeRiskEnum risk = this.calculateRisk(user, bmi.getCategory());
+        bmi.setRisk(risk);
+        this.bmiRepository.save(bmi);
         // TODO realizar logica de guardado del bmi preClassifyUser
     }
 
@@ -156,7 +157,8 @@ public class UserService {
     private TypeRiskEnum calculateRisk(User user, BmiCategoryEnum bmi) {
         TypeRiskEnum risk;
         Set<PhysicalActivity> activities = user.getPhysicalActivities();
-        if (!user.getDiseases().isEmpty()) {
+        Set<UserDisease> diseases = this.userDiseaseRepository.findByUser(user);
+        if (!diseases.isEmpty()) {
             risk = TypeRiskEnum.INDETERMINATE;
         } else if (activities.isEmpty()) {
             risk = TypeRiskEnum.HIGH;
