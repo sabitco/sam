@@ -1,5 +1,7 @@
 package co.edu.unal.sam.physicalactivity.model.repository;
 
+import java.util.Set;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -25,5 +27,7 @@ public interface UserDiseaseRepository extends CrudRepository<UserDisease, Long>
     @Query(name = "UserDisease.findDiseaseDtoByStateOrUser")
     Iterable<DiseaseDto> findDiseaseDtoByStateOrUser(@Param("state") StateEnum state,
             @Param("user") User user);
+
+    Set<UserDisease> findByUser(@Param("user") User user);
 
 }
