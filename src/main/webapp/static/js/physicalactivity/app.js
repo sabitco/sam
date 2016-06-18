@@ -135,6 +135,40 @@ App.config([ 'baseUrlPreclassifies', 'preclassifyServiceProvider',
       preclassifyServiceProvider.setBaseUrl(baseUrlPreclassifies);
     } ]);
 
+function GoalsServiceProvider() {
+  var _baseUrlGoals;
+  this.setBaseUrl = function(baseUrlGoals) {
+    _baseUrlGoals = baseUrlGoals;
+  }
+  this.$get = [ '$http', function($http) {
+    return new GoalsService($http, _baseUrlGoals);
+  } ];
+}
+
+App.provider("goalsService", GoalsServiceProvider);
+
+App.config([ 'baseUrlGoals', 'goalsServiceProvider',
+    function(baseUrlGoals, goalsServiceProvider) {
+      goalsServiceProvider.setBaseUrl(baseUrlGoals);
+    } ]);
+
+function UserGoalsServiceProvider() {
+  var _baseUrlUserGoals;
+  this.setBaseUrl = function(baseUrlUserGoals) {
+    _baseUrlGoals = baseUrlUserGoals;
+  }
+  this.$get = [ '$http', function($http) {
+    return new UserGoalsService($http, _baseUrlGoals);
+  } ];
+}
+
+App.provider("usergoalsService", UserGoalsServiceProvider);
+
+App.config([ 'baseUrlUserGoals', 'usergoalsServiceProvider',
+    function(baseUrlUserGoals, usergoalsServiceProvider) {
+      usergoalsServiceProvider.setBaseUrl(baseUrlUserGoals);
+    } ]);
+
 function UserServiceProvider() {
   var _baseUrlUser;
   this.setBaseUrl = function(baseUrlUser) {

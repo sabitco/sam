@@ -72,26 +72,13 @@
 			
 			
 			<!-- Statement JScript-->
-			
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/view_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/goals_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/diseases_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/sports_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/classifydetail_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/usergoals_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script

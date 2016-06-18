@@ -4,21 +4,13 @@ App.controller('GoalsController', [
     '$http',
     '$uibModal',
     '$log',
-    'viewService',
-    'baseUrlView',
-    'userService',
-    'baseUrlUsers',
-    'diseasesService',
-    'baseUrlDiseases',
-    'sportsService',
-    'baseUrlSports',
-    'classifyDetailService',
-    'baseUrlClassifyDetail',
+    'goalsService',
+    'baseUrlGoals',
+    'usergoalsService',
+    'baseUrlUserGoals',
 
-    function($scope, $window, $http, $uibModal, $log, viewService, baseUrlView,
-        userService, baseUrlUsers, diseasesService, baseUrlDiseases,
-        sportsService, baseUrlSports, classifyDetailService,
-        baseUrlClassifyDetail) {
+    function($scope, $window, $http, $uibModal, $log, goalsService,
+        baseUrlGoals, usergoalsService, baseUrlUserGoals) {
 
       /*
        * Init Var
@@ -31,60 +23,45 @@ App.controller('GoalsController', [
       self.goals = {};
 
       /** Url Success * */
-      var urlsuccess = "/physicalactivity/Classificationdetail";
+      var urlsuccess = "/physicalactivity/home";
 
-      /** funtion for load detai diseases by userID * */
+      /** funtion for load detail user by userID * */
       self.loadClassifyByUser = function(userID, userUsername, userName,
           userSurname, userEmail, userIdentityDocument, userAge, userHeight,
           userWeight, userProgress) {
 
         if (userID !== null) {
-          self.classify = {
-            id : userID,
-            username : userUsername,
-            name : userName,
-            surname : userSurname,
-            email : userEmail,
-            identityDocument : userIdentityDocument,
-            age : userAge,
-            height : userHeight,
-            weight : userWeight,
-            diseases : {},
-            activities : {},
-            otherDiseases : "",
-            otherActivities : "",
-            progress : userProgress
+          self.goals = {
+            id : userID
           };
-          // console.log(self.classify);
         }
       };
 
       /** funtion for load detai activities by userID * */
-      self.loadSportsCheckedListByUser = function(userID) {
-        sportsService.loadSportsCheckedListByUser(userID).then(function(d) {
-          $scope.listSportsCheckedSelect = d;
-          console.log($scope.listSportsCheckedSelect);
+      self.loadGoalsListByUser = function(userID) {
+        goalsService.loadGoalsListByUser(userID).then(function(d) {
+          $scope.listGoalsSelect = d;
+          console.log($scope.listGoalsSelect);
         }, function(errResponse) {
           console.error('Error while fetching Currencies');
         });
       };
 
       /** funtion for Create(save) from Classify detail * */
-      self.nextClassify = function(classifyOne) {
-        preclassifyService.preclassify(classifyOne).then(
-            function(successResponse) {
-              console.log(successResponse);
-              if (successResponse.status === 201) {
-                self.open('lg', successResponse.message, 'SUCCESS');
-              } else {
-                self.open('lg', successResponse.detail, 'ERROR');
-                console.error('Error En Datos');
-              }
-              console.error('guardo');
-            }, function(errResponse) {
-              self.open('lg', errResponse, 'ERROR');
-              console.error('Error while creating preclassify');
-            });
+      self.nextGoals = function(goalsOne) {
+        usergoalsService.saveGoals(goalsOne).then(function(successResponse) {
+          console.log(successResponse);
+          if (successResponse.status === 201) {
+            self.open('lg', successResponse.message, 'SUCCESS');
+          } else {
+            self.open('lg', successResponse.detail, 'ERROR');
+            console.error('Error En Datos');
+          }
+          console.error('guardo');
+        }, function(errResponse) {
+          self.open('lg', errResponse, 'ERROR');
+          console.error('Error while creating preclassify');
+        });
       };
 
       /*
@@ -92,31 +69,12 @@ App.controller('GoalsController', [
        */
       self.submit = function() {
 
-        if ((self.classify.otherActivities != "")
-            || (self.classify.otherActivities != null)) {
-          $scope.listSportsSelect.push({
-            "name" : self.classify.otherActivities,
-            "selected" : true
-          })
-        }
-        if ((self.classify.otherDiseases != "")
-            || (self.classify.otherDiseases != null)) {
-          $scope.listDiseasesSelect.push({
-            "name" : self.classify.otherDiseases,
-            "selected" : true
-          })
-        }
-
-        self.classifyOne = {
-          id : self.classify.id,
-          name : self.classify.name,
-          height : self.classify.height,
-          weight : self.classify.weight,
-          activities : $scope.listSportsSelect,
-          diseases : $scope.listDiseasesSelect
+        self.goalsOne = {
+          id : self.goals.id,
+          goals : $scope.listGoalsSelect
         };
-
-        self.nextClassify(self.classifyOne);
+        console.log(self.goalsOne);
+        self.nextGoals(self.goalsOne);
       };
 
       /*
@@ -151,8 +109,7 @@ App.controller('GoalsController', [
        * Contructor
        */
 
-      $scope.listDiseasesSelect = {};
-      $scope.listSportsSelect = {};
+      $scope.listGoalsSelect = {};
 
       $scope.sessionUserID = $window.sessionUserID;
       $scope.sessionUserUsername = $window.sessionUserUsername;
@@ -168,12 +125,11 @@ App.controller('GoalsController', [
       $scope.getSession = function(userID, userUsername, userName, userSurname,
           userEmail, userIdentityDocument, userAge, userHeight, userWeight,
           userProgress) {
-
         if (userID !== null) {
           self.loadClassifyByUser(userID, userUsername, userName, userSurname,
               userEmail, userIdentityDocument, userAge, userHeight, userWeight,
               userProgress);
-          self.loadSportsCheckedListByUser(userID);
+          self.loadGoalsListByUser(userID);
         }
       };
 
