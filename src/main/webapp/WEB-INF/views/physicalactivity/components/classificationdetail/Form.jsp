@@ -138,38 +138,23 @@
 			<div class="panel-body">
 				<ul class="chat" ng-repeat="activities in listSportsCheckedSelect">
 					<li class="left clearfix">
-						<div class="clearfix">
-							<div class="header">
-								<strong class="primary-font">{{activities.name}}</strong> <small
-									class="pull-right text-muted"> <i
-									class="fa fa-clock-o fa-fw"></i>
-								</small>
+						<div class="clearfix col-lg-12">
+
+							<div class="col-lg-2">
+								<strong class="primary-font">{{activities.name}}</strong>
 							</div>
-
-							<div class="col-lg-6">
-
-								<div class=" col-lg-4">
-									<spring:message
-										code="param.physicalactivity.classifydetail.from.basic.frequency" />
-
-								</div>
-								<div class="col-lg-6">
-									<input type="number" ng-model="ctrl.classify.frequency"
-										id="height" name="height"
-										class="input-validate form-control input-sm" step="any"
-										placeholder="<spring:message
+							<div class="col-lg-5">
+								<span class="input-group-addon"> <spring:message
+										code="param.physicalactivity.classifydetail.from.basic.suffix.frequency" />
+								</span> <input type="number" ng-model="activities.days" id="height"
+									name="height" class="input-validate form-control input-sm"
+									step="any"
+									placeholder="<spring:message
 						code="param.physicalactivity.classifydetail.from.basic.required.frequency" />"
-										required min="1" max="7"
-										ng-minlength="
+									required min="1" max="7"
+									ng-minlength="
 							<spring:message code="param.physicalactivity.classifydetail.from.basic.quantity.minlength.frequency" />
-						"
-										string-to-number />
-								</div>
-								<div class=" text-muted col-lg-1">
-									<label for="height"> <spring:message
-											code="param.physicalactivity.classifydetail.from.basic.suffix.frequency" />
-									</label>
-								</div>
+						" string-to-number />
 								<div
 									class="has-error text-danger text-muted col-lg-12 text-center"
 									ng-show="classifyFormBasic.height.$dirty">
@@ -180,30 +165,20 @@
 								</div>
 							</div>
 
-							<div class="col-lg-6">
+							<div class="col-lg-5">
 
-								<div class=" col-lg-4">
-									<spring:message
-										code="param.physicalactivity.classifydetail.from.basic.duration" />
-
-								</div>
-								<div class="col-lg-6">
-									<input type="number" ng-model="ctrl.classify.duration"
-										id="height" name="height"
-										class="input-validate form-control input-sm" step="any"
-										placeholder="<spring:message
+								<span class="input-group-addon"> <spring:message
+										code="param.physicalactivity.classifydetail.from.basic.suffix.duration" />
+								</span> <input type="number" ng-model="activities.minutes"
+									id="height" name="height"
+									class="input-validate form-control input-sm" step="any"
+									placeholder="<spring:message
 						code="param.physicalactivity.classifydetail.from.basic.required.duration" />"
-										required min="1" max="7"
-										ng-minlength="
+									required min="1" max="1440"
+									ng-minlength="
 							<spring:message code="param.physicalactivity.classifydetail.from.basic.quantity.minlength.duration" />
-						"
-										 />
-								</div>
-								<div class=" text-muted col-lg-1">
-									<label for="height"> <spring:message
-											code="param.physicalactivity.classifydetail.from.basic.suffix.duration" />
-									</label>
-								</div>
+						" />
+
 								<div
 									class="has-error text-danger text-muted col-lg-12 text-center"
 									ng-show="classifyFormBasic.height.$dirty">

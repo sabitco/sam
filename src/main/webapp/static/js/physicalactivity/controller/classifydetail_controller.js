@@ -8,13 +8,13 @@ App.controller('ClassifyDetailController', [
     'baseUrlView',
     'userService',
     'baseUrlUsers',
-    'sportscheckedService',
-    'baseUrlSportsChecked',
+    'sportsService',
+    'baseUrlSports',
     'preclassifyService',
     'baseUrlPreclassifies',
 
     function($scope, $window, $http, $uibModal, $log, viewService, baseUrlView,
-        userService, baseUrlUsers, sportscheckedService, baseUrlSportsChecked,
+        userService, baseUrlUsers, sportsService, baseUrlSports,
         preclassifyService, baseUrlPreclassifies) {
 
       /*
@@ -87,13 +87,12 @@ App.controller('ClassifyDetailController', [
 
       /** funtion for load detai activities by userID * */
       self.loadSportsCheckedListByUser = function(userID) {
-        sportscheckedService.loadSportsCheckedListByUser(userID).then(
-            function(d) {
-              $scope.listSportsCheckedSelect = d;
-              console.log($scope.listSportsCheckedSelect);
-            }, function(errResponse) {
-              console.error('Error while fetching Currencies');
-            });
+        sportsService.loadSportsCheckedListByUser(userID).then(function(d) {
+          $scope.listSportsCheckedSelect = d;
+          console.log($scope.listSportsCheckedSelect);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
       };
 
       /** funtion for Create(save) from Signon * */
