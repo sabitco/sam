@@ -13,12 +13,8 @@ import co.edu.unal.sam.aspect.model.domain.User;
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user_disease")
 @NamedQueries({
-        @NamedQuery(name = "UserDisease.findDiseaseDtoByStateOrUser",
-                query = "select new co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto(d.id, d.name "
-                        + ", case when u.id is not null then true else false end) "
-                        + "from Disease d left join d.users u where d.state = :state or u.user = :user"),
         @NamedQuery(name = "UserDisease.findDiseaseDtoByStateAndUser",
-                query = "select new co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto(d.id, d.name "
+                query = "select new co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto(d.id, u.name "
                         + ", case when u.id is not null then true else false end) "
                         + "from Disease d left join d.users u where d.state = :state and u.user = :user"),
         @NamedQuery(name = "UserDisease.deleteByUser",
@@ -27,13 +23,13 @@ public class UserDisease extends Entity {
 
     @ManyToOne()
     @JoinColumn(name = "disease_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_user_disease_disease") )
+            foreignKey = @ForeignKey(name = "fk_user_disease_disease"))
     @NotNull
     private Disease disease;
 
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false,
-            foreignKey = @ForeignKey(name = "fk_user_disease_user") )
+            foreignKey = @ForeignKey(name = "fk_user_disease_user"))
     @NotNull
     private User user;
 
