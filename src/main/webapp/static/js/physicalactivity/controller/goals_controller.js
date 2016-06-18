@@ -1,6 +1,6 @@
 App
     .controller(
-        'ClassifyController',
+        'GoalsController',
         [
             '$scope',
             '$window',

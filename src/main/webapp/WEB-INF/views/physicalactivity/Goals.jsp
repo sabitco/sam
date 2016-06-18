@@ -3,20 +3,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script type="text/javascript">
-  var sessionUserID = "${sessionScope.user.id}";
-  var sessionUserUsername = "${sessionScope.user.username}";
-  var sessionUserName = "${sessionScope.user.name}";
-  var sessionUserSurname = "${sessionScope.user.surname}";
-  var sessionUserEmail = "${sessionScope.user.email}";
-  var sessionUserIdentityDocument = "${sessionScope.user.identityDocument}";
-  var sessionUserAge = "${sessionScope.user.age}";
-  var sessionUserHeight = parseFloat("${sessionScope.user.height}");
-  var sessionUserWeight = parseFloat("${sessionScope.user.weight}");
-  var sessionUserProgress = parseFloat("${sessionScope.user.progress}");
-</script>
+<script src="<c:url value='/static/js/physicalactivity/session.js' />"></script>
 
-<div ng-controller="ClassifyController as ctrl"
+<div ng-controller="GoalsController as ctrl"
 	ng-init="getSession(
 	sessionUserID,
 	sessionUserUsername,
@@ -30,8 +19,8 @@
 	sessionUserProgress)">
 
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session" value="Classification" />
-	<c:set var="namePage" scope="session" value="Queremos Saber De Ti" />
+	<c:set var="titlePage" scope="session" value="Goals" />
+	<c:set var="namePage" scope="session" value="Que Quieres Hacer" />
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 

@@ -28,7 +28,7 @@ App.controller('ClassifyDetailController', [
       self.classify = {};
 
       /** Url Success * */
-      var urlsuccess = "/physicalactivity/Classificationdetail";
+      var urlsuccess = "/physicalactivity/Goals";
 
       /** funtion for load detai Morris by userID * */
       self.loadMorris = function(userProgress) {
