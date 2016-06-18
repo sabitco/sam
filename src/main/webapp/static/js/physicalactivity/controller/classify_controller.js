@@ -71,11 +71,8 @@ App
                     weight : userWeight,
                     diseases : {},
                     activities : {},
-                    otherDiseases : "",
-                    otherActivities : "",
                     progress : userProgress
                   };
-                  // console.log(self.classify);
                 }
               };
 
@@ -111,7 +108,6 @@ App
                         self.open('lg', successResponse.detail, 'ERROR');
                         console.error('Error En Datos');
                       }
-                      console.error('guardo');
                     }, function(errResponse) {
                       self.open('lg', errResponse, 'ERROR');
                       console.error('Error while creating preclassify');
@@ -123,20 +119,20 @@ App
                */
               self.submit = function() {
 
-                if ((self.classify.otherActivities != "")
-                    || (self.classify.otherActivities != null)) {
-                  $scope.listSportsSelect.push({
-                    "name" : self.classify.otherActivities,
-                    "selected" : true
-                  })
-                }
-                if ((self.classify.otherDiseases != "")
-                    || (self.classify.otherDiseases != null)) {
-                  $scope.listDiseasesSelect.push({
-                    "name" : self.classify.otherDiseases,
-                    "selected" : true
-                  })
-                }
+                // if ((self.classify.otherActivities != "")
+                // || (self.classify.otherActivities != null)) {
+                // $scope.listSportsSelect.push({
+                // "name" : self.classify.otherActivities,
+                // "selected" : true
+                // })
+                // }
+                // if ((self.classify.otherDiseases != "")
+                // || (self.classify.otherDiseases != null)) {
+                // $scope.listDiseasesSelect.push({
+                // "name" : self.classify.otherDiseases,
+                // "selected" : true
+                // })
+                // }
 
                 self.classifyOne = {
                   id : self.classify.id,

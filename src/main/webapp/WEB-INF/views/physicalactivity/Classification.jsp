@@ -3,7 +3,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script src="<c:url value='/static/js/physicalactivity/session.js' />"></script>
+<jsp:include page="components/Session.jsp" /> 
 
 <div ng-controller="ClassifyController as ctrl"
 	ng-init="getSession(
@@ -20,7 +20,8 @@
 
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Classification" />
-	<c:set var="namePage" scope="session" value="Queremos Saber De Ti" />
+	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, Queremos Saber De Ti" />
+	
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 

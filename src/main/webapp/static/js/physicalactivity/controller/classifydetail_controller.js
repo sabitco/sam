@@ -28,7 +28,7 @@ App.controller('ClassifyDetailController', [
       self.classify = {};
 
       /** Url Success * */
-      var urlsuccess = "/physicalactivity/Goals";
+      var urlsuccess = "/physicalactivity/goals";
 
       /** funtion for load detai Morris by userID * */
       self.loadMorris = function(userProgress) {
@@ -81,7 +81,7 @@ App.controller('ClassifyDetailController', [
 
       /** funtion for Create(save) from Signon * */
       self.nextClassify = function(classify) {
-        classifyDetailService.classify(self.classify).then(
+        classifyDetailService.classify(classify).then(
             function(successResponse) {
               console.log(successResponse);
               if (successResponse.status === 201) {

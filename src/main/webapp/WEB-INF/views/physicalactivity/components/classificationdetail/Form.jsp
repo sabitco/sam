@@ -138,8 +138,7 @@
 			<div class="panel-body">
 				<ul class="chat" ng-repeat="activities in listSportsCheckedSelect">
 					<li class="left clearfix">
-						<div class="clearfix col-lg-12">
-
+					
 							<div class="col-lg-2">
 								<strong class="primary-font">{{activities.name}}</strong>
 							</div>

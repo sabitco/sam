@@ -60,6 +60,8 @@
 	src="/static/bower_components/ui-bootstrap-tpls-1.1.2/js/ui-bootstrap-tpls-1.2.1.js"></script>
 
 <!-- Js Home -->
+
+
 <script src="<c:url value='/static/js/physicalactivity/app.js' />"
 	ng-module="physicalactivity"></script>
 <script src="<c:url value='/static/js/physicalactivity/base_url.js' />"

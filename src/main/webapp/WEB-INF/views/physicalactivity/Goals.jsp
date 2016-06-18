@@ -3,7 +3,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<script src="<c:url value='/static/js/physicalactivity/session.js' />"></script>
+<jsp:include page="components/Session.jsp" /> 
 
 <div ng-controller="GoalsController as ctrl"
 	ng-init="getSession(
@@ -20,7 +20,7 @@
 
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Goals" />
-	<c:set var="namePage" scope="session" value="Que Quieres Hacer" />
+	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, tienes un riesgo ${sessionScope.user.risk.name} </br>Que te gustaria hacer?" />
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
@@ -48,11 +48,10 @@
                 	<div class="col-sm-9 page-wrapper-white">
 	                	<jsp:include page="components/includes/Title.jsp" />
 						<div class="panel panel-body">
-							<div class="panel-orange text-muted">
-								<label><spring:message
-										code="param.physicalactivity.classify" /></label>
-							</div>
-							<jsp:include page="components/classification/Form.jsp" />
+<!-- 							<div class="panel-orange text-muted"> -->
+<%-- 								<label><spring:message code="param.physicalactivity.goals" /></label>  --%>
+<!-- 							</div> -->
+							<jsp:include page="components/goals/Form.jsp" />
 							
 						</div>
 		            </div>
@@ -92,11 +91,11 @@
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/preclassify_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/classifydetail_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/controller/classify_controller.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/controller/goals_controller.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
