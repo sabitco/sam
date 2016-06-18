@@ -103,13 +103,18 @@ App
               /** funtion for Create(save) from Signon * */
               self.nextClassify = function(classify) {
 
-                if (null !== classify.otherActivities) {
+                if ((str == "") || (str == null)) {
+                  // enter code here
+                }
+                if ((classify.otherActivities == "")
+                    || (classify.otherActivities == null)) {
                   $scope.listSportsSelect.push({
                     "name" : classify.otherActivities,
                     "selected" : true
                   })
                 }
-                if (null !== classify.otherDiseases) {
+                if ((classify.otherDiseases == "")
+                    || (classify.otherDiseases == null)) {
                   $scope.listDiseasesSelect.push({
                     "name" : classify.otherDiseases,
                     "selected" : true

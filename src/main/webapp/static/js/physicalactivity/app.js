@@ -101,23 +101,6 @@ App.config([ 'baseUrlSports', 'sportsServiceProvider',
       sportsServiceProvider.setBaseUrl(baseUrlSports);
     } ]);
 
-function SportscheckedServiceProvider() {
-  var _baseUrlSportsChecked;
-  this.setBaseUrl = function(baseUrlSportsChecked) {
-    _baseUrlSportsChecked = baseUrlSportsChecked;
-  }
-  this.$get = [ '$http', function($http) {
-    return new SportsCheckedService($http, _baseUrlSportsChecked);
-  } ];
-}
-
-App.provider("sportscheckedService", SportscheckedServiceProvider);
-
-App.config([ 'baseUrlSportsChecked', 'sportscheckedServiceProvider',
-    function(baseUrlSportsChecked, sportscheckedServiceProvider) {
-      sportscheckedServiceProvider.setBaseUrl(baseUrlSportsChecked);
-    } ]);
-
 function PreclassifyServiceProvider() {
   var _baseUrlPreclassifies;
   this.setBaseUrl = function(baseUrlPreclassifies) {

@@ -1,7 +1,7 @@
-function SportsService($http, baseUrlSports, baseUrlSportsChecked) {
+function SportsService($http, baseUrlSport) {
   return {
     loadSportsListByUser : function(userID) {
-      return $http.get(baseUrlSports + "/" + userID, {
+      return $http.get(baseUrlSport + "/" + userID, {
         params : {
           'state' : 'ACTIVE'
         }
@@ -12,9 +12,9 @@ function SportsService($http, baseUrlSports, baseUrlSportsChecked) {
       });
     },
     loadSportsCheckedListByUser : function(userID) {
-      return $http.get(baseUrlSportsChecked + "/" + userID, {
+      return $http.get(baseUrlSport + "/" + userID, {
         params : {
-          'state' : 'ACTIVE'
+          'onlySelected' : 'true'
         }
       }).then(function(response) {
         return response.data;
