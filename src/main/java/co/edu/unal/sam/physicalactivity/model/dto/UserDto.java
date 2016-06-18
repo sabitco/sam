@@ -23,6 +23,7 @@ public class UserDto extends Dto {
     private Set<DiseaseDto> diseases;
     private String email;
     private Faculty faculty;
+    private Set<GoalDto> goals;
     private Float height;
     private Boolean history;
     private String identityDocument;
@@ -39,6 +40,7 @@ public class UserDto extends Dto {
         super();
         this.activities = new HashSet<>();
         this.diseases = new HashSet<>();
+        this.goals = new HashSet<>();
     }
 
     @SuppressWarnings("deprecation")
@@ -129,6 +131,13 @@ public class UserDto extends Dto {
      */
     public Faculty getFaculty() {
         return this.faculty;
+    }
+
+    /**
+     * @return the goals
+     */
+    public Set<GoalDto> getGoals() {
+        return this.goals;
     }
 
     /**
@@ -276,6 +285,13 @@ public class UserDto extends Dto {
      */
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
+    }
+
+    /**
+     * @param goals the goals to set
+     */
+    public void setGoals(Set<GoalDto> goals) {
+        this.goals = goals;
     }
 
     /**

@@ -111,7 +111,7 @@ public class UserService {
         return user;
     }
 
-    public User createGoals(List<GoalDto> goalsDto, Long userId) {
+    public User createGoals(Set<GoalDto> goalsDto, Long userId) {
         User user = this.verify(userId);
         List<Long> ids = new ArrayList<>();
         for (GoalDto dto : goalsDto) {
