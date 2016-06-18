@@ -1,8 +1,10 @@
 package co.edu.unal.sam.physicalactivity.model.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -118,6 +120,9 @@ public class UserService {
             }
         }
         Iterable<Goal> goals = this.goalRepository.findAll(ids);
+        Date date = user.getDateExpireClasification();
+        LocalDate expireClasification = new java.sql.Date(date.getTime()).toLocalDate();
+        user.setDateExpireClasification(java.sql.Date.valueOf(expireClasification.plusMonths(3)));
         user.setGoals(Sets.newHashSet(goals));
         this.repository.save(user);
         return null;

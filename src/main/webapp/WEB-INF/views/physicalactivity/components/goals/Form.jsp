@@ -23,13 +23,13 @@
 				</h3>
 				<div class="col-lg-2 text-muted text-center">
 					<h4>
-						<label class="radio-inline"> <input type="radio"
-							name="{{activities.name}}" ng-model="activities.selected"
-							value={{activities.name}}> <strong><spring:message
+						<label class="radio-inline"> 
+                        <input type="radio" name="{{activities.name}}" ng-model="activities.selected"
+							ng-value="true"> <strong><spring:message
 									code="param.physicalactivity.goals.from.basic.true" /></strong>
 						</label> <label class="radio-inline"> <input type="radio"
 							ng-model="activities.selected" name="{{activities.name}}"
-							value={{activities.name}}> <strong><spring:message
+							ng-value="false"> <strong><spring:message
 									code="param.physicalactivity.goals.from.basic.false" /></strong>
 						</label>
 					</h4>
