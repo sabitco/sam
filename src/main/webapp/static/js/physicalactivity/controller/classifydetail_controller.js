@@ -81,7 +81,7 @@ App.controller('ClassifyDetailController', [
 
       /** funtion for Create(save) from Signon * */
       self.nextClassify = function(classify) {
-        classifyDetailService.preclassify(self.classify).then(
+        classifyDetailService.classify(self.classify).then(
             function(successResponse) {
               console.log(successResponse);
               if (successResponse.status === 201) {

@@ -100,7 +100,7 @@
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/preclassify_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/classifydetail_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
