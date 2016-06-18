@@ -36,6 +36,14 @@
  border-bottom: 4px solid rgba(204, 116, 0, 1.00);
 }
 
+
+.panel-orange-sports .panel-heading {
+ border-color: rgba(204, 116, 0, 1.00);;
+ color: #fff;
+ background-color: rgba(204, 116, 0, 1.00);;
+}
+
+
 .logo-sam {
  padding-left: 5%;
 }

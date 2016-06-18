@@ -103,9 +103,6 @@ App
               /** funtion for Create(save) from Signon * */
               self.nextClassify = function(classify) {
 
-                if ((str == "") || (str == null)) {
-                  // enter code here
-                }
                 if ((classify.otherActivities == "")
                     || (classify.otherActivities == null)) {
                   $scope.listSportsSelect.push({

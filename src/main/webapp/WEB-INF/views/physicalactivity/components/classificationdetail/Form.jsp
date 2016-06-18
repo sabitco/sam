@@ -129,7 +129,7 @@
 	</fieldset>
 
 	<fieldset class="col-md-12  text-muted menu-superior">
-		<div class="panel panel-orange panel-default-white">
+		<div class="panel panel-orange-sports  panel-default-white">
 			<div class="panel-heading">
 				<spring:message
 					code="param.physicalactivity.classify.present.sports" />
@@ -192,7 +192,6 @@
 				</ul>
 			</div>
 		</div>
-
 	</fieldset>
 
 	<fieldset class="col-md-12  text-muted menu-superior">
