@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -23,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
+import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
-import co.edu.unal.sam.physicalactivity.model.domain.SubGoal;
 import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 
 @javax.persistence.Entity
@@ -72,6 +73,9 @@ public class User extends Entity {
     @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "fk_user_faculty"))
     private Faculty faculty;
 
+    @ManyToMany(mappedBy = "users")
+    private Set<Goal> goals = new HashSet<>(0);
+
     @Column(name = "history")
     private Boolean history;
 
@@ -90,12 +94,6 @@ public class User extends Entity {
     @ManyToOne()
     @JoinColumn(name = "role_id", foreignKey = @ForeignKey(name = "fk_user_role"))
     private Role role;
-
-    /**
-     * TODO - VALIDAR subGoals
-     */
-    @OneToMany(mappedBy = "user")
-    private Set<SubGoal> subGoals = new HashSet<>(0);
 
     @Column(name = "surname", nullable = false)
     @NotNull
@@ -186,6 +184,13 @@ public class User extends Entity {
     }
 
     /**
+     * @return the goals
+     */
+    public Set<Goal> getGoals() {
+        return this.goals;
+    }
+
+    /**
      * @return the history
      */
     public Boolean getHistory() {
@@ -218,13 +223,6 @@ public class User extends Entity {
      */
     public Role getRole() {
         return this.role;
-    }
-
-    /**
-     * @return the subGoals
-     */
-    public Set<SubGoal> getSubGoals() {
-        return this.subGoals;
     }
 
     public String getSurname() {
@@ -316,6 +314,13 @@ public class User extends Entity {
     }
 
     /**
+     * @param goals the goals to set
+     */
+    public void setGoals(Set<Goal> goals) {
+        this.goals = goals;
+    }
+
+    /**
      * @param history the history to set
      */
     public void setHistory(final Boolean history) {
@@ -348,13 +353,6 @@ public class User extends Entity {
      */
     public void setRole(final Role role) {
         this.role = role;
-    }
-
-    /**
-     * @param subGoals the subGoals to set
-     */
-    public void setSubGoals(final Set<SubGoal> subGoals) {
-        this.subGoals = subGoals;
     }
 
     /**
