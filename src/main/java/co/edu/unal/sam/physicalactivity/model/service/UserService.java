@@ -1,7 +1,9 @@
 package co.edu.unal.sam.physicalactivity.model.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,7 +19,9 @@ import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
+import co.edu.unal.sam.physicalactivity.model.domain.Activity;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
+import co.edu.unal.sam.physicalactivity.model.domain.Disease;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
@@ -25,7 +29,9 @@ import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.IntensityEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
+import co.edu.unal.sam.physicalactivity.model.repository.ActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.BmiRepository;
+import co.edu.unal.sam.physicalactivity.model.repository.DiseaseRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.PhysicalActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
 
@@ -38,7 +44,13 @@ import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
 public class UserService {
 
     @Inject
+    private ActivityRepository activityRepository;
+
+    @Inject
     private BmiRepository bmiRepository;
+
+    @Inject
+    private DiseaseRepository diseaseRepository;
 
     @Inject
     private PhysicalActivityRepository physicalActivityRepository;
@@ -88,30 +100,62 @@ public class UserService {
         return user;
     }
 
-    public Iterable<ActivityDto> getActivities(User user, StateEnum state, Boolean onlySelected) {
+    public List<ActivityDto> getActivities(User user, StateEnum state, Boolean onlySelected) {
         if (state == null) {
             state = StateEnum.ACTIVE;
         }
-        Iterable<ActivityDto> activities = null;
+        List<ActivityDto> activitiesSelected =
+                this.physicalActivityRepository.findActivityDtoByStateAndUser(state, user);
+        List<Activity> activities = this.activityRepository.findByState(state);
+        List<ActivityDto> activitiesDto = new ArrayList<>();
         if (Boolean.TRUE.equals(onlySelected)) {
-            activities = this.physicalActivityRepository.findActivityDtoByStateAndUser(state, user);
+            activitiesDto = activitiesSelected;
         } else {
-            activities = this.physicalActivityRepository.findActivityDtoByStateOrUser(state, user);
+            ActivityDto dto;
+            for (Activity a : activities) {
+                dto = new ActivityDto(a.getId(), a.getName(), false);
+                for (ActivityDto d : activitiesSelected) {
+                    if (a.getId().equals(d.getId())) {
+                        dto.setName(d.getName());
+                        dto.setSelected(true);
+                    }
+                }
+                if (dto.getId().equals(1L) && !dto.getSelected()) {
+                    continue;
+                }
+                activitiesDto.add(dto);
+            }
         }
-        return activities;
+        return activitiesDto;
     }
 
     public Iterable<DiseaseDto> getDiseases(User user, StateEnum state, Boolean onlySelected) {
         if (state == null) {
             state = StateEnum.ACTIVE;
         }
-        Iterable<DiseaseDto> diseases = null;
+        List<DiseaseDto> diseasesSelected =
+                this.userDiseaseRepository.findDiseaseDtoByStateAndUser(state, user);
+        List<DiseaseDto> diseasesDto = new ArrayList<>(0);
+        List<Disease> diseases = this.diseaseRepository.findByState(state);
         if (Boolean.TRUE.equals(onlySelected)) {
-            diseases = this.userDiseaseRepository.findDiseaseDtoByStateAndUser(state, user);
+            diseasesDto = diseasesSelected;
         } else {
-            diseases = this.userDiseaseRepository.findDiseaseDtoByStateOrUser(state, user);
+            DiseaseDto dto;
+            for (Disease a : diseases) {
+                dto = new DiseaseDto(a.getId(), a.getName(), false);
+                for (DiseaseDto d : diseasesSelected) {
+                    if (a.getId().equals(d.getId())) {
+                        dto.setName(d.getName());
+                        dto.setSelected(true);
+                    }
+                }
+                if (dto.getId().equals(1L) && !dto.getSelected()) {
+                    continue;
+                }
+                diseasesDto.add(dto);
+            }
         }
-        return diseases;
+        return diseasesDto;
     }
 
     public void preClassifyUser(final User user) {
@@ -159,7 +203,7 @@ public class UserService {
     private TypeRiskEnum calculateRisk(User user, BmiCategoryEnum bmi) {
         TypeRiskEnum risk;
         Set<PhysicalActivity> activities = user.getPhysicalActivities();
-        Set<UserDisease> diseases = this.userDiseaseRepository.findByUser(user);
+        List<UserDisease> diseases = this.userDiseaseRepository.findByUser(user);
         if (!diseases.isEmpty()) {
             risk = TypeRiskEnum.INDETERMINATE;
         } else if (activities.isEmpty()) {

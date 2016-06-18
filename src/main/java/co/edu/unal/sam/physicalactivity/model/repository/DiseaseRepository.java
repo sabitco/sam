@@ -5,9 +5,10 @@ import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
-import co.edu.unal.sam.physicalactivity.model.domain.Activity;
+import co.edu.unal.sam.physicalactivity.model.domain.Disease;
 
-public interface ActivityRepository extends CrudRepository<Activity, Long> {
+public interface DiseaseRepository extends CrudRepository<Disease, Long> {
 
-    List<Activity> findByState(StateEnum state);
+    List<Disease> findByState(StateEnum state);
+
 }
