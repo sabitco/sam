@@ -1,5 +1,7 @@
 package co.edu.unal.sam.physicalactivity.model.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -19,11 +21,7 @@ public interface PhysicalActivityRepository extends CrudRepository<PhysicalActiv
     int deleteByUser(@Param("user") User user);
 
     @Query(name = "PhysicalActivity.findActivityDtoByStateAndUser")
-    Iterable<ActivityDto> findActivityDtoByStateAndUser(@Param("state") StateEnum state,
-            @Param("user") User user);
-
-    @Query(name = "PhysicalActivity.findActivityDtoByStateOrUser")
-    Iterable<ActivityDto> findActivityDtoByStateOrUser(@Param("state") StateEnum state,
+    List<ActivityDto> findActivityDtoByStateAndUser(@Param("state") StateEnum state,
             @Param("user") User user);
 
 }
