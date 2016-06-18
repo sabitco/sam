@@ -11,6 +11,10 @@ public class ActivityDto extends Dto {
 
     public ActivityDto() {}
 
+    public ActivityDto(Long id, String name) {
+        super(id, name);
+    }
+
     public ActivityDto(Long id, String name, Boolean selected) {
         super(id, name);
         this.selected = selected;
