@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.net.URI;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +35,7 @@ import co.edu.unal.sam.physicalactivity.model.converter.UserConverter;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
+import co.edu.unal.sam.physicalactivity.model.dto.GoalDto;
 import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 import co.edu.unal.sam.physicalactivity.model.service.UserService;
 
@@ -78,6 +80,17 @@ public class UserController {
         success.setMessage(this.messageSource.getMessage("user.created.successfully", null, null));
         success.setStatus(HttpStatus.CREATED.value());
         return new ResponseEntity<>(success, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = "/users/goals/{userId}", method = RequestMethod.POST)
+    public ResponseEntity<Successful> createGoals(@RequestBody List<GoalDto> goals,
+            @PathVariable Long userId) {
+        this.service.createGoals(goals, userId);
+        // Set the location header for the newly created resource
+        Successful success = new Successful();
+        success.setMessage(this.messageSource.getMessage("user.created.successfully", null, null));
+        success.setStatus(HttpStatus.CREATED.value());
+        return new ResponseEntity<>(success, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)

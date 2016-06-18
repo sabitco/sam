@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.google.common.collect.Sets;
+
 import co.edu.unal.sam.aspect.exception.BusinessException;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.aspect.model.domain.User;
@@ -22,16 +24,19 @@ import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.domain.Activity;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.Disease;
+import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
+import co.edu.unal.sam.physicalactivity.model.dto.GoalDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.IntensityEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 import co.edu.unal.sam.physicalactivity.model.repository.ActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.BmiRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.DiseaseRepository;
+import co.edu.unal.sam.physicalactivity.model.repository.GoalRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.PhysicalActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
 
@@ -51,6 +56,9 @@ public class UserService {
 
     @Inject
     private DiseaseRepository diseaseRepository;
+
+    @Inject
+    private GoalRepository goalRepository;
 
     @Inject
     private PhysicalActivityRepository physicalActivityRepository;
@@ -99,6 +107,20 @@ public class UserService {
             this.bmiRepository.save(user.getBmis());
         }
         return user;
+    }
+
+    public User createGoals(List<GoalDto> goalsDto, Long userId) {
+        User user = this.verify(userId);
+        List<Long> ids = new ArrayList<>();
+        for (GoalDto dto : goalsDto) {
+            if (Boolean.TRUE.equals(dto.getSelected())) {
+                ids.add(dto.getId());
+            }
+        }
+        Iterable<Goal> goals = this.goalRepository.findAll(ids);
+        user.setGoals(Sets.newHashSet(goals));
+        this.repository.save(user);
+        return null;
     }
 
     public List<ActivityDto> getActivities(User user, StateEnum state, Boolean onlySelected) {

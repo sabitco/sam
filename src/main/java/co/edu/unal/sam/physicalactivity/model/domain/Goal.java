@@ -3,11 +3,10 @@ package co.edu.unal.sam.physicalactivity.model.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -42,12 +41,7 @@ public class Goal extends Entity {
     @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TypeRiskType")
     private TypeRiskEnum risk;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "user_goal",
-            joinColumns = {@JoinColumn(name = "goal_id", nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_user_gols_user_id"))},
-            inverseJoinColumns = {@JoinColumn(name = "user_id", nullable = false,
-                    foreignKey = @ForeignKey(name = "fk_user_goal_goal_id"))})
+    @ManyToMany(mappedBy = "goals", cascade = CascadeType.ALL)
     private Set<User> users = new HashSet<>(0);
 
     /**
@@ -79,6 +73,13 @@ public class Goal extends Entity {
     }
 
     /**
+     * @return the users
+     */
+    public Set<User> getUsers() {
+        return this.users;
+    }
+
+    /**
      * @param activity the activity to set
      */
     public void setActivity(Activity activity) {
@@ -104,6 +105,13 @@ public class Goal extends Entity {
      */
     public void setRisk(TypeRiskEnum risk) {
         this.risk = risk;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 }

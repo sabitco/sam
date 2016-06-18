@@ -5,8 +5,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -73,7 +75,12 @@ public class User extends Entity {
     @JoinColumn(name = "faculty_id", foreignKey = @ForeignKey(name = "fk_user_faculty"))
     private Faculty faculty;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_goal",
+            joinColumns = {@JoinColumn(name = "user_id", nullable = false,
+                    foreignKey = @ForeignKey(name = "fk_user_gols_user_id"))},
+            inverseJoinColumns = {@JoinColumn(name = "goal_id", nullable = false,
+                    foreignKey = @ForeignKey(name = "fk_user_goal_goal_id"))})
     private Set<Goal> goals = new HashSet<>(0);
 
     @Column(name = "history")

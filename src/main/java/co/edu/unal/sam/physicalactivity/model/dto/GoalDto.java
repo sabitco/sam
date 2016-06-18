@@ -1,14 +1,15 @@
 package co.edu.unal.sam.physicalactivity.model.dto;
 
-public class GoalDto {
+public class GoalDto extends Dto {
 
     private ActivityDto activity;
     private Integer currentDays;
     private Integer currentMinutes;
     private Integer days;
-    private Long id;
     private Integer minutes;
     private Boolean selected;
+
+    public GoalDto() {}
 
     public GoalDto(ActivityDto activity, Long id, Integer days, Integer minutes, Boolean selected) {
         super();
@@ -47,13 +48,6 @@ public class GoalDto {
      */
     public Integer getDays() {
         return this.days;
-    }
-
-    /**
-     * @return the id
-     */
-    public Long getId() {
-        return this.id;
     }
 
     /**
@@ -96,13 +90,6 @@ public class GoalDto {
      */
     public void setDays(Integer days) {
         this.days = days;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Long id) {
-        this.id = id;
     }
 
     /**
