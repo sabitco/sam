@@ -66,7 +66,7 @@ public class UserService {
      * 
      * @param user to classify
      */
-    public void classifyUser(final User user) {
+    public TypeRiskEnum classifyUser(final User user) {
         // TODO cambiar respuesta del metodo
         Set<Bmi> bmis = this.bmiRepository.findByUser(user);
         Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
@@ -75,6 +75,7 @@ public class UserService {
         this.bmiRepository.save(bmi);
         this.physicalActivityRepository.deleteByUser(user);
         this.physicalActivityRepository.save(user.getPhysicalActivities());
+        return risk;
     }
 
     /**
@@ -158,11 +159,20 @@ public class UserService {
         return diseasesDto;
     }
 
-    public void preClassifyUser(final User user) {
+    public Bmi preClassifyUser(final User user) {
+        Set<Bmi> bmis = this.verify(user.getId()).getBmis();
+        Bmi b2 = Collections.max(user.getBmis(), Comparator.comparing(b -> b.getDateRegister()));
+        if (!bmis.isEmpty()) {
+            Bmi b1 = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
+            if (!b1.getHeight().equals(b2.getHeight()) || !b1.getWeight().equals(b2.getWeight())) {
+                this.bmiRepository.save(this.calculateBmi(b2));
+            }
+        }
         this.physicalActivityRepository.deleteByUser(user);
         this.userDiseaseRepository.deleteByUser(user);
         this.physicalActivityRepository.save(user.getPhysicalActivities());
         this.userDiseaseRepository.save(user.getDiseases());
+        return b2;
     }
 
     public User verify(Long userId) throws ResourceNotFoundException {
@@ -178,24 +188,31 @@ public class UserService {
         return user;
     }
 
+    private Bmi calculateBmi(Bmi bmi) {
+        final Float height = bmi.getHeight();
+        final Float weight = bmi.getWeight();
+        if (weight == null && height == null) {
+            throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
+        } else if (height == null || Float.valueOf(0).equals(height)) {
+            throw new BusinessException("NotNull.user.height", HttpStatus.BAD_REQUEST);
+        } else if (weight == null) {
+            throw new BusinessException("NotNull.user.weight", HttpStatus.BAD_REQUEST);
+        }
+        if (Objects.isNull(bmi)) {
+            bmi = new Bmi();
+        }
+        Float value = new Float((weight / Math.pow(height, 2D)));
+        bmi.setBmi(value);
+        bmi.setCategory(BmiCategoryEnum.getCategory(value));
+        bmi.setName(bmi.getCategory().getName());
+        return bmi;
+    }
+
     private Bmi calculateBmi(final User user) {
         Set<Bmi> bmis = user.getBmis();
         if (!bmis.isEmpty()) {
             Bmi bmi = Collections.max(bmis, Comparator.comparing(b -> b.getDateRegister()));
-            final Float height = bmi.getHeight();
-            final Float weight = bmi.getWeight();
-            if (weight == null && height == null) {
-                throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
-            } else if (height == null || Float.valueOf(0).equals(height)) {
-                throw new BusinessException("NotNull.user.height", HttpStatus.BAD_REQUEST);
-            } else if (weight == null) {
-                throw new BusinessException("NotNull.user.weight", HttpStatus.BAD_REQUEST);
-            }
-            Float value = new Float((weight / Math.pow(height, 2D)));
-            bmi.setBmi(value);
-            bmi.setCategory(BmiCategoryEnum.getCategory(value));
-            bmi.setName(bmi.getCategory().name());
-            return bmi;
+            return calculateBmi(bmi);
         }
         throw new BusinessException("NotNull.user.height_weight", HttpStatus.BAD_REQUEST);
     }

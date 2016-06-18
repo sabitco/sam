@@ -9,6 +9,7 @@ import java.util.Set;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
+import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 
 public class UserDto extends Dto {
 
@@ -27,6 +28,7 @@ public class UserDto extends Dto {
     private String identityDocument;
     private String password;
     private Integer progress;
+    private TypeRiskEnum risk;
     private String surname;
     private TypeUserEnum typeuser;
     private Boolean useCondition;
@@ -67,24 +69,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param activities the activities to set
-     */
-    public void setActivities(Set<ActivityDto> activities) {
-        this.activities = activities;
-    }
-
-    /**
      * @return the age
      */
     public int getAge() {
         return this.age;
-    }
-
-    /**
-     * @param age the age to set
-     */
-    public void setAge(int age) {
-        this.age = age;
     }
 
     /**
@@ -95,24 +83,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param dateBirth the dateBirth to set
-     */
-    public void setDateBirth(Date dateBirth) {
-        this.dateBirth = dateBirth;
-    }
-
-    /**
      * @return the dateExpireClasification
      */
     public Date getDateExpireClasification() {
         return this.dateExpireClasification;
-    }
-
-    /**
-     * @param dateExpireClasification the dateExpireClasification to set
-     */
-    public void setDateExpireClasification(Date dateExpireClasification) {
-        this.dateExpireClasification = dateExpireClasification;
     }
 
     /**
@@ -123,24 +97,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param dateIngress the dateIngress to set
-     */
-    public void setDateIngress(Date dateIngress) {
-        this.dateIngress = dateIngress;
-    }
-
-    /**
      * @return the dateInteraction
      */
     public Date getDateInteraction() {
         return this.dateInteraction;
-    }
-
-    /**
-     * @param dateInteraction the dateInteraction to set
-     */
-    public void setDateInteraction(Date dateInteraction) {
-        this.dateInteraction = dateInteraction;
     }
 
     /**
@@ -151,24 +111,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param descriptionHistory the descriptionHistory to set
-     */
-    public void setDescriptionHistory(String descriptionHistory) {
-        this.descriptionHistory = descriptionHistory;
-    }
-
-    /**
      * @return the diseases
      */
     public Set<DiseaseDto> getDiseases() {
         return this.diseases;
-    }
-
-    /**
-     * @param diseases the diseases to set
-     */
-    public void setDiseases(Set<DiseaseDto> diseases) {
-        this.diseases = diseases;
     }
 
     /**
@@ -179,24 +125,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
      * @return the faculty
      */
     public Faculty getFaculty() {
         return this.faculty;
-    }
-
-    /**
-     * @param faculty the faculty to set
-     */
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
     }
 
     /**
@@ -207,13 +139,6 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param height the height to set
-     */
-    public void setHeight(Float height) {
-        this.height = height;
-    }
-
-    /**
      * @return the history
      */
     public Boolean getHistory() {
@@ -221,24 +146,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @param history the history to set
-     */
-    public void setHistory(Boolean history) {
-        this.history = history;
-    }
-
-    /**
      * @return the identityDocument
      */
     public String getIdentityDocument() {
         return this.identityDocument;
-    }
-
-    /**
-     * @param identityDocument the identityDocument to set
-     */
-    public void setIdentityDocument(String identityDocument) {
-        this.identityDocument = identityDocument;
     }
 
     /**
@@ -256,6 +167,139 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the risk
+     */
+    public TypeRiskEnum getRisk() {
+        return this.risk;
+    }
+
+    /**
+     * @return the surname
+     */
+    public String getSurname() {
+        return this.surname;
+    }
+
+    /**
+     * @return the typeuser
+     */
+    public TypeUserEnum getTypeuser() {
+        return this.typeuser;
+    }
+
+    /**
+     * @return the useCondition
+     */
+    public Boolean getUseCondition() {
+        return this.useCondition;
+    }
+
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+        return this.username;
+    }
+
+    /**
+     * @return the weight
+     */
+    public Float getWeight() {
+        return this.weight;
+    }
+
+    /**
+     * @param activities the activities to set
+     */
+    public void setActivities(Set<ActivityDto> activities) {
+        this.activities = activities;
+    }
+
+    /**
+     * @param age the age to set
+     */
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    /**
+     * @param dateBirth the dateBirth to set
+     */
+    public void setDateBirth(Date dateBirth) {
+        this.dateBirth = dateBirth;
+    }
+
+    /**
+     * @param dateExpireClasification the dateExpireClasification to set
+     */
+    public void setDateExpireClasification(Date dateExpireClasification) {
+        this.dateExpireClasification = dateExpireClasification;
+    }
+
+    /**
+     * @param dateIngress the dateIngress to set
+     */
+    public void setDateIngress(Date dateIngress) {
+        this.dateIngress = dateIngress;
+    }
+
+    /**
+     * @param dateInteraction the dateInteraction to set
+     */
+    public void setDateInteraction(Date dateInteraction) {
+        this.dateInteraction = dateInteraction;
+    }
+
+    /**
+     * @param descriptionHistory the descriptionHistory to set
+     */
+    public void setDescriptionHistory(String descriptionHistory) {
+        this.descriptionHistory = descriptionHistory;
+    }
+
+    /**
+     * @param diseases the diseases to set
+     */
+    public void setDiseases(Set<DiseaseDto> diseases) {
+        this.diseases = diseases;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @param faculty the faculty to set
+     */
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    /**
+     * @param height the height to set
+     */
+    public void setHeight(Float height) {
+        this.height = height;
+    }
+
+    /**
+     * @param history the history to set
+     */
+    public void setHistory(Boolean history) {
+        this.history = history;
+    }
+
+    /**
+     * @param identityDocument the identityDocument to set
+     */
+    public void setIdentityDocument(String identityDocument) {
+        this.identityDocument = identityDocument;
+    }
+
+    /**
      * @param password the password to set
      */
     public void setPassword(String password) {
@@ -270,10 +314,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @return the surname
+     * @param risk the risk to set
      */
-    public String getSurname() {
-        return this.surname;
+    public void setRisk(TypeRiskEnum risk) {
+        this.risk = risk;
     }
 
     /**
@@ -284,24 +328,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @return the typeuser
-     */
-    public TypeUserEnum getTypeuser() {
-        return this.typeuser;
-    }
-
-    /**
      * @param typeuser the typeuser to set
      */
     public void setTypeuser(TypeUserEnum typeuser) {
         this.typeuser = typeuser;
-    }
-
-    /**
-     * @return the useCondition
-     */
-    public Boolean getUseCondition() {
-        return this.useCondition;
     }
 
     /**
@@ -312,24 +342,10 @@ public class UserDto extends Dto {
     }
 
     /**
-     * @return the username
-     */
-    public String getUsername() {
-        return this.username;
-    }
-
-    /**
      * @param username the username to set
      */
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    /**
-     * @return the weight
-     */
-    public Float getWeight() {
-        return this.weight;
     }
 
     /**

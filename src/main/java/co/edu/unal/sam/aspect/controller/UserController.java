@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.net.URI;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.commons.codec.binary.Base64;
@@ -30,6 +31,7 @@ import co.edu.unal.sam.aspect.model.dto.response.Successful;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.converter.UserConverter;
+import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
@@ -51,10 +53,17 @@ public class UserController {
     private UserService service;
 
     @RequestMapping(value = "/users/classify", method = RequestMethod.PUT)
-    public ResponseEntity<Void> classifyUser(@RequestBody UserDto user) {
+    public ResponseEntity<Successful> classifyUser(@RequestBody UserDto user,
+            HttpServletRequest request) {
         this.service.verify(user.getId());
-        this.service.classifyUser(this.converter.convert(user));
-        return new ResponseEntity<>(null, HttpStatus.OK);
+        UserDto dto = (UserDto) request.getSession().getAttribute("user");
+        dto.setRisk(this.service.classifyUser(this.converter.convert(user)));
+        request.getSession().setAttribute("user", dto);
+        Successful success = new Successful();
+        success.setMessage(
+                this.messageSource.getMessage("user.preclassify.successfully", null, null));
+        success.setStatus(HttpStatus.CREATED.value());
+        return new ResponseEntity<>(success, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/admin/users", method = RequestMethod.POST)
@@ -110,9 +119,13 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users/preclassify", method = RequestMethod.PUT)
-    public ResponseEntity<Successful> preClassifyUser(@RequestBody UserDto user) {
-        this.service.verify(user.getId());
-        this.service.preClassifyUser(this.converter.convert(user));
+    public ResponseEntity<Successful> preClassifyUser(@RequestBody UserDto user,
+            HttpServletRequest request) {
+        Bmi bmi = this.service.preClassifyUser(this.converter.convert(user));
+        UserDto dto = (UserDto) request.getSession().getAttribute("user");
+        dto.setHeight(bmi.getHeight());
+        dto.setWeight(bmi.getWeight());
+        request.getSession().setAttribute("user", dto);
         Successful success = new Successful();
         success.setMessage(
                 this.messageSource.getMessage("user.preclassify.successfully", null, null));
