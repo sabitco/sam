@@ -18,6 +18,16 @@ public class IndexController {
         return "physicalactivity/Classification";
     }
 
+    @RequestMapping(value = "/physicalactivity/goals", method = RequestMethod.GET)
+    public String getIndexFromGoals() {
+        return "physicalactivity/Goals";
+    }
+
+    @RequestMapping(value = "/physicalactivity/goalsdetail", method = RequestMethod.GET)
+    public String getIndexFromGoalsdetail() {
+        return "physicalactivity/Goalsdetail";
+    }
+
     @RequestMapping(value = "/physicalactivity/signon", method = RequestMethod.GET)
     public String getIndexFromPlayer() {
         return "physicalactivity/Signon";

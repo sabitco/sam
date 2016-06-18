@@ -31,11 +31,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/enum/ **")
-                .authenticated().antMatchers("/administrator/ **").authenticated()
-                .antMatchers("/physicalactivity/classification").authenticated()
-                .antMatchers("/physicalactivity/Classificationdetail").authenticated().and()
-        .formLogin().loginPage("/login").permitAll().and().logout().permitAll().and()
-        .csrf().disable();
+        .authenticated().antMatchers("/administrator/ **").authenticated()
+        .antMatchers("/physicalactivity/classification").authenticated()
+        .antMatchers("/physicalactivity/Classificationdetail").authenticated()
+        .antMatchers("/physicalactivity/goals").authenticated()
+        .antMatchers("/physicalactivity/goalsdetail").authenticated().and().formLogin()
+        .loginPage("/login").permitAll().and().logout().permitAll().and().csrf().disable();
         http.formLogin().successHandler(this.authenticationHandler);
     }
 }

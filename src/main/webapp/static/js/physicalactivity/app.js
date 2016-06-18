@@ -101,6 +101,23 @@ App.config([ 'baseUrlSports', 'sportsServiceProvider',
       sportsServiceProvider.setBaseUrl(baseUrlSports);
     } ]);
 
+function ClassifyDetailServiceProvider() {
+  var _baseUrlClassifyDetail;
+  this.setBaseUrl = function(baseUrlClassifyDetail) {
+    _baseUrlClassifyDetail = baseUrlClassifyDetail;
+  }
+  this.$get = [ '$http', function($http) {
+    return new ClassifyDetailService($http, _baseUrlClassifyDetail);
+  } ];
+}
+
+App.provider("classifyDetailService", ClassifyDetailServiceProvider);
+
+App.config([ 'baseUrlClassifyDetail', 'classifyDetailServiceProvider',
+    function(baseUrlClassifyDetail, classifyDetailServiceProvider) {
+      classifyDetailServiceProvider.setBaseUrl(baseUrlClassifyDetail);
+    } ]);
+
 function PreclassifyServiceProvider() {
   var _baseUrlPreclassifies;
   this.setBaseUrl = function(baseUrlPreclassifies) {

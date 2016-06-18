@@ -10,12 +10,12 @@ App.controller('ClassifyDetailController', [
     'baseUrlUsers',
     'sportsService',
     'baseUrlSports',
-    'preclassifyService',
-    'baseUrlPreclassifies',
+    'classifyDetailService',
+    'baseUrlClassifyDetail',
 
     function($scope, $window, $http, $uibModal, $log, viewService, baseUrlView,
         userService, baseUrlUsers, sportsService, baseUrlSports,
-        preclassifyService, baseUrlPreclassifies) {
+        classifyDetailService, baseUrlClassifyDetail) {
 
       /*
        * Init Var
@@ -26,22 +26,6 @@ App.controller('ClassifyDetailController', [
 
       /** init classify * */
       self.classify = {};
-
-      /** init activityType * */
-      self.activityType = [ {
-        id : '1',
-        name : 'Option A',
-        selected : true
-      }, {
-        id : '2',
-        name : 'Option B',
-        selected : false
-
-      }, {
-        id : '3',
-        name : 'Option C',
-        selected : true
-      } ];
 
       /** Url Success * */
       var urlsuccess = "/physicalactivity/Classificationdetail";
@@ -97,13 +81,7 @@ App.controller('ClassifyDetailController', [
 
       /** funtion for Create(save) from Signon * */
       self.nextClassify = function(classify) {
-        self.classifyOne = {
-          id : classify.id,
-          name : classify.name,
-          activities : $scope.listSportsCheckedSelect
-        };
-
-        preclassifyService.preclassify(self.classifyOne).then(
+        classifyDetailService.preclassify(self.classify).then(
             function(successResponse) {
               console.log(successResponse);
               if (successResponse.status === 201) {
@@ -122,7 +100,12 @@ App.controller('ClassifyDetailController', [
        * Function Submit
        */
       self.submit = function() {
-        self.nextClassify(self.classify);
+
+        self.classifyOne = {
+          id : self.classify.id,
+          activities : $scope.listSportsCheckedSelect
+        };
+        self.nextClassify(self.classifyOne);
       };
 
       /*
