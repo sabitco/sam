@@ -5,17 +5,19 @@ import javax.persistence.Column;
 import co.edu.unal.sam.aspect.model.domain.Entity;
 
 @javax.persistence.Entity
-@javax.persistence.Table(name = "tip")
-public class Tip extends Entity {
+@javax.persistence.Table(name = "advantage")
+public class Advantage extends Entity {
 
-    @Column(name = "description", columnDefinition = "TEXT", nullable = true)
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
+
+    public Advantage() {}
 
     /**
      * @return the description
      */
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     /**
