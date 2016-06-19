@@ -16,3 +16,7 @@ App.constant("baseUrlSports", "http://localhost:8080/users/activities/");
 App.constant("baseUrlPreclassifies", "http://localhost:8080/users/preclassify");
 
 App.constant("baseUrlClassifyDetail", "http://localhost:8080/users/classify");
+
+App.constant("baseUrlGoals", "http://localhost:8080/goals/users/");
+
+App.constant("baseUrlUserGoals", "http://localhost:8080/users/goals");

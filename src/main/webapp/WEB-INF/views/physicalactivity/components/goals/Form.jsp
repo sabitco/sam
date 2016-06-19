@@ -4,7 +4,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<form role="form" ng-submit="ctrl.submit()" name="classifyFormBasic"
+<form role="form" ng-submit="ctrl.submit()" name="goalsFormBasic"
 	class="form-horizontal col-md-12 list-group">
 
 	<input type="hidden" name="id" value="ctrl.goals.id"
@@ -16,19 +16,19 @@
 			<spring:message code="param.physicalactivity.goals" />
 		</div>
 
-		<ul class="chat" ng-repeat="activities in listSportsCheckedSelect">
+		<ul class="chat" ng-repeat="goals in listGoalsSelect">
 			<li class="left clearfix">
 				<h3>
-					<label> {{activities.name}} </label>
+					<label> {{goals.name}} </label>
 				</h3>
 				<div class="col-lg-2 text-muted text-center">
 					<h4>
 						<label class="radio-inline"> 
-                        <input type="radio" name="{{activities.name}}" ng-model="activities.selected"
+                        <input type="radio" name="{{goals.name}}" ng-model="goals.selected"
 							ng-value="true"> <strong><spring:message
 									code="param.physicalactivity.goals.from.basic.true" /></strong>
 						</label> <label class="radio-inline"> <input type="radio"
-							ng-model="activities.selected" name="{{activities.name}}"
+							ng-model="goals.selected" name="{{goals.name}}"
 							ng-value="false"> <strong><spring:message
 									code="param.physicalactivity.goals.from.basic.false" /></strong>
 						</label>
@@ -45,21 +45,21 @@
 							<span class="input-group-addon"> <spring:message
 									code="param.physicalactivity.goals.from.currentactivity.days" />
 							</span>
-							<p class="text-center">1</p>
+							<p class="text-center">{{goals.currentDays}}</p>
 						</div>
 
 						<div class="col-lg-4">
 							<span class="input-group-addon"> <spring:message
 									code="param.physicalactivity.goals.from.currentactivity.minutes" />
 							</span>
-							<p class="text-center">1</p>
+							<p class="text-center">{{goals.currentMinutes}}</p>
 						</div>
 
 						<div class="col-lg-4">
 							<span class="input-group-addon"> <spring:message
 									code="param.physicalactivity.goals.from.currentactivity.totalweek" />
 							</span>
-							<p class="text-center">1</p>
+							<p class="text-center">{{goals.currentMinutes*goals.currentDays}} min</p>
 						</div>
 					</div>
 				</div>
@@ -75,21 +75,21 @@
 							<span class="input-group-addon"> <spring:message
 									code="param.physicalactivity.goals.from.suggestedactivity.days" />
 							</span>
-							<p class="text-center">1</p>
+							<p class="text-center">{{goals.days}}</p>
 						</div>
 
 						<div class="col-lg-4">
 							<span class="input-group-addon"> <spring:message
 									code="param.physicalactivity.goals.from.suggestedactivity.minutes" />
 							</span>
-							<p class="text-center">1</p>
+							<p class="text-center">{{goals.minutes}}</p>
 						</div>
 
 						<div class="col-lg-4">
 							<span class="input-group-addon"> <spring:message
 									code="param.physicalactivity.goals.from.suggestedactivity.totalweek" />
 							</span>
-							<p class="text-center">1</p>
+							<p class="text-center">{{goals.minutes*goals.days}} min</p>
 						</div>
 					</div>
 				</div>
