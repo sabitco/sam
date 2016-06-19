@@ -4,13 +4,14 @@ App.controller('HomeController', [
     '$http',
     '$uibModal',
     '$log',
-    'goalsService',
+    'homeService',
     'baseUrlGoals',
     'usergoalsService',
     'baseUrlUserGoals',
+    'baseUrlUserTips',
 
-    function($scope, $window, $http, $uibModal, $log, goalsService,
-        baseUrlGoals, usergoalsService, baseUrlUserGoals) {
+    function($scope, $window, $http, $uibModal, $log, homeService,
+        baseUrlGoals, usergoalsService, baseUrlUserGoals, baseUrlUserTips) {
 
       /*
        * Init Var
@@ -122,22 +123,42 @@ App.controller('HomeController', [
 
       /** funtion for load detai Tips by userID * */
       self.loadTipsListByUser = function(userID) {
-
+          homeService.loadTips().then(function(d) {
+            $scope.listTips = d;
+            console.log($scope.listTips);
+          }, function(errResponse) {
+            console.error('Error while fetching Currencies');
+          });
       };
 
       /** funtion for load detai Advantages by userID * */
       self.loadAdvantagesListByUser = function(userID) {
-
+        homeService.loadAdvantages().then(function(d) {
+          $scope.listAdvantages = d;
+          console.log($scope.listAdvantages);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
       };
 
       /** funtion for load detai Alerts by userID * */
       self.loadAlertsListByUser = function(userID) {
-
+        homeService.loadAlerts().then(function(d) {
+          $scope.listAlerts = d;
+          console.log($scope.listAlerts);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
       };
 
       /** funtion for load detai Myths by userID * */
       self.loadMythsListByUser = function(userID) {
-
+        homeService.loadMyths().then(function(d) {
+          $scope.listMyths = d;
+          console.log($scope.listMyths);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
       };
       /*
        * Function Model

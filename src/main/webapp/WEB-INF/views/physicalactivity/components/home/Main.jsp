@@ -8,61 +8,65 @@
 	ng-model="ctrl.goals.id" />
 
 <div class="col-lg-7 text-muted text-center">
-
+    <!-- Tips -->
 	<div class="panel panel-orange-sports  panel-default-white">
 		<div class="panel-heading">
 			<spring:message code="param.physicalactivity.tip" />
 		</div>
-
-		<ul class="chat" ng-repeat="goals in listGoalsSelect">
-			<li class="left clearfix">
-				<h3>
-					<label> {{goals.name}} </label>
-				</h3>
-			</li>
-		</ul>
+        <div class="panel-body">
+			<ul class="chat" ng-repeat="tip in listTips">
+				<li class="left clearfix">
+					<div class="clearfix">
+						<p>{{tip.name}}</p>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
-
+    <!-- Advantage -->
 	<div class="panel panel-orange-sports  panel-default-white">
 		<div class="panel-heading">
 			<spring:message code="param.physicalactivity.advantage" />
 		</div>
-
-		<ul class="chat" ng-repeat="goals in listGoalsSelect">
-			<li class="left clearfix">
-				<h3>
-					<label> {{goals.name}} </label>
-				</h3>
-			</li>
-		</ul>
+        <div class="panel-body">
+          <ul class="chat" ng-repeat="advantage in listAdvantages">
+            <li class="left clearfix">
+              <div class="clearfix">
+                <p>{{advantage.name}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 	</div>
-
+    <!-- Alert -->
 	<div class="panel panel-orange-sports  panel-default-white">
 		<div class="panel-heading">
 			<spring:message code="param.physicalactivity.alert" />
 		</div>
-
-		<ul class="chat" ng-repeat="goals in listGoalsSelect">
-			<li class="left clearfix">
-				<h3>
-					<label> {{goals.name}} </label>
-				</h3>
-			</li>
-		</ul>
+        <div class="panel-body">
+          <ul class="chat" ng-repeat="alert in listAlerts">
+            <li class="left clearfix">
+              <div class="clearfix">
+                <p>{{alert.name}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 	</div>
-
+    <!-- Myth -->
 	<div class="panel panel-orange-sports  panel-default-white">
 		<div class="panel-heading">
 			<spring:message code="param.physicalactivity.myth" />
 		</div>
-
-		<ul class="chat" ng-repeat="goals in listGoalsSelect">
-			<li class="left clearfix">
-				<h3>
-					<label> {{goals.name}} </label>
-				</h3>
-			</li>
-		</ul>
+        <div class="panel-body">
+          <ul class="chat" ng-repeat="myth in listMyths">
+            <li class="left clearfix">
+              <div class="clearfix">
+                <p>{{myth.name}}</p>
+              </div>
+            </li>
+          </ul>
+        </div>
 	</div>
 
 </div>

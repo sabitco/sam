@@ -185,3 +185,23 @@ App.config([ 'baseUrlUsers', 'userServiceProvider',
     function(baseUrlUser, userServiceProvider) {
       userServiceProvider.setBaseUrl(baseUrlUser);
     } ]);
+
+/**
+ * Home service
+ */
+function HomeServiceProvider() {
+  var _baseUrlHome;
+  this.setBaseUrl = function(baseUrlHome) {
+    _baseUrlHome = baseUrlHome;
+  }
+  this.$get = [ '$http', function($http) {
+    return new HomeService($http, _baseUrlHome);
+  } ];
+}
+
+App.provider("homeService", HomeServiceProvider);
+
+App.config([ 'baseUrlHome', 'homeServiceProvider',
+    function(baseUrlHome, homeServiceProvider) {
+      homeServiceProvider.setBaseUrl(baseUrlHome);
+    } ]);
