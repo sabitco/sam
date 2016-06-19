@@ -35,7 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .antMatchers("/physicalactivity/classification").authenticated()
         .antMatchers("/physicalactivity/Classificationdetail").authenticated()
         .antMatchers("/physicalactivity/goals").authenticated()
-        .antMatchers("/physicalactivity/goalsdetail").authenticated().and().formLogin()
+        .antMatchers("/physicalactivity/goalsdetail").authenticated()
+        .antMatchers("/physicalactivity/home").authenticated().and().formLogin()
         .loginPage("/login").permitAll().and().logout().permitAll().and().csrf().disable();
         http.formLogin().successHandler(this.authenticationHandler);
     }

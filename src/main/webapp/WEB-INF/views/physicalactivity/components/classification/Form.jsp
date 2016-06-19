@@ -201,13 +201,13 @@
 				</div>
 
 
-				<div class="checkbox">
-					<input type="text" ng-model="ctrl.classify.otherDiseases"
-						id="otherDiseases" name="otherDiseases"
-						class="input-validate form-control input-sm"
-						placeholder="<spring:message
-							code="param.physicalactivity.classify.from.basic.otherdisease" />" />
-				</div>
+<!-- 				<div class="checkbox"> -->
+<!-- 					<input type="text" ng-model="ctrl.classify.otherDiseases" -->
+<!-- 						id="otherDiseases" name="otherDiseases" -->
+<!-- 						class="input-validate form-control input-sm" -->
+<%-- 						placeholder="<spring:message --%>
+<%-- 							code="param.physicalactivity.classify.from.basic.otherdisease" />" /> --%>
+<!-- 				</div> -->
 			</div>
 
 			<div class="panel-body col-md-6 text-muted page-wrapper-sam">
@@ -223,13 +223,13 @@
 					</label>
 				</div>
 
-				<div class="checkbox">
-					<input type="text" ng-model="ctrl.classify.otherActivities"
-						id="otherActivities" name="otherActivities"
-						class="input-validate form-control input-sm"
-						placeholder="<spring:message
-							code="param.physicalactivity.classify.from.basic.othersport" />" />
-				</div>
+<!-- 				<div class="checkbox"> -->
+<!-- 					<input type="text" ng-model="ctrl.classify.otherActivities" -->
+<!-- 						id="otherActivities" name="otherActivities" -->
+<!-- 						class="input-validate form-control input-sm" -->
+<%-- 						placeholder="<spring:message --%>
+<%-- 							code="param.physicalactivity.classify.from.basic.othersport" />" /> --%>
+<!-- 				</div> -->
 			</div>
 		</div>
 	</fieldset>

@@ -28,6 +28,11 @@ public class IndexController {
         return "physicalactivity/Goalsdetail";
     }
 
+    @RequestMapping(value = "/physicalactivity/home", method = RequestMethod.GET)
+    public String getIndexFromHome() {
+        return "physicalactivity/Home";
+    }
+
     @RequestMapping(value = "/physicalactivity/signon", method = RequestMethod.GET)
     public String getIndexFromPlayer() {
         return "physicalactivity/Signon";

@@ -20,3 +20,11 @@ App.constant("baseUrlClassifyDetail", "http://localhost:8080/users/classify");
 App.constant("baseUrlGoals", "http://localhost:8080/goals/users/");
 
 App.constant("baseUrlUserGoals", "http://localhost:8080/users/goals");
+
+App.constant("baseUrlUserTips", "http://localhost:8080/admin/tips");
+
+App.constant("baseUrlUserAdvantages", "http://localhost:8080/admin/advantages");
+
+App.constant("baseUrlUserAlerts", "http://localhost:8080/admin/alerts");
+
+App.constant("baseUrlUserMyths", "http://localhost:8080/admin/myths");
