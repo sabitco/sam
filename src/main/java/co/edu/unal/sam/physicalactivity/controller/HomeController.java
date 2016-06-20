@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
+import co.edu.unal.sam.physicalactivity.model.dto.AdvantageDto;
+import co.edu.unal.sam.physicalactivity.model.dto.AlertDto;
+import co.edu.unal.sam.physicalactivity.model.dto.MythDto;
 import co.edu.unal.sam.physicalactivity.model.dto.TipDto;
 import co.edu.unal.sam.physicalactivity.model.service.HomeService;
 
@@ -20,24 +23,24 @@ public class HomeController {
     private HomeService service;
 
     @RequestMapping(value = "/home/advantages", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<TipDto>> getAdvantages(
+    public ResponseEntity<Iterable<AdvantageDto>> getAdvantages(
             @RequestParam(name = "state", required = false) final StateEnum state) {
-        Iterable<TipDto> tips = this.service.getAdvantages(state);
-        return new ResponseEntity<>(tips, HttpStatus.OK);
+        Iterable<AdvantageDto> advantages = this.service.getAdvantages(state);
+        return new ResponseEntity<>(advantages, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/home/alerts", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<TipDto>> getAlerts(
+    public ResponseEntity<Iterable<AlertDto>> getAlerts(
             @RequestParam(name = "state", required = false) final StateEnum state) {
-        Iterable<TipDto> tips = this.service.getAlerts(state);
-        return new ResponseEntity<>(tips, HttpStatus.OK);
+        Iterable<AlertDto> alerts = this.service.getAlerts(state);
+        return new ResponseEntity<>(alerts, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/home/myths", method = RequestMethod.GET)
-    public ResponseEntity<Iterable<TipDto>> getMyths(
+    public ResponseEntity<Iterable<MythDto>> getMyths(
             @RequestParam(name = "state", required = false) final StateEnum state) {
-        Iterable<TipDto> tips = this.service.getMyths(state);
-        return new ResponseEntity<>(tips, HttpStatus.OK);
+        Iterable<MythDto> myths = this.service.getMyths(state);
+        return new ResponseEntity<>(myths, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/home/tips", method = RequestMethod.GET)
