@@ -41,6 +41,10 @@ public class Goal extends Entity {
     @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TypeRiskType")
     private TypeRiskEnum risk;
 
+    @Column(name = "term_id", nullable = false)
+    @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TermType")
+    private TypeRiskEnum term;
+
     @ManyToMany(mappedBy = "goals", cascade = CascadeType.ALL)
     private Set<User> users = new HashSet<>(0);
 
@@ -70,6 +74,13 @@ public class Goal extends Entity {
      */
     public TypeRiskEnum getRisk() {
         return this.risk;
+    }
+
+    /**
+     * @return the term
+     */
+    public TypeRiskEnum getTerm() {
+        return this.term;
     }
 
     /**
@@ -105,6 +116,13 @@ public class Goal extends Entity {
      */
     public void setRisk(TypeRiskEnum risk) {
         this.risk = risk;
+    }
+
+    /**
+     * @param term the term to set
+     */
+    public void setTerm(TypeRiskEnum term) {
+        this.term = term;
     }
 
     /**

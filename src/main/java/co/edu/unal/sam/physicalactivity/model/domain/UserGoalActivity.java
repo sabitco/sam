@@ -9,9 +9,10 @@ import javax.validation.constraints.NotNull;
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
 
+@javax.persistence.Entity
+@javax.persistence.Table(name = "user_risk_plan")
 public class UserGoalActivity extends Entity {
 
-    @NotNull
     @ManyToOne()
     @JoinColumn(name = "activity_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_user_goal_activity_activity"))
@@ -37,7 +38,7 @@ public class UserGoalActivity extends Entity {
 
     @NotNull
     @ManyToOne()
-    @JoinColumn(name = "goal_id", nullable = false,
+    @JoinColumn(name = "user_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_user_goal_activity_user"))
     private User user;
 

@@ -8,6 +8,8 @@ import javax.persistence.TemporalType;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
 
+@javax.persistence.Entity
+@javax.persistence.Table(name = "user_risk_plan")
 public class Event extends Entity {
 
     @Column(name = "date")
