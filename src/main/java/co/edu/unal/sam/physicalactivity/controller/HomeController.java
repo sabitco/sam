@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.physicalactivity.model.dto.AdvantageDto;
 import co.edu.unal.sam.physicalactivity.model.dto.AlertDto;
+import co.edu.unal.sam.physicalactivity.model.dto.EventDto;
 import co.edu.unal.sam.physicalactivity.model.dto.MythDto;
 import co.edu.unal.sam.physicalactivity.model.dto.TipDto;
 import co.edu.unal.sam.physicalactivity.model.service.HomeService;
@@ -34,6 +35,13 @@ public class HomeController {
             @RequestParam(name = "state", required = false) final StateEnum state) {
         Iterable<AlertDto> alerts = this.service.getAlerts(state);
         return new ResponseEntity<>(alerts, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/home/events", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<EventDto>> getEvents(
+            @RequestParam(name = "state", required = false) final StateEnum state) {
+        Iterable<EventDto> events = this.service.getEvents(state);
+        return new ResponseEntity<>(events, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/home/myths", method = RequestMethod.GET)
