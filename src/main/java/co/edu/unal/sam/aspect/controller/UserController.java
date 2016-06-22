@@ -90,6 +90,16 @@ public class UserController {
         return new ResponseEntity<>(success, HttpStatus.CREATED);
     }
 
+    @RequestMapping(value = "/users/goals", method = RequestMethod.PUT)
+    public ResponseEntity<Successful> updateGoals(@RequestBody UserDto dto) {
+        this.service.updateGoals(dto);
+        // Set the location header for the newly created resource
+        Successful success = new Successful();
+        success.setMessage(this.messageSource.getMessage("user.created.successfully", null, null));
+        success.setStatus(HttpStatus.CREATED.value());
+        return new ResponseEntity<>(success, HttpStatus.CREATED);
+    }
+
     @RequestMapping(value = "/admin/users/{userId}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         this.service.verify(userId);

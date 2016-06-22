@@ -4,13 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotNull;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
 
 @javax.persistence.Entity
-@javax.persistence.Table(name = "user_risk_plan")
+@javax.persistence.Table(name = "user_goal_activity")
 public class UserGoalActivity extends Entity {
 
     @ManyToOne()
@@ -24,7 +23,6 @@ public class UserGoalActivity extends Entity {
     @Column(name = "days")
     private Integer days;
 
-    @NotNull
     @ManyToOne()
     @JoinColumn(name = "goal_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_user_goal_activity_goal"))
@@ -36,7 +34,6 @@ public class UserGoalActivity extends Entity {
     @Column(name = "minutes")
     private Integer minutes;
 
-    @NotNull
     @ManyToOne()
     @JoinColumn(name = "user_id", nullable = false,
             foreignKey = @ForeignKey(name = "fk_user_goal_activity_user"))

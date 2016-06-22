@@ -29,9 +29,11 @@ import co.edu.unal.sam.physicalactivity.model.domain.Disease;
 import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
+import co.edu.unal.sam.physicalactivity.model.domain.UserGoalActivity;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.DiseaseDto;
 import co.edu.unal.sam.physicalactivity.model.dto.GoalDto;
+import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.IntensityEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
@@ -41,6 +43,7 @@ import co.edu.unal.sam.physicalactivity.model.repository.DiseaseRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.GoalRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.PhysicalActivityRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserDiseaseRepository;
+import co.edu.unal.sam.physicalactivity.model.repository.UserGoalActivityRepository;
 
 /**
  * 
@@ -70,6 +73,9 @@ public class UserService {
 
     @Inject
     private UserDiseaseRepository userDiseaseRepository;
+
+    @Inject
+    private UserGoalActivityRepository userGoalRepository;
 
     /**
      * Classify an User
@@ -126,6 +132,30 @@ public class UserService {
         user.setGoals(Sets.newHashSet(goals));
         this.repository.save(user);
         return null;
+    }
+
+    public User updateGoals(UserDto userDto) {
+        User user = this.verify(userDto.getId());
+        List<UserGoalActivity> goals = new ArrayList<>();
+        UserGoalActivity goal;
+        Activity activity;
+        Goal g;
+        for (GoalDto dto : userDto.getGoals()) {
+            goal = new UserGoalActivity();
+            g = new Goal();
+            g.setId(dto.getId());
+            activity = new Activity();
+            activity.setId(dto.getActivity().getId());
+            goal.setActivity(activity);
+            goal.setUser(user);
+            goal.setGoal(g);
+            goal.setMinutes(dto.getMinutes());
+            goal.setDays(dto.getDays());
+            goal.setName(dto.getActivity().getName());
+            goals.add(goal);
+        }
+        this.userGoalRepository.save(goals);
+        return user;
     }
 
     public List<ActivityDto> getActivities(User user, StateEnum state, Boolean onlySelected) {
