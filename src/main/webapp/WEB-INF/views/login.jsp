@@ -10,7 +10,7 @@
 
 <div ng-controller="">
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session" value="Loguin Sam" />
+	<c:set var="titlePage" scope="session" value="SAM - Iniciar Sesión" />
 	<c:set var="name" scope="session" value="" />
 	<t:loguintemplate>
 		<jsp:attribute name="title">
