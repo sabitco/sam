@@ -26,7 +26,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(final HttpServletRequest request,
             final HttpServletResponse response, final Authentication authentication)
-                    throws IOException, ServletException {
+            throws IOException, ServletException {
         String redirect = "/administrator";
         final UserDto user = this.userRepository
                 .findUserDtoByUsername(authentication.getName(), new PageRequest(0, 1)).get(0);
@@ -34,7 +34,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
             if (new Date().after(user.getDateExpireClasification())) {
                 redirect = "physicalactivity/classification";
             } else {
-                redirect = "physicalactivity/home";
+                redirect = "physicalactivity/goalsform";
             }
         }
         request.getSession().setAttribute("user", user);
