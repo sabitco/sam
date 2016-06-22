@@ -14,6 +14,7 @@ import org.hibernate.annotations.Type;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
+import co.edu.unal.sam.physicalactivity.model.enumerator.TermEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 
 @javax.persistence.Entity
@@ -43,7 +44,7 @@ public class Goal extends Entity {
 
     @Column(name = "term_id", nullable = false)
     @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.TermType")
-    private TypeRiskEnum term;
+    private TermEnum term;
 
     @ManyToMany(mappedBy = "goals", cascade = CascadeType.ALL)
     private Set<User> users = new HashSet<>(0);
@@ -79,7 +80,7 @@ public class Goal extends Entity {
     /**
      * @return the term
      */
-    public TypeRiskEnum getTerm() {
+    public TermEnum getTerm() {
         return this.term;
     }
 
@@ -121,7 +122,7 @@ public class Goal extends Entity {
     /**
      * @param term the term to set
      */
-    public void setTerm(TypeRiskEnum term) {
+    public void setTerm(TermEnum term) {
         this.term = term;
     }
 

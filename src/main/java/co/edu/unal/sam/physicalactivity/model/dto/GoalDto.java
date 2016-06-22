@@ -11,6 +11,18 @@ public class GoalDto extends Dto {
 
     public GoalDto() {}
 
+    /**
+     * Used by User.findGoalDtoByUser
+     * 
+     * @param activityId
+     * @param activityName
+     * @param id
+     */
+    public GoalDto(Long activityId, String activityName, Long id) {
+        this.activity = new ActivityDto(activityId, activityName);
+        this.id = id;
+    }
+
     public GoalDto(ActivityDto activity, Long id, Integer days, Integer minutes, Boolean selected) {
         super();
         this.activity = activity;

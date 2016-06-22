@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
+import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.GoalDto;
@@ -21,10 +22,12 @@ public class GoalService {
     private GoalRepository goalRepository;
 
     @Inject
+    private UserRepository userRepository;
+
+    @Inject
     private UserService userService;
 
-    public List<GoalDto> getGoals(Long userId) {
-        User user = this.userService.verify(userId);
+    public List<GoalDto> getGoals(User user) {
         List<ActivityDto> activites = this.userService.getActivities(user, StateEnum.ACTIVE, true);
         Iterable<Goal> goals = this.goalRepository.findAll();
         List<GoalDto> goalsDto = new ArrayList<>(0);
@@ -43,6 +46,17 @@ public class GoalService {
             goalsDto.add(dto);
         }
         return goalsDto;
+    }
+
+    public List<GoalDto> getGoals(Long userId, Boolean selected) {
+        User user = this.userService.verify(userId);
+        List<GoalDto> goals;
+        if (Boolean.TRUE.equals(selected)) {
+            goals = this.userRepository.findGoalDtoByUser(user);
+        } else {
+            goals = this.getGoals(user);
+        }
+        return goals;
     }
 
 }
