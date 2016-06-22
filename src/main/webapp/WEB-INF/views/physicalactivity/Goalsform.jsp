@@ -5,7 +5,7 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <jsp:include page="components/Session.jsp" /> 
 
-<div ng-controller="GoalsController as ctrl"
+<div ng-controller="GoalsformController as ctrl"
 	ng-init="getSession(
 	sessionUserID,
 	sessionUserUsername,
@@ -82,7 +82,7 @@
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/controller/goals_controller.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/controller/goalsform_controller.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
