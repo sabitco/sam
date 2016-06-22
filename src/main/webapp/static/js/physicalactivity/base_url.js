@@ -1,32 +1,32 @@
 'use strict';
-App.constant("baseUrl", "http://localhost:8080/admin/pages/");
+App.constant("baseUrl", "/admin/pages/");
 
-App.constant("baseUrlView", "http://localhost:8080/admin/pages/");
+App.constant("baseUrlView", "/admin/pages/");
 
-App.constant("baseUrlCampus", "http://localhost:8080/campus/");
+App.constant("baseUrlCampus", "/campus/");
 
-App.constant("baseUrlFaculties", "http://localhost:8080/campus/faculties/");
+App.constant("baseUrlFaculties", "/campus/faculties/");
 
-App.constant("baseUrlUsers", "http://localhost:8080/admin/users/");
+App.constant("baseUrlUsers", "/admin/users/");
 
-App.constant("baseUrlDiseases", "http://localhost:8080/users/diseases/");
+App.constant("baseUrlDiseases", "/users/diseases/");
 
-App.constant("baseUrlSports", "http://localhost:8080/users/activities/");
+App.constant("baseUrlSports", "/users/activities/");
 
-App.constant("baseUrlPreclassifies", "http://localhost:8080/users/preclassify");
+App.constant("baseUrlPreclassifies", "/users/preclassify");
 
-App.constant("baseUrlClassifyDetail", "http://localhost:8080/users/classify");
+App.constant("baseUrlClassifyDetail", "/users/classify");
 
-App.constant("baseUrlGoals", "http://localhost:8080/goals/users/");
+App.constant("baseUrlGoals", "/goals/users/");
 
-App.constant("baseUrlUserGoals", "http://localhost:8080/users/goals");
+App.constant("baseUrlUserGoals", "/users/goals");
 
-App.constant("baseUrlHome", "http://localhost:8080/home");
+App.constant("baseUrlHome", "/home");
 
-App.constant("baseUrlUserTips", "http://localhost:8080/admin/tips");
+App.constant("baseUrlUserTips", "/admin/tips");
 
-App.constant("baseUrlUserAdvantages", "http://localhost:8080/admin/advantages");
+App.constant("baseUrlUserAdvantages", "/admin/advantages");
 
-App.constant("baseUrlUserAlerts", "http://localhost:8080/admin/alerts");
+App.constant("baseUrlUserAlerts", "/admin/alerts");
 
-App.constant("baseUrlUserMyths", "http://localhost:8080/admin/myths");
+App.constant("baseUrlUserMyths", "/admin/myths");
