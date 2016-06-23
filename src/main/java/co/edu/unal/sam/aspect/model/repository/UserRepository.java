@@ -13,7 +13,7 @@ import co.edu.unal.sam.physicalactivity.model.dto.UserDto;
 
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
-    User findByIdentityDocument(String username);
+    User findByIdentityDocumentOrUsername(String document, String username);
 
     User findByUsername(String username);
 

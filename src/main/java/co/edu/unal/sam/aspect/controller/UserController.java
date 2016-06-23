@@ -85,7 +85,8 @@ public class UserController {
         this.service.createGoals(dto.getGoals(), dto.getId());
         // Set the location header for the newly created resource
         Successful success = new Successful();
-        success.setMessage(this.messageSource.getMessage("user.created.successfully", null, null));
+        success.setMessage(
+                this.messageSource.getMessage("user.created.goals.successfully", null, null));
         success.setStatus(HttpStatus.CREATED.value());
         return new ResponseEntity<>(success, HttpStatus.CREATED);
     }
@@ -95,7 +96,8 @@ public class UserController {
         this.service.updateGoals(dto);
         // Set the location header for the newly created resource
         Successful success = new Successful();
-        success.setMessage(this.messageSource.getMessage("user.created.successfully", null, null));
+        success.setMessage(
+                this.messageSource.getMessage("user.created.goals.successfully", null, null));
         success.setStatus(HttpStatus.CREATED.value());
         return new ResponseEntity<>(success, HttpStatus.CREATED);
     }

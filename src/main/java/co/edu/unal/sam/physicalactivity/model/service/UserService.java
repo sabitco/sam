@@ -104,7 +104,8 @@ public class UserService {
         if (TypeUserEnum.PLAYER.equals(user.getTypeuser()) && Objects.isNull(user.getFaculty())) {
             throw new BusinessException("NotNull.user.faculty", HttpStatus.BAD_REQUEST);
         }
-        if (this.repository.findByIdentityDocument(user.getIdentityDocument()) != null) {
+        if (this.repository.findByIdentityDocumentOrUsername(user.getIdentityDocument(),
+                user.getUsername()) != null) {
             throw new BusinessException("Existent.user.identityDocument", HttpStatus.BAD_REQUEST);
         }
         String cryptedPassword = new BCryptPasswordEncoder().encode(user.getPassword());
