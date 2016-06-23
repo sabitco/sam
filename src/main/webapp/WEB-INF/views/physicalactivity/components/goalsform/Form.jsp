@@ -13,84 +13,69 @@
 
 	<div class="panel panel-orange-sports  panel-default-white">
 		<div class="panel-heading">
-			<spring:message code="param.physicalactivity.goals" />
+			<spring:message code="param.physicalactivity.goalsform" />
 		</div>
 
-		<ul class="chat" ng-repeat="goals in listGoalsSelect">
+		<ul class="chat">
 			<li class="left clearfix">
 				<h3>
-					<label> {{goals.name}} </label>
+					<label><spring:message
+							code="param.physicalactivity.goalsform.message" /></label>
 				</h3>
 				<div class="col-lg-2 text-muted text-center">
 					<h4>
-						<label class="radio-inline"> 
-                        <input type="radio" name="{{goals.name}}" ng-model="goals.selected"
-							ng-value="true"> <strong><spring:message
-									code="param.physicalactivity.goals.from.basic.true" /></strong>
-						</label> <label class="radio-inline"> <input type="radio"
-							ng-model="goals.selected" name="{{goals.name}}"
-							ng-value="false"> <strong><spring:message
-									code="param.physicalactivity.goals.from.basic.false" /></strong>
-						</label>
+						<select id="universitysede" name="universitysede"
+							class="input-validate form-control"
+							ng-init="ctrl.signonBasic.universitysede = ctrl.signonBasic.universitysede || items[0]"
+							ng-options="goals.activity.id as goals.activity.name for goals in listGoalsSelect"
+							ng-model="ctrl.signonBasic.universitysede"
+							ng-change="loadFacultiesListByCampus()" required>
+						</select>
 					</h4>
 				</div>
-				<div class="col-lg-5 panel panel-orange-sports  panel-default-white">
-					<div class="panel-heading text-center">
-						<spring:message
-							code="param.physicalactivity.goals.from.currentactivity" />
-					</div>
-					<div class="col-lg-12">
 
-						<div class="col-lg-4">
-							<span class="input-group-addon"> <spring:message
-									code="param.physicalactivity.goals.from.currentactivity.days" />
-							</span>
-							<p class="text-center">{{goals.currentDays}}</p>
-						</div>
-
-						<div class="col-lg-4">
-							<span class="input-group-addon"> <spring:message
-									code="param.physicalactivity.goals.from.currentactivity.minutes" />
-							</span>
-							<p class="text-center">{{goals.currentMinutes}}</p>
-						</div>
-
-						<div class="col-lg-4">
-							<span class="input-group-addon"> <spring:message
-									code="param.physicalactivity.goals.from.currentactivity.totalweek" />
-							</span>
-							<p class="text-center">{{goals.currentMinutes*goals.currentDays}} min</p>
-						</div>
+				<div class="col-lg-5">
+					<span class="input-group-addon"> <spring:message
+							code="param.physicalactivity.classifydetail.from.basic.suffix.frequency" />
+					</span> <input type="number" ng-model="activities.days" id="height"
+						name="height" class="input-validate form-control input-sm"
+						step="any"
+						placeholder="<spring:message
+						code="param.physicalactivity.classifydetail.from.basic.required.frequency" />"
+						required min="1" max="7"
+						ng-minlength="
+							<spring:message code="param.physicalactivity.classifydetail.from.basic.quantity.minlength.frequency" />
+						"
+						string-to-number />
+					<div class="has-error text-danger text-muted col-lg-12 text-center"
+						ng-show="classifyFormBasic.height.$dirty">
+						<span ng-show="classifyFormBasic.height.$error.minlength">
+							<spring:message
+								code="param.physicalactivity.classifydetail.from.basic.minlength.frequency" />
+						</span>
 					</div>
 				</div>
 
-				<div class="col-lg-5 panel panel-orange-sports  panel-default-white">
-					<div class="panel-heading text-center">
-						<spring:message
-							code="param.physicalactivity.goals.from.suggestedactivity" />
-					</div>
-					<div class="col-lg-12">
+				<div class="col-lg-5">
 
-						<div class="col-lg-4">
-							<span class="input-group-addon"> <spring:message
-									code="param.physicalactivity.goals.from.suggestedactivity.days" />
-							</span>
-							<p class="text-center">{{goals.days}}</p>
-						</div>
+					<span class="input-group-addon"> <spring:message
+							code="param.physicalactivity.classifydetail.from.basic.suffix.duration" />
+					</span> <input type="number" ng-model="activities.minutes" id="height"
+						name="height" class="input-validate form-control input-sm"
+						step="any"
+						placeholder="<spring:message
+						code="param.physicalactivity.classifydetail.from.basic.required.duration" />"
+						required min="1" max="1440"
+						ng-minlength="
+							<spring:message code="param.physicalactivity.classifydetail.from.basic.quantity.minlength.duration" />
+						" />
 
-						<div class="col-lg-4">
-							<span class="input-group-addon"> <spring:message
-									code="param.physicalactivity.goals.from.suggestedactivity.minutes" />
-							</span>
-							<p class="text-center">{{goals.minutes}}</p>
-						</div>
-
-						<div class="col-lg-4">
-							<span class="input-group-addon"> <spring:message
-									code="param.physicalactivity.goals.from.suggestedactivity.totalweek" />
-							</span>
-							<p class="text-center">{{goals.minutes*goals.days}} min</p>
-						</div>
+					<div class="has-error text-danger text-muted col-lg-12 text-center"
+						ng-show="classifyFormBasic.height.$dirty">
+						<span ng-show="classifyFormBasic.height.$error.minlength">
+							<spring:message
+								code="param.physicalactivity.classifydetail.from.basic.minlength.duration" />
+						</span>
 					</div>
 				</div>
 

@@ -39,7 +39,7 @@ App.controller('GoalsformController', [
 
       /** funtion for load detai activities by userID * */
       self.loadGoalsListByUser = function(userID) {
-        goalsService.loadGoalsListByUser(userID).then(function(d) {
+        goalsService.loadGoalsSelectListByUser(userID).then(function(d) {
           $scope.listGoalsSelect = d;
           console.log($scope.listGoalsSelect);
         }, function(errResponse) {

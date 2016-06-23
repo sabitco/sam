@@ -51,7 +51,7 @@
 <!-- 							<div class="panel-orange text-muted"> -->
 <%-- 								<label><spring:message code="param.physicalactivity.goals" /></label>  --%>
 <!-- 							</div> -->
-							<jsp:include page="components/goals/Form.jsp" />
+							<jsp:include page="components/goalsform/Form.jsp" />
 							
 						</div>
 		            </div>

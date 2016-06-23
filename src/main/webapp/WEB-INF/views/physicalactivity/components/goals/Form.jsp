@@ -19,7 +19,7 @@
 		<ul class="chat" ng-repeat="goals in listGoalsSelect">
 			<li class="left clearfix">
 				<h3>
-					<label> {{goals.name}} </label>
+					<label> {{goals.activity.name}} </label>
 				</h3>
 				<div class="col-lg-2 text-muted text-center">
 					<h4>
