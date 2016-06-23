@@ -38,11 +38,11 @@
 				                  <fieldset>
 				                    <div class="form-group">
 				                      <input class="form-control"
-											placeholder="Username" name="username" autofocus>
+											placeholder="Nombre de Usuario" name="username" autofocus>
 				                    </div>
 				                    <div class="form-group">
 				                      <input class="form-control"
-											placeholder="Password" name="password" type="password"
+											placeholder="Contraseña" name="password" type="password"
 											value="">
 				                    </div>
 				                    <div>

@@ -19,8 +19,8 @@
 	sessionUserProgress)">
 
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session" value="Goals" />
-	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, tienes un riesgo ${sessionScope.user.risk.name} </br>Que te gustaria hacer?" />
+	<c:set var="titlePage" scope="session" value="Metas Realizadas" />
+	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, cuentanos que actividades has hecho para poder cumplir tus metas?" />
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
