@@ -343,8 +343,11 @@
 				<div class=" text-muted">
 					<input type="checkbox" ng-model="ctrl.signonBasic.useCondition"
 						id="useCondition" name="useCondition" required /> <label
-						class=" text-muted control-lable" for="faculty"> <spring:message
+						class=" text-muted control-lable" for="faculty">
+                        <a href="terms" target="_blank" class="btn btn-outline btn-link">
+                        <spring:message
 							code="param.physicalactivity.signon.from.basic.useCondition" />
+                        </a>
 					</label>
 					<button type="button" ng-click="ctrl.resetBasic()"
 						class=" pull-right  form-actions floatRight btn btn-info  btn-xs "

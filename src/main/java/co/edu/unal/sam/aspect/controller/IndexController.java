@@ -43,6 +43,11 @@ public class IndexController {
         return "physicalactivity/Signon";
     }
 
+    @RequestMapping(value = "/physicalactivity/terms", method = RequestMethod.GET)
+    public String getIndexFromTerms() {
+        return "physicalactivity/terms";
+    }
+
     @RequestMapping(value = "/administrator", method = RequestMethod.GET)
     public String getIndexPage() {
         return "admin/Management";
