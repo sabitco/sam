@@ -21,7 +21,8 @@
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Goals" />
 	<c:set var="namePage" scope="session"
-		value="${sessionScope.user.name}, Nos Encanta Tenerte De Nuevo </br>Pero Ten Presente..." />
+		value="${sessionScope.user.name}, Nos encanta tenerte de nuevo </br> Ten presente..." />
+		
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
@@ -61,7 +62,8 @@
      
 			</div>
 			<!--End Div Wrapper-->
-				
+			<jsp:include page="components/Footer.jsp" />
+			
 	   		<script type="text/ng-template" id="modalContent.html">
 				<jsp:include page="components/includes/alertSuccess.jsp" />
 			</script>

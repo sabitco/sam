@@ -36,6 +36,7 @@
 	                </div>
 	            </div>
 	   		</div> 
+	   		<jsp:include page="components/Footer.jsp" />
 	   		
 	   		<script type="text/ng-template" id="modalContent.html">
 				<jsp:include page="components/signon/alertSuccess.jsp" />

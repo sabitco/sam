@@ -3,7 +3,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<jsp:include page="components/Session.jsp" /> 
+<jsp:include page="components/Session.jsp" />
 
 <div ng-controller="GoalsController as ctrl"
 	ng-init="getSession(
@@ -20,7 +20,8 @@
 
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Goals" />
-	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, tienes un riesgo ${sessionScope.user.risk.name} </br>Que te gustaria hacer?" />
+	<c:set var="namePage" scope="session"
+		value="${sessionScope.user.name}, tienes un riesgo ${sessionScope.user.risk.name} </br>Que te gustaria hacer?" />
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
@@ -61,7 +62,7 @@
      
 			</div>
 			<!--End Div Wrapper-->
-				
+				<jsp:include page="components/Footer.jsp" />
 	   		<script type="text/ng-template" id="modalContent.html">
 				<jsp:include page="components/includes/alertSuccess.jsp" />
 			</script>

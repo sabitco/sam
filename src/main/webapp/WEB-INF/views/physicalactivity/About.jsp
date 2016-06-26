@@ -3,9 +3,9 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<jsp:include page="components/Session.jsp" /> 
+<jsp:include page="components/Session.jsp" />
 
-<div ng-controller="ClassifyController as ctrl"
+<div ng-controller="HomeController as ctrl"
 	ng-init="getSession(
 	sessionUserID,
 	sessionUserUsername,
@@ -19,9 +19,10 @@
 	sessionUserProgress)">
 
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session" value="Classification" />
-	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, Queremos Saber De Ti" />
-	
+	<c:set var="titlePage" scope="session" value="Goals" />
+	<c:set var="namePage" scope="session"
+		value="Quienes somos" />
+		
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
@@ -49,12 +50,10 @@
                 	<div class="col-sm-9 page-wrapper-white">
 	                	<jsp:include page="components/includes/Title.jsp" />
 						<div class="panel panel-body">
-							<div class="panel-orange text-muted">
-								<label><spring:message
-										code="param.physicalactivity.classify" /></label>
-							</div>
-							<jsp:include page="components/classification/Form.jsp" />
-							
+<!-- 							<div class="panel-orange text-muted"> -->
+<%-- 								<label><spring:message code="param.physicalactivity.goals" /></label>  --%>
+<!-- 							</div> -->
+							<jsp:include page="components/about/Main.jsp" />
 						</div>
 		            </div>
 			 		<!-- End Div .col-lg-12 -->
@@ -76,30 +75,18 @@
 			
 			
 			<!-- Statement JScript-->
-			
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/view_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/goals_service.js' />"></script>
+				<!-- Home Service -->
+                <script src="<c:url value='/static/js/physicalactivity/service/home_service.js' />"></script>
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/usergoals_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/diseases_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/sports_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/preclassify_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/controller/classify_controller.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/controller/home_controller.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script

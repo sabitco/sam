@@ -7,9 +7,13 @@
 <!--Statement Footer-->
 <footer class="site-footer">
 	<div class="alert">
-		<a href="#" class=""> <spring:message
-				code="param.physicalactivity.footer.name" />
-		</a>
+		<spring:message code="param.physicalactivity.footer.name" />
+		<div class="pull-right">
+			<a href="/physicalactivity/terms" class="btn btn-outline btn-link"><spring:message
+					code="param.physicalactivity.home.terms.conditions" /></a> <a
+				href="/physicalactivity/about" class="btn btn-outline btn-link"><spring:message
+					code="param.physicalactivity.home.about" /></a>
+		</div>
 	</div>
 </footer>
 <!--End Statement Footer-->

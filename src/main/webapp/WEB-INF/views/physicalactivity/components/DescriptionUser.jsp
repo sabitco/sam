@@ -12,11 +12,9 @@
 				alt="logo">
 		</div>
 		<div class="panel-body">
+			<a href="/physicalactivity/classification" class="btn btn btn-info pull-left"><spring:message
+					code="param.physicalactivity.description.user.reclassify" /></a>
 
-			<button class="btn btn btn-info pull-left" type="submit">
-				<spring:message
-					code="param.physicalactivity.description.user.reclassify" />
-			</button>
 			<button class="btn btn btn-info pull-right" type="submit">
 				<spring:message code="param.physicalactivity.description.user.edit" />
 			</button>

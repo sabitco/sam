@@ -65,6 +65,8 @@
 			</div>
 			<!--End Div Wrapper-->
 				
+				<jsp:include page="components/Footer.jsp" />
+				
 	   		<script type="text/ng-template" id="modalContent.html">
 				<jsp:include page="components/includes/alertSuccess.jsp" />
 			</script>

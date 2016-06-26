@@ -62,6 +62,7 @@
 	                </div>
 	            </div>
 	   		</div> 
+	   		<jsp:include page="physicalactivity/components/Footer.jsp" />
 		</jsp:body>
 
 	</t:loguintemplate>
