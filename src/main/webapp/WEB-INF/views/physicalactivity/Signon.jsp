@@ -6,7 +6,7 @@
 <div ng-controller="SignonController as ctrl">
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Signon" />
-	<c:set var="name" scope="session" value="Unete y Motivate!" />
+	<c:set var="name" scope="session" value="Únete y Motivate!" />
 	<t:signon>
 		<jsp:attribute name="title">
 			${titlePage}
