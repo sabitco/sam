@@ -37,6 +37,12 @@
 				<li class="left clearfix">
 					<div class="clearfix">
 						<p>{{tip.name}}</p>
+                        <a class="btn btn-outline btn-link" href=" https://twitter.com/intent/tweet?text={{tip.name}}&url=http:%3A%2F%2Fsam.net.co" target="_blank" >
+                          <i class="fa fa-twitter fa-fw"></i>
+                        </a>
+                        <a class="btn btn-outline btn-link" href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{tip.name}}" target="_blank" >
+                          <i class="fa fa-facebook fa-fw"></i>
+                        </a>
 					</div>
 				</li>
 			</ul>
@@ -54,6 +60,12 @@
 					<div class="clearfix">
 						<p ng-bind-html="alert.name"></p>
 						<p>{{alert.name}}</p>
+                        <a class="btn btn-outline btn-link" href=" https://twitter.com/intent/tweet?text={{alert.name}}&url=http:%3A%2F%2Fsam.net.co" target="_blank" >
+                          <i class="fa fa-twitter fa-fw"></i>
+                        </a>
+                        <a class="btn btn-outline btn-link" href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{alert.name}}" target="_blank" >
+                          <i class="fa fa-facebook fa-fw"></i>
+                        </a>
 					</div>
 				</li>
 			</ul>
@@ -91,6 +103,12 @@
 				<li class="left clearfix">
 					<div class="clearfix">
 						<p>{{advantage.name}}</p>
+                        <a class="btn btn-outline btn-link" href=" https://twitter.com/intent/tweet?text={{advantage.name}}&url=http:%3A%2F%2Fsam.net.co" target="_blank" >
+                          <i class="fa fa-twitter fa-fw"></i>
+                        </a>
+                        <a class="btn btn-outline btn-link" href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{advantage.name}}" target="_blank" >
+                          <i class="fa fa-facebook fa-fw"></i>
+                        </a>
 					</div>
 				</li>
 			</ul>
