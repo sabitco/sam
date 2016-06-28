@@ -4,7 +4,7 @@ import co.edu.unal.sam.aspect.model.enumerator.PersistentEnum;
 
 public enum TypeRiskEnum implements PersistentEnum {
 
-    HIGH(1, "High"), INDETERMINATE(4, "Indeterminate"), LOW(3, "Low"), MEDIUM(2, "Medium");
+    HIGH(1, "Alto"), INDETERMINATE(4, "Indeterminado"), LOW(3, "Bajo"), MEDIUM(2, "Medio");
 
     private final Byte id;
     private final String name;
