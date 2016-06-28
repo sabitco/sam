@@ -49,7 +49,7 @@ App.controller('GoalsformController', [
 
       /** funtion for Create(save) from Classify detail * */
       self.nextGoals = function(goalsOne) {
-        usergoalsService.saveGoals(goalsOne).then(function(successResponse) {
+        usergoalsService.updateGoals(goalsOne).then(function(successResponse) {
           console.log(successResponse);
           if (successResponse.status === 201) {
             self.open('lg', successResponse.message, 'SUCCESS');
