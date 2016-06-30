@@ -3,7 +3,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<jsp:include page="components/Session.jsp" /> 
+<jsp:include page="components/Session.jsp" />
 
 <div ng-controller="GoalsformController as ctrl"
 	ng-init="getSession(
@@ -20,7 +20,8 @@
 
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Metas Realizadas" />
-	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, cuentanos que actividades has hecho para poder cumplir tus metas?" />
+	<c:set var="namePage" scope="session"
+		value="${sessionScope.user.name}, cuentanos que actividades has hecho para poder cumplir tus metas?" />
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 

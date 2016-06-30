@@ -169,7 +169,7 @@
 								<span class="input-group-addon"> <spring:message
 										code="param.physicalactivity.classifydetail.from.basic.suffix.duration" />
 								</span> <input type="number" ng-model="activities.minutes"
-									id="height" name="height"
+									id="duration" name="duration"
 									class="input-validate form-control input-sm" step="any"
 									placeholder="<spring:message
 						code="param.physicalactivity.classifydetail.from.basic.required.duration" />"
@@ -180,8 +180,8 @@
 
 								<div
 									class="has-error text-danger text-muted col-lg-12 text-center"
-									ng-show="classifyFormBasic.height.$dirty">
-									<span ng-show="classifyFormBasic.height.$error.minlength">
+									ng-show="classifyFormBasic.duration.$dirty">
+									<span ng-show="classifyFormBasic.duration.$error.minlength">
 										<spring:message
 											code="param.physicalactivity.classifydetail.from.basic.minlength.duration" />
 									</span>
