@@ -74,7 +74,7 @@ App.controller('GoalsformController', [
           goals : $scope.listGoalsSelect
         };
         console.log(self.goalsOne);
-        // self.nextGoals(self.goalsOne);
+        self.nextGoals(self.goalsOne);
       };
 
       /*
