@@ -30,9 +30,8 @@
 					</span> <input type="number" ng-model="goals.days" id="days"
 						name="days" class="input-validate form-control input-sm"
 						step="any"
-						placeholder="<spring:message
-						code="param.physicalactivity.goals.from.basic.required.frequency" />"
-						required min="1" max="7"
+						ng-init="goals.days=0"
+						required min="0" max="7"
 						ng-minlength="
 							<spring:message code="param.physicalactivity.goals.from.basic.quantity.minlength.frequency" />
 						"
@@ -50,12 +49,13 @@
 
 					<span class="input-group-addon"> <spring:message
 							code="param.physicalactivity.goals.from.basic.suffix.duration" />
-					</span> <input type="number" ng-model="activities.minutes" id="duration"
+					</span> <input type="number" ng-model="goals.minutes" id="duration"
 						name=duration class="input-validate form-control input-sm"
 						step="any"
 						placeholder="<spring:message
 						code="param.physicalactivity.goals.from.basic.required.duration" />"
-						required min="1" max="1440"
+						ng-init="goals.minutes=0"
+						required min="0" max="1440"
 						ng-minlength="
 							<spring:message code="param.physicalactivity.goals.from.basic.quantity.minlength.duration" />
 						" />
@@ -71,9 +71,7 @@
 
 			</li>
 		</ul>
-	</div>
-
-	<fieldset class="col-md-12  text-muted menu-superior">
+		<fieldset class="col-md-12  text-muted menu-superior">
 		<div class="  form-actions text-center">
 			<input type="submit"
 				value="<spring:message code="param.physicalactivity.classify.botton.next" />"
@@ -81,6 +79,9 @@
 				ng-disabled="goalsFormBasic.$invalid">
 		</div>
 	</fieldset>
+	</div>
+
+	
 </form>
 
 
