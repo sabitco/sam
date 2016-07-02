@@ -30,7 +30,6 @@
 					</span> <input type="number" ng-model="goals.days" id="days"
 						name="days" class="input-validate form-control input-sm"
 						step="any"
-						ng-init="goals.days=0"
 						required min="0" max="7"
 						ng-minlength="
 							<spring:message code="param.physicalactivity.goals.from.basic.quantity.minlength.frequency" />
@@ -54,7 +53,6 @@
 						step="any"
 						placeholder="<spring:message
 						code="param.physicalactivity.goals.from.basic.required.duration" />"
-						ng-init="goals.minutes=0"
 						required min="0" max="1440"
 						ng-minlength="
 							<spring:message code="param.physicalactivity.goals.from.basic.quantity.minlength.duration" />

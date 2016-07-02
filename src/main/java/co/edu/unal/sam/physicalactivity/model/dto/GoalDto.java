@@ -21,6 +21,8 @@ public class GoalDto extends Dto {
     public GoalDto(Long activityId, String activityName, Long id) {
         this.activity = new ActivityDto(activityId, activityName);
         this.id = id;
+        this.days = 0;
+        this.minutes = 0;
     }
 
     public GoalDto(ActivityDto activity, Long id, Integer days, Integer minutes, Boolean selected) {

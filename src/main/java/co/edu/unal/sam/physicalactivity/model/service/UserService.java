@@ -1,11 +1,14 @@
 package co.edu.unal.sam.physicalactivity.model.service;
 
 import java.time.LocalDate;
+import java.time.temporal.TemporalField;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -155,6 +158,10 @@ public class UserService {
             goal.setName(dto.getActivity().getName());
             goals.add(goal);
         }
+        LocalDate now = LocalDate.now();
+        TemporalField fieldISO = WeekFields.of(Locale.forLanguageTag("es-co")).dayOfWeek();
+        this.userGoalRepository.deleteByUserAndDateRegister(user,
+                java.sql.Date.valueOf(now.with(fieldISO, 1)));
         this.userGoalRepository.save(goals);
         return user;
     }

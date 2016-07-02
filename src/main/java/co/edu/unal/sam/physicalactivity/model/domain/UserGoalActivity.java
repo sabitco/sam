@@ -4,12 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import co.edu.unal.sam.aspect.model.domain.Entity;
 import co.edu.unal.sam.aspect.model.domain.User;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user_goal_activity")
+@NamedQueries({
+        @NamedQuery(name = "UserGoalActivity.deleteByUserAndDateRegister",
+                query = "delete UserGoalActivity uga where user = :user and dateRegister >= :dateRegister"),
+        @NamedQuery(name = "UserGoalActivity.findByUserAndDateRegister",
+                query = "select uga from UserGoalActivity uga where uga.user = :user and uga.dateRegister >= :dateRegister"),})
 public class UserGoalActivity extends Entity {
 
     @ManyToOne()
