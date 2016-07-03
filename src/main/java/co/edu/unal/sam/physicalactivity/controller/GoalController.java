@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import co.edu.unal.sam.aspect.exception.ResourceNotFoundException;
 import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.dto.GoalDto;
+import co.edu.unal.sam.physicalactivity.model.dto.Statistic;
 import co.edu.unal.sam.physicalactivity.model.repository.GoalRepository;
 import co.edu.unal.sam.physicalactivity.model.service.GoalService;
 
@@ -61,6 +62,12 @@ public class GoalController {
     public ResponseEntity<Iterable<Goal>> getGoals() {
         Iterable<Goal> allgoals = this.goalRepository.findAll();
         return new ResponseEntity<>(allgoals, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/goals/statistics/{userId}", method = RequestMethod.GET)
+    public ResponseEntity<Iterable<Statistic>> getStatistics(@PathVariable Long userId) {
+        Iterable<Statistic> statistics = this.service.getStatistics(userId);
+        return new ResponseEntity<>(statistics, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/goals/users/{userId}", method = RequestMethod.GET)

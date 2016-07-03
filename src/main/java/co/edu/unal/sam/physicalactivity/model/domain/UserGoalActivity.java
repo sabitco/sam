@@ -13,6 +13,11 @@ import co.edu.unal.sam.aspect.model.domain.User;
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user_goal_activity")
 @NamedQueries({
+        @NamedQuery(name = "UserGoalActivity.findStatisticsByUserAndDateRegisterAndWeek",
+                query = "SELECT new co.edu.unal.sam.physicalactivity.model.dto.Statistic("
+                        + "a.name, (sum(uga.days/:week) * sum(uga.minutes)/:week * 100)/(g.days * g.minutes)) "
+                        + "FROM UserGoalActivity uga JOIN uga.goal g JOIN uga.activity a "
+                        + "WHERE uga.user = :user and uga.dateRegister >= :dateRegister GROUP BY a.id, g.id"),
         @NamedQuery(name = "UserGoalActivity.deleteByUserAndDateRegister",
                 query = "delete UserGoalActivity uga where user = :user and dateRegister >= :dateRegister"),
         @NamedQuery(name = "UserGoalActivity.findByUserAndDateRegister",

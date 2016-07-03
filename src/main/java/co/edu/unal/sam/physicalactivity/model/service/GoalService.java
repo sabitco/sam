@@ -1,11 +1,7 @@
 package co.edu.unal.sam.physicalactivity.model.service;
 
-import java.time.LocalDate;
-import java.time.temporal.TemporalField;
-import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -18,8 +14,10 @@ import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.domain.UserGoalActivity;
 import co.edu.unal.sam.physicalactivity.model.dto.ActivityDto;
 import co.edu.unal.sam.physicalactivity.model.dto.GoalDto;
+import co.edu.unal.sam.physicalactivity.model.dto.Statistic;
 import co.edu.unal.sam.physicalactivity.model.repository.GoalRepository;
 import co.edu.unal.sam.physicalactivity.model.repository.UserGoalActivityRepository;
+import co.sabit.commons.utils.Dates;
 
 @Component
 public class GoalService {
@@ -40,10 +38,8 @@ public class GoalService {
         User user = this.userService.verify(userId);
         List<GoalDto> goals;
         if (Boolean.TRUE.equals(selected)) {
-            LocalDate now = LocalDate.now();
-            TemporalField fieldISO = WeekFields.of(Locale.forLanguageTag("es-co")).dayOfWeek();
             List<UserGoalActivity> userGoals = this.userGoalActivityRepository
-                    .findByUserAndDateRegister(user, java.sql.Date.valueOf(now.with(fieldISO, 1)));
+                    .findByUserAndDateRegister(user, Dates.getFirstDayOfWeek());
             goals = this.userRepository.findGoalDtoByUser(user);
             for (GoalDto g : goals) {
                 for (UserGoalActivity uga : userGoals) {
@@ -87,6 +83,12 @@ public class GoalService {
             goalsDto.add(dto);
         }
         return goalsDto;
+    }
+
+    public List<Statistic> getStatistics(Long userId) {
+        User user = this.userService.verify(userId);
+        return this.userGoalActivityRepository.findStatisticsByUserAndDateRegisterAndWeek(user,
+                Dates.getFirstDayOfWeek(Dates.getFirstDayOfMonth()), Dates.getWeekOfMonth());
     }
 
 }

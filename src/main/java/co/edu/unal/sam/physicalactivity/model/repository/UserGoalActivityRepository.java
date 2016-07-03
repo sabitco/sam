@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.physicalactivity.model.domain.UserGoalActivity;
+import co.edu.unal.sam.physicalactivity.model.dto.Statistic;
 
 public interface UserGoalActivityRepository extends CrudRepository<UserGoalActivity, Long> {
 
@@ -23,4 +24,8 @@ public interface UserGoalActivityRepository extends CrudRepository<UserGoalActiv
     @Query(name = "UserGoalActivity.findByUserAndDateRegister")
     List<UserGoalActivity> findByUserAndDateRegister(@Param("user") User user,
             @Param("dateRegister") Date dateRegister);
+
+    @Query(name = "UserGoalActivity.findStatisticsByUserAndDateRegisterAndWeek")
+    List<Statistic> findStatisticsByUserAndDateRegisterAndWeek(@Param("user") User user,
+            @Param("dateRegister") Date dateRegister, @Param("week") int week);
 }
