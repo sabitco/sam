@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import co.edu.unal.sam.aspect.model.domain.User;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.aspect.model.repository.UserRepository;
 import co.edu.unal.sam.physicalactivity.model.dto.Statistic;
@@ -51,9 +52,10 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
     }
 
     private void setReward(final UserDto user) {
+        User u = new User();
+        u.setId(user.getId());
         List<Statistic> statistics =
-                this.userGoalActivityRepository.findStatisticsByUserAndDateRegisterAndWeek(
-                        this.userRepository.findByUsername(user.getUsername()),
+                this.userGoalActivityRepository.findStatisticsByUserAndDateRegisterAndWeek(u,
                         Dates.getFirstDayOfWeek(Dates.getFirstDayOfMonth()),
                         Dates.getWeekOfMonth());
         if (statistics.size() > 0) {

@@ -14,9 +14,7 @@ public final class Dates {
     }
 
     public static Date getFirstDayOfWeek() {
-        LocalDate now = LocalDate.now();
-        TemporalField fieldISO = WeekFields.of(Locale.forLanguageTag("es-co")).dayOfWeek();
-        return java.sql.Date.valueOf(now.with(fieldISO, 1));
+        return Dates.getFirstDayOfWeek(new Date());
     }
 
     public static Date getFirstDayOfWeek(Date date) {
