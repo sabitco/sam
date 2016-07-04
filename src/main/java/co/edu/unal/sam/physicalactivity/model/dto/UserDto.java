@@ -9,6 +9,7 @@ import java.util.Set;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
+import co.edu.unal.sam.physicalactivity.model.enumerator.RewardEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 
 public class UserDto extends Dto {
@@ -29,6 +30,7 @@ public class UserDto extends Dto {
     private String identityDocument;
     private String password;
     private Integer progress;
+    private RewardEnum reward;
     private TypeRiskEnum risk;
     private String surname;
     private TypeUserEnum typeuser;
@@ -173,6 +175,13 @@ public class UserDto extends Dto {
      */
     public final int getProgress() {
         return this.progress;
+    }
+
+    /**
+     * @return the reward
+     */
+    public RewardEnum getReward() {
+        return this.reward;
     }
 
     /**
@@ -327,6 +336,13 @@ public class UserDto extends Dto {
      */
     public final void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    /**
+     * @param reward the reward to set
+     */
+    public void setReward(RewardEnum reward) {
+        this.reward = reward;
     }
 
     /**
