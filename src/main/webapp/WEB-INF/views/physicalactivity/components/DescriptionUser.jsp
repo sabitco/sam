@@ -36,13 +36,12 @@
 				<li class="left clearfix" ng-repeat="event in ctrlDescription.listEvents">
 					<div class="clearfix">
 						<div class="header">
-							<strong class="primary-font">Jack Sparrow</strong> <small
+							<strong class="primary-font">{{event.name}}</strong> <small
 								class="pull-right text-muted"> <i
-								class="fa fa-clock-o fa-fw"></i> 12 mins ago
+								class="fa fa-clock-o fa-fw"></i> {{event.date}}
 							</small>
 						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+						<p><!-- //TODO: AGREGAR DESCRIPCION -->
 						</p>
 					</div>
 				</li>

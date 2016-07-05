@@ -52,6 +52,9 @@ public class HomeService {
     }
 
     public List<EventDto> getEvents(StateEnum state) {
+        if (Objects.isNull(state)) {
+            state = StateEnum.ACTIVE;
+        }
         return this.repository.findDtoAll(state);
     }
 
