@@ -9,12 +9,15 @@ import java.util.Set;
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
+import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
+import co.edu.unal.sam.physicalactivity.model.enumerator.RewardEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.TypeRiskEnum;
 
 public class UserDto extends Dto {
 
     private Set<ActivityDto> activities;
     private int age;
+    private BmiCategoryEnum bmi;
     private Date dateBirth;
     private Date dateExpireClasification;
     private Date dateIngress;
@@ -29,6 +32,7 @@ public class UserDto extends Dto {
     private String identityDocument;
     private String password;
     private Integer progress;
+    private RewardEnum reward;
     private TypeRiskEnum risk;
     private String surname;
     private TypeUserEnum typeuser;
@@ -43,11 +47,12 @@ public class UserDto extends Dto {
         this.goals = new HashSet<>();
     }
 
-    @SuppressWarnings("deprecation")
-    public UserDto(Date dateBirth, Date dateExpireClasification, Date dateRegister, Date dateUpdate,
-            String email, Float height, Long id, String identityDocument, String name,
-            StateEnum state, TypeUserEnum typeuser, String username, Float weight) {
+    public UserDto(BmiCategoryEnum bmi, Date dateBirth, Date dateExpireClasification,
+            Date dateRegister, Date dateUpdate, String email, Float height, Long id,
+            String identityDocument, String name, StateEnum state, TypeUserEnum typeuser,
+            String username, Float weight) {
         super(dateRegister, dateUpdate, id, name, state);
+        this.bmi = bmi;
         this.dateExpireClasification = dateExpireClasification;
         this.email = email;
         this.height = height;
@@ -57,8 +62,7 @@ public class UserDto extends Dto {
         this.dateBirth = dateBirth;
         this.weight = weight;
         this.progress = 1;
-        LocalDate start = LocalDate.of(dateBirth.getYear() + 1900, dateBirth.getMonth() + 1,
-                dateBirth.getDate());
+        LocalDate start = new java.sql.Date(dateBirth.getTime()).toLocalDate();
         LocalDate end = LocalDate.now();
         this.age = (int) ChronoUnit.YEARS.between(start, end);
     }
@@ -75,6 +79,13 @@ public class UserDto extends Dto {
      */
     public int getAge() {
         return this.age;
+    }
+
+    /**
+     * @return the bmi
+     */
+    public BmiCategoryEnum getBmi() {
+        return this.bmi;
     }
 
     /**
@@ -176,6 +187,13 @@ public class UserDto extends Dto {
     }
 
     /**
+     * @return the reward
+     */
+    public RewardEnum getReward() {
+        return this.reward;
+    }
+
+    /**
      * @return the risk
      */
     public TypeRiskEnum getRisk() {
@@ -229,6 +247,13 @@ public class UserDto extends Dto {
      */
     public void setAge(int age) {
         this.age = age;
+    }
+
+    /**
+     * @param bmi the bmi to set
+     */
+    public void setBmi(BmiCategoryEnum bmi) {
+        this.bmi = bmi;
     }
 
     /**
@@ -327,6 +352,13 @@ public class UserDto extends Dto {
      */
     public final void setProgress(int progress) {
         this.progress = progress;
+    }
+
+    /**
+     * @param reward the reward to set
+     */
+    public void setReward(RewardEnum reward) {
+        this.reward = reward;
     }
 
     /**

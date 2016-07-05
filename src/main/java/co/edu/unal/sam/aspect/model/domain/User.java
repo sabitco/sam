@@ -34,7 +34,7 @@ import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
 @javax.persistence.Table(name = "user")
 @NamedQueries({
         @NamedQuery(name = "User.findUserDtoByUsername",
-                query = "select new co.edu.unal.sam.physicalactivity.model.dto.UserDto("
+                query = "select new co.edu.unal.sam.physicalactivity.model.dto.UserDto(b.category, "
                         + "u.dateBirth, u.dateExpireClasification, u.dateRegister, u.dateUpdate, u.email, b.height, "
                         + "u.id, u.identityDocument, u.name, u.state, u.typeuser, u.username, b.weight"
                         + ") from User u left join u.bmis b where u.username = :username order by b.dateRegister"),
