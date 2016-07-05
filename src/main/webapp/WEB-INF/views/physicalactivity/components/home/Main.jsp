@@ -4,8 +4,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<input type="hidden" name="id" value="ctrl.goals.id"
-	ng-model="ctrl.goals.id" />
 
 <div class="col-lg-12 text-muted">
 	<!-- Tips -->
@@ -26,6 +24,7 @@
 
 </div>
 
+
 <div class="col-lg-8 text-muted">
 	<!-- Tips -->
 	<div class="panel panel-orange-sports  panel-default-white">
@@ -33,16 +32,17 @@
 			<spring:message code="param.physicalactivity.tip" />
 		</div>
 		<div class="panel-body">
-			<ul class="chat" ng-repeat="tip in listTips">
+			<ul class="chat" ng-repeat="tip in ctrl.listTips">
 				<li class="left clearfix">
 					<div class="clearfix">
 						<p>{{tip.name}}</p>
-                        <a class="btn btn-outline btn-link" href=" https://twitter.com/intent/tweet?text={{tip.name}}&url=http:%3A%2F%2Fsam.net.co" target="_blank" >
-                          <i class="fa fa-twitter fa-fw"></i>
-                        </a>
-                        <a class="btn btn-outline btn-link" href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{tip.name}}" target="_blank" >
-                          <i class="fa fa-facebook fa-fw"></i>
-                        </a>
+						<a class="btn btn-outline btn-link"
+							href=" https://twitter.com/intent/tweet?text={{tip.name}}&url=http:%3A%2F%2Fsam.net.co"
+							target="_blank"> <i class="fa fa-twitter fa-fw"></i>
+						</a> <a class="btn btn-outline btn-link"
+							href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{tip.name}}"
+							target="_blank"> <i class="fa fa-facebook fa-fw"></i>
+						</a>
 					</div>
 				</li>
 			</ul>
@@ -55,17 +55,17 @@
 			<spring:message code="param.physicalactivity.alert" />
 		</div>
 		<div class="panel-body">
-			<ul class="chat" ng-repeat="alert in listAlerts">
+			<ul class="chat" ng-repeat="alert in ctrl.listAlerts">
 				<li class="left clearfix">
 					<div class="clearfix">
 						<p ng-bind-html="alert.name"></p>
-						<p>{{alert.name}}</p>
-                        <a class="btn btn-outline btn-link" href=" https://twitter.com/intent/tweet?text={{alert.name}}&url=http:%3A%2F%2Fsam.net.co" target="_blank" >
-                          <i class="fa fa-twitter fa-fw"></i>
-                        </a>
-                        <a class="btn btn-outline btn-link" href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{alert.name}}" target="_blank" >
-                          <i class="fa fa-facebook fa-fw"></i>
-                        </a>
+						<a class="btn btn-outline btn-link"
+							href=" https://twitter.com/intent/tweet?text={{alert.name}}&url=http:%3A%2F%2Fsam.net.co"
+							target="_blank"> <i class="fa fa-twitter fa-fw"></i>
+						</a> <a class="btn btn-outline btn-link"
+							href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{alert.name}}"
+							target="_blank"> <i class="fa fa-facebook fa-fw"></i>
+						</a>
 					</div>
 				</li>
 			</ul>
@@ -99,16 +99,17 @@
 			<spring:message code="param.physicalactivity.advantage" />
 		</div>
 		<div class="panel-body">
-			<ul class="chat" ng-repeat="advantage in listAdvantages">
+			<ul class="chat" ng-repeat="advantage in ctrl.listAdvantages">
 				<li class="left clearfix">
 					<div class="clearfix">
 						<p>{{advantage.name}}</p>
-                        <a class="btn btn-outline btn-link" href=" https://twitter.com/intent/tweet?text={{advantage.name}}&url=http:%3A%2F%2Fsam.net.co" target="_blank" >
-                          <i class="fa fa-twitter fa-fw"></i>
-                        </a>
-                        <a class="btn btn-outline btn-link" href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{advantage.name}}" target="_blank" >
-                          <i class="fa fa-facebook fa-fw"></i>
-                        </a>
+						<a class="btn btn-outline btn-link"
+							href=" https://twitter.com/intent/tweet?text={{advantage.name}}&url=http:%3A%2F%2Fsam.net.co"
+							target="_blank"> <i class="fa fa-twitter fa-fw"></i>
+						</a> <a class="btn btn-outline btn-link"
+							href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{advantage.name}}"
+							target="_blank"> <i class="fa fa-facebook fa-fw"></i>
+						</a>
 					</div>
 				</li>
 			</ul>
@@ -125,14 +126,23 @@
 		</div>
 		<div class="panel-body">
 
-			<fieldset class="col-md-6" ng-repeat="goals in ctrl.listGoals">
-				<div donut-chart="" donut-data="goals.activity"
+			<fieldset class="col-md-6"
+				ng-repeat="goalsMorris in ctrl.listGoalsMorrisSelect">
+				<div donut-chart="" donut-data="goalsMorris.chart"
 					donut-colors="ctrl.chartColors" donut-formatter="ctrl.myFormatter"></div>
 
-				<h4 class=" text-center text-muted  control-lable ">Min
-					Semanales:{{goals.totalsemanaminutes}}</h4>
-				<h4 class=" text-center text-muted  control-lable ">Min
-					Mesuales:{{goals.totalmesminutes}}</h4>
+				<h4 class=" text-center text-muted  control-lable ">
+
+					<spring:message code="param.physicalactivity.home.morris.current" />
+
+
+				</h4>
+				<h4 class=" text-center text-muted  control-lable ">
+
+					<spring:message code="param.physicalactivity.home.morris.goal" />
+
+
+				</h4>
 			</fieldset>
 			<span class="pull-right"> <a
 				href="/physicalactivity/goalsform"

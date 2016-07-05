@@ -4,14 +4,18 @@ App.controller('HomeController', [
     '$http',
     '$uibModal',
     '$log',
+    '$sce',
     'homeService',
-    'baseUrlGoals',
-    'usergoalsService',
-    'baseUrlUserGoals',
-    'baseUrlUserTips',
+    'baseUrlHomeTips',
+    'baseUrlHomeAdvantages',
+    'baseUrlHomeAlerts',
+    'baseUrlHomeMyths',
+    'goalsMorrisService',
+    'baseUrlGoalsMorris',
 
-    function($scope, $window, $http, $uibModal, $log, homeService,
-        baseUrlGoals, usergoalsService, baseUrlUserGoals, baseUrlUserTips) {
+    function($scope, $window, $http, $uibModal, $log, $sce, homeService,
+        baseUrlHomeTips, baseUrlHomeAdvantages, baseUrlHomeAlerts,
+        baseUrlHomeMyths, goalsMorrisService, baseUrlGoalsMorris) {
 
       /*
        * Init Var
@@ -20,20 +24,26 @@ App.controller('HomeController', [
       /** init self * */
       var self = this;
 
-      /** init classify * */
-      self.home = {};
+      /** init list Tips * */
+      self.listTips = [];
 
-      /** init listGoals * */
-      self.listGoals = {};
+      /** init list Advantages * */
+      self.listAdvantages = [];
+
+      /** init list Alerts * */
+      self.listAlerts = [];
+
+      /** init list Myths * */
+      self.listMyths = [];
+
+      /** init list Myths * */
+      self.listGoalsMorrisSelect = [];
 
       /** init mirror * */
       self.chartColors = [ "#31C0BE", "#c7254e" ];
       self.myFormatter = function(input) {
         return input + '%';
       };
-
-      /** Url Success * */
-      var urlsuccess = "/physicalactivity/home";
 
       /** funtion for load detail user by userID * */
       self.loadHomeByUser = function(userID, userUsername, userName,
@@ -66,76 +76,39 @@ App.controller('HomeController', [
       /** funtion for load detai activities by userID * */
       self.loadGoalsHomeListByUser = function(userID) {
 
-        // goalsService.loadGoalsListByUser(userID).then(function(d) {
-        // $scope.listGoalsSelect = d;
-        // console.log($scope.listGoalsSelect);
-        // }, function(errResponse) {
-        // console.error('Error while fetching Currencies');
-        // });
+        goalsMorrisService.loadGoalsListForMorrisByUser(userID).then(
+            function(d) {
+              angular.forEach(d, function(value, key) {
+                self.listGoalsMorrisSelect.push(value);
+              });
+              console.log(self.listGoalsMorrisSelect);
+            }, function(errResponse) {
+              console.error('Error while fetching Currencies');
+            });
 
-        /** init classify * */
-        self.listGoals = [ {
-          activity : [ {
-            label : "Caminar",
-            value : 60
-          }, {
-            label : "Te Falta Caminar",
-            value : 40
-          } ],
-          name : "Caminar",
-          totalsemanaminutes : 80,
-          totalmesminutes : 120
-        }, {
-          activity : [ {
-            label : "Correr",
-            value : 65
-          }, {
-            label : "Te Falta Correr",
-            value : 35
-          } ],
-          name : "Correr",
-          totalsemanaminutes : 100,
-          totalmesminutes : 200
-        }, {
-          activity : [ {
-            label : "Nadar",
-            value : 30
-          }, {
-            label : "Te Falta Nadar",
-            value : 70
-          } ],
-          name : "Nadar",
-          totalsemanaminutes : 20,
-          totalmesminutes : 260
-        }, {
-          activity : [ {
-            label : "Bailar",
-            value : 10
-          }, {
-            label : "Te Falta Bailar",
-            value : 90
-          } ],
-          name : "Bailar",
-          totalsemanaminutes : 70,
-          totalmesminutes : 280
-        } ];
       };
 
       /** funtion for load detai Tips by userID * */
       self.loadTipsListByUser = function(userID) {
-          homeService.loadTips().then(function(d) {
-            $scope.listTips = d;
-            console.log($scope.listTips);
-          }, function(errResponse) {
-            console.error('Error while fetching Currencies');
+        homeService.loadTips().then(function(d) {
+          angular.forEach(d, function(value, key) {
+            value.name = $sce.trustAsHtml(value.name);
+            self.listTips.push(value);
           });
+          console.log(self.listTips);
+        }, function(errResponse) {
+          console.error('Error while fetching Currencies');
+        });
       };
 
       /** funtion for load detai Advantages by userID * */
       self.loadAdvantagesListByUser = function(userID) {
         homeService.loadAdvantages().then(function(d) {
-          $scope.listAdvantages = d;
-          console.log($scope.listAdvantages);
+          angular.forEach(d, function(value, key) {
+            value.name = $sce.trustAsHtml(value.name);
+            self.listAdvantages.push(value);
+          });
+          console.log(self.listAdvantages);
         }, function(errResponse) {
           console.error('Error while fetching Currencies');
         });
@@ -144,8 +117,11 @@ App.controller('HomeController', [
       /** funtion for load detai Alerts by userID * */
       self.loadAlertsListByUser = function(userID) {
         homeService.loadAlerts().then(function(d) {
-          $scope.listAlerts = d;
-          console.log($scope.listAlerts);
+          angular.forEach(d, function(value, key) {
+            value.name = $sce.trustAsHtml(value.name);
+            self.listAlerts.push(value);
+          });
+          console.log(self.listAlerts);
         }, function(errResponse) {
           console.error('Error while fetching Currencies');
         });
@@ -154,8 +130,11 @@ App.controller('HomeController', [
       /** funtion for load detai Myths by userID * */
       self.loadMythsListByUser = function(userID) {
         homeService.loadMyths().then(function(d) {
-          $scope.listMyths = d;
-          console.log($scope.listMyths);
+          angular.forEach(d, function(value, key) {
+            value.name = $sce.trustAsHtml(value.name);
+            self.listMyths.push(value);
+          });
+          console.log(self.listMyths);
         }, function(errResponse) {
           console.error('Error while fetching Currencies');
         });
@@ -192,8 +171,6 @@ App.controller('HomeController', [
       /*
        * Contructor
        */
-
-      $scope.listGoalsSelect = {};
 
       $scope.sessionUserID = $window.sessionUserID;
       $scope.sessionUserUsername = $window.sessionUserUsername;

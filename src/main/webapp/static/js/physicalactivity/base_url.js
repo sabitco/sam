@@ -21,12 +21,14 @@ App.constant("baseUrlGoals", "/goals/users/");
 
 App.constant("baseUrlUserGoals", "/users/goals");
 
-App.constant("baseUrlHome", "/home");
+App.constant("baseUrlHomeTips", "/home/tips");
 
-App.constant("baseUrlUserTips", "/admin/tips");
+App.constant("baseUrlHomeAdvantages", "/home/advantages");
 
-App.constant("baseUrlUserAdvantages", "/admin/advantages");
+App.constant("baseUrlHomeAlerts", "/home/alerts");
 
-App.constant("baseUrlUserAlerts", "/admin/alerts");
+App.constant("baseUrlHomeMyths", "/home/myths");
 
-App.constant("baseUrlUserMyths", "/admin/myths");
+App.constant("baseUrlGoalsMorris", "/goals/statistics");
+
+App.constant("baseUrlEvents", "/home/events");

@@ -77,15 +77,29 @@
 				<!-- Angular Touch Core JavaScript -->
 				<script
 				src="<c:url value='/static/js/physicalactivity/service/goals_service.js' />"></script>
+				
 				<!-- Home Service -->
                 <script src="<c:url value='/static/js/physicalactivity/service/home_service.js' />"></script>
-				<!-- Angular Touch Core JavaScript -->
+				
+				<!-- Usergoals Service -->
 				<script
 				src="<c:url value='/static/js/physicalactivity/service/usergoals_service.js' />"></script>
+				
+				<!-- Goalsmorris Service -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/goalsmorris_service.js' />"></script>
+				
+				<!-- Events Service -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/events_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
 				src="<c:url value='/static/js/physicalactivity/controller/home_controller.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/controller/right_controller.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script

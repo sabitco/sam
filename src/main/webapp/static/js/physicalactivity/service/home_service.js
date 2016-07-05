@@ -1,15 +1,15 @@
-function HomeService($http, baseUrlhome) {
+function HomeService($http, baseUrlHomeTips, baseUrlHomeAdvantages,
+    baseUrlHomeAlerts, baseUrlHomeMyths) {
   return {
     loadTips : function() {
-      return $http.get(baseUrlhome + '/tips', {}).then(
-          function(response) {
-            return response.data;
-          }, function(errResponse) {
-            return errResponse.data;
-          });
+      return $http.get(baseUrlHomeTips + '/', {}).then(function(response) {
+        return response.data;
+      }, function(errResponse) {
+        return errResponse.data;
+      });
     },
     loadAdvantages : function() {
-      return $http.get(baseUrlhome + '/advantages', {}).then(
+      return $http.get(baseUrlHomeAdvantages + '/', {}).then(
           function(response) {
             return response.data;
           }, function(errResponse) {
@@ -17,20 +17,18 @@ function HomeService($http, baseUrlhome) {
           });
     },
     loadAlerts : function() {
-      return $http.get(baseUrlhome + '/alerts', {}).then(
-          function(response) {
-            return response.data;
-          }, function(errResponse) {
-            return errResponse.data;
-          });
+      return $http.get(baseUrlHomeAlerts + '/', {}).then(function(response) {
+        return response.data;
+      }, function(errResponse) {
+        return errResponse.data;
+      });
     },
     loadMyths : function() {
-      return $http.get(baseUrlhome + '/myths', {}).then(
-          function(response) {
-            return response.data;
-          }, function(errResponse) {
-            return errResponse.data;
-          });
+      return $http.get(baseUrlHomeMyths + '/', {}).then(function(response) {
+        return response.data;
+      }, function(errResponse) {
+        return errResponse.data;
+      });
     },
   }
 }

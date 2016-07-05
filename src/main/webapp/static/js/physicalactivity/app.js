@@ -1,6 +1,9 @@
 var App = angular.module('physicalactivity', [ 'ngAnimate', 'ui.bootstrap',
     'angular.morris-chart' ]);
 
+/**
+ * View directive
+ */
 App.directive('pwCheck', [ function() {
   return {
     require : 'ngModel',
@@ -16,6 +19,9 @@ App.directive('pwCheck', [ function() {
   }
 } ]);
 
+/**
+ * View service Revisar
+ */
 function ViewServiceProvider() {
   var _baseUrlView;
   this.setBaseUrl = function(baseUrlView) {
@@ -33,6 +39,9 @@ App.config([ 'baseUrlView', 'viewServiceProvider',
       viewServiceProvider.setBaseUrl(baseUrlView);
     } ]);
 
+/**
+ * Campus service
+ */
 function CampusServiceProvider() {
   var _baseUrlCampus;
   this.setBaseUrl = function(baseUrlCampus) {
@@ -50,6 +59,9 @@ App.config([ 'baseUrlCampus', 'campusServiceProvider',
       campusServiceProvider.setBaseUrl(baseUrlCampus);
     } ]);
 
+/**
+ * Faculties service
+ */
 function FacultiesServiceProvider() {
   var _baseUrlFaculties;
   this.setBaseUrl = function(baseUrlFaculties) {
@@ -67,6 +79,9 @@ App.config([ 'baseUrlFaculties', 'facultiesServiceProvider',
       facultiesServiceProvider.setBaseUrl(baseUrlFaculties);
     } ]);
 
+/**
+ * Diseases service
+ */
 function DiseasesServiceProvider() {
   var _baseUrlDiseases;
   this.setBaseUrl = function(baseUrlDiseases) {
@@ -84,6 +99,9 @@ App.config([ 'baseUrlDiseases', 'diseasesServiceProvider',
       diseasesServiceProvider.setBaseUrl(baseUrlDiseases);
     } ]);
 
+/**
+ * Sports service
+ */
 function SportsServiceProvider() {
   var _baseUrlSports;
   this.setBaseUrl = function(baseUrlSports) {
@@ -101,6 +119,9 @@ App.config([ 'baseUrlSports', 'sportsServiceProvider',
       sportsServiceProvider.setBaseUrl(baseUrlSports);
     } ]);
 
+/**
+ * Classify service
+ */
 function ClassifyDetailServiceProvider() {
   var _baseUrlClassifyDetail;
   this.setBaseUrl = function(baseUrlClassifyDetail) {
@@ -118,6 +139,9 @@ App.config([ 'baseUrlClassifyDetail', 'classifyDetailServiceProvider',
       classifyDetailServiceProvider.setBaseUrl(baseUrlClassifyDetail);
     } ]);
 
+/**
+ * Preclassify service
+ */
 function PreclassifyServiceProvider() {
   var _baseUrlPreclassifies;
   this.setBaseUrl = function(baseUrlPreclassifies) {
@@ -135,6 +159,9 @@ App.config([ 'baseUrlPreclassifies', 'preclassifyServiceProvider',
       preclassifyServiceProvider.setBaseUrl(baseUrlPreclassifies);
     } ]);
 
+/**
+ * Goals service
+ */
 function GoalsServiceProvider() {
   var _baseUrlGoals;
   this.setBaseUrl = function(baseUrlGoals) {
@@ -152,6 +179,9 @@ App.config([ 'baseUrlGoals', 'goalsServiceProvider',
       goalsServiceProvider.setBaseUrl(baseUrlGoals);
     } ]);
 
+/**
+ * User Goals service
+ */
 function UserGoalsServiceProvider() {
   var _baseUrlUserGoals;
   this.setBaseUrl = function(baseUrlUserGoals) {
@@ -169,6 +199,9 @@ App.config([ 'baseUrlUserGoals', 'usergoalsServiceProvider',
       usergoalsServiceProvider.setBaseUrl(baseUrlUserGoals);
     } ]);
 
+/**
+ * User service
+ */
 function UserServiceProvider() {
   var _baseUrlUser;
   this.setBaseUrl = function(baseUrlUser) {
@@ -190,18 +223,76 @@ App.config([ 'baseUrlUsers', 'userServiceProvider',
  * Home service
  */
 function HomeServiceProvider() {
-  var _baseUrlHome;
-  this.setBaseUrl = function(baseUrlHome) {
-    _baseUrlHome = baseUrlHome;
+  var _baseUrlHomeTips;
+  var _baseUrlHomeAdvantages;
+  var _baseUrlHomeAlerts;
+  var _baseUrlHomeMyths;
+  this.setBaseUrl = function(baseUrlHomeTips, baseUrlHomeAdvantages,
+      baseUrlHomeAlerts, baseUrlHomeMyths) {
+    _baseUrlHomeTips = baseUrlHomeTips;
+    _baseUrlHomeAdvantages = baseUrlHomeAdvantages;
+    _baseUrlHomeAlerts = baseUrlHomeAlerts;
+    _baseUrlHomeMyths = baseUrlHomeMyths;
   }
-  this.$get = [ '$http', function($http) {
-    return new HomeService($http, _baseUrlHome);
-  } ];
+  this.$get = [
+      '$http',
+      function($http) {
+        return new HomeService($http, _baseUrlHomeTips, _baseUrlHomeAdvantages,
+            _baseUrlHomeAlerts, _baseUrlHomeMyths);
+      } ];
 }
 
 App.provider("homeService", HomeServiceProvider);
 
-App.config([ 'baseUrlHome', 'homeServiceProvider',
-    function(baseUrlHome, homeServiceProvider) {
-      homeServiceProvider.setBaseUrl(baseUrlHome);
+App.config([
+    'baseUrlHomeTips',
+    'baseUrlHomeAdvantages',
+    'baseUrlHomeAlerts',
+    'baseUrlHomeMyths',
+    'homeServiceProvider',
+    function(baseUrlHomeTips, baseUrlHomeAdvantages, baseUrlHomeAlerts,
+        baseUrlHomeMyths, homeServiceProvider) {
+      homeServiceProvider.setBaseUrl(baseUrlHomeTips, baseUrlHomeAdvantages,
+          baseUrlHomeAlerts, baseUrlHomeMyths);
+
+    } ]);
+
+/**
+ * Goals morris service
+ */
+function GoalsMorrisServiceProvider() {
+  var _baseUrlGoalsMorris;
+  this.setBaseUrl = function(baseUrlGoalsMorris) {
+    _baseUrlGoalsMorris = baseUrlGoalsMorris;
+  }
+  this.$get = [ '$http', function($http) {
+    return new GoalsMorrisService($http, _baseUrlGoalsMorris);
+  } ];
+}
+
+App.provider("goalsMorrisService", GoalsMorrisServiceProvider);
+
+App.config([ 'baseUrlGoalsMorris', 'goalsMorrisServiceProvider',
+    function(baseUrlGoalsMorris, goalsMorrisServiceProvider) {
+      goalsMorrisServiceProvider.setBaseUrl(baseUrlGoalsMorris);
+    } ]);
+
+/**
+ * Events
+ */
+function EventsServiceProvider() {
+  var _baseUrlEvents;
+  this.setBaseUrl = function(baseUrlEvents) {
+    _baseUrlEvents = baseUrlEvents;
+  }
+  this.$get = [ '$http', function($http) {
+    return new EventsService($http, _baseUrlEvents);
+  } ];
+}
+
+App.provider("eventsService", EventsServiceProvider);
+
+App.config([ 'baseUrlEvents', 'eventsServiceProvider',
+    function(baseUrlEvents, eventsServiceProvider) {
+      eventsServiceProvider.setBaseUrl(baseUrlEvents);
     } ]);

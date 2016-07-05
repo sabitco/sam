@@ -12,7 +12,8 @@
 				alt="logo">
 		</div>
 		<div class="panel-body">
-			<a href="/physicalactivity/classification" class="btn btn btn-info pull-left"><spring:message
+			<a href="/physicalactivity/classification"
+				class="btn btn btn-info pull-left"><spring:message
 					code="param.physicalactivity.description.user.reclassify" /></a>
 
 			<button class="btn btn btn-info pull-right" type="submit">
@@ -22,7 +23,8 @@
 
 	</div>
 
-	<div class="panel panel-orange panel-default-white">
+	<div class="panel panel-orange panel-default-white"
+		ng-controller="RightController as ctrlDescription" ng-init="getInit()">
 		<div class="panel-heading">
 			<spring:message
 				code="param.physicalactivity.description.user.alternative.activities" />
@@ -30,40 +32,13 @@
 
 		<div class="panel-body">
 			<ul class="chat">
-				<li class="left clearfix">
+
+				<li class="left clearfix" ng-repeat="event in ctrlDescription.listEvents">
 					<div class="clearfix">
 						<div class="header">
 							<strong class="primary-font">Jack Sparrow</strong> <small
 								class="pull-right text-muted"> <i
 								class="fa fa-clock-o fa-fw"></i> 12 mins ago
-							</small>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-						</p>
-					</div>
-				</li>
-
-				<li class="left clearfix">
-					<div class="clearfix">
-						<div class="header">
-							<strong class="primary-font">Jack Sparrow</strong> <small
-								class="pull-right text-muted"> <i
-								class="fa fa-clock-o fa-fw"></i> 14 mins ago
-							</small>
-						</div>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-						</p>
-					</div>
-				</li>
-
-				<li class="left clearfix">
-					<div class="clearfix">
-						<div class="header">
-							<strong class="primary-font">Jack Sparrow</strong> <small
-								class="pull-right text-muted"> <i
-								class="fa fa-clock-o fa-fw"></i> 14 mins ago
 							</small>
 						</div>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
