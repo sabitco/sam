@@ -105,6 +105,14 @@
 				<script
 				src="<c:url value='/static/js/physicalactivity/controller/modal_controller.js' />"></script>
 				
+				<!-- Events Service -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/service/events_service.js' />"></script>
+				
+				<!-- Angular Touch Core JavaScript -->
+				<script
+				src="<c:url value='/static/js/physicalactivity/controller/right_controller.js' />"></script>
+				
 			<!-- End Statement JScript-->
 		</jsp:body>
 	</t:template>
