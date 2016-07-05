@@ -52,6 +52,7 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
     }
 
     private void setReward(final UserDto user) {
+
         User u = new User();
         u.setId(user.getId());
         List<Statistic> statistics =
@@ -71,8 +72,12 @@ public class AuthenticationHandler implements AuthenticationSuccessHandler {
             } else {
                 user.setReward(RewardEnum.GOLD);
             }
+            user.setStatistic(new Statistic("Meta", percent, 0, 0L));
+            user.setProgress(percent.intValue());
         } else {
             user.setReward(RewardEnum.GOLD);
+            user.setStatistic(new Statistic("Meta", 1L, 0, 0L));
+            user.setProgress(1);
         }
     }
 

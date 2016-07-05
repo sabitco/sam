@@ -34,6 +34,7 @@ public class UserDto extends Dto {
     private Integer progress;
     private RewardEnum reward;
     private TypeRiskEnum risk;
+    private Statistic statistic;
     private String surname;
     private TypeUserEnum typeuser;
     private Boolean useCondition;
@@ -198,6 +199,13 @@ public class UserDto extends Dto {
      */
     public TypeRiskEnum getRisk() {
         return this.risk;
+    }
+
+    /**
+     * @return the statistic
+     */
+    public Statistic getStatistic() {
+        return this.statistic;
     }
 
     /**
@@ -366,6 +374,13 @@ public class UserDto extends Dto {
      */
     public void setRisk(TypeRiskEnum risk) {
         this.risk = risk;
+    }
+
+    /**
+     * @param statistic the statistic to set
+     */
+    public void setStatistic(Statistic statistic) {
+        this.statistic = statistic;
     }
 
     /**
