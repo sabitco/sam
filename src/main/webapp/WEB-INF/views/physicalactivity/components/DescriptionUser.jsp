@@ -19,7 +19,25 @@
 			<button class="btn btn btn-info pull-right" type="submit">
 				<spring:message code="param.physicalactivity.description.user.edit" />
 			</button>
+
+
 		</div>
+		<div class="panel-body">
+			 
+			<div class="header">
+				<i class="fa fa-money fa-fw"></i>
+				<strong class="primary-font text-muted ">Nivel:</strong>
+				<strong class="primary-font">${sessionScope.user.bmi.name}</strong>
+			</div>
+			
+			<div class="header">
+				<i class="fa fa-bolt fa-fw"></i>
+				<strong class="primary-font text-muted ">BMI:</strong>
+				<strong class="primary-font">${sessionScope.user.reward.name}</strong>
+			</div>
+		</div>
+
+
 
 	</div>
 
@@ -33,7 +51,8 @@
 		<div class="panel-body">
 			<ul class="chat">
 
-				<li class="left clearfix" ng-repeat="event in ctrlDescription.listEvents">
+				<li class="left clearfix"
+					ng-repeat="event in ctrlDescription.listEvents">
 					<div class="clearfix">
 						<div class="header">
 							<strong class="primary-font">{{event.name}}</strong> <small
@@ -41,7 +60,8 @@
 								class="fa fa-clock-o fa-fw"></i> {{event.date}}
 							</small>
 						</div>
-						<p><!-- //TODO: AGREGAR DESCRIPCION -->
+						<p>
+							<!-- //TODO: AGREGAR DESCRIPCION -->
 						</p>
 					</div>
 				</li>
