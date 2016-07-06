@@ -20,7 +20,7 @@
 
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Classification" />
-	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, Queremos Saber De Ti" />
+	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, Queremos saber de ti" />
 	
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />

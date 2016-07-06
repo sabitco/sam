@@ -21,7 +21,7 @@
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Goals" />
 	<c:set var="namePage" scope="session"
-		value="${sessionScope.user.name}, Nos encanta tenerte de nuevo </br> Ten presente..." />
+		value="${sessionScope.user.name}, tienes un riesgo ${sessionScope.user.risk.name}, nos encanta tenerte de nuevo. Ten presente..." />
 		
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />

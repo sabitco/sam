@@ -5,8 +5,16 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <!-- List Register-->
+
 <div class="menu-superior">
+
 	<div class="panel panel-default panel-default-white">
+		<button class="btn btn btn-info pull-right" type="submit">
+				<spring:message code="param.physicalactivity.description.user.home" />
+			</button>
+	</div>
+	<div class="panel panel-default panel-default-white">
+		
 		<div class="row text-center logo-sam ">
 			<img src="/static//dist/physicalactivity/images/ocono1.png"
 				alt="logo">
@@ -26,13 +34,13 @@
 			 
 			<div class="header">
 				<i class="fa fa-money fa-fw"></i>
-				<strong class="primary-font text-muted ">Nivel:</strong>
+				<strong class="primary-font text-muted ">IMC:</strong>
 				<strong class="primary-font">${sessionScope.user.bmi.name}</strong>
 			</div>
 			
 			<div class="header">
 				<i class="fa fa-bolt fa-fw"></i>
-				<strong class="primary-font text-muted ">BMI:</strong>
+				<strong class="primary-font text-muted ">Nivel:</strong>
 				<strong class="primary-font">${sessionScope.user.reward.name}</strong>
 			</div>
 		</div>

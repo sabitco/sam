@@ -51,9 +51,13 @@
 
 	<!-- Alert -->
 	<div class="panel panel-orange-sports  panel-default-white">
+
 		<div class="panel-heading">
 			<spring:message code="param.physicalactivity.alert" />
+		
 		</div>
+
+
 		<div class="panel-body">
 			<ul class="chat" ng-repeat="alert in ctrl.listAlerts">
 				<li class="left clearfix">
@@ -73,22 +77,23 @@
 	</div>
 
 
-	<!-- 	<!-- Myth -->
+	<!-- 		<!-- Myth -->
+	
 
-	<!-- 	<div class="panel panel-orange-sports  panel-default-white"> -->
-	<!-- 		<div class="panel-heading"> -->
-	<%-- 			<spring:message code="param.physicalactivity.myth" /> --%>
+	<!-- 		<div class="panel panel-orange-sports  panel-default-white"> -->
+	<!-- 			<div class="panel-heading"> -->
+	<%-- 				<spring:message code="param.physicalactivity.myth" /> --%>
+	<!-- 			</div> -->
+	<!-- 			<div class="panel-body"> -->
+	<!-- 				<ul class="chat" ng-repeat="myth in listMyths"> -->
+	<!-- 					<li class="left clearfix"> -->
+	<!-- 						<div class="clearfix"> -->
+	<!-- 							<p>{{myth.name}}</p> -->
+	<!-- 						</div> -->
+	<!-- 					</li> -->
+	<!-- 				</ul> -->
+	<!-- 			</div> -->
 	<!-- 		</div> -->
-	<!-- 		<div class="panel-body"> -->
-	<!-- 			<ul class="chat" ng-repeat="myth in listMyths"> -->
-	<!-- 				<li class="left clearfix"> -->
-	<!-- 					<div class="clearfix"> -->
-	<!-- 						<p>{{myth.name}}</p> -->
-	<!-- 					</div> -->
-	<!-- 				</li> -->
-	<!-- 			</ul> -->
-	<!-- 		</div> -->
-	<!-- 	</div> -->
 
 </div>
 

@@ -21,7 +21,7 @@
 	<!-- consulta personalizada por Pagina -->
 	<c:set var="titlePage" scope="session" value="Metas Realizadas" />
 	<c:set var="namePage" scope="session"
-		value="${sessionScope.user.name}, cuentanos que actividades has hecho para poder cumplir tus metas?" />
+		value="${sessionScope.user.name}, cu&eacute;ntanos que actividades has hecho para poder cumplir tus metas:" />
 	<c:set var="usernameLogger" scope="session"
 		value="${sessionScope.user.name}" />
 
