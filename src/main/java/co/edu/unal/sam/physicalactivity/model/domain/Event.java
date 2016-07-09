@@ -13,13 +13,16 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Entity
 @javax.persistence.Table(name = "event")
 @NamedQueries({@NamedQuery(name = "Event.findDtoAll",
-        query = "select new co.edu.unal.sam.physicalactivity.model.dto.EventDto(e.id, e.name, e.date) "
+        query = "select new co.edu.unal.sam.physicalactivity.model.dto.EventDto(e.id, e.name, e.date, e.link) "
                 + "from Event e where e.state = :state"),})
 public class Event extends Entity {
 
     @Column(name = "date", nullable = false)
     @Temporal(TemporalType.DATE)
     private Date date;
+
+    @Column(name = "link")
+    private String link;
 
     public Event() {}
 
@@ -31,10 +34,24 @@ public class Event extends Entity {
     }
 
     /**
+     * @return the link
+     */
+    public String getLink() {
+        return this.link;
+    }
+
+    /**
      * @param date the date to set
      */
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    /**
+     * @param link the link to set
+     */
+    public void setLink(String link) {
+        this.link = link;
     }
 
 }
