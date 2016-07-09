@@ -32,3 +32,5 @@ App.constant("baseUrlHomeMyths", "/home/myths");
 App.constant("baseUrlGoalsMorris", "/goals/statistics");
 
 App.constant("baseUrlEvents", "/home/events");
+
+App.constant("baseUrlTips", "/home/tips");

@@ -1,6 +1,8 @@
 package co.edu.unal.sam.aspect.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -54,7 +56,8 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/physicalactivity/tip/{id}", method = RequestMethod.GET)
-    public String getIndexFromTip() {
+    public String getIndexFromTip(@PathVariable final Long id, final ModelMap model) {
+        model.addAttribute("id", id);
         return "physicalactivity/Tip";
     }
 

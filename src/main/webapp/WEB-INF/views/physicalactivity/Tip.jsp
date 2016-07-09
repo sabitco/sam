@@ -5,22 +5,12 @@
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <jsp:include page="components/Session.jsp" /> 
 
-<div ng-controller="ClassifyController as ctrl"
-	ng-init="getSession(
-	sessionUserID,
-	sessionUserUsername,
-	sessionUserName,
-	sessionUserSurname,
-	sessionUserEmail,
-	sessionUserIdentityDocument,
-	sessionUserAge,
-	sessionUserHeight,
-	sessionUserWeight,
-	sessionUserProgress)">
+<div ng-controller="TipController as ctrl"
+	ng-init="getSession(<c:out value="${id}"></c:out>)">
 
 	<!-- consulta personalizada por Pagina -->
-	<c:set var="titlePage" scope="session" value="Classification" />
-	<c:set var="namePage" scope="session" value="${sessionScope.user.name}, Queremos saber de ti" />
+	<c:set var="titlePage" scope="session" value="Tip" />
+	<c:set var="namePage" scope="session" value="{{ctrl.tip.name}}" />
 	<t:template>
 		<jsp:attribute name="title">
 			${titlePage}
@@ -41,10 +31,10 @@
 	                	<jsp:include page="components/includes/Title.jsp" />
 						<div class="panel panel-body">
 							<div class="panel-orange text-muted">
-								<label><spring:message
-										code="param.physicalactivity.classify" /></label>
+								
 							</div>
-<%-- 							<jsp:include page="components/classification/Form.jsp" /> --%>
+							
+							<jsp:include page="components/tip/Main.jsp" />
 							
 						</div>
 		            </div>
@@ -68,33 +58,13 @@
 			
 			<!-- Statement JScript-->
 			
-				<!-- Angular Touch Core JavaScript -->
+				<!-- Events Service -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/view_service.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/service/tip_service.js' />"></script>
 				
 				<!-- Angular Touch Core JavaScript -->
 				<script
-				src="<c:url value='/static/js/physicalactivity/service/user_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/diseases_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/sports_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/service/preclassify_service.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/controller/classify_controller.js' />"></script>
-				
-				<!-- Angular Touch Core JavaScript -->
-				<script
-				src="<c:url value='/static/js/physicalactivity/controller/modal_controller.js' />"></script>
+				src="<c:url value='/static/js/physicalactivity/controller/tip_controller.js' />"></script>
 				
 				<!-- Events Service -->
 				<script

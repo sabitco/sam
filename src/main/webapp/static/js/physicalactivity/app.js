@@ -296,3 +296,23 @@ App.config([ 'baseUrlEvents', 'eventsServiceProvider',
     function(baseUrlEvents, eventsServiceProvider) {
       eventsServiceProvider.setBaseUrl(baseUrlEvents);
     } ]);
+
+/**
+ * Tip
+ */
+function TipServiceProvider() {
+  var _baseUrlTips;
+  this.setBaseUrl = function(baseUrlTips) {
+    _baseUrlTips = baseUrlTips;
+  }
+  this.$get = [ '$http', function($http) {
+    return new TipService($http, _baseUrlTips);
+  } ];
+}
+
+App.provider("tipService", TipServiceProvider);
+
+App.config([ 'baseUrlTips', 'tipServiceProvider',
+    function(baseUrlTips, tipServiceProvider) {
+      tipServiceProvider.setBaseUrl(baseUrlTips);
+    } ]);
