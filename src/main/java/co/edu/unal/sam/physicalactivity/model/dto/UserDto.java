@@ -8,6 +8,7 @@ import java.util.Set;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
+import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.enumerator.BmiCategoryEnum;
 import co.edu.unal.sam.physicalactivity.model.enumerator.RewardEnum;
@@ -48,12 +49,12 @@ public class UserDto extends Dto {
         this.goals = new HashSet<>();
     }
 
-    public UserDto(BmiCategoryEnum bmi, Date dateBirth, Date dateExpireClasification,
-            Date dateRegister, Date dateUpdate, String email, Float height, Long id,
-            String identityDocument, String name, StateEnum state, TypeUserEnum typeuser,
-            String username, Float weight) {
+    public UserDto(Bmi bmi, Date dateBirth, Date dateExpireClasification, Date dateRegister,
+            Date dateUpdate, String email, Float height, Long id, String identityDocument,
+            String name, StateEnum state, TypeUserEnum typeuser, String username, Float weight) {
         super(dateRegister, dateUpdate, id, name, state);
-        this.bmi = bmi;
+        this.bmi = bmi.getCategory();
+        this.risk = bmi.getRisk();
         this.dateExpireClasification = dateExpireClasification;
         this.email = email;
         this.height = height;
