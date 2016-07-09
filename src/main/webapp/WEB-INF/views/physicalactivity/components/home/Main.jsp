@@ -35,8 +35,10 @@
 			<ul class="chat" ng-repeat="tip in ctrl.listTips">
 				<li class="left clearfix">
 					<div class="clearfix">
-						<p>{{tip.name}}</p>
-
+						<p>{{tip.name}}
+						<a href="/physicalactivity/tip/{{tip.id}}" class="btn btn-outline btn-link" target="_blank" ><spring:message
+								code="param.physicalactivity.component.see.more"  /></a>
+								</p>
 						<div class="text-right">
 							<a class="btn btn-outline btn-link"
 								href=" https://twitter.com/intent/tweet?text={{tip.name}}&url=http:%3A%2F%2Fsam.net.co"
@@ -46,6 +48,9 @@
 								target="_blank"> <i class="fa fa-facebook fa-fw"></i>
 							</a>
 						</div>
+
+
+
 
 
 					</div>

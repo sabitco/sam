@@ -53,6 +53,11 @@ public class IndexController {
         return "physicalactivity/terms";
     }
 
+    @RequestMapping(value = "/physicalactivity/tip/{id}", method = RequestMethod.GET)
+    public String getIndexFromTip() {
+        return "physicalactivity/Tip";
+    }
+
     @RequestMapping(value = "/administrator", method = RequestMethod.GET)
     public String getIndexPage() {
         return "admin/Management";
