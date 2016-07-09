@@ -61,7 +61,7 @@ h1 {
 
 .page-wrapper {
  padding: 0 15px;
- min-height: 700px;
+ min-height: 600px;
  background: rgba(91, 165, 185, 1);
  background: -moz-radial-gradient(center, ellipse cover, rgba(91, 165, 185, 1)
   0%, rgba(47, 86, 101, 1) 100%);
