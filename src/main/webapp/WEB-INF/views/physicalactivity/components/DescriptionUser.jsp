@@ -54,7 +54,7 @@
           <div class="clearfix">
             <div class="text-right">
               <a class="btn btn-outline btn-link"
-                href=" https://twitter.com/intent/tweet?text={{event.name}}&url=http:%3A%2F%2Fsam.net.co"
+                href=" https://twitter.com/intent/tweet?text={{event.name}}&url={{event.link}}"
                 target="_blank"> <i class="fa fa-twitter fa-fw"></i>
               </a> <a class="btn btn-outline btn-link"
                 href="https://www.facebook.com/sharer.php?u=sam.net.co&description={{event.name}}"
@@ -63,8 +63,11 @@
             </div>
             <div class="header">
               <small class="primary-font">{{event.name}}</small> <small
-                class="pull-right text-muted"> <i
-                class="fa fa-link fa-fw"></i> {{event.date}}
+                class="pull-right text-muted">
+                <i
+                class="fa fa-link fa-fw"></i> 
+                <a href="{{event.link}}" class="btn-link" target="_blank">{{event.link}}</a>
+                
               </small>
             </div>
             <p>

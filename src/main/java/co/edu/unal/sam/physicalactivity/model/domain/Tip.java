@@ -9,7 +9,7 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Entity
 @javax.persistence.Table(name = "tip")
 @NamedQueries({@NamedQuery(name = "Tip.findDtoAll",
-        query = "select new co.edu.unal.sam.physicalactivity.model.dto.TipDto(t.id, t.description) "
+        query = "select new co.edu.unal.sam.physicalactivity.model.dto.TipDto(t.id, t.name, t.description) "
                 + "from Tip t where t.state = :state"),})
 public class Tip extends Entity {
 
