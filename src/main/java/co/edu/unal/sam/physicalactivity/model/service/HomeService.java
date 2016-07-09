@@ -8,6 +8,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Component;
 
 import co.edu.unal.sam.aspect.model.enumerator.StateEnum;
+import co.edu.unal.sam.physicalactivity.model.domain.Advantage;
+import co.edu.unal.sam.physicalactivity.model.domain.Alert;
+import co.edu.unal.sam.physicalactivity.model.domain.Event;
+import co.edu.unal.sam.physicalactivity.model.domain.Myth;
+import co.edu.unal.sam.physicalactivity.model.domain.Tip;
 import co.edu.unal.sam.physicalactivity.model.dto.AdvantageDto;
 import co.edu.unal.sam.physicalactivity.model.dto.AlertDto;
 import co.edu.unal.sam.physicalactivity.model.dto.EventDto;
@@ -37,11 +42,19 @@ public class HomeService {
     @Inject
     private TipRepository tipRepository;
 
+    public Advantage getAdvantage(Long id) {
+        return this.advantageRepository.findOne(id);
+    }
+
     public List<AdvantageDto> getAdvantages(StateEnum state) {
         if (Objects.isNull(state)) {
             state = StateEnum.ACTIVE;
         }
         return this.advantageRepository.findDtoAll(state);
+    }
+
+    public Alert getAlert(Long id) {
+        return this.alertRepository.findOne(id);
     }
 
     public List<AlertDto> getAlerts(StateEnum state) {
@@ -51,11 +64,19 @@ public class HomeService {
         return this.alertRepository.findDtoAll(state);
     }
 
+    public Event getEvent(Long id) {
+        return this.repository.findOne(id);
+    }
+
     public List<EventDto> getEvents(StateEnum state) {
         if (Objects.isNull(state)) {
             state = StateEnum.ACTIVE;
         }
         return this.repository.findDtoAll(state);
+    }
+
+    public Myth getMyth(Long id) {
+        return this.mythRepository.findOne(id);
     }
 
     public List<MythDto> getMyths(StateEnum state) {
@@ -65,11 +86,14 @@ public class HomeService {
         return this.mythRepository.findDtoAll(state);
     }
 
+    public Tip getTip(Long id) {
+        return this.tipRepository.findOne(id);
+    }
+
     public List<TipDto> getTips(StateEnum state) {
         if (Objects.isNull(state)) {
             state = StateEnum.ACTIVE;
         }
         return this.tipRepository.findDtoAll(state);
     }
-
 }

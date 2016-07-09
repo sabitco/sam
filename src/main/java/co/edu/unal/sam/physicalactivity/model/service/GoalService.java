@@ -80,6 +80,12 @@ public class GoalService {
                     }
                 }
             }
+            if (dto.getCurrentDays() > dto.getDays()) {
+                dto.setDays(dto.getCurrentDays());
+            }
+            if (dto.getCurrentMinutes() > dto.getCurrentMinutes()) {
+                dto.setMinutes(dto.getCurrentMinutes());
+            }
             goalsDto.add(dto);
         }
         return goalsDto;
