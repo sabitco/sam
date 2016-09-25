@@ -13,7 +13,7 @@ import co.edu.unal.sam.aspect.model.domain.Entity;
 @javax.persistence.Entity
 @javax.persistence.Table(name = "event")
 @NamedQueries({@NamedQuery(name = "Event.findDtoAll",
-        query = "select new co.edu.unal.sam.physicalactivity.model.dto.EventDto(e.id, e.name, e.date, e.link) "
+        query = "select new co.edu.unal.sam.physicalactivity.model.dto.EventDto(e.id, e.name, e.date, e.link, e.slug) "
                 + "from Event e where e.state = :state"),})
 public class Event extends Entity {
 
@@ -23,6 +23,9 @@ public class Event extends Entity {
 
     @Column(name = "link")
     private String link;
+    
+    @Column(name = "slug")
+    private String slug;
 
     public Event() {}
 
@@ -53,5 +56,13 @@ public class Event extends Entity {
     public void setLink(String link) {
         this.link = link;
     }
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
 
 }

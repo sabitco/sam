@@ -6,13 +6,15 @@ public class EventDto extends Dto {
 
     private Date date;
     private String link;
+    private String slug;
 
     public EventDto() {}
 
-    public EventDto(Long id, String name, Date date, String link) {
+    public EventDto(Long id, String name, Date date, String link, String slug) {
         super(id, name);
         this.date = date;
         this.link = link;
+        this.slug = slug;
     }
 
     /**
@@ -42,5 +44,13 @@ public class EventDto extends Dto {
     public void setLink(String link) {
         this.link = link;
     }
+
+	public String getSlug() {
+		return slug;
+	}
+
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
 
 }

@@ -21,20 +21,18 @@
     </div>
     <div class="panel-body">
       <div class="header">
-        <i class="fa fa-money fa-fw"></i> <strong
+        <h6><small>Indice de Masa Corporal</small></h6>
+        <i class="fa fa-money fa-fw"></i> 
+        <strong
           class="primary-font text-muted ">IMC:</strong> <strong
           class="primary-font">${sessionScope.user.bmi.name}</strong>
-          <a href="#" class="btn-outline btn-link"
-          title="Indice de Masa Corporal"><i class="fa fa-question-circle fa-fw"
-          data-toggle="tooltip"> </i></a>
+          
       </div>
       <div class="header">
+      	<h6><small>Este es el nivel que tienes actualmente</small></h6>
         <i class="fa fa-bolt fa-fw"></i> <strong
           class="primary-font text-muted ">Nivel:</strong> 
            <strong class="primary-font">${sessionScope.user.reward.name}</strong>
-           <a href="#" class="btn-outline btn-link"
-          title="Este es el nivel que tienes actualmente"><i class="fa fa-question-circle fa-fw"
-          data-toggle="tooltip"> </i></a>
       </div>
     </div>
     <a href="/physicalactivity/home" class="btn btn btn-info pull-right"><spring:message
@@ -62,11 +60,13 @@
               </a>
             </div>
             <div class="header">
-              <small class="primary-font">{{event.name}}</small> <small
+            	<p class="lead">{{event.name}}</p>
+              <small class="primary-font">{{event.slug}}</small> <small
                 class="pull-right text-muted">
-                <i
-                class="fa fa-link fa-fw"></i> 
-                <a href="{{event.link}}" class="btn-link" target="_blank">{{event.link}}</a>
+                 
+                <a href="{{event.link}}" class="btn-link" target="_blank">
+                	<i class="fa fa-link fa-fw"></i>
+                </a>
                 
               </small>
             </div>

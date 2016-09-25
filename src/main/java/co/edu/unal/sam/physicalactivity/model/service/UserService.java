@@ -286,9 +286,7 @@ public class UserService {
         TypeRiskEnum risk;
         Set<PhysicalActivity> activities = user.getPhysicalActivities();
         List<UserDisease> diseases = this.userDiseaseRepository.findByUser(user);
-        if (!diseases.isEmpty()) {
-            risk = TypeRiskEnum.INDETERMINATE;
-        } else if (activities.isEmpty()) {
+        if (activities.isEmpty()) {
             risk = TypeRiskEnum.HIGH;
         } else {
             int days = 0;
