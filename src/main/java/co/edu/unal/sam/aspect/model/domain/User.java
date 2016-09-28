@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import co.edu.unal.sam.aspect.model.enumerator.TypeUserEnum;
 import co.edu.unal.sam.physicalactivity.model.domain.Bmi;
+import co.edu.unal.sam.physicalactivity.model.domain.City;
 import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
@@ -122,6 +123,24 @@ public class User extends Entity {
     @Column(name = "user_name", unique = true, length = 300, nullable = false)
     @NotNull
     private String username;
+
+    @Column(name = "skype")
+    private String skype;
+
+    @Column(name = "eps")
+    private String eps;
+
+    @Column(name = "msisdn")
+    private String msisdn;
+
+    @ManyToOne()
+    @JoinColumn(name = "city_birth_id", foreignKey = @ForeignKey(name = "fk_city_birth_id"))
+    private City cityBirth;
+
+    @ManyToOne()
+    @JoinColumn(name = "city_residential_id",
+            foreignKey = @ForeignKey(name = "fk_city_residential_id"))
+    private City cityResidential;
 
     public User() {
         super();

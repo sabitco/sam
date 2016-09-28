@@ -41,6 +41,10 @@ public class UserDto extends Dto {
     private Boolean useCondition;
     private String username;
     private Float weight;
+    private String skype;
+    private String eps;
+    private String msisdn;
+
 
     public UserDto() {
         super();
