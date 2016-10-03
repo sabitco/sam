@@ -52,6 +52,13 @@ public class UserConverter implements Converter<User, UserDto> {
         entity.setTypeuser(dto.getTypeuser());
         entity.setUseCondition(dto.getUseCondition());
         entity.setUsername(dto.getUsername());
+        entity.setCityBirth(dto.getCityBirth());
+        entity.setCityResidential(dto.getCityResidential());
+        entity.setContact(dto.getContact());
+        entity.setMsisdn(dto.getMsisdn());
+        entity.setMaritalStatus(dto.getMaritalStatus());
+        entity.setSkype(dto.getSkype());
+        entity.setEps(dto.getEps());
 
         for (ActivityDto activity : dto.getActivities()) {
             PhysicalActivity physicalActivity = this.physicalActivityConverter.convert(activity);

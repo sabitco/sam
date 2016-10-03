@@ -30,6 +30,7 @@ import co.edu.unal.sam.physicalactivity.model.domain.Faculty;
 import co.edu.unal.sam.physicalactivity.model.domain.Goal;
 import co.edu.unal.sam.physicalactivity.model.domain.PhysicalActivity;
 import co.edu.unal.sam.physicalactivity.model.domain.UserDisease;
+import co.edu.unal.sam.physicalactivity.model.enumerator.MaritalStatusEnum;
 
 @javax.persistence.Entity
 @javax.persistence.Table(name = "user")
@@ -141,6 +142,13 @@ public class User extends Entity {
     @JoinColumn(name = "city_residential_id",
             foreignKey = @ForeignKey(name = "fk_city_residential_id"))
     private City cityResidential;
+
+    @Column(name = "contact")
+    private String contact;
+
+    @Column(name = "marital_status_id")
+    @Type(type = "co.edu.unal.sam.physicalactivity.model.usertype.MaritalStatusType")
+    private MaritalStatusEnum maritalStatus;
 
     public User() {
         super();
@@ -412,6 +420,104 @@ public class User extends Entity {
      */
     public void setUsername(final String username) {
         this.username = username;
+    }
+
+    /**
+     * @return the skype
+     */
+    public String getSkype() {
+        return skype;
+    }
+
+    /**
+     * @param skype the skype to set
+     */
+    public void setSkype(String skype) {
+        this.skype = skype;
+    }
+
+    /**
+     * @return the eps
+     */
+    public String getEps() {
+        return eps;
+    }
+
+    /**
+     * @param eps the eps to set
+     */
+    public void setEps(String eps) {
+        this.eps = eps;
+    }
+
+    /**
+     * @return the msisdn
+     */
+    public String getMsisdn() {
+        return msisdn;
+    }
+
+    /**
+     * @param msisdn the msisdn to set
+     */
+    public void setMsisdn(String msisdn) {
+        this.msisdn = msisdn;
+    }
+
+    /**
+     * @return the cityBirth
+     */
+    public City getCityBirth() {
+        return cityBirth;
+    }
+
+    /**
+     * @param cityBirth the cityBirth to set
+     */
+    public void setCityBirth(City cityBirth) {
+        this.cityBirth = cityBirth;
+    }
+
+    /**
+     * @return the cityResidential
+     */
+    public City getCityResidential() {
+        return cityResidential;
+    }
+
+    /**
+     * @param cityResidential the cityResidential to set
+     */
+    public void setCityResidential(City cityResidential) {
+        this.cityResidential = cityResidential;
+    }
+
+    /**
+     * @return the contact
+     */
+    public String getContact() {
+        return contact;
+    }
+
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    /**
+     * @return the maritalStatus
+     */
+    public MaritalStatusEnum getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    /**
+     * @param maritalStatus the maritalStatus to set
+     */
+    public void setMaritalStatus(MaritalStatusEnum maritalStatus) {
+        this.maritalStatus = maritalStatus;
     }
 
 }
