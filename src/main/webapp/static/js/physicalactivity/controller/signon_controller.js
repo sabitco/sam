@@ -36,7 +36,7 @@ App.controller('SignonController', [
         universitysede : "",
         faculty : "",
         descriptionHistory : "",
-        useCondition : true
+        useCondition : false
 
       };
 
@@ -122,7 +122,7 @@ App.controller('SignonController', [
         var template = '';
         if ('ERROR' === typeMsn) {
           template = "modalContentError.html";
-        } else if ('SUCCESS' === typeMsn ) {
+        } else if ('SUCCESS' === typeMsn) {
           template = "modalContent.html";
         }
 
@@ -157,7 +157,7 @@ App.controller('SignonController', [
           universitysede : "",
           faculty : "",
           descriptionHistory : "",
-          useCondition : true
+          useCondition : false
         };
         $scope.signonFormBasic.$setPristine();
       };
